@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="84">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df name="line" root=".">
+      <df name="bin">
+      </df>
+      <df name="build">
+        <df name="CMakeFiles">
+          <df name="clean-test-results.dir">
+          </df>
+          <df name="CMakeTmp">
+            <df name="CMakeFiles">
+              <df name="cmTryCompileExec.dir">
+              </df>
+            </df>
+          </df>
+          <df name="CompilerIdC">
+            <in>CMakeCCompilerId.c</in>
+          </df>
+          <df name="CompilerIdCXX">
+            <in>CMakeCXXCompilerId.cpp</in>
+          </df>
+          <df name="line.dir">
+            <df name="src">
+            </df>
+          </df>
+          <df name="listener.dir">
+            <df name="src">
+            </df>
+          </df>
+          <df name="rawImage.dir">
+            <df name="src">
+            </df>
+          </df>
+          <df name="ROSBUILD_genmsg_cpp.dir">
+          </df>
+          <df name="ROSBUILD_genmsg_lisp.dir">
+          </df>
+          <df name="ROSBUILD_gensrv_cpp.dir">
+          </df>
+          <df name="ROSBUILD_gensrv_lisp.dir">
+          </df>
+          <df name="rosbuild_precompile.dir">
+          </df>
+          <df name="rosbuild_premsgsrvgen.dir">
+          </df>
+          <df name="rospack_genmsg.dir">
+          </df>
+          <df name="rospack_genmsg_libexe.dir">
+          </df>
+          <df name="rospack_gensrv.dir">
+          </df>
+          <df name="talker.dir">
+            <df name="src">
+            </df>
+          </df>
+          <df name="test-future.dir">
+          </df>
+          <df name="test-results-run.dir">
+          </df>
+          <df name="test-results.dir">
+          </df>
+          <df name="test.dir">
+          </df>
+          <df name="tests.dir">
+          </df>
+        </df>
+      </df>
+      <df name="include">
+        <df name="line">
+        </df>
+      </df>
+      <df name="lib">
+      </df>
+      <df name="src">
+        <in>Line.cpp</in>
+        <in>Pixel.h</in>
+        <in>RawImage.cpp</in>
+        <in>RawImage.h</in>
+        <in>Utils.h</in>
+        <in>topic.cpp</in>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>/opt/ros/fuerte/include/ros</pElem>
+              <pElem>/opt/ros/fuerte/include</pElem>
+              <pElem>src</pElem>
+              <pElem>/usr/include/log4cxx</pElem>
+              <pElem>/usr/include/log4cxx/spi</pElem>
+              <pElem>build</pElem>
+              <pElem>/usr/include/log4cxx/helpers</pElem>
+              <pElem>/opt/ros/fuerte/include/std_msgs</pElem>
+            </incDir>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <item path="build/CMakeFiles/CompilerIdC/CMakeCCompilerId.c"
+            ex="true"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="build/CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+            ex="true"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/Pixel.h" ex="true" tool="3" flavor2="0">
+      </item>
+      <item path="src/RawImage.cpp" ex="true" tool="1" flavor2="0">
+      </item>
+      <item path="src/RawImage.h" ex="true" tool="3" flavor2="0">
+      </item>
+      <item path="src/Utils.h" ex="true" tool="3" flavor2="0">
+      </item>
+      <item path="src/topic.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+        </ccTool>
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

@@ -1,0 +1,17 @@
+<package>
+  <description brief="line">
+
+     line
+
+  </description>
+  <author>lubos</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/line</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+
+</package>
+
+

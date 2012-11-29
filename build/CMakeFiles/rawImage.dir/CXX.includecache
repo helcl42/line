@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/RawImage.cpp
+RawImage.h
+/home/lubos/fuerte_workspace/sandbox/line/src/RawImage.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/RawImage.h
+cstdio
+-
+iostream
+-
+Utils.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
+Pixel.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
+

@@ -1,0 +1,11 @@
+FILE(REMOVE_RECURSE
+  "CMakeFiles/line.dir/src/RawImage.o"
+  "CMakeFiles/line.dir/src/Line.o"
+  "../bin/line.pdb"
+  "../bin/line"
+)
+
+# Per-language clean rules from dependency scanning.
+FOREACH(lang CXX)
+  INCLUDE(CMakeFiles/line.dir/cmake_clean_${lang}.cmake OPTIONAL)
+ENDFOREACH(lang)
