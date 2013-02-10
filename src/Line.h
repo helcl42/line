@@ -8,6 +8,8 @@
 #ifndef LINE_H
 #define	LINE_H
 
+#include "Vector2.h"
+
 struct Line
 {
     std::vector<Vector2<int> > points;

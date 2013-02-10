@@ -11,7 +11,7 @@
 #include <vector>
 
 #include "BmpImage.h"
-#include "Vector2.h"
+#include "Line.h"
 #include "DetectionSettings.h"
 
 #define COLOR_TOLERANCE 50
