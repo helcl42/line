@@ -304,34 +304,64 @@ tests/fast:
 .PHONY : tests/fast
 
 # target to build an object file
-src/Line.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Line.o
-.PHONY : src/Line.o
+src/AbstractStrategy.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/AbstractStrategy.o
+.PHONY : src/AbstractStrategy.o
 
 # target to preprocess a source file
-src/Line.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Line.i
-.PHONY : src/Line.i
+src/AbstractStrategy.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/AbstractStrategy.i
+.PHONY : src/AbstractStrategy.i
 
 # target to generate assembly for a file
-src/Line.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Line.s
-.PHONY : src/Line.s
+src/AbstractStrategy.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/AbstractStrategy.s
+.PHONY : src/AbstractStrategy.s
 
 # target to build an object file
-src/RawImage.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RawImage.o
-.PHONY : src/RawImage.o
+src/LineDetector.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.o
+.PHONY : src/LineDetector.o
 
 # target to preprocess a source file
-src/RawImage.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RawImage.i
-.PHONY : src/RawImage.i
+src/LineDetector.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.i
+.PHONY : src/LineDetector.i
 
 # target to generate assembly for a file
-src/RawImage.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RawImage.s
-.PHONY : src/RawImage.s
+src/LineDetector.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.s
+.PHONY : src/LineDetector.s
+
+# target to build an object file
+src/SobelStrategy.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SobelStrategy.o
+.PHONY : src/SobelStrategy.o
+
+# target to preprocess a source file
+src/SobelStrategy.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SobelStrategy.i
+.PHONY : src/SobelStrategy.i
+
+# target to generate assembly for a file
+src/SobelStrategy.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SobelStrategy.s
+.PHONY : src/SobelStrategy.s
+
+# target to build an object file
+src/Timer.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Timer.o
+.PHONY : src/Timer.o
+
+# target to preprocess a source file
+src/Timer.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Timer.i
+.PHONY : src/Timer.i
+
+# target to generate assembly for a file
+src/Timer.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Timer.s
+.PHONY : src/Timer.s
 
 # Help Target
 help:
@@ -357,12 +387,18 @@ help:
 	@echo "... test-results"
 	@echo "... test-results-run"
 	@echo "... tests"
-	@echo "... src/Line.o"
-	@echo "... src/Line.i"
-	@echo "... src/Line.s"
-	@echo "... src/RawImage.o"
-	@echo "... src/RawImage.i"
-	@echo "... src/RawImage.s"
+	@echo "... src/AbstractStrategy.o"
+	@echo "... src/AbstractStrategy.i"
+	@echo "... src/AbstractStrategy.s"
+	@echo "... src/LineDetector.o"
+	@echo "... src/LineDetector.i"
+	@echo "... src/LineDetector.s"
+	@echo "... src/SobelStrategy.o"
+	@echo "... src/SobelStrategy.i"
+	@echo "... src/SobelStrategy.s"
+	@echo "... src/Timer.o"
+	@echo "... src/Timer.i"
+	@echo "... src/Timer.s"
 .PHONY : help
 
 

@@ -46,7 +46,7 @@ CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
 CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 
 //Flags used by the compiler during Release with Debug Info builds.
-CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g
+CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O3 -g
 
 //C compiler.
 CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc
@@ -189,7 +189,7 @@ TOOLCHAINCONFIG:FILEPATH=TOOLCHAINCONFIG-NOTFOUND
 USERCONFIG:FILEPATH=USERCONFIG-NOTFOUND
 
 //Path to a file.
-_file_name:FILEPATH=/home/lubos/fuerte_workspace/sandbox/line/src/Line.cpp
+_file_name:FILEPATH=/home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp
 
 //Value Computed by CMake
 line_BINARY_DIR:STATIC=/home/lubos/fuerte_workspace/sandbox/line/build

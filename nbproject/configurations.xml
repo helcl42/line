@@ -70,15 +70,30 @@
         <df name="line">
         </df>
       </df>
+      <df name="input">
+      </df>
       <df name="lib">
       </df>
       <df name="src">
-        <in>Line.cpp</in>
+        <in>AbstractStrategy.cpp</in>
+        <in>AbstractStrategy.h</in>
+        <in>BmpFileIO.h</in>
+        <in>BmpImage.h</in>
+        <in>DetectionSettings.h</in>
+        <in>IPixel.h</in>
+        <in>LineDetector.cpp</in>
+        <in>LineDetector.h</in>
         <in>Pixel.h</in>
-        <in>RawImage.cpp</in>
-        <in>RawImage.h</in>
+        <in>PixelLUV.h</in>
+        <in>PixelRGB.h</in>
+        <in>PixelXYZ.h</in>
+        <in>SobelStrategy.cpp</in>
+        <in>SobelStrategy.h</in>
+        <in>Timer.cpp</in>
+        <in>Timer.h</in>
         <in>Utils.h</in>
-        <in>topic.cpp</in>
+        <in>Vector2.h</in>
+        <in>test.cpp</in>
       </df>
     </df>
     <logicalFolder name="ExternalFiles"
@@ -133,15 +148,7 @@
       </item>
       <item path="src/Pixel.h" ex="true" tool="3" flavor2="0">
       </item>
-      <item path="src/RawImage.cpp" ex="true" tool="1" flavor2="0">
-      </item>
-      <item path="src/RawImage.h" ex="true" tool="3" flavor2="0">
-      </item>
       <item path="src/Utils.h" ex="true" tool="3" flavor2="0">
-      </item>
-      <item path="src/topic.cpp" ex="false" tool="1" flavor2="4">
-        <ccTool>
-        </ccTool>
       </item>
     </conf>
   </confs>
