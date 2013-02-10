@@ -14,16 +14,16 @@ void AbstractStrategy::smooth()
             for (int ch = 0; ch < 3; ch++)
             {
                 pixel = m_bmpImage->getPixel(y, x);
-                
+
                 result = m * m_bmpImage->getPixelChannelValue(y - 1, x - 1, ch) +
-                         m * m_bmpImage->getPixelChannelValue(y - 1, x    , ch) +
-                         m * m_bmpImage->getPixelChannelValue(y - 1, x + 1, ch) +
-                         m * m_bmpImage->getPixelChannelValue(y    , x - 1, ch) +
-                         m * m_bmpImage->getPixelChannelValue(y    , x    , ch) +
-                         m * m_bmpImage->getPixelChannelValue(y    , x + 1, ch) +
-                         m * m_bmpImage->getPixelChannelValue(y + 1, x - 1, ch) +
-                         m * m_bmpImage->getPixelChannelValue(y + 1, x    , ch) +
-                         m * m_bmpImage->getPixelChannelValue(y + 1, x + 1, ch);
+                        m * m_bmpImage->getPixelChannelValue(y - 1, x, ch) +
+                        m * m_bmpImage->getPixelChannelValue(y - 1, x + 1, ch) +
+                        m * m_bmpImage->getPixelChannelValue(y, x - 1, ch) +
+                        m * m_bmpImage->getPixelChannelValue(y, x, ch) +
+                        m * m_bmpImage->getPixelChannelValue(y, x + 1, ch) +
+                        m * m_bmpImage->getPixelChannelValue(y + 1, x - 1, ch) +
+                        m * m_bmpImage->getPixelChannelValue(y + 1, x, ch) +
+                        m * m_bmpImage->getPixelChannelValue(y + 1, x + 1, ch);
 
                 switch (ch)
                 {
@@ -40,7 +40,7 @@ void AbstractStrategy::smooth()
             }
             m_bmpImage->setPixelValue(y, x, pixel);
         }
-    }    
+    }
 }
 
 void AbstractStrategy::gaussianBlur()
@@ -57,16 +57,16 @@ void AbstractStrategy::gaussianBlur()
             for (int ch = 0; ch < 3; ch++)
             {
                 pixel = m_bmpImage->getPixel(y, x);
-                
-                result = m *       m_bmpImage->getPixelChannelValue(y - 1, x - 1, ch) +
-                         m * 2.0 * m_bmpImage->getPixelChannelValue(y - 1, x    , ch) +
-                         m *       m_bmpImage->getPixelChannelValue(y - 1, x + 1, ch) +
-                         m * 2.0 * m_bmpImage->getPixelChannelValue(y    , x - 1, ch) +
-                         m * 4.0 * m_bmpImage->getPixelChannelValue(y    , x    , ch) +
-                         m * 2.0 * m_bmpImage->getPixelChannelValue(y    , x + 1, ch) +
-                         m *       m_bmpImage->getPixelChannelValue(y + 1, x - 1, ch) +
-                         m * 2.0 * m_bmpImage->getPixelChannelValue(y + 1, x    , ch) +
-                         m *       m_bmpImage->getPixelChannelValue(y + 1, x + 1, ch);
+
+                result = m * m_bmpImage->getPixelChannelValue(y - 1, x - 1, ch) +
+                        m * 2.0 * m_bmpImage->getPixelChannelValue(y - 1, x, ch) +
+                        m * m_bmpImage->getPixelChannelValue(y - 1, x + 1, ch) +
+                        m * 2.0 * m_bmpImage->getPixelChannelValue(y, x - 1, ch) +
+                        m * 4.0 * m_bmpImage->getPixelChannelValue(y, x, ch) +
+                        m * 2.0 * m_bmpImage->getPixelChannelValue(y, x + 1, ch) +
+                        m * m_bmpImage->getPixelChannelValue(y + 1, x - 1, ch) +
+                        m * 2.0 * m_bmpImage->getPixelChannelValue(y + 1, x, ch) +
+                        m * m_bmpImage->getPixelChannelValue(y + 1, x + 1, ch);
 
                 switch (ch)
                 {
@@ -83,7 +83,7 @@ void AbstractStrategy::gaussianBlur()
             }
             m_bmpImage->setPixelValue(y, x, pixel);
         }
-    }    
+    }
 }
 
 void AbstractStrategy::sharpen()
@@ -100,13 +100,13 @@ void AbstractStrategy::sharpen()
             for (int ch = 0; ch < 3; ch++)
             {
                 pixel = m_bmpImage->getPixel(y, x);
-                
-                result = 
-                         m * -2.0 * m_bmpImage->getPixelChannelValue(y - 1, x    , ch) +                         
-                         m * -2.0 * m_bmpImage->getPixelChannelValue(y    , x - 1, ch) +
-                         m * 11.0 * m_bmpImage->getPixelChannelValue(y    , x    , ch) +
-                         m * -2.0 * m_bmpImage->getPixelChannelValue(y    , x + 1, ch) +                         
-                         m * -2.0 * m_bmpImage->getPixelChannelValue(y + 1, x    , ch);
+
+                result =
+                        m * -2.0 * m_bmpImage->getPixelChannelValue(y - 1, x, ch) +
+                        m * -2.0 * m_bmpImage->getPixelChannelValue(y, x - 1, ch) +
+                        m * 11.0 * m_bmpImage->getPixelChannelValue(y, x, ch) +
+                        m * -2.0 * m_bmpImage->getPixelChannelValue(y, x + 1, ch) +
+                        m * -2.0 * m_bmpImage->getPixelChannelValue(y + 1, x, ch);
 
                 switch (ch)
                 {
@@ -123,30 +123,30 @@ void AbstractStrategy::sharpen()
             }
             m_bmpImage->setPixelValue(y, x, pixel);
         }
-    }    
+    }
 }
 
 void AbstractStrategy::replaintSimilarColorPlaces(int interval)
 {
-    if(m_settings == NULL) 
+    if (m_settings == NULL)
     {
         throw std::runtime_error("Settings NULL");
     }
-        
+
     PixelRGB<float> pixelMinus;
     PixelRGB<float> pixelPlus;
-    Pixel<float>* pixel = NULL;    
+    Pixel<float>* pixel = NULL;
 
-    pixelMinus.r = 
+    pixelMinus.r =
             m_settings->searchedColor.b > interval ? m_settings->searchedColor.b - interval : 0;
-    pixelMinus.g = 
+    pixelMinus.g =
             m_settings->searchedColor.g > interval ? m_settings->searchedColor.g - interval : 0;
-    pixelMinus.b = 
+    pixelMinus.b =
             m_settings->searchedColor.r > interval ? m_settings->searchedColor.r - interval : 0;
 
-    pixelPlus.r = 
+    pixelPlus.r =
             m_settings->searchedColor.b + interval < 255 ? m_settings->searchedColor.b + interval : 255;
-    pixelPlus.g = 
+    pixelPlus.g =
             m_settings->searchedColor.g + interval < 255 ? m_settings->searchedColor.g + interval : 255;
     pixelPlus.b =
             m_settings->searchedColor.r + interval < 255 ? m_settings->searchedColor.r + interval : 255;
@@ -165,7 +165,7 @@ void AbstractStrategy::replaintSimilarColorPlaces(int interval)
             m_baseColor.g = 0;
             m_baseColor.b = 255;
         }
-    } 
+    }
     else
     {
         if (m_settings->searchedColor.g > m_settings->searchedColor.b)
@@ -173,7 +173,7 @@ void AbstractStrategy::replaintSimilarColorPlaces(int interval)
             m_baseColor.r = 0;
             m_baseColor.g = 255;
             m_baseColor.b = 0;
-        } 
+        }
         else
         {
             m_baseColor.r = 255;
@@ -203,12 +203,11 @@ void AbstractStrategy::replaintSimilarColorPlaces(int interval)
                 pixel->b = 0;
             }
         }
-    }    
+    }
 }
 
-
 Line* AbstractStrategy::traverseImage()
-{    
+{
     Pixel<float>* pixel = NULL;
     Line* line = NULL;
     Line* line2 = NULL;
@@ -225,39 +224,36 @@ Line* AbstractStrategy::traverseImage()
                 line = findCorrectLine(1, 0, i, j);
                 line2 = findCorrectLine(-1, 0, i, j);
 
-                //if (line != NULL && line2 != NULL)
+                unsigned int size1 = line->points.size();
+                unsigned int size2 = line2->points.size();
+                if (size1 > size2)
                 {
-                    unsigned int size1 = line->points.size();
-                    unsigned int size2 = line2->points.size();
-                    if (size1 > size2)
+                    if (size1 > LINE_LENGTH_TRESHOLD)
                     {
-                        if (size1 > LINE_LENGTH_TRESHOLD)
-                        {
-                            std::cout << "found line" << std::endl;
-                            lines.push_back(line);                            
-                            break;
-                        }
-                        else
-                        {
-                            SAFE_DELETE(line);                            
-                        }
-                        SAFE_DELETE(line2);
+                        std::cout << "found line" << std::endl;
+                        lines.push_back(line);
+                        break;
                     }
                     else
                     {
-                        if (size2 > LINE_LENGTH_TRESHOLD)
-                        {
-                            std::cout << "found line" << std::endl;
-                            lines.push_back(line2);                            
-                            break;
-                        }
-                        else
-                        {                            
-                            SAFE_DELETE(line2);
-                        }
                         SAFE_DELETE(line);
                     }
-                }               
+                    SAFE_DELETE(line2);
+                }
+                else
+                {
+                    if (size2 > LINE_LENGTH_TRESHOLD)
+                    {
+                        std::cout << "found line" << std::endl;
+                        lines.push_back(line2);
+                        break;
+                    }
+                    else
+                    {
+                        SAFE_DELETE(line2);
+                    }
+                    SAFE_DELETE(line);
+                }
             }
         }
     }
@@ -285,7 +281,7 @@ Line* AbstractStrategy::findCorrectLine(int vecY, int vecX, unsigned int posY, u
 
     int chY = 0;
     int chX = 1;
-    
+
     int countOfFails = 0;
     int vectorY = vecY;
     int vectorX = vecX;
