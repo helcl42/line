@@ -81,12 +81,15 @@
         <in>BmpImage.h</in>
         <in>DetectionSettings.h</in>
         <in>IPixel.h</in>
+        <in>Line.h</in>
         <in>LineDetector.cpp</in>
         <in>LineDetector.h</in>
         <in>Pixel.h</in>
         <in>PixelLUV.h</in>
         <in>PixelRGB.h</in>
         <in>PixelXYZ.h</in>
+        <in>RobertsStrategy.cpp</in>
+        <in>RobertsStrategy.h</in>
         <in>SobelStrategy.cpp</in>
         <in>SobelStrategy.h</in>
         <in>Timer.cpp</in>

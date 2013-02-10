@@ -334,6 +334,21 @@ src/LineDetector.s:
 .PHONY : src/LineDetector.s
 
 # target to build an object file
+src/RobertsStrategy.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RobertsStrategy.o
+.PHONY : src/RobertsStrategy.o
+
+# target to preprocess a source file
+src/RobertsStrategy.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RobertsStrategy.i
+.PHONY : src/RobertsStrategy.i
+
+# target to generate assembly for a file
+src/RobertsStrategy.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RobertsStrategy.s
+.PHONY : src/RobertsStrategy.s
+
+# target to build an object file
 src/SobelStrategy.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SobelStrategy.o
 .PHONY : src/SobelStrategy.o
@@ -393,6 +408,9 @@ help:
 	@echo "... src/LineDetector.o"
 	@echo "... src/LineDetector.i"
 	@echo "... src/LineDetector.s"
+	@echo "... src/RobertsStrategy.o"
+	@echo "... src/RobertsStrategy.i"
+	@echo "... src/RobertsStrategy.s"
 	@echo "... src/SobelStrategy.o"
 	@echo "... src/SobelStrategy.i"
 	@echo "... src/SobelStrategy.s"

@@ -19,22 +19,25 @@
 #include "BmpImage.h"
 #include "SobelStrategy.h"
 
-#define COLOR_TOLERANCE 50
-
-class ImageWorker
+class LineDetector
 {
 private:
     ros::NodeHandle m_handler;
+    
     ros::NodeHandle m_sendHandler;
     
     ros::Subscriber m_sub;
+    
     ros::Publisher m_resender;        
 
     BmpImage<float>* m_image;
     
+    DetectionSettings* m_settings;
+    
 public:
-    ImageWorker();
-    ~ImageWorker();
+    LineDetector(DetectionSettings* settings);
+    
+    ~LineDetector();
 
     void imageCallback(const sensor_msgs::Image::ConstPtr& msg_ptr);       
 };

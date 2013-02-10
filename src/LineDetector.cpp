@@ -1,24 +1,28 @@
 #include "LineDetector.h"
+#include "RobertsStrategy.h"
 
-ImageWorker::ImageWorker()
+LineDetector::LineDetector(DetectionSettings* settings) 
+: m_settings(settings)
 {
-    m_sub = m_handler.subscribe("/camera/rgb/image_color", 1, &ImageWorker::imageCallback, this);    
+    m_sub = m_handler.subscribe("/camera/rgb/image_color", 1, &LineDetector::imageCallback, this);    
     m_resender = m_sendHandler.advertise<sensor_msgs::Image>("resender", 1);   
 }
 
-ImageWorker::~ImageWorker()
+LineDetector::~LineDetector()
 {    
 }
 
-void ImageWorker::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
+void LineDetector::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
 {                    
     Timer t1;    
     t1.start();    
     m_image = new BmpImage<float>(msg);
-        
-    DetectionSettings settings(0xdc, 0xdc, 0xdc, 120);        
-    SobelStrategy sobelStrategy(m_image, &settings);    
-    Line* line = sobelStrategy.detectLine();                    
+                   
+//    SobelStrategy sobelStrategy(m_image, m_settings);    
+//    Line* line = sobelStrategy.detectLine();                    
+    
+    RobertsStrategy robertsStrategy(m_image, m_settings);    
+    Line* line = robertsStrategy.detectLine();                    
     
     t1.stop();
     t1.logTime();
@@ -33,10 +37,13 @@ void ImageWorker::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
 
 int main(int argc, char** argv)
 {
+    //TODO read params
+    
     ros::init(argc, argv, "line");
     ROS_INFO("Line started");   
     
-    ImageWorker worker;
+    DetectionSettings settings(0xdc, 0xdc, 0xdc, 120);
+    LineDetector detector(&settings);
     
     ros::spin();
     ROS_INFO("Line finished");

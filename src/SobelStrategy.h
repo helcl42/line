@@ -10,9 +10,6 @@
 
 #include "AbstractStrategy.h"
 
-#define LINE_LENGTH_TRESHOLD  150
-#define COLOR_TRESHOLD 		  100
-
 
 class SobelStrategy : public AbstractStrategy
 {   
@@ -22,14 +19,8 @@ public:
                                
     Line* detectLine();
     
-protected:
-    Line* findCorrectLine(int vecY, int vecX, unsigned int posY, unsigned int posX);
-    
-    Line* getLongestLine(std::vector<Line*>& lines);                
-    
-    void sobel();    
-    
-    Line* traverseImage();
+protected:    
+    void sobelAlgorithm();        
 };
 
 #endif	/* SOBELSTRATEGY_H */

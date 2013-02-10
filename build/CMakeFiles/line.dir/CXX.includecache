@@ -6,19 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.cpp
-stdexcept
--
-AbstractStrategy.h
-/home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
-
 /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
 vector
 -
+stdexcept
+-
 BmpImage.h
 /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
-Vector2.h
-/home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
+Line.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Line.h
 DetectionSettings.h
 /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
 
@@ -42,9 +38,15 @@ Pixel.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
 
+/home/lubos/fuerte_workspace/sandbox/line/src/Line.h
+Vector2.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp
 LineDetector.h
 /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.h
+RobertsStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.h
 ros/ros.h
@@ -94,9 +96,9 @@ Pixel.h
 Pixel.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
 
-/home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.cpp
-SobelStrategy.h
-/home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.h
+AbstractStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
 AbstractStrategy.h

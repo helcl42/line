@@ -9,12 +9,16 @@
 #define	IDETECTSTRATEGY_H
 
 #include <vector>
+#include <stdexcept>
 
 #include "BmpImage.h"
 #include "Line.h"
 #include "DetectionSettings.h"
 
 #define COLOR_TOLERANCE 50
+
+#define LINE_LENGTH_TRESHOLD  150
+#define COLOR_TRESHOLD 		  10
 
 class AbstractStrategy 
 {
@@ -29,11 +33,21 @@ public:
     AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
         : m_bmpImage(image), m_settings(settings) {}
     
-     void blur();
+     void smooth();
      
-     void replaintSimilarColorPlaces(int interval = COLOR_TOLERANCE);
+     void gaussianBlur();
      
-     virtual Line* detectLine() = 0;    
+     void sharpen();
+     
+     Line* getLongestLine(std::vector<Line*>& lines);
+     
+     Line* traverseImage();
+     
+     Line* findCorrectLine(int vecY, int vecX, unsigned int posY, unsigned int posX);
+     
+     void replaintSimilarColorPlaces(int interval = 50);
+     
+     virtual Line* detectLine() = 0;        
 };
 
 #endif	/* IDETECTSTRATEGY_H */

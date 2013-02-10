@@ -6,6 +6,7 @@ CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/AbstractStrategy.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/DetectionSettings.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/IPixel.h
+CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Line.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/PixelRGB.h
@@ -73,12 +74,14 @@ CMakeFiles/line.dir/src/LineDetector.o: ../src/AbstractStrategy.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/DetectionSettings.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/IPixel.h
+CMakeFiles/line.dir/src/LineDetector.o: ../src/Line.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/LineDetector.cpp
 CMakeFiles/line.dir/src/LineDetector.o: ../src/LineDetector.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/LineDetector.o: ../src/RobertsStrategy.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/SobelStrategy.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/Timer.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/Utils.h
@@ -140,10 +143,14 @@ CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/rosconsole/macro
 CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
 CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
+CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/RobertsStrategy.cpp
+CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/RobertsStrategy.h
+
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/AbstractStrategy.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/DetectionSettings.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/IPixel.h
+CMakeFiles/line.dir/src/SobelStrategy.o: ../src/Line.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/PixelRGB.h
