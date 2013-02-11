@@ -1,5 +1,6 @@
 #include "LineDetector.h"
 #include "RobertsStrategy.h"
+#include "PrewittStrategy.h"
 
 LineDetector::LineDetector(DetectionSettings* settings) 
 : m_settings(settings)
@@ -23,8 +24,11 @@ void LineDetector::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
 //    SobelStrategy sobelStrategy(m_image, m_settings);    
 //    Line* line = sobelStrategy.detectLine();                    
     
-    RobertsStrategy robertsStrategy(m_image, m_settings);    
-    Line* line = robertsStrategy.detectLine();                    
+//    RobertsStrategy robertsStrategy(m_image, m_settings);    
+//    Line* line = robertsStrategy.detectLine();                    
+    
+    PrewittStrategy prewittStrategy(m_image, m_settings);    
+    Line* line = prewittStrategy.detectLine();  
     
     t1.stop();
     t1.logTime();

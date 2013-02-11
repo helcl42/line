@@ -3,6 +3,8 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/line.dir/src/AbstractStrategy.o"
   "CMakeFiles/line.dir/src/SobelStrategy.o"
   "CMakeFiles/line.dir/src/RobertsStrategy.o"
+  "CMakeFiles/line.dir/src/PrewittStrategy.o"
+  "CMakeFiles/line.dir/src/Line.o"
   "CMakeFiles/line.dir/src/LineDetector.o"
   "../bin/line.pdb"
   "../bin/line"

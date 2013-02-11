@@ -33,6 +33,8 @@ rosbuild_add_library(line src/Timer.cpp)
 rosbuild_add_library(line src/AbstractStrategy.cpp)
 rosbuild_add_library(line src/SobelStrategy.cpp)
 rosbuild_add_library(line src/RobertsStrategy.cpp)
+rosbuild_add_library(line src/PrewittStrategy.cpp)
+rosbuild_add_library(line src/Line.cpp)
 rosbuild_add_executable(line src/LineDetector.cpp)
 
 

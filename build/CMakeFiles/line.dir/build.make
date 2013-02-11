@@ -55,15 +55,15 @@ CMakeFiles/line.dir/src/Timer.o: /opt/ros/fuerte/share/rospy/manifest.xml
 CMakeFiles/line.dir/src/Timer.o: /opt/ros/fuerte/share/roscpp/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/Timer.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/Timer.o -c /home/lubos/fuerte_workspace/sandbox/line/src/Timer.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/Timer.o -c /home/lubos/fuerte_workspace/sandbox/line/src/Timer.cpp
 
 CMakeFiles/line.dir/src/Timer.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/Timer.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/Timer.cpp > CMakeFiles/line.dir/src/Timer.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/Timer.cpp > CMakeFiles/line.dir/src/Timer.i
 
 CMakeFiles/line.dir/src/Timer.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/Timer.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/Timer.cpp -o CMakeFiles/line.dir/src/Timer.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/Timer.cpp -o CMakeFiles/line.dir/src/Timer.s
 
 CMakeFiles/line.dir/src/Timer.o.requires:
 .PHONY : CMakeFiles/line.dir/src/Timer.o.requires
@@ -83,15 +83,15 @@ CMakeFiles/line.dir/src/AbstractStrategy.o: /opt/ros/fuerte/share/rospy/manifest
 CMakeFiles/line.dir/src/AbstractStrategy.o: /opt/ros/fuerte/share/roscpp/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/AbstractStrategy.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/AbstractStrategy.o -c /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/AbstractStrategy.o -c /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.cpp
 
 CMakeFiles/line.dir/src/AbstractStrategy.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/AbstractStrategy.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.cpp > CMakeFiles/line.dir/src/AbstractStrategy.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.cpp > CMakeFiles/line.dir/src/AbstractStrategy.i
 
 CMakeFiles/line.dir/src/AbstractStrategy.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/AbstractStrategy.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.cpp -o CMakeFiles/line.dir/src/AbstractStrategy.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.cpp -o CMakeFiles/line.dir/src/AbstractStrategy.s
 
 CMakeFiles/line.dir/src/AbstractStrategy.o.requires:
 .PHONY : CMakeFiles/line.dir/src/AbstractStrategy.o.requires
@@ -111,15 +111,15 @@ CMakeFiles/line.dir/src/SobelStrategy.o: /opt/ros/fuerte/share/rospy/manifest.xm
 CMakeFiles/line.dir/src/SobelStrategy.o: /opt/ros/fuerte/share/roscpp/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/SobelStrategy.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/SobelStrategy.o -c /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/SobelStrategy.o -c /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.cpp
 
 CMakeFiles/line.dir/src/SobelStrategy.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/SobelStrategy.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.cpp > CMakeFiles/line.dir/src/SobelStrategy.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.cpp > CMakeFiles/line.dir/src/SobelStrategy.i
 
 CMakeFiles/line.dir/src/SobelStrategy.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/SobelStrategy.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.cpp -o CMakeFiles/line.dir/src/SobelStrategy.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.cpp -o CMakeFiles/line.dir/src/SobelStrategy.s
 
 CMakeFiles/line.dir/src/SobelStrategy.o.requires:
 .PHONY : CMakeFiles/line.dir/src/SobelStrategy.o.requires
@@ -139,15 +139,15 @@ CMakeFiles/line.dir/src/RobertsStrategy.o: /opt/ros/fuerte/share/rospy/manifest.
 CMakeFiles/line.dir/src/RobertsStrategy.o: /opt/ros/fuerte/share/roscpp/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/RobertsStrategy.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/RobertsStrategy.o -c /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/RobertsStrategy.o -c /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.cpp
 
 CMakeFiles/line.dir/src/RobertsStrategy.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/RobertsStrategy.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.cpp > CMakeFiles/line.dir/src/RobertsStrategy.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.cpp > CMakeFiles/line.dir/src/RobertsStrategy.i
 
 CMakeFiles/line.dir/src/RobertsStrategy.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/RobertsStrategy.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.cpp -o CMakeFiles/line.dir/src/RobertsStrategy.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.cpp -o CMakeFiles/line.dir/src/RobertsStrategy.s
 
 CMakeFiles/line.dir/src/RobertsStrategy.o.requires:
 .PHONY : CMakeFiles/line.dir/src/RobertsStrategy.o.requires
@@ -158,6 +158,62 @@ CMakeFiles/line.dir/src/RobertsStrategy.o.provides: CMakeFiles/line.dir/src/Robe
 
 CMakeFiles/line.dir/src/RobertsStrategy.o.provides.build: CMakeFiles/line.dir/src/RobertsStrategy.o
 
+CMakeFiles/line.dir/src/PrewittStrategy.o: CMakeFiles/line.dir/flags.make
+CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/PrewittStrategy.cpp
+CMakeFiles/line.dir/src/PrewittStrategy.o: ../manifest.xml
+CMakeFiles/line.dir/src/PrewittStrategy.o: /opt/ros/fuerte/share/std_msgs/manifest.xml
+CMakeFiles/line.dir/src/PrewittStrategy.o: /opt/ros/fuerte/share/roslang/manifest.xml
+CMakeFiles/line.dir/src/PrewittStrategy.o: /opt/ros/fuerte/share/rospy/manifest.xml
+CMakeFiles/line.dir/src/PrewittStrategy.o: /opt/ros/fuerte/share/roscpp/manifest.xml
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/PrewittStrategy.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/PrewittStrategy.o -c /home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.cpp
+
+CMakeFiles/line.dir/src/PrewittStrategy.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/PrewittStrategy.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.cpp > CMakeFiles/line.dir/src/PrewittStrategy.i
+
+CMakeFiles/line.dir/src/PrewittStrategy.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/PrewittStrategy.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.cpp -o CMakeFiles/line.dir/src/PrewittStrategy.s
+
+CMakeFiles/line.dir/src/PrewittStrategy.o.requires:
+.PHONY : CMakeFiles/line.dir/src/PrewittStrategy.o.requires
+
+CMakeFiles/line.dir/src/PrewittStrategy.o.provides: CMakeFiles/line.dir/src/PrewittStrategy.o.requires
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/PrewittStrategy.o.provides.build
+.PHONY : CMakeFiles/line.dir/src/PrewittStrategy.o.provides
+
+CMakeFiles/line.dir/src/PrewittStrategy.o.provides.build: CMakeFiles/line.dir/src/PrewittStrategy.o
+
+CMakeFiles/line.dir/src/Line.o: CMakeFiles/line.dir/flags.make
+CMakeFiles/line.dir/src/Line.o: ../src/Line.cpp
+CMakeFiles/line.dir/src/Line.o: ../manifest.xml
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/share/std_msgs/manifest.xml
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/share/roslang/manifest.xml
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/share/rospy/manifest.xml
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/share/roscpp/manifest.xml
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles $(CMAKE_PROGRESS_6)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/Line.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/Line.o -c /home/lubos/fuerte_workspace/sandbox/line/src/Line.cpp
+
+CMakeFiles/line.dir/src/Line.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/Line.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/Line.cpp > CMakeFiles/line.dir/src/Line.i
+
+CMakeFiles/line.dir/src/Line.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/Line.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/Line.cpp -o CMakeFiles/line.dir/src/Line.s
+
+CMakeFiles/line.dir/src/Line.o.requires:
+.PHONY : CMakeFiles/line.dir/src/Line.o.requires
+
+CMakeFiles/line.dir/src/Line.o.provides: CMakeFiles/line.dir/src/Line.o.requires
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Line.o.provides.build
+.PHONY : CMakeFiles/line.dir/src/Line.o.provides
+
+CMakeFiles/line.dir/src/Line.o.provides.build: CMakeFiles/line.dir/src/Line.o
+
 CMakeFiles/line.dir/src/LineDetector.o: CMakeFiles/line.dir/flags.make
 CMakeFiles/line.dir/src/LineDetector.o: ../src/LineDetector.cpp
 CMakeFiles/line.dir/src/LineDetector.o: ../manifest.xml
@@ -165,17 +221,17 @@ CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/share/std_msgs/manifest.
 CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/share/roslang/manifest.xml
 CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/share/rospy/manifest.xml
 CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/share/roscpp/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/LineDetector.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/LineDetector.o -c /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/LineDetector.o -c /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp
 
 CMakeFiles/line.dir/src/LineDetector.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/LineDetector.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp > CMakeFiles/line.dir/src/LineDetector.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp > CMakeFiles/line.dir/src/LineDetector.i
 
 CMakeFiles/line.dir/src/LineDetector.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/LineDetector.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp -o CMakeFiles/line.dir/src/LineDetector.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp -o CMakeFiles/line.dir/src/LineDetector.s
 
 CMakeFiles/line.dir/src/LineDetector.o.requires:
 .PHONY : CMakeFiles/line.dir/src/LineDetector.o.requires
@@ -192,6 +248,8 @@ line_OBJECTS = \
 "CMakeFiles/line.dir/src/AbstractStrategy.o" \
 "CMakeFiles/line.dir/src/SobelStrategy.o" \
 "CMakeFiles/line.dir/src/RobertsStrategy.o" \
+"CMakeFiles/line.dir/src/PrewittStrategy.o" \
+"CMakeFiles/line.dir/src/Line.o" \
 "CMakeFiles/line.dir/src/LineDetector.o"
 
 # External object files for target line
@@ -201,6 +259,8 @@ line_EXTERNAL_OBJECTS =
 ../bin/line: CMakeFiles/line.dir/src/AbstractStrategy.o
 ../bin/line: CMakeFiles/line.dir/src/SobelStrategy.o
 ../bin/line: CMakeFiles/line.dir/src/RobertsStrategy.o
+../bin/line: CMakeFiles/line.dir/src/PrewittStrategy.o
+../bin/line: CMakeFiles/line.dir/src/Line.o
 ../bin/line: CMakeFiles/line.dir/src/LineDetector.o
 ../bin/line: CMakeFiles/line.dir/build.make
 ../bin/line: CMakeFiles/line.dir/link.txt
@@ -215,6 +275,8 @@ CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/Timer.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/AbstractStrategy.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/SobelStrategy.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/RobertsStrategy.o.requires
+CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/PrewittStrategy.o.requires
+CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/Line.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/LineDetector.o.requires
 .PHONY : CMakeFiles/line.dir/requires
 
