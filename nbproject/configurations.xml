@@ -88,6 +88,8 @@
         <in>PixelLUV.h</in>
         <in>PixelRGB.h</in>
         <in>PixelXYZ.h</in>
+        <in>PrewittStrategy.cpp</in>
+        <in>PrewittStrategy.h</in>
         <in>RobertsStrategy.cpp</in>
         <in>RobertsStrategy.h</in>
         <in>SobelStrategy.cpp</in>

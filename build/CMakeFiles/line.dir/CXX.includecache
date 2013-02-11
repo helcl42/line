@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.cpp
-AbstractStrategy.h
-/home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
-
 /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
 vector
 -
@@ -46,6 +42,32 @@ Pixel.h
 Vector2.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
 
+/home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp
+LineDetector.h
+/home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.h
+RobertsStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.h
+ros/ros.h
+/home/lubos/fuerte_workspace/sandbox/line/src/ros/ros.h
+sensor_msgs/Image.h
+-
+cstdio
+-
+ctime
+-
+Utils.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
+Timer.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
+DetectionSettings.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
+BmpImage.h
+/home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
+SobelStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
 cmath
 -
@@ -74,13 +96,23 @@ Pixel.h
 Pixel.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
 
-/home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.cpp
-RobertsStrategy.h
-/home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.h
-
 /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.h
 AbstractStrategy.h
 /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
+AbstractStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
+cstdlib
+-
+sys/time.h
+-
+iostream
+-
+sstream
+-
 
 /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
 

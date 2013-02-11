@@ -2,9 +2,9 @@
 
 Line* SobelStrategy::detectLine()
 {
-    replaintSimilarColorPlaces(COLOR_TOLERANCE);
-    gaussianBlur();    
+    replaintSimilarColorPlaces();     
     sobelAlgorithm();          
+    gaussianBlur();   
     return traverseImage();    
 }
 

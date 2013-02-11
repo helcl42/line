@@ -13,10 +13,10 @@
 
 struct DetectionSettings 
 {
-    PixelRGB<float>  searchedColor;
+    PixelRGB<unsigned char>  searchedColor;
     double           lineWidth;
     
-    DetectionSettings(float r, float g, float b, float width) 
+    DetectionSettings(unsigned char r, unsigned char g, unsigned char b, float width) 
     {
         searchedColor.r = r;
         searchedColor.g = g;

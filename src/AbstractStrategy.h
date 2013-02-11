@@ -15,7 +15,7 @@
 #include "Line.h"
 #include "DetectionSettings.h"
 
-#define COLOR_TOLERANCE 50
+#define COLOR_TOLERANCE 130
 
 #define LINE_LENGTH_TRESHOLD  150
 #define COLOR_TRESHOLD 		  10
@@ -45,7 +45,7 @@ public:
      
      Line* findCorrectLine(int vecY, int vecX, unsigned int posY, unsigned int posX);
      
-     void replaintSimilarColorPlaces(int interval = 50);
+     void replaintSimilarColorPlaces(int interval = COLOR_TOLERANCE);
      
      virtual Line* detectLine() = 0;        
 };

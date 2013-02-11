@@ -28,7 +28,7 @@ private:
     
     ros::Subscriber m_sub;
     
-    ros::Publisher m_resender;        
+    ros::Publisher m_resender;
 
     BmpImage<float>* m_image;
     

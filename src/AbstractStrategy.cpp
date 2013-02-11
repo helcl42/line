@@ -229,8 +229,7 @@ Line* AbstractStrategy::traverseImage()
                 if (size1 > size2)
                 {
                     if (size1 > LINE_LENGTH_TRESHOLD)
-                    {
-                        std::cout << "found line" << std::endl;
+                    {                        
                         lines.push_back(line);
                         break;
                     }
@@ -243,8 +242,7 @@ Line* AbstractStrategy::traverseImage()
                 else
                 {
                     if (size2 > LINE_LENGTH_TRESHOLD)
-                    {
-                        std::cout << "found line" << std::endl;
+                    {                        
                         lines.push_back(line2);
                         break;
                     }
@@ -270,7 +268,7 @@ Line* AbstractStrategy::traverseImage()
         SAFE_DELETE(lines[i]);
     }
     lines.clear();
-
+    
     return ret;
 }
 
