@@ -198,6 +198,7 @@ void BmpImage<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned 
 {
     if (img->width > 0 && img->height > 0)
     {
+        //allocate first time only
         if (m_height != img->height / shrink || m_width != img->width / shrink)
         {
             if(m_imageMatrix != NULL) 
@@ -211,9 +212,13 @@ void BmpImage<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned 
             m_imageMatrix = new Pixel<T>** [m_height];
             for (unsigned int i = 0; i < m_height; ++i)
             {
-                m_imageMatrix[i] = new Pixel<T>* [m_width];
+                m_imageMatrix[i] = new Pixel<T>* [m_width];                
+                for (unsigned int j = 0; j < m_width; ++j) 
+                {
+                    m_imageMatrix[i][j] = new PixelRGB<T>(0, 0, 0);
+                }
             }
-        }
+        }       
 
         std::vector<unsigned char> data = img->data;
 
@@ -222,7 +227,7 @@ void BmpImage<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned 
         {
             for (int j = m_width - 1; j >= 0; --j, index += 3 * m_shrinkRatio)
             {
-                pixel = new PixelRGB<T > ();
+                pixel = m_imageMatrix[i][j];
                 pixel->r = data[index];
                 pixel->g = data[index + 1];
                 pixel->b = data[index + 2];
