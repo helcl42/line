@@ -81,6 +81,7 @@
         <in>BmpImage.h</in>
         <in>DetectionSettings.h</in>
         <in>IPixel.h</in>
+        <in>Line.cpp</in>
         <in>Line.h</in>
         <in>LineDetector.cpp</in>
         <in>LineDetector.h</in>

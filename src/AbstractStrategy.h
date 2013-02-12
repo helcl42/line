@@ -15,9 +15,10 @@
 #include "Line.h"
 #include "DetectionSettings.h"
 
-#define COLOR_TOLERANCE 130
+#define COLOR_TOLERANCE 100
 
-#define LINE_LENGTH_TRESHOLD  150
+//#define LINE_LENGTH_TRESHOLD  150
+#define LINE_LENGTH_TRESHOLD  80
 #define COLOR_TRESHOLD 		  10
 
 class AbstractStrategy 

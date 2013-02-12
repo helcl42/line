@@ -63,7 +63,7 @@ void Timer::logTime()
     sec = res / 1000;
     res -= sec * 1000;
     ss << sec << "ms ";    
-    ss << res << " us";
+    ss << res << " us";    
     std::cout << ss.str() << std::endl;
 }
 

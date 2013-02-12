@@ -198,8 +198,12 @@ void BmpImage<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned 
 {
     if (img->width > 0 && img->height > 0)
     {
-        if (m_imageMatrix == NULL || m_height != img->height || m_width != img->width)
+        if (m_height != img->height / shrink || m_width != img->width / shrink)
         {
+            if(m_imageMatrix != NULL) 
+            {
+                cleanUp();
+            }
             m_shrinkRatio = shrink;
             m_width = img->width / shrink;
             m_height = img->height / shrink;

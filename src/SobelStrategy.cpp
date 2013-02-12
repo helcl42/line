@@ -23,19 +23,19 @@ void SobelStrategy::sobelAlgorithm()
         for (unsigned int j = 1; j < imageWidth - 1; j += 1)
         {
             double gx =
-                    1.0 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1),
+                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1),
                     m_bmpImage->getPixel(i + 1, j - 1)) +
                     2.0 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j),
                     m_bmpImage->getPixel(i + 1, j)) +
-                    1.0 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j + 1),
+                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j + 1),
                     m_bmpImage->getPixel(i + 1, j + 1));
 
             double gy =
-                    1.0 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1),
+                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1),
                     m_bmpImage->getPixel(i - 1, j + 1)) +
                     2.0 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i, j - 1),
                     m_bmpImage->getPixel(i, j + 1)) +
-                    1.0 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j - 1),
+                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j - 1),
                     m_bmpImage->getPixel(i + 1, j + 1));
 
             double val = pow(gx * gx + gy * gy, 0.5);

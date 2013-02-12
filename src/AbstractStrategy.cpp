@@ -231,26 +231,28 @@ Line* AbstractStrategy::traverseImage()
                     if (size1 > LINE_LENGTH_TRESHOLD)
                     {                        
                         lines.push_back(line);
+                        SAFE_DELETE(line2);
                         break;
                     }
                     else
                     {
                         SAFE_DELETE(line);
-                    }
-                    SAFE_DELETE(line2);
+                        SAFE_DELETE(line2);
+                    }                    
                 }
                 else
                 {
                     if (size2 > LINE_LENGTH_TRESHOLD)
                     {                        
                         lines.push_back(line2);
+                        SAFE_DELETE(line);
                         break;
                     }
                     else
                     {
                         SAFE_DELETE(line2);
-                    }
-                    SAFE_DELETE(line);
+                        SAFE_DELETE(line);
+                    }                    
                 }
             }
         }
