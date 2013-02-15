@@ -73,6 +73,22 @@ CMakeFiles/line.dir/src/AbstractStrategy.o: /opt/ros/fuerte/include/std_msgs/Hea
 CMakeFiles/line.dir/src/Line.o: ../src/Line.cpp
 CMakeFiles/line.dir/src/Line.o: ../src/Line.h
 CMakeFiles/line.dir/src/Line.o: ../src/Vector2.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/builtin_message_traits.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/duration.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/exception.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/macros.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/message_forward.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/message_operations.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/message_traits.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/platform.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/roscpp_serialization_macros.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/rostime_decl.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/serialization.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/serialized_message.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/time.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/types.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
+CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
 CMakeFiles/line.dir/src/LineDetector.o: ../src/AbstractStrategy.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/BmpImage.h

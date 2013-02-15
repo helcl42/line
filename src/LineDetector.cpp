@@ -3,7 +3,7 @@
 #include "PrewittStrategy.h"
 
 LineDetector::LineDetector(DetectionSettings* settings) 
-: m_settings(settings), counter(0)
+: m_settings(settings)
 {
     m_sub = m_handler.subscribe("/camera/rgb/image_color", 1, &LineDetector::imageCallback, this);    
     m_resender = m_sendHandler.advertise<sensor_msgs::Image>("resender", 500);   
@@ -44,10 +44,7 @@ void LineDetector::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
     
     m_resender.publish(msg); 
     
-    counter++;
-    if(counter >= 5) {
-      ros::shutdown();
-    }
+    //ros::shutdown();    
 }
 
 int main(int argc, char** argv)

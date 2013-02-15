@@ -1,10 +1,10 @@
 #include "SobelStrategy.h"
 
 Line* SobelStrategy::detectLine()
-{
-    replaintSimilarColorPlaces();     
-    sobelAlgorithm();          
-    gaussianBlur();   
+{        
+    //replaintSimilarColorPlaces(COLOR_TOLERANCE);    
+    sobelAlgorithm();    
+    gaussianBlur();
     return traverseImage();    
 }
 

@@ -15,7 +15,9 @@ class PrewittStrategy : public AbstractStrategy
 public:
     PrewittStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
         : AbstractStrategy(image, settings) {}
-                               
+                           
+    virtual ~PrewittStrategy() {}        
+        
     Line* detectLine();
     
 protected:        

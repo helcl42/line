@@ -5,21 +5,21 @@
  * Created on January 27, 2013, 9:06 AM
  */
 
-#ifndef IDETECTSTRATEGY_H
-#define	IDETECTSTRATEGY_H
+#ifndef ABSTRACT_STRATEGY_H
+#define	ABSTRACT_STRATEGY_H
 
 #include <vector>
-#include <stdexcept>
 
-#include "BmpImage.h"
 #include "Line.h"
+#include "BmpImage.h"
 #include "DetectionSettings.h"
 
-#define COLOR_TOLERANCE 100
+#define COLOR_TOLERANCE 150
 
-//#define LINE_LENGTH_TRESHOLD  150
-#define LINE_LENGTH_TRESHOLD  80
-#define COLOR_TRESHOLD 		  10
+//#define LINE_LENGTH_TRESHOLD  180
+#define LINE_LENGTH_TRESHOLD  70
+#define COLOR_TRESHOLD 		  85
+
 
 class AbstractStrategy 
 {
@@ -30,9 +30,12 @@ protected:
     
     PixelRGB<float> m_baseColor;            
     
+    std::vector<Line*> m_lines;
+    
 public:
-    AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
-        : m_bmpImage(image), m_settings(settings) {}
+    AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL);         
+        
+    virtual ~AbstractStrategy();          
     
      void smooth();
      
@@ -40,16 +43,33 @@ public:
      
      void sharpen();
      
-     Line* getLongestLine(std::vector<Line*>& lines);
+     Line* getLongestLine();          
      
      Line* traverseImage();
      
-     Line* findCorrectLine(int vecY, int vecX, unsigned int posY, unsigned int posX);
-     
-     void replaintSimilarColorPlaces(int interval = COLOR_TOLERANCE);
-     
      virtual Line* detectLine() = 0;        
+     
+protected:     
+     inline bool storeBestLine(Line** lines);     
+     
+     Line* findCorrectLine(int vecY, int vecX, int chX, int chY, unsigned int posY, unsigned int posX);
+     
+     //temp
+     void writeLineInImage(Line* line, int r, int g, int b);
+     
+     Line* findLineWithSimilarDirection(Line* input);
+     
+     void resolveSimilarColor(int interval = 50);     
+     
+     void replaintSimilarColorPlaces(int interval = 50);
+     
+     void removeSimilarLines(Line* line);
+     
+private:     
+     void setBaseColor();
+          
 };
 
-#endif	/* IDETECTSTRATEGY_H */
+#endif	/* ABSTRACT_STRATEGY_H */
+
 

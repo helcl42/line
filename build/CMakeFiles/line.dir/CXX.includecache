@@ -13,12 +13,10 @@ AbstractStrategy.h
 /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
 vector
 -
-stdexcept
--
-BmpImage.h
-/home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
 Line.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
+BmpImage.h
+/home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
 DetectionSettings.h
 /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
 

@@ -17,13 +17,21 @@ struct Line
 
     Line() {}
 
+    Line(Line* input);
+    
     ~Line() {}
 
-    //TODO compute approx direction etc
-
-    void writeToMessage(const sensor_msgs::Image::ConstPtr& img);
     
-    friend std::ostream& operator<<(std::ostream& out, const Line& line);    
+    bool isSimilar(Line* input); 
+
+    void writeToMessage(const sensor_msgs::Image::ConstPtr& img);                    
+    
+    friend std::ostream& operator<< (std::ostream& out, const Line& line);     
+    
+    
+    static unsigned int getMaxLengthIndex(Line** lines);    
+    
+    static Vector2<int> getDirection(Line* line1, Line* line2);
 };
 
 #endif	/* LINE_H */

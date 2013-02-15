@@ -172,8 +172,6 @@ void BmpImage<T>::writeToMessage(const sensor_msgs::Image::ConstPtr& img)
         //        short* heightPtr = (short*)img->height;
         //        *heightPtr = m_height;
                 
-        long countOfBytes = getRowBytes();                
-        
         Pixel<T>* pixel = NULL;
         unsigned char* temp;
         for (int i = 0, index = 0; i < m_height; i++)

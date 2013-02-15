@@ -16,7 +16,9 @@ class SobelStrategy : public AbstractStrategy
 public:
     SobelStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
         : AbstractStrategy(image, settings) {}
-                               
+        
+    virtual ~SobelStrategy() {}
+        
     Line* detectLine();
     
 protected:    

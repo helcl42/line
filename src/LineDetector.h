@@ -34,8 +34,6 @@ private:
     
     DetectionSettings* m_settings;
     
-    int counter;
-    
 public:
     LineDetector(DetectionSettings* settings);
     

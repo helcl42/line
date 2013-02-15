@@ -2,9 +2,9 @@
 
 Line* PrewittStrategy::detectLine()
 {        
-    replaintSimilarColorPlaces();    
+    //replaintSimilarColorPlaces(COLOR_TOLERANCE);    
     prewittAlgorithm();
-    gaussianBlur();
+    gaussianBlur();    
     return traverseImage();    
 }
 

@@ -16,6 +16,8 @@ public:
     RobertsStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
         : AbstractStrategy(image, settings) {}
                                
+    virtual ~RobertsStrategy() {}        
+        
     Line* detectLine();
     
 protected:        
