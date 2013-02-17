@@ -72,7 +72,6 @@ CMakeFiles/line.dir/src/AbstractStrategy.o: /opt/ros/fuerte/include/std_msgs/Hea
 
 CMakeFiles/line.dir/src/Line.o: ../src/Line.cpp
 CMakeFiles/line.dir/src/Line.o: ../src/Line.h
-CMakeFiles/line.dir/src/Line.o: ../src/Vector2.h
 CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/builtin_message_traits.h
 CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/duration.h
 CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/exception.h

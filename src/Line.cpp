@@ -2,19 +2,6 @@
 
 /**
  * 
- * @param input
- */
-Line::Line(Line* input)
-{
-    std::vector<Vector2<int> >::const_iterator ii;
-    for (ii = input->points.begin(); ii != input->points.end(); ++ii)
-    {
-        points.push_back(*ii);
-    }
-}
-
-/**
- * 
  * @param img
  */
 void Line::writeToMessage(const sensor_msgs::Image::ConstPtr& img)
@@ -44,22 +31,90 @@ void Line::writeToMessage(const sensor_msgs::Image::ConstPtr& img)
     }
 }
 
-/**
- * 
- * @param line1
- * @param line2
- * @return 
- */
-Vector2<int> Line::getDirection(Line* line1, Line* line2)
+Line::Line(Line* input)
 {
-    return Vector2<int>(0, 0);
+    std::vector<Vector2<int> >::const_iterator ii;
+    for (ii = input->points.begin(); ii != input->points.end(); ++ii)
+    {
+        points.push_back(*ii);
+    }
 }
 
-/**
- * 
- * @param lines
- * @return 
- */
+double Line::getDirection()
+{
+    double direction = 0.0;
+    
+    Vector2<int> tempBeginPoint = points.front();
+    Vector2<int> tempEndPoint = points.back();
+        
+    direction = (double) (tempEndPoint.y - tempBeginPoint.y) / (double) (tempEndPoint.x - tempBeginPoint.x);
+    
+    return direction;
+}
+
+unsigned int Line::getStraightestIndex(Line** lines)
+{
+    float minDistance = 100000.0;
+    float innerMaxDistance = 0;
+    float distance = 0;
+    unsigned int index = 0;
+    unsigned int len = 0;
+    Line* temp = NULL;
+
+    for (unsigned int i = 0; i < 4; i++)
+    {
+        temp = lines[i];
+        len = temp->points.size();
+        Vector2<float> n(temp->points.back().y - temp->points.front().y, -(temp->points.back().x - temp->points.front().x));
+        float c = -n.x * temp->points.front().x - n.y * temp->points.front().y;
+        float unsq = sqrt(n.x * n.x + n.y * n.y);
+
+        for (unsigned int j = 0; j < len; j++)
+        {
+            distance = (n.x * temp->points[j].x + n.y * temp->points[j].y + c) / unsq;
+            if (distance > innerMaxDistance)
+            {
+                innerMaxDistance = distance;
+            }
+        }
+
+        if (innerMaxDistance < minDistance)
+        {
+            minDistance = innerMaxDistance;
+            index = i;
+        }
+    }
+    return index;
+}
+
+void Line::computeStraightnessFactor()
+{
+    float maxDistance = 0;
+    float distance = 0;    
+
+    if (points.size() > 0)
+    {        
+        Vector2<float> n(points.back().y - points.front().y, -(points.back().x - points.front().x));
+        float c = -n.x * points.back().x - n.y * points.front().y;
+
+        for (unsigned int j = 0; j < points.size(); j++)
+        {
+            distance = (n.x * points[j].x + n.y * points[j].y + c) / sqrt(n.x * n.x + n.y * n.y);
+            if(distance < 0)
+            {
+                distance = -distance;
+            }
+            
+            if (distance > maxDistance)
+            {
+                maxDistance = distance;
+            }
+        }
+
+        straightnessFactor = maxDistance;
+    }
+}
+
 unsigned int Line::getMaxLengthIndex(Line** lines)
 {
     unsigned int maxLength = 0;
@@ -76,11 +131,6 @@ unsigned int Line::getMaxLengthIndex(Line** lines)
     return maxIndex;
 }
 
-/**
- * 
- * @param input
- * @return 
- */
 bool Line::isSimilar(Line* input)
 {
     for (unsigned int i = 0; i < points.size(); ++i)
@@ -88,11 +138,13 @@ bool Line::isSimilar(Line* input)
         for (unsigned int j = 0; j < input->points.size(); j++)
         {
             if (points[i] == input->points[j])
-            {                
+            {
+                //std::cout << "similar line " << points[i] << " " << input->points[j] << std::endl;
                 return true;
             }
         }
-    }    
+    }
+    //std::cout << "NOT similar" << std::endl;
     return false;
 }
 

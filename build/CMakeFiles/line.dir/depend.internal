@@ -73,7 +73,6 @@ CMakeFiles/line.dir/src/AbstractStrategy.o
 CMakeFiles/line.dir/src/Line.o
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
- /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
  /opt/ros/fuerte/include/ros/builtin_message_traits.h
  /opt/ros/fuerte/include/ros/duration.h
  /opt/ros/fuerte/include/ros/exception.h

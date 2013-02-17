@@ -5,8 +5,8 @@
  * Created on January 27, 2013, 9:06 AM
  */
 
-#ifndef ABSTRACT_STRATEGY_H
-#define	ABSTRACT_STRATEGY_H
+#ifndef IDETECTSTRATEGY_H
+#define	IDETECTSTRATEGY_H
 
 #include <vector>
 
@@ -14,11 +14,11 @@
 #include "BmpImage.h"
 #include "DetectionSettings.h"
 
-#define COLOR_TOLERANCE 150
+#define COLOR_TOLERANCE 50
 
-//#define LINE_LENGTH_TRESHOLD  180
-#define LINE_LENGTH_TRESHOLD  70
+#define LINE_LENGTH_TRESHOLD  180
 #define COLOR_TRESHOLD 		  85
+#define SELECTION_TRESHOLD    85
 
 
 class AbstractStrategy 
@@ -43,7 +43,9 @@ public:
      
      void sharpen();
      
-     Line* getLongestLine();          
+     Line* getLongestLine();
+     
+     Line* getStraightestLine();
      
      Line* traverseImage();
      
@@ -54,14 +56,13 @@ protected:
      
      Line* findCorrectLine(int vecY, int vecX, int chX, int chY, unsigned int posY, unsigned int posX);
      
-     //temp
      void writeLineInImage(Line* line, int r, int g, int b);
      
-     Line* findLineWithSimilarDirection(Line* input);
+     Line* findLineWithBestPrice(Line* input);
      
      void resolveSimilarColor(int interval = 50);     
      
-     void replaintSimilarColorPlaces(int interval = 50);
+     void replaintSimilarColorPlaces(int interval = COLOR_TOLERANCE);
      
      void removeSimilarLines(Line* line);
      
@@ -70,6 +71,5 @@ private:
           
 };
 
-#endif	/* ABSTRACT_STRATEGY_H */
-
+#endif	/* IDETECTSTRATEGY_H */
 

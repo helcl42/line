@@ -3,12 +3,21 @@
 
 Line* RobertsStrategy::detectLine()
 {    
-    replaintSimilarColorPlaces();    
+    //replaintSimilarColorPlaces();    
     robertsAlgorithm();            
-    gaussianBlur();
+    gaussianBlur();    
     return traverseImage();    
 }
 
+/** 
+ *    | 0   0   0 | 
+ *  X | 0   1   0 |
+ *    | 0   0  -1 | 
+ * 
+ *    | 0   0   0 | 
+ *  Y | 0   0   1 |
+ *    | 0  -1   0 | 
+ */
 void RobertsStrategy::robertsAlgorithm()
 {
     double min = 1.0;
@@ -19,14 +28,13 @@ void RobertsStrategy::robertsAlgorithm()
 
     double* buffer = new double[imageHeight * imageWidth];
 
-    for (unsigned int i = 1; i < imageHeight - 1; i += 1)
+    for (unsigned int i = 1; i < imageHeight - 1; i++)
     {
-        for (unsigned int j = 1; j < imageWidth - 1; j += 1)
-        {
-            //TODO
+        for (unsigned int j = 1; j < imageWidth - 1; j++)
+        {            
             double gx = Pixel<float>::colourDifference(m_bmpImage->getPixel(i, j), m_bmpImage->getPixel(i, j + 1)) - Pixel<float>::colourDifference(m_bmpImage->getPixel(i, j), m_bmpImage->getPixel(i - 1, j));
 
-            double gy = Pixel<float>::colourDifference(m_bmpImage->getPixel(i, j), m_bmpImage->getPixel(i, j)) - Pixel<float>::colourDifference(m_bmpImage->getPixel(i, j + 1), m_bmpImage->getPixel(i + 1, j + 1));
+            double gy = Pixel<float>::colourDifference(m_bmpImage->getPixel(i, j), m_bmpImage->getPixel(i, j)) - Pixel<float>::colourDifference(m_bmpImage->getPixel(i, j + 1), m_bmpImage->getPixel(i + 1, j + 1));                        
 
             double val = pow(gx * gx + gy * gy, 0.5);
 
@@ -63,4 +71,6 @@ void RobertsStrategy::robertsAlgorithm()
     }
     SAFE_DELETE_ARRAY(buffer);
 }
+
+
 

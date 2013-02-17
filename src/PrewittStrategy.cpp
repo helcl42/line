@@ -2,16 +2,22 @@
 
 Line* PrewittStrategy::detectLine()
 {        
-    //replaintSimilarColorPlaces(COLOR_TOLERANCE);    
-    prewittAlgorithm();
-    gaussianBlur();    
+    //replaintSimilarColorPlaces();    
+    prewittAlgorithm();    
+    gaussianBlur();
     return traverseImage();    
 }
 
+/**
+ *    | 1   1   0 | 
+ *    | 1   0  -1 |
+ *    | 0  -1  -1 | 
+ */
 void PrewittStrategy::prewittAlgorithm()
 {
     double min = 1.0;
     double max = 0.0;
+    const double k = 1 /3;
 
     unsigned int imageHeight = m_bmpImage->getHeight();
     unsigned int imageWidth = m_bmpImage->getWidth();
@@ -22,14 +28,14 @@ void PrewittStrategy::prewittAlgorithm()
     {
         for (unsigned int j = 1; j < imageWidth - 1; j += 1)
         {
-            double gx =
+            double gx = k *
                     Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1), m_bmpImage->getPixel(i + 1, j - 1)) +
-                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j), m_bmpImage->getPixel(i + 1, j)) +
+                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j    ), m_bmpImage->getPixel(i + 1, j    )) +
                     Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j + 1), m_bmpImage->getPixel(i + 1, j + 1));
 
-            double gy =
+            double gy = k *
                     Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1), m_bmpImage->getPixel(i - 1, j + 1)) +
-                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i, j - 1), m_bmpImage->getPixel(i, j + 1)) +
+                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i    , j - 1), m_bmpImage->getPixel(i    , j + 1)) +
                     Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j - 1), m_bmpImage->getPixel(i + 1, j + 1));
 
             double val = pow(gx * gx + gy * gy, 0.5);
@@ -67,4 +73,3 @@ void PrewittStrategy::prewittAlgorithm()
     }
     SAFE_DELETE_ARRAY(buffer);
 }
-

@@ -249,9 +249,9 @@ void AbstractStrategy::replaintSimilarColorPlaces(int interval)
  */
 bool AbstractStrategy::storeBestLine(Line** lines)
 {
-    int maxIndex = Line::getMaxLengthIndex(lines);
+    //int maxIndex = Line::getMaxLengthIndex(lines);
+    int maxIndex = Line::getStraightestIndex(lines);
     Line* best = lines[maxIndex];
-    //    Line* temp = NULL;
 
     for (int i = 0; i < 4; i++)
     {
@@ -261,18 +261,10 @@ bool AbstractStrategy::storeBestLine(Line** lines)
         }
     }
 
-    if (best->points.size() > LINE_LENGTH_TRESHOLD)
-    {
-        //        for (unsigned int i = 0; i < m_lines.size(); ++i)
-        //        {
-        //            temp = m_lines[i];
-        //            if (best->isSimilar(temp) && temp->points.size() < best->points.size())
-        //            {
-        //                SAFE_DELETE(temp);
-        //                m_lines.erase(m_lines.begin() + i);
-        //            }
-        //        }
-
+    best->computeStraightnessFactor();
+    if (best->points.size() > LINE_LENGTH_TRESHOLD && best->straightnessFactor < 200)
+    {        
+        std::cout << "store " << best->points.size() << " index " << maxIndex << " factor " << best->straightnessFactor << std::endl;
         m_lines.push_back(best);
         return true;
     }
@@ -292,7 +284,7 @@ bool AbstractStrategy::storeBestLine(Line** lines)
 Line* AbstractStrategy::traverseImage()
 {
     Pixel<float>* pixel = NULL;
-    Line * lines[4];
+    Line* lines[4];
 
     for (unsigned int i = 1; i < m_bmpImage->getHeight() - 1; ++i)
     {
@@ -300,7 +292,7 @@ Line* AbstractStrategy::traverseImage()
         {
             pixel = m_bmpImage->getPixel(i, j);
             //if(pixel->r >= m_baseColor.r && pixel->g >= m_baseColor.g && pixel->b >= m_baseColor.b)            
-            if (pixel->r > COLOR_TRESHOLD || pixel->b > COLOR_TRESHOLD || pixel->g > COLOR_TRESHOLD)
+            if (pixel->r > SELECTION_TRESHOLD || pixel->b > SELECTION_TRESHOLD || pixel->g > SELECTION_TRESHOLD)
             {
                 lines[0] = findCorrectLine(1, 0, 0, 1, i, j);
                 lines[1] = findCorrectLine(-1, 0, 0, 1, i, j);
@@ -310,7 +302,8 @@ Line* AbstractStrategy::traverseImage()
 
                 if (storeBestLine(lines))
                 {
-                    j += m_bmpImage->getWidth() / 15;
+                    j += m_bmpImage->getWidth() / 15;                    
+                    if (j < 1) j++;
                     //break;
                 }
             }
@@ -323,9 +316,10 @@ Line* AbstractStrategy::traverseImage()
     }
 
     Line* ret = getLongestLine();
+    //Line* ret = getStraightestLine();    
     writeLineInImage(ret, 255, 0, 0);
-    removeSimilarLines(ret);
-    Line* similar = findLineWithSimilarDirection(ret);
+    removeSimilarLines(ret);    
+    Line* similar = findLineWithBestPrice(ret);
     writeLineInImage(similar, 0, 0, 255);
 
     return ret;
@@ -340,9 +334,8 @@ void AbstractStrategy::removeSimilarLines(Line* input)
 {
     Line* temp = NULL;
 
-    if (input == NULL)
-        return;
-
+    if (input == NULL) return;
+    
     for (unsigned int index = 0; index < m_lines.size(); ++index)
     {
         temp = m_lines[index];
@@ -365,10 +358,9 @@ void AbstractStrategy::removeSimilarLines(Line* input)
 void AbstractStrategy::writeLineInImage(Line* line, int r, int g, int b)
 {
     Vector2<int> linePoint;
-
-    if (line == NULL)
-        return;
-
+    
+    if (line == NULL) return;
+    
     for (unsigned int i = 0; i < line->points.size(); i++)
     {
         linePoint = line->points[i];
@@ -383,48 +375,41 @@ void AbstractStrategy::writeLineInImage(Line* line, int r, int g, int b)
  * @param input
  * @return Line*
  */
-Line* AbstractStrategy::findLineWithSimilarDirection(Line* input)
+Line* AbstractStrategy::findLineWithBestPrice(Line* input)
 {
-    if (input == NULL)
-        return NULL;
-
-    Vector2<int> beginPoint = input->points[0];
-    Vector2<int> endPoint = input->points[input->points.size() - 1];
-
+    if (input == NULL || m_lines.size() == 0) return NULL;
+    
     double minDelta = 10000.0;
     double delta = 0;
     double magicConstant = 1.5;
-    Line* bestLine = getLongestLine();
-    bool longestIsBest = true;
-    double k = (double) (endPoint.y - beginPoint.y) / (double) (endPoint.x - beginPoint.x);
+    //Line* bestLine = getLongestLine();
+    Line* bestLine = getStraightestLine();    
+    double direction = bestLine->getDirection();
+    bool longestIsBest = true;    
+        
+    for (unsigned int i = 0; i < m_lines.size(); i++)
+    {        
+        double testedDirection = m_lines[i]->getDirection();
 
-    std::vector<Line*>::const_iterator ii;
-    for (ii = m_lines.begin(); ii != m_lines.end(); ++ii)
-    {
-        Vector2<int> tempBeginPoint = (*ii)->points[0];
-        Vector2<int> tempEndPoint = (*ii)->points[(*ii)->points.size() - 1];
-
-        double testedK = (double) (tempEndPoint.y - tempBeginPoint.y) / (double) (tempEndPoint.x - tempBeginPoint.x);
-
-        //      std::cout << "testedK = " << testedK << " k = " << k << std::endl;        
-        if (testedK > k)
+        if (testedDirection > direction)
         {
-            delta = testedK - k;
+            delta = testedDirection - direction;
         }
         else
         {
-            delta = k - testedK;
+            delta = direction - testedDirection;
         }
 
         if (delta * magicConstant < minDelta)
         {
+            std::cout << "change" << std::endl;
             if (longestIsBest)
             {
                 SAFE_DELETE(bestLine);
                 longestIsBest = false;
             }
             minDelta = delta;
-            bestLine = *ii;
+            bestLine = m_lines[i];
         }
     }
 
@@ -443,14 +428,14 @@ Line* AbstractStrategy::findLineWithSimilarDirection(Line* input)
  * @return 
  */
 Line* AbstractStrategy::findCorrectLine(int vecY, int vecX, int chY, int chX, unsigned int posY, unsigned int posX)
-{
+{    
     Pixel<float>* pixel = NULL;
     Line* line = new Line();
 
     int countOfFails = 0;
     int vectorY = vecY;
     int vectorX = vecX;
-
+    
     line->points.push_back(Vector2<int>(posX, posY));
 
     while (posY > 2 && posX > 2 && posY < m_bmpImage->getHeight() - 2 && posX < m_bmpImage->getWidth() - 2)
@@ -461,7 +446,7 @@ Line* AbstractStrategy::findCorrectLine(int vecY, int vecX, int chY, int chX, un
         pixel = m_bmpImage->getPixel(posY, posX);
 
         //if(pixel->r >= m_baseColor.r && pixel->g >= m_baseColor.g && pixel->b >= m_baseColor.b)
-        if (pixel->r > COLOR_TRESHOLD || pixel->b > COLOR_TRESHOLD || pixel->g > COLOR_TRESHOLD)
+        if (pixel->r > SELECTION_TRESHOLD || pixel->b > SELECTION_TRESHOLD || pixel->g > SELECTION_TRESHOLD)
         {
             if (countOfFails > 0)
             {
@@ -503,6 +488,7 @@ Line* AbstractStrategy::getLongestLine()
         for (unsigned int i = 0, tempSize = 0; i < m_lines.size(); i++)
         {
             tempSize = m_lines[i]->points.size();
+
             if (tempSize > maxLineSize)
             {
                 longest = m_lines[i];
@@ -513,4 +499,29 @@ Line* AbstractStrategy::getLongestLine()
         m_lines.erase(m_lines.begin() + longestIndex);
     }
     return longest;
+}
+
+Line* AbstractStrategy::getStraightestLine()
+{
+    Line* straightnest = NULL;
+    unsigned int straightestIndex = 0;
+    float minStraightFactor = 100000;
+    float tempStraightnessFactor = 0;
+
+    if (m_lines.size() > 0)
+    {
+        for (unsigned int i = 0; i < m_lines.size(); i++)
+        {
+            tempStraightnessFactor = m_lines[i]->straightnessFactor;
+
+            if (tempStraightnessFactor < minStraightFactor)
+            {
+                straightnest = m_lines[i];
+                straightestIndex = i;
+                minStraightFactor = tempStraightnessFactor;
+            }
+        }
+        m_lines.erase(m_lines.begin() + straightestIndex);
+    }
+    return straightnest;
 }
