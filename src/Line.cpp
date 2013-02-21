@@ -1,4 +1,5 @@
 #include "Line.h"
+#include "DetectionParams.h"
 
 /**
  * 
@@ -173,7 +174,7 @@ bool Line::isInline(Line* input)
     {
         testedIndex = rand() % input->points.size();
         result = input->points[testedIndex].y - input->points[testedIndex].x * direction;
-        if (result + INLINE_TOLERANCE > q && result - INLINE_TOLERANCE < q)
+        if (result + DetectionParams::inlineTolerance > q && result - DetectionParams::inlineTolerance < q)
         {            
             return true;
         }
@@ -186,12 +187,12 @@ bool Line::isClose(Line* input)
 {
     double distance = 0;
 
-    for (unsigned int i = NO_CHECK_LINE_BORDER; i < points.size() - NO_CHECK_LINE_BORDER; i += CHECK_POINT_SKIP)
+    for (unsigned int i = DetectionParams::noCheckLineBorder; i < points.size() - DetectionParams::noCheckLineBorder; i += DetectionParams::checkPointSkip)
     {
-        for (unsigned int j = NO_CHECK_LINE_BORDER; j < input->points.size() - NO_CHECK_LINE_BORDER; j += CHECK_POINT_SKIP)
+        for (unsigned int j = DetectionParams::noCheckLineBorder; j < input->points.size() - DetectionParams::noCheckLineBorder; j += DetectionParams::checkPointSkip)
         {
             distance = points[i].distance(input->points[j]);
-            if (distance < MIN_POINT_DISTANCE || distance > MAX_POINT_DISTANCE)
+            if (distance < DetectionParams::minPointDistance || distance > DetectionParams::maxPointDistance)
             {     
                 return true;
             }

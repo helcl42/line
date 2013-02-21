@@ -1,5 +1,6 @@
 #include "AbstractStrategy.h"
 #include "Timer.h"
+#include "DetectionParams.h"
 
 AbstractStrategy::AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings)
 : m_bmpImage(image), m_settings(settings)
@@ -212,14 +213,14 @@ bool AbstractStrategy::storeBestLine(Line** lines)
 {
     for (int i = 0; i < 4; i++)
     {
-        if (lines[i]->computeLength() < LINE_LENGTH_TRESHOLD)
+        if (lines[i]->computeLength() < DetectionParams::lineLengthTreshold)
         {
             SAFE_DELETE(lines[i]);
         }
     }
 
-    //int maxIndex = Line::getMaxLengthIndex(lines);
-    Line* best = Line::getStraightesstLine(lines);
+    Line* best = Line::getMaxLengthLine(lines);
+    //Line* best = Line::getStraightesstLine(lines);
     if (best != NULL)
     {        
         for (int i = 0; i < 4; i++)
@@ -231,7 +232,7 @@ bool AbstractStrategy::storeBestLine(Line** lines)
         }
 
         best->computeProperties();
-        if (best->straightnessFactor < STRAIGHTNESS_TRESHOLD)
+        if (best->straightnessFactor < DetectionParams::straightnessTreshold)
         {
             //std::cout << "store?? " << best->points.size() << " index " << maxIndex << " factor " << best->getStraightnessFactor() << std::endl;
             writeLineInImage(best, 255, 255, 0);
@@ -261,8 +262,10 @@ void AbstractStrategy::traverseImage()
         for (unsigned int j = 1; j < m_bmpImage->getWidth() - 1; ++j)
         {
             pixel = m_bmpImage->getPixel(i, j);
-            //if(pixel->r >= m_baseColor.r && pixel->g >= m_baseColor.g && pixel->b >= m_baseColor.b)            
-            if (pixel->r > SELECTION_TRESHOLD || pixel->b > SELECTION_TRESHOLD || pixel->g > SELECTION_TRESHOLD)
+            
+            if (pixel->r > DetectionParams::selectionTreshold 
+                    || pixel->b > DetectionParams::selectionTreshold 
+                    || pixel->g > DetectionParams::selectionTreshold)
             {
                 lines[0] = findCorrectLine(1, 0, 0, 1, i, j);
                 lines[1] = findCorrectLine(-1, 0, 0, 1, i, j);
@@ -383,7 +386,7 @@ Line** AbstractStrategy::findBestLine()
 
         if (ret != NULL && similar != NULL)
         {
-            //std::cout << "RET " << ret->computeDirectionInDegrees() << " similar " << similar->computeDirectionInDegrees() << std::endl;
+            std::cout << "RET " << ret->computeDirectionInDegrees() << " similar " << similar->computeDirectionInDegrees() << std::endl;
             std::cout << *ret << std::endl;
             std::cout << *similar << std::endl;
             setBestLine(ret, similar);
@@ -485,7 +488,7 @@ Line* AbstractStrategy::findLineWithSameDirection(Line* input)
 
             if (delta < minDelta)
             {
-                if (delta < DIRECTION_DELTA)
+                if (delta < DetectionParams::directionDeltaDegrees)
                 {
                     minDelta = delta;
                     std::cout << " change MIN " << minDelta << std::endl;
@@ -515,9 +518,10 @@ Line* AbstractStrategy::findCorrectLine(int vecY, int vecX, int chY, int chX, un
         posX += vectorX;
 
         pixel = m_bmpImage->getPixel(posY, posX);
-
-        //if(pixel->r >= m_baseColor.r && pixel->g >= m_baseColor.g && pixel->b >= m_baseColor.b)
-        if (pixel->r > SELECTION_TRESHOLD || pixel->b > SELECTION_TRESHOLD || pixel->g > SELECTION_TRESHOLD)
+        
+        if (pixel->r > DetectionParams::selectionTreshold 
+                || pixel->b >DetectionParams::selectionTreshold 
+                || pixel->g > DetectionParams::selectionTreshold)
         {
             if (countOfFails > 0)
             {

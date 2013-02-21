@@ -1,25 +1,27 @@
 #include "LineDetector.h"
 
 LineDetector::LineDetector(DetectionSettings* settings) 
-: m_settings(settings)
 {
     m_sub = m_handler.subscribe("/camera/rgb/image_color", 1, &LineDetector::imageCallback, this);    
     m_resender = m_sendHandler.advertise<sensor_msgs::Image>("resender", 500);   
-    m_image = new BmpImage<float>();
+    //m_image = new BmpImage<float>();
+    m_imageService = new ImageService(settings);
+    
 }
 
 LineDetector::~LineDetector() 
 {
-    SAFE_DELETE(m_image);
+    //SAFE_DELETE(m_image);
 }
 
 void LineDetector::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
-{                    
+{          
+    /*
     Timer t1;    
     t1.start();    
     
     //ImageService service(msg);
-    m_image->setInstance(msg, 4);
+    m_image->setInstance(msg, 1);
                    
     SobelStrategy sobelStrategy(m_image, m_settings);    
     Line** line = sobelStrategy.detectLine();                    
@@ -33,13 +35,15 @@ void LineDetector::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
     t1.stop();
     t1.logTime();
     
-    m_image->writeToMessage(msg);
+    //m_image->writeToMessage(msg);
  
-    SAFE_DELETE(line);                
+    //SAFE_DELETE(line);                
+   */
     
+    m_imageService->perform(msg);
     m_resender.publish(msg); 
     
-    //ros::shutdown();    
+    //ros::shutdown();             
 }
 
 int main(int argc, char** argv)

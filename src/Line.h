@@ -10,7 +10,6 @@
 
 #include <sensor_msgs/Image.h>
 
-#include "Globals.h"
 #include "Vector2.h"
 
 class Line
@@ -30,7 +29,7 @@ public:
     
 public:
     Line() 
-    : locked(false), straightnessFactor(0), directionDegrees(0), length(0), direction(0) {}
+    : locked(false), straightnessFactor(0), direction(0), directionDegrees(0), length(0) {}
     
     Line(const Line& input);     
     

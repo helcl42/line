@@ -34,14 +34,8 @@ private:
     ros::Subscriber m_sub;
     
     ros::Publisher m_resender;
-
-    //will be removed
-    BmpImage<float>* m_image;
     
-    //will be removed
-    DetectionSettings* m_settings;
-    
-    ImageService imageService;
+    ImageService* m_imageService;
     
 public:
     LineDetector(DetectionSettings* settings);

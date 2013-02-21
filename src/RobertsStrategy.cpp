@@ -1,4 +1,5 @@
 #include "RobertsStrategy.h"
+#include "DetectionParams.h"
 
 
 Line** RobertsStrategy::detectLine()
@@ -54,7 +55,7 @@ void RobertsStrategy::robertsAlgorithm()
         {
             double val = (buffer[y * imageWidth + x] - min) / (max - min) * 255;            
 
-            if (val > COLOR_TRESHOLD)
+            if (val > DetectionParams::colorTreshold)
             {
                 pixel.r = 255;
                 pixel.g = 255;

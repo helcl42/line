@@ -22,6 +22,8 @@
           </df>
           <df name="line.dir">
             <df name="src">
+              <df name="strategy">
+              </df>
             </df>
           </df>
           <df name="listener.dir">
@@ -81,8 +83,13 @@
         <in>BmpImage.h</in>
         <in>CannyStrategy.cpp</in>
         <in>CannyStrategy.h</in>
+        <in>DetectionParams.cpp</in>
+        <in>DetectionParams.h</in>
         <in>DetectionSettings.h</in>
+        <in>Globals.h</in>
         <in>IPixel.h</in>
+        <in>ImageService.cpp</in>
+        <in>ImageService.h</in>
         <in>KirshStrategy.cpp</in>
         <in>KirshStrategy.h</in>
         <in>Line.cpp</in>
@@ -103,7 +110,6 @@
         <in>Timer.h</in>
         <in>Utils.h</in>
         <in>Vector2.h</in>
-        <in>test.cpp</in>
       </df>
     </df>
     <logicalFolder name="ExternalFiles"

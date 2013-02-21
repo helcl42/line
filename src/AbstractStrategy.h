@@ -10,10 +10,10 @@
 
 #include <vector>
 
-#include "Globals.h"
 #include "Line.h"
 #include "BmpImage.h"
 #include "DetectionSettings.h"
+#include "DetectionParams.h"
 
 class AbstractStrategy 
 {
@@ -60,7 +60,7 @@ protected:
      
      void resolveSimilarColor(int interval = 50);     
      
-     void replaintSimilarColorPlaces(int interval = COLOR_TOLERANCE);
+     void replaintSimilarColorPlaces(int interval = DetectionParams::colorTolerance);
      
      void lockSimilarLines(Line* line);
      

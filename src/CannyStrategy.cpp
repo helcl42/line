@@ -1,4 +1,5 @@
 #include "CannyStrategy.h"
+#include "DetectionParams.h"
 
 Line** CannyStrategy::detectLine()
 {        
@@ -91,7 +92,7 @@ void CannyStrategy::cannyAlgorithm()
         {
             double val = (buffer[y * imageWidth + x] - min) / (max - min) * 255;            
 
-            if (val > COLOR_TRESHOLD)
+            if (val > DetectionParams::colorTreshold)
             {
                 pixel.r = 255;
                 pixel.g = 255;

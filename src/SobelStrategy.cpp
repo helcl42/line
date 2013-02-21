@@ -1,8 +1,9 @@
 #include "SobelStrategy.h"
+#include "DetectionParams.h"
 
 Line** SobelStrategy::detectLine()
 {        
-//    replaintSimilarColorPlaces();    
+    //replaintSimilarColorPlaces();    
     sobelAlgorithm();    
     gaussianBlur();
     traverseImage();    
@@ -56,7 +57,7 @@ void SobelStrategy::sobelAlgorithm()
         {
             double val = (buffer[y * imageWidth + x] - min) / (max - min) * 255;            
 
-            if (val > COLOR_TRESHOLD)
+            if (val > DetectionParams::colorTreshold)
             {
                 pixel.r = 255;
                 pixel.g = 255;
