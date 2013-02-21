@@ -1,4 +1,5 @@
 #include "AbstractStrategy.h"
+#include "Timer.h"
 
 AbstractStrategy::AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings)
 : m_bmpImage(image), m_settings(settings)
@@ -15,11 +16,6 @@ AbstractStrategy::~AbstractStrategy()
     m_lines.clear();
 }
 
-/**
- * simple filter to join separated pixels
- * after edge detection to make lower constrast
- * between left pixels
- */
 void AbstractStrategy::smooth()
 {
     const double m = 1.0 / 9;
@@ -63,11 +59,6 @@ void AbstractStrategy::smooth()
     }
 }
 
-/**
- * simple filter to join separated pixels
- * after edge detection to make lower constrast
- * between left pixels
- */
 void AbstractStrategy::gaussianBlur()
 {
     const double m = 1.0 / 16;
@@ -154,68 +145,46 @@ void AbstractStrategy::sharpen()
     }
 }
 
-/**
- * private function sets base color from settings
- * structure should be called in constructor only
- */
 void AbstractStrategy::setBaseColor()
 {
-    if (m_settings->searchedColor.r > m_settings->searchedColor.g)
+    float maxValue = 0;
+    int maxIndex = 0;
+    float temp;
+
+    for (int i = 0; i < 3; i++)
     {
-        if (m_settings->searchedColor.b > m_settings->searchedColor.r)
+        temp = m_settings->searchedColor[i];
+        if (temp > maxValue)
         {
-            m_baseColor.r = 255;
-            m_baseColor.g = 0;
-            m_baseColor.b = 0;
-        }
-        else
-        {
-            m_baseColor.r = 0;
-            m_baseColor.g = 0;
-            m_baseColor.b = 255;
+            maxValue = temp;
+            maxIndex = i;
         }
     }
-    else
+
+    for (int i = 0; i < 3; i++)
     {
-        if (m_settings->searchedColor.g > m_settings->searchedColor.b)
+        if (i == maxIndex)
         {
-            m_baseColor.r = 0;
-            m_baseColor.g = 255;
-            m_baseColor.b = 0;
+            m_baseColor[i] = 255;
         }
         else
         {
-            m_baseColor.r = 255;
-            m_baseColor.g = 0;
-            m_baseColor.b = 0;
+            m_baseColor[i] = 0;
         }
     }
 }
 
-/**
- * function replaces pixels with similar color by the nearest
- * base color R, G or B
- * @param interval
- */
 void AbstractStrategy::replaintSimilarColorPlaces(int interval)
 {
     PixelRGB<float> pixelMinus;
     PixelRGB<float> pixelPlus;
     Pixel<float>* pixel = NULL;
 
-    pixelMinus.r =
-            m_settings->searchedColor.b > interval ? m_settings->searchedColor.b - interval : 0;
-    pixelMinus.g =
-            m_settings->searchedColor.g > interval ? m_settings->searchedColor.g - interval : 0;
-    pixelMinus.b =
-            m_settings->searchedColor.r > interval ? m_settings->searchedColor.r - interval : 0;
-
-    pixelPlus.r =
-            m_settings->searchedColor.b + interval < 255 ? m_settings->searchedColor.b + interval : 255;
-    pixelPlus.g =
-            m_settings->searchedColor.g + interval < 255 ? m_settings->searchedColor.g + interval : 255;
-    pixelPlus.b =
-            m_settings->searchedColor.r + interval < 255 ? m_settings->searchedColor.r + interval : 255;
+    for (int i = 0; i < 3; i++)
+    {
+        pixelMinus[i] = m_settings->searchedColor[i] > interval ? m_settings->searchedColor[i] - interval : 0;
+        pixelPlus[i] = m_settings->searchedColor[i] + interval < 255 ? m_settings->searchedColor[i] + interval : 255;
+    }
 
     for (unsigned int i = 0; i < m_bmpImage->getHeight(); ++i)
     {
@@ -223,9 +192,7 @@ void AbstractStrategy::replaintSimilarColorPlaces(int interval)
         {
             pixel = m_bmpImage->getPixel(i, j);
 
-            if (pixel->r <= pixelPlus.r && pixel->r >= pixelMinus.r
-                    && pixel->g <= pixelPlus.g && pixel->g >= pixelMinus.g
-                    && pixel->b <= pixelPlus.b && pixel->b >= pixelMinus.b)
+            if (pixel->isInInterval(&pixelMinus, &pixelPlus))
             {
                 pixel->r = m_baseColor.r;
                 pixel->g = m_baseColor.g;
@@ -241,50 +208,53 @@ void AbstractStrategy::replaintSimilarColorPlaces(int interval)
     }
 }
 
-/**
- * function chooses from four founded
- * lines from four traverse image calls
- * @param lines
- * @return 
- */
 bool AbstractStrategy::storeBestLine(Line** lines)
 {
-    //int maxIndex = Line::getMaxLengthIndex(lines);
-    int maxIndex = Line::getStraightestIndex(lines);
-    Line* best = lines[maxIndex];
-
     for (int i = 0; i < 4; i++)
     {
-        if (maxIndex != i)
+        if (lines[i]->computeLength() < LINE_LENGTH_TRESHOLD)
         {
             SAFE_DELETE(lines[i]);
         }
     }
 
-    best->computeStraightnessFactor();
-    if (best->points.size() > LINE_LENGTH_TRESHOLD && best->straightnessFactor < 200)
+    //int maxIndex = Line::getMaxLengthIndex(lines);
+    Line* best = Line::getStraightesstLine(lines);
+    if (best != NULL)
     {        
-        std::cout << "store " << best->points.size() << " index " << maxIndex << " factor " << best->straightnessFactor << std::endl;
-        m_lines.push_back(best);
-        return true;
+        for (int i = 0; i < 4; i++)
+        {
+            if (best != lines[i])
+            {
+                SAFE_DELETE(lines[i]);
+            }
+        }
+
+        best->computeProperties();
+        if (best->straightnessFactor < STRAIGHTNESS_TRESHOLD)
+        {
+            //std::cout << "store?? " << best->points.size() << " index " << maxIndex << " factor " << best->getStraightnessFactor() << std::endl;
+            writeLineInImage(best, 255, 255, 0);
+            m_lines.push_back(best);
+            return true;
+        }
+        else
+        {
+            std::cout << "FAIL factor = " << best->straightnessFactor << " len = " << best->length << std::endl;
+            SAFE_DELETE(best);
+            return false;
+        }
     }
     else
     {
-        SAFE_DELETE(best);
         return false;
     }
 }
 
-/**
- * function traverses image in matrix way
- * and calls inner traverse function with proper
- * vector parameters and actual position in image
- * @return 
- */
-Line* AbstractStrategy::traverseImage()
+void AbstractStrategy::traverseImage()
 {
     Pixel<float>* pixel = NULL;
-    Line* lines[4];
+    Line * lines[4];
 
     for (unsigned int i = 1; i < m_bmpImage->getHeight() - 1; ++i)
     {
@@ -302,140 +272,241 @@ Line* AbstractStrategy::traverseImage()
 
                 if (storeBestLine(lines))
                 {
-                    j += m_bmpImage->getWidth() / 15;                    
+                    j += m_bmpImage->getWidth() / 15;
                     if (j < 1) j++;
                     //break;
                 }
             }
         }
     }
-
-    if (m_lines.size() == 0)
-    {
-        return NULL;
-    }
-
-    Line* ret = getLongestLine();
-    //Line* ret = getStraightestLine();    
-    writeLineInImage(ret, 255, 0, 0);
-    removeSimilarLines(ret);    
-    Line* similar = findLineWithBestPrice(ret);
-    writeLineInImage(similar, 0, 0, 255);
-
-    return ret;
 }
 
-/**
- * function removes Lines containing similar points
- * to the first longest line
- * @param input
- */
-void AbstractStrategy::removeSimilarLines(Line* input)
+void AbstractStrategy::setBestLine(Line* line1, Line* line2)
+{
+    m_bestLine[0] = line1;
+    m_bestLine[1] = line2;
+}
+
+//todo rewrite
+//void AbstractStrategy::sortLinesByStraightness()
+//{
+//    Line* temp = NULL;
+//    Timer t;
+//    t.start();
+//    for(unsigned int i = 0; i < m_lines.size(); i++)
+//    {
+//        for(unsigned int j = 0; j < m_lines.size() - 1; j++)
+//        {
+//            if(m_lines[j]->length < m_lines[j + 1]->length)
+//            {
+//                temp = m_lines[j];
+//                m_lines[j] = m_lines[j + 1];
+//                m_lines[j + 1] = temp;
+//            }
+//        }
+//    }
+//    t.stop();
+//    t.logTime();
+//    
+//     for (unsigned int i = 1; i < m_lines.size(); i++)
+//    {
+//        std::cout << "Line: " << m_lines[i]->points.front() << " " << m_lines[i]->points.back() << " len = " << m_lines[i]->length << std::endl;
+//    }
+//}
+
+void AbstractStrategy::sortLinesByLength()
+{    
+    Line* temp = NULL;
+    int j;
+
+    for (unsigned int i = 1; i < m_lines.size(); i++)
+    {
+        temp = m_lines[i];
+        for (j = i - 1; j >= 0; j--)
+        {
+            if (m_lines[j]->length > temp->length)
+            {
+                break;
+            }
+            m_lines[j + 1] = m_lines[j];
+        }
+        m_lines[j + 1] = temp;
+    } 
+}
+
+void AbstractStrategy::sortLinesByStraightness()
+{
+    //Timer t;
+    //t.start();
+    Line* temp = NULL;
+    int j;
+
+    for (unsigned int i = 1; i < m_lines.size(); i++)
+    {
+        temp = m_lines[i];
+        for (j = i - 1; j >= 0; j--)
+        {
+            if (m_lines[j]->straightnessFactor < temp->straightnessFactor)
+            {
+                break;
+            }
+            m_lines[j + 1] = m_lines[j];
+        }
+        m_lines[j + 1] = temp;
+    }
+    //t.stop();
+    //t.logTime();           
+        
+//    for (unsigned int i = 1; i < m_lines.size(); i++)
+//    {
+//        std::cout << "Line: " << m_lines[i]->points.front() << " " << m_lines[i]->points.back() << " len = " << m_lines[i]->length << " straightness =" << m_lines[i]->straightnessFactor << std::endl;
+//    }
+}
+
+Line** AbstractStrategy::findBestLine()
+{
+    Line* ret = NULL;
+    Line* similar = NULL;
+
+    sortLinesByStraightness();
+
+    for (unsigned int i = 0; i < m_lines.size(); i++)
+    {
+        lockAllLines(false);
+        ret = m_lines[i];
+
+        lockSimilarLines(ret);
+
+        //lockedCount();
+
+        similar = findLineWithSameDirection(ret);
+
+        if (ret != NULL && similar != NULL)
+        {
+            //std::cout << "RET " << ret->computeDirectionInDegrees() << " similar " << similar->computeDirectionInDegrees() << std::endl;
+            std::cout << *ret << std::endl;
+            std::cout << *similar << std::endl;
+            setBestLine(ret, similar);
+            writeLineInImage(ret, 255, 0, 0);
+            writeLineInImage(similar, 0, 0, 255);
+            break;
+        }
+        else
+        {
+            std::cout << "fail!" << std::endl;
+        }
+    }
+    return m_bestLine;
+}
+
+void AbstractStrategy::lockSimilarLines(Line* input)
 {
     Line* temp = NULL;
 
     if (input == NULL) return;
-    
-    for (unsigned int index = 0; index < m_lines.size(); ++index)
+
+    for (unsigned int index = 0; index < m_lines.size(); index++)
     {
         temp = m_lines[index];
-        if (input->isSimilar(temp))
+
+        if (temp->isClose(input) || temp->isInline(input))
         {
-            SAFE_DELETE(temp);
-            m_lines.erase(m_lines.begin() + index);
-            index--;
+            temp->locked = true;
         }
     }
 }
 
-/**
- * writes complete line structure to imageMatrix in selected color
- * @param line
- * @param r
- * @param g
- * @param b
- */
 void AbstractStrategy::writeLineInImage(Line* line, int r, int g, int b)
 {
     Vector2<int> linePoint;
-    
+
     if (line == NULL) return;
-    
+
     for (unsigned int i = 0; i < line->points.size(); i++)
     {
         linePoint = line->points[i];
-        m_bmpImage->setPixelValue(linePoint.y, linePoint.x, r, g, b);
-    }
-}
-
-/**
- * finds neither line with similar direction or implicitly uses
- * the longest line, if non of lines passes test by multiply 
- * by magicConstant
- * @param input
- * @return Line*
- */
-Line* AbstractStrategy::findLineWithBestPrice(Line* input)
-{
-    if (input == NULL || m_lines.size() == 0) return NULL;
-    
-    double minDelta = 10000.0;
-    double delta = 0;
-    double magicConstant = 1.5;
-    //Line* bestLine = getLongestLine();
-    Line* bestLine = getStraightestLine();    
-    double direction = bestLine->getDirection();
-    bool longestIsBest = true;    
-        
-    for (unsigned int i = 0; i < m_lines.size(); i++)
-    {        
-        double testedDirection = m_lines[i]->getDirection();
-
-        if (testedDirection > direction)
+        if (i < 15)
         {
-            delta = testedDirection - direction;
+            m_bmpImage->setPixelValue(linePoint.y, linePoint.x, 0, 255, 255);
         }
         else
         {
-            delta = direction - testedDirection;
+            m_bmpImage->setPixelValue(linePoint.y, linePoint.x, r, g, b);
         }
+    }
+}
 
-        if (delta * magicConstant < minDelta)
+void AbstractStrategy::lockAllLines(bool val)
+{
+    for (unsigned int i = 0; i < m_lines.size(); i++)
+    {
+        m_lines[i]->locked = val;
+    }
+}
+
+void AbstractStrategy::lockedCount()
+{
+    unsigned int count = m_lines.size();
+    unsigned int tmp = 0;
+    for (unsigned int i = 0; i < m_lines.size(); i++)
+    {
+        if (m_lines[i]->locked)
         {
-            std::cout << "change" << std::endl;
-            if (longestIsBest)
+            tmp++;
+        }
+    }
+
+    std::cout << "locked/count " << tmp << "/" << count << std::endl;
+}
+
+/** 
+ * @param input
+ * @return Line*
+ */
+Line* AbstractStrategy::findLineWithSameDirection(Line* input)
+{
+    if (input == NULL || m_lines.size() == 0) return NULL;
+
+    double minDelta = 10000.0;
+    double delta = 0;
+    double direction = input->directionDegrees;
+    Line* bestLine = NULL;
+
+    for (unsigned int i = 0; i < m_lines.size(); i++)
+    {
+        if (!m_lines[i]->locked)
+        {
+            double testedDirection = m_lines[i]->directionDegrees;
+
+            delta = direction - testedDirection;
+            delta = delta < 0 ? -delta : delta;
+
+            //std::cout << "minDelta " << minDelta << " delta " << delta << " originDirection = " << direction << " testedDirection = " << testedDirection << std::endl;
+
+            if (delta < minDelta)
             {
-                SAFE_DELETE(bestLine);
-                longestIsBest = false;
+                if (delta < DIRECTION_DELTA)
+                {
+                    minDelta = delta;
+                    std::cout << " change MIN " << minDelta << std::endl;
+                    bestLine = m_lines[i];
+                }
             }
-            minDelta = delta;
-            bestLine = m_lines[i];
         }
     }
 
     return bestLine;
 }
 
-/**
- * function represents inner traverse of image
- * for pixels that passes color treshold test
- * @param vecY
- * @param vecX
- * @param chY
- * @param chX
- * @param posY
- * @param posX
- * @return 
- */
 Line* AbstractStrategy::findCorrectLine(int vecY, int vecX, int chY, int chX, unsigned int posY, unsigned int posX)
-{    
+{
     Pixel<float>* pixel = NULL;
     Line* line = new Line();
 
     int countOfFails = 0;
     int vectorY = vecY;
     int vectorX = vecX;
-    
+
     line->points.push_back(Vector2<int>(posX, posY));
 
     while (posY > 2 && posX > 2 && posY < m_bmpImage->getHeight() - 2 && posX < m_bmpImage->getWidth() - 2)
@@ -472,39 +543,35 @@ Line* AbstractStrategy::findCorrectLine(int vecY, int vecX, int chY, int chX, un
     return line;
 }
 
-/**
- * returned pointer of the longest line
- * should be deleted manually
- * @return 
- */
 Line* AbstractStrategy::getLongestLine()
 {
     Line* longest = NULL;
-    unsigned int maxLineSize = 0;
-    unsigned int longestIndex = 0;
+    double maxLineSize = 0;
+    double tempSize = 0;
 
     if (m_lines.size() > 0)
     {
-        for (unsigned int i = 0, tempSize = 0; i < m_lines.size(); i++)
+        for (unsigned int i = 0; i < m_lines.size(); i++)
         {
-            tempSize = m_lines[i]->points.size();
-
-            if (tempSize > maxLineSize)
+            if (!m_lines[i]->locked)
             {
-                longest = m_lines[i];
-                longestIndex = i;
-                maxLineSize = tempSize;
+                tempSize = m_lines[i]->length;
+
+                if (tempSize > maxLineSize)
+                {
+                    longest = m_lines[i];
+                    maxLineSize = tempSize;
+                }
             }
         }
-        m_lines.erase(m_lines.begin() + longestIndex);
+        longest->locked = true;
     }
     return longest;
 }
 
 Line* AbstractStrategy::getStraightestLine()
 {
-    Line* straightnest = NULL;
-    unsigned int straightestIndex = 0;
+    Line* straightest = NULL;
     float minStraightFactor = 100000;
     float tempStraightnessFactor = 0;
 
@@ -512,16 +579,18 @@ Line* AbstractStrategy::getStraightestLine()
     {
         for (unsigned int i = 0; i < m_lines.size(); i++)
         {
-            tempStraightnessFactor = m_lines[i]->straightnessFactor;
-
-            if (tempStraightnessFactor < minStraightFactor)
+            if (!m_lines[i]->locked)
             {
-                straightnest = m_lines[i];
-                straightestIndex = i;
-                minStraightFactor = tempStraightnessFactor;
+                tempStraightnessFactor = m_lines[i]->straightnessFactor;
+
+                if (tempStraightnessFactor < minStraightFactor)
+                {
+                    straightest = m_lines[i];
+                    minStraightFactor = tempStraightnessFactor;
+                }
             }
         }
-        m_lines.erase(m_lines.begin() + straightestIndex);
+        straightest->locked = true;
     }
-    return straightnest;
+    return straightest;
 }

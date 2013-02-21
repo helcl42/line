@@ -10,16 +10,10 @@
 
 #include <vector>
 
+#include "Globals.h"
 #include "Line.h"
 #include "BmpImage.h"
 #include "DetectionSettings.h"
-
-#define COLOR_TOLERANCE 50
-
-#define LINE_LENGTH_TRESHOLD  180
-#define COLOR_TRESHOLD 		  85
-#define SELECTION_TRESHOLD    85
-
 
 class AbstractStrategy 
 {
@@ -31,6 +25,8 @@ protected:
     PixelRGB<float> m_baseColor;            
     
     std::vector<Line*> m_lines;
+    
+    Line* m_bestLine[2];
     
 public:
     AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL);         
@@ -47,9 +43,11 @@ public:
      
      Line* getStraightestLine();
      
-     Line* traverseImage();
+     void traverseImage();
      
-     virtual Line* detectLine() = 0;        
+     Line** findBestLine();
+          
+     virtual Line** detectLine() = 0;        
      
 protected:     
      inline bool storeBestLine(Line** lines);     
@@ -58,17 +56,26 @@ protected:
      
      void writeLineInImage(Line* line, int r, int g, int b);
      
-     Line* findLineWithBestPrice(Line* input);
+     Line* findLineWithSameDirection(Line* input);
      
      void resolveSimilarColor(int interval = 50);     
      
      void replaintSimilarColorPlaces(int interval = COLOR_TOLERANCE);
      
-     void removeSimilarLines(Line* line);
+     void lockSimilarLines(Line* line);
+     
+     void lockAllLines(bool val);
      
 private:     
      void setBaseColor();
-          
+     
+     void setBestLine(Line* line1, Line* line2);
+     
+     void sortLinesByStraightness();
+     
+     void sortLinesByLength();
+     
+     void lockedCount();                    
 };
 
 #endif	/* IDETECTSTRATEGY_H */

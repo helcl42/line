@@ -1,11 +1,12 @@
 #include "SobelStrategy.h"
 
-Line* SobelStrategy::detectLine()
+Line** SobelStrategy::detectLine()
 {        
-    //replaintSimilarColorPlaces(COLOR_TOLERANCE);    
+//    replaintSimilarColorPlaces();    
     sobelAlgorithm();    
     gaussianBlur();
-    return traverseImage();    
+    traverseImage();    
+    return findBestLine();
 }
 
 void SobelStrategy::sobelAlgorithm()
@@ -67,6 +68,10 @@ void SobelStrategy::sobelAlgorithm()
                 pixel.g = 0;
                 pixel.b = 0;
             }
+            
+//            pixel.r = val;
+//            pixel.g = val;
+//            pixel.b = val;
 
             m_bmpImage->setPixelValue(y, x, &pixel);
         }

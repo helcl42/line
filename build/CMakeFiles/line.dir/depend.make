@@ -5,12 +5,14 @@ CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/AbstractStrategy.cpp
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/AbstractStrategy.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/DetectionSettings.h
+CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Globals.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/IPixel.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Line.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Timer.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Utils.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Vector2.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -70,8 +72,10 @@ CMakeFiles/line.dir/src/AbstractStrategy.o: /opt/ros/fuerte/include/rosconsole/m
 CMakeFiles/line.dir/src/AbstractStrategy.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
+CMakeFiles/line.dir/src/Line.o: ../src/Globals.h
 CMakeFiles/line.dir/src/Line.o: ../src/Line.cpp
 CMakeFiles/line.dir/src/Line.o: ../src/Line.h
+CMakeFiles/line.dir/src/Line.o: ../src/Vector2.h
 CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/builtin_message_traits.h
 CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/duration.h
 CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/ros/exception.h
@@ -90,9 +94,14 @@ CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
 CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
 CMakeFiles/line.dir/src/LineDetector.o: ../src/AbstractStrategy.h
+CMakeFiles/line.dir/src/LineDetector.o: ../src/BmpFileIO.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/BmpImage.h
+CMakeFiles/line.dir/src/LineDetector.o: ../src/CannyStrategy.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/DetectionSettings.h
+CMakeFiles/line.dir/src/LineDetector.o: ../src/Globals.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/IPixel.h
+CMakeFiles/line.dir/src/LineDetector.o: ../src/ImageMessageService.h
+CMakeFiles/line.dir/src/LineDetector.o: ../src/KirshStrategy.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/Line.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/LineDetector.cpp
 CMakeFiles/line.dir/src/LineDetector.o: ../src/LineDetector.h
@@ -166,6 +175,7 @@ CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/std_msgs/Header.
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/AbstractStrategy.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/DetectionSettings.h
+CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/Globals.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/IPixel.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/Line.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/Pixel.h
@@ -236,6 +246,7 @@ CMakeFiles/line.dir/src/PrewittStrategy.o: /opt/ros/fuerte/include/std_msgs/Head
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/AbstractStrategy.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/DetectionSettings.h
+CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/Globals.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/IPixel.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/Line.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/Pixel.h
@@ -306,6 +317,7 @@ CMakeFiles/line.dir/src/RobertsStrategy.o: /opt/ros/fuerte/include/std_msgs/Head
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/AbstractStrategy.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/DetectionSettings.h
+CMakeFiles/line.dir/src/SobelStrategy.o: ../src/Globals.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/IPixel.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/Line.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/Pixel.h

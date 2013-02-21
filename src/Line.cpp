@@ -31,132 +31,178 @@ void Line::writeToMessage(const sensor_msgs::Image::ConstPtr& img)
     }
 }
 
-Line::Line(Line* input)
+Line::Line(const Line& input)
 {
     std::vector<Vector2<int> >::const_iterator ii;
-    for (ii = input->points.begin(); ii != input->points.end(); ++ii)
+    for (ii = input.points.begin(); ii != input.points.end(); ++ii)
     {
         points.push_back(*ii);
     }
+    computeProperties();
 }
 
-double Line::getDirection()
+void Line::computeProperties()
 {
-    double direction = 0.0;
-    
+    length = computeLength();
+    direction = computeDirection();
+    directionDegrees = computeDirectionInDegrees();
+    straightnessFactor = computeStraightnessFactor();
+}
+
+double Line::computeDirection()
+{
     Vector2<int> tempBeginPoint = points.front();
     Vector2<int> tempEndPoint = points.back();
-        
-    direction = (double) (tempEndPoint.y - tempBeginPoint.y) / (double) (tempEndPoint.x - tempBeginPoint.x);
-    
-    return direction;
+
+    return (double) (tempEndPoint.y - tempBeginPoint.y) / (double) (tempEndPoint.x - tempBeginPoint.x);
 }
 
-unsigned int Line::getStraightestIndex(Line** lines)
+double Line::computeDirectionInDegrees()
 {
-    float minDistance = 100000.0;
-    float innerMaxDistance = 0;
-    float distance = 0;
-    unsigned int index = 0;
-    unsigned int len = 0;
-    Line* temp = NULL;
+    Vector2<int> tempBeginPoint = points.front();
+    Vector2<int> tempEndPoint = points.back();
 
-    for (unsigned int i = 0; i < 4; i++)
-    {
-        temp = lines[i];
-        len = temp->points.size();
-        Vector2<float> n(temp->points.back().y - temp->points.front().y, -(temp->points.back().x - temp->points.front().x));
-        float c = -n.x * temp->points.front().x - n.y * temp->points.front().y;
-        float unsq = sqrt(n.x * n.x + n.y * n.y);
-
-        for (unsigned int j = 0; j < len; j++)
-        {
-            distance = (n.x * temp->points[j].x + n.y * temp->points[j].y + c) / unsq;
-            if (distance > innerMaxDistance)
-            {
-                innerMaxDistance = distance;
-            }
-        }
-
-        if (innerMaxDistance < minDistance)
-        {
-            minDistance = innerMaxDistance;
-            index = i;
-        }
-    }
-    return index;
+    return atan2(tempEndPoint.y - tempBeginPoint.y, tempEndPoint.x - tempBeginPoint.x) * 180 / M_PI;
 }
 
-void Line::computeStraightnessFactor()
+double Line::computeLength()
 {
-    float maxDistance = 0;
-    float distance = 0;    
+    double length = 0.0;
+
+    Vector2<int> tempBeginPoint = points.front();
+    Vector2<int> tempEndPoint = points.back();
+
+    length = (double) (tempEndPoint.y - tempBeginPoint.y) * (tempEndPoint.y - tempBeginPoint.y)
+            + (double) (tempEndPoint.x - tempBeginPoint.x) * (tempEndPoint.x - tempBeginPoint.x);
+    return pow(length, 0.5);
+}
+
+double Line::computeStraightnessFactor()
+{
+    double maxDistance = 0;
+    double distance = 0;
 
     if (points.size() > 0)
-    {        
-        Vector2<float> n(points.back().y - points.front().y, -(points.back().x - points.front().x));
-        float c = -n.x * points.back().x - n.y * points.front().y;
+    {
+        Vector2<float> n(-(points.back().y - points.front().y), (points.back().x - points.front().x));
+        int c = -(n.x * points.front().x) - (n.y * points.front().y);
+        double div = sqrt(n.x * n.x + n.y * n.y);
 
         for (unsigned int j = 0; j < points.size(); j++)
         {
-            distance = (n.x * points[j].x + n.y * points[j].y + c) / sqrt(n.x * n.x + n.y * n.y);
-            if(distance < 0)
+            distance = (n.x * points[j].x + n.y * points[j].y + c) / div;
+            if (distance < 0)
             {
                 distance = -distance;
             }
-            
+
+            if (isnan(distance)) continue;
+
             if (distance > maxDistance)
             {
                 maxDistance = distance;
             }
         }
-
-        straightnessFactor = maxDistance;
-    }
+    }    
+    return maxDistance;
 }
 
-unsigned int Line::getMaxLengthIndex(Line** lines)
+Line* Line::getStraightesstLine(Line** lines)
 {
-    unsigned int maxLength = 0;
-    unsigned int maxIndex = 0;
+    double minDistance = 100000.0;
+    double distance = 0;
+    Line* straightest = NULL;
 
     for (unsigned int i = 0; i < 4; i++)
     {
-        if (lines[i]->points.size() > maxLength)
+        if (lines[i] != NULL)
         {
-            maxLength = lines[i]->points.size();
-            maxIndex = i;
-        }
-    }
-    return maxIndex;
-}
+            distance = lines[i]->computeStraightnessFactor();
 
-bool Line::isSimilar(Line* input)
-{
-    for (unsigned int i = 0; i < points.size(); ++i)
-    {
-        for (unsigned int j = 0; j < input->points.size(); j++)
-        {
-            if (points[i] == input->points[j])
+            if (distance < minDistance)
             {
-                //std::cout << "similar line " << points[i] << " " << input->points[j] << std::endl;
-                return true;
+                minDistance = distance;
+                straightest = lines[i];
             }
         }
     }
-    //std::cout << "NOT similar" << std::endl;
+    return straightest;
+}
+
+Line* Line::getMaxLengthLine(Line** lines)
+{
+    double maxLength = 0;
+    double tempLength;
+    Line* longest = NULL;
+
+    for (unsigned int i = 0; i < 4; i++)
+    {
+        if (lines[i] != NULL)
+        {
+            tempLength = lines[i]->computeLength();
+            
+            if (tempLength > maxLength)
+            {
+                maxLength = tempLength;
+                longest = lines[i];
+            }
+        }
+    }
+    return longest;
+}
+
+bool Line::isInline(Line* input)
+{
+    double q = points.front().y - points.front().x * direction;
+    unsigned int testedIndex;
+    double result;
+
+    if (input->points.back().x > points.front().x && input->points.back().x > points.back().x
+            && input->points.front().x > points.front().x && input->points.front().x > points.front().x)
+    {
+        return true;
+    }
+
+    if (input->points.back().y > points.front().y && input->points.back().y > points.back().y
+            && input->points.front().y > points.front().y && input->points.front().y > points.front().y)
+    {
+        return true;
+    }
+
+    for (int i = 0; i < 20; i++)
+    {
+        testedIndex = rand() % input->points.size();
+        result = input->points[testedIndex].y - input->points[testedIndex].x * direction;
+        if (result + INLINE_TOLERANCE > q && result - INLINE_TOLERANCE < q)
+        {            
+            return true;
+        }
+
+    }
     return false;
 }
 
-/**
- * 
- * @param out
- * @param line
- * @return 
- */
+bool Line::isClose(Line* input)
+{
+    double distance = 0;
+
+    for (unsigned int i = NO_CHECK_LINE_BORDER; i < points.size() - NO_CHECK_LINE_BORDER; i += CHECK_POINT_SKIP)
+    {
+        for (unsigned int j = NO_CHECK_LINE_BORDER; j < input->points.size() - NO_CHECK_LINE_BORDER; j += CHECK_POINT_SKIP)
+        {
+            distance = points[i].distance(input->points[j]);
+            if (distance < MIN_POINT_DISTANCE || distance > MAX_POINT_DISTANCE)
+            {     
+                return true;
+            }
+        }
+    }    
+    return false;
+}
+
 std::ostream& operator<<(std::ostream& out, const Line& line)
 {
-    out << "Line len = " << line.points.size() << std::endl;
+    out << "Line len = " << line.length << std::endl;
 
     std::vector<Vector2<int> >::const_iterator ii;
     for (ii = line.points.begin(); ii != line.points.end(); ++ii)

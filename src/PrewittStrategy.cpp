@@ -1,11 +1,12 @@
 #include "PrewittStrategy.h"
 
-Line* PrewittStrategy::detectLine()
+Line** PrewittStrategy::detectLine()
 {        
     //replaintSimilarColorPlaces();    
     prewittAlgorithm();    
     gaussianBlur();
-    return traverseImage();    
+    traverseImage();    
+    return findBestLine();
 }
 
 /**

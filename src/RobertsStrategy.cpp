@@ -1,12 +1,13 @@
 #include "RobertsStrategy.h"
 
 
-Line* RobertsStrategy::detectLine()
+Line** RobertsStrategy::detectLine()
 {    
     //replaintSimilarColorPlaces();    
     robertsAlgorithm();            
     gaussianBlur();    
-    return traverseImage();    
+    traverseImage();  
+    return findBestLine();
 }
 
 /** 

@@ -8,37 +8,57 @@
 #ifndef LINE_H
 #define	LINE_H
 
-#include "Vector2.h"
 #include <sensor_msgs/Image.h>
+
+#include "Globals.h"
+#include "Vector2.h"
 
 class Line
 {
 public:
-    std::vector<Vector2<int> > points;
+    std::vector<Vector2<int> > points;    
     
-    float straightnessFactor;
+    bool locked;
+        
+    double straightnessFactor;
+    
+    double direction;
+    
+    double directionDegrees;
+    
+    double length;
     
 public:
-    Line()
-    : straightnessFactor(0) {}
+    Line() 
+    : locked(false), straightnessFactor(0), directionDegrees(0), length(0), direction(0) {}
     
-    Line(Line* input);     
+    Line(const Line& input);     
     
     virtual ~Line() {}    
             
-    bool isSimilar(Line* input); 
+    bool isClose(Line* input); 
     
-    void computeStraightnessFactor();         
+    bool isInline(Line* input);
     
-    double getDirection();
-    
-    void writeToMessage(const sensor_msgs::Image::ConstPtr& img);                    
+    void computeProperties();                
     
     friend std::ostream& operator<< (std::ostream& out, const Line& line);     
     
-    static unsigned int getMaxLengthIndex(Line** lines);    
+    static Line* getMaxLengthLine(Line** lines);    
     
-    static unsigned int getStraightestIndex(Line** lines);        
+    static Line* getStraightesstLine(Line** lines);   
+    
+    inline void writeToMessage(const sensor_msgs::Image::ConstPtr& img);
+    
+    //should be private
+public:
+    double computeStraightnessFactor();         
+    
+    double computeDirectionInDegrees();
+    
+    double computeDirection();
+    
+    double computeLength();
 };
 
 

@@ -18,6 +18,11 @@
 #include "DetectionSettings.h"
 #include "BmpImage.h"
 #include "SobelStrategy.h"
+#include "RobertsStrategy.h"
+#include "PrewittStrategy.h"
+#include "KirshStrategy.h"
+#include "CannyStrategy.h"
+#include "ImageMessageService.h"
 
 class LineDetector
 {

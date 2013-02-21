@@ -42,7 +42,11 @@ public:
     
     bool operator!=(const Vector2& other);
     
-    bool isSimilar(const Vector2& other);
+    bool operator<(const Vector2& other);
+    
+    bool operator>(const Vector2& other);
+    
+    //bool isSimilar(const Vector2& other);
     
     static Type toRadians(Type val);
     
@@ -70,11 +74,11 @@ public:
 
     Vector2* rotate(Type angle);    
 
-    Type distance(Vector2* other);    
+    double distance(Vector2& other);    
 
-    Type distance(Type x, Type y);    
+    double distance(Type x, Type y);    
 
-    Type distanceSquared(Vector2* other);
+    Type distanceSquared(Vector2& other);
     
     Type distanceSquared(Type x, Type y);    
 	
@@ -119,22 +123,23 @@ bool Vector2<Type>::operator!=(const Vector2<Type>& other)
     return x != other.x || y != other.y;
 }
 
-template<class Type>
-bool Vector2<Type>::isSimilar(const Vector2& other)
-{    
-    int tolerance = 5;            
-    
-//    if(other.y + tolerance > y && other.y - tolerance < y) 
-//    {
-//        return false;
+//template<class Type>
+//bool Vector2<Type>::isSimilar(const Vector2& other)
+//{    
+//    int tolerance = 5;            
+//    
+////    if(other.y + tolerance > y && other.y - tolerance < y) 
+////    {
+////        return false;
+////    }
+//    
+//    if((other.x >= x - tolerance && other.x <= x + tolerance)
+//            /*|| (other.y + tolerance > y && other.y - tolerance < y)*/) 
+//    {                
+//        return true;
 //    }
-    
-    if(other.x + tolerance > x && other.x - tolerance < x) 
-    {                
-        return true;
-    }
-    return false;
-}
+//    return false;
+//}
 
 template<class Type>
 Vector2<Type>& Vector2<Type>::operator+(const Vector2<Type>& other)
@@ -166,6 +171,18 @@ Vector2<Type>& Vector2<Type>::operator*(float scalar)
     this->x *= scalar;
     this->y *= scalar;
     return (*this);
+}
+
+template<class Type>
+bool Vector2<Type>::operator<(const Vector2<Type>& other)
+{
+    return x < other.x && y < other.y;  
+}
+
+template<class Type>
+bool Vector2<Type>::operator>(const Vector2<Type>& other)
+{
+    return x > other.x && y > other.y;  
 }
 
 template<class Type>
@@ -282,26 +299,26 @@ Vector2<Type>* Vector2<Type>::rotate(Type angle)
 }
 
 template<class Type>
-Type Vector2<Type>::distance(Vector2<Type>* other)
+double Vector2<Type>::distance(Vector2<Type>& other)
 {
-    Type distX = x - other->x;
-    Type distY = y - other->y;
-    return sqrt(distX * distX + distY * distY);
+    Type distX = x - other.x;
+    Type distY = y - other.y;
+    return (double)sqrt(distX * distX + distY * distY);
 }
 
 template<class Type>
-Type Vector2<Type>::distance(Type x, Type y)
+double Vector2<Type>::distance(Type x, Type y)
 {
     Type distX = this->x - x;
     Type distY = this->y - y;
-    return sqrt(distX * distX + distY * distY);
+    return (double)sqrt(distX * distX + distY * distY);
 }
 
 template<class Type>
-Type Vector2<Type>::distanceSquared(Vector2<Type>* other)
+Type Vector2<Type>::distanceSquared(Vector2<Type>& other)
 {
-    float distX = x - other->x;
-    float distY = y - other->y;
+    float distX = x - other.x;
+    float distY = y - other.y;
     return distX * distX + distY * distY;
 }
 

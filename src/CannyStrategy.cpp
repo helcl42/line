@@ -1,11 +1,12 @@
 #include "CannyStrategy.h"
 
-Line* CannyStrategy::detectLine()
+Line** CannyStrategy::detectLine()
 {        
     //replaintSimilarColorPlaces();    
     cannyAlgorithm();    
-    //gaussianBlur();
-    return traverseImage();    
+    gaussianBlur();
+    traverseImage();    
+    return findBestLine();
 }
 
 /**
@@ -112,5 +113,4 @@ void CannyStrategy::cannyAlgorithm()
     }
     SAFE_DELETE_ARRAY(buffer);
 }
-
 

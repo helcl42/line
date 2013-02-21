@@ -1,12 +1,13 @@
 #include "KirshStrategy.h"
 
 
-Line* KirshStrategy::detectLine()
+Line** KirshStrategy::detectLine()
 {    
     //replaintSimilarColorPlaces();    
     kirshAlgorithm(); 
     //gaussianBlur();
-    return traverseImage();    
+    traverseImage();    
+    return findBestLine();
 }
 
 

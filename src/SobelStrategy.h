@@ -19,7 +19,7 @@ public:
         
     virtual ~SobelStrategy() {}
         
-    Line* detectLine();
+    Line** detectLine();
     
 protected:    
     void sobelAlgorithm();        

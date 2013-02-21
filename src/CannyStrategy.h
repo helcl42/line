@@ -20,7 +20,7 @@ public:
         
     virtual ~CannyStrategy() {}        
         
-    Line* detectLine();
+    Line** detectLine();
     
 protected:    
     void cannyAlgorithm();        

@@ -18,7 +18,7 @@ public:
                                
     virtual ~RobertsStrategy() {}        
         
-    Line* detectLine();
+    Line** detectLine();
     
 protected:        
     void robertsAlgorithm();            
