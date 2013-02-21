@@ -26,7 +26,7 @@ protected:
     
     std::vector<Line*> m_lines;
     
-    Line* m_bestLine[2];
+    Line** m_bestLine;
     
 public:
     AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL);         

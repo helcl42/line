@@ -6,6 +6,7 @@ AbstractStrategy::AbstractStrategy(BmpImage<float>* image, DetectionSettings* se
 : m_bmpImage(image), m_settings(settings)
 {
     setBaseColor();
+    m_bestLine = new Line*[2];
 }
 
 AbstractStrategy::~AbstractStrategy()
