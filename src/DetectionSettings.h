@@ -11,20 +11,42 @@
 #include "Pixel.h"
 
 
+struct DetectionLineItem 
+{
+    PixelRGB<unsigned char> color;
+    
+    float width;
+    
+    DetectionLineItem() {}
+    
+    ~DetectionLineItem() {}        
+};
+
+
 struct DetectionSettings 
 {
-    PixelRGB<unsigned char>  searchedColor;
-    double           lineWidth;
+    std::vector<DetectionLineItem> colors;
     
-    DetectionSettings(unsigned char r, unsigned char g, unsigned char b, float width) 
+    PixelRGB<unsigned char>  searchedColor;   
+    
+    DetectionSettings() {}
+    
+    DetectionSettings(unsigned char r, unsigned char g, unsigned char b, int w) 
     {
         searchedColor.r = r;
         searchedColor.g = g;
-        searchedColor.b = b;
-        lineWidth = width;
-    }
+        searchedColor.b = b;        
+    }        
     
     ~DetectionSettings() {}
+    
+    void addLineItem(unsigned char r, unsigned char g, unsigned char b, float width) 
+    {
+        DetectionLineItem item;
+        item.color = PixelRGB<unsigned char>(r, g, b);
+        item.width = width;
+        colors.push_back(item);
+    }
 };
 
 #endif	/* DETECTIONSETTINGS_H */

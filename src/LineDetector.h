@@ -22,7 +22,7 @@
 #include "PrewittStrategy.h"
 #include "KirshStrategy.h"
 #include "CannyStrategy.h"
-#include "ImageMessageService.h"
+#include "ImageService.h"
 
 class LineDetector
 {
@@ -35,9 +35,13 @@ private:
     
     ros::Publisher m_resender;
 
+    //will be removed
     BmpImage<float>* m_image;
     
+    //will be removed
     DetectionSettings* m_settings;
+    
+    ImageService imageService;
     
 public:
     LineDetector(DetectionSettings* settings);

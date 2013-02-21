@@ -319,6 +319,66 @@ src/AbstractStrategy.s:
 .PHONY : src/AbstractStrategy.s
 
 # target to build an object file
+src/CannyStrategy.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CannyStrategy.o
+.PHONY : src/CannyStrategy.o
+
+# target to preprocess a source file
+src/CannyStrategy.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CannyStrategy.i
+.PHONY : src/CannyStrategy.i
+
+# target to generate assembly for a file
+src/CannyStrategy.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CannyStrategy.s
+.PHONY : src/CannyStrategy.s
+
+# target to build an object file
+src/DetectionParams.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectionParams.o
+.PHONY : src/DetectionParams.o
+
+# target to preprocess a source file
+src/DetectionParams.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectionParams.i
+.PHONY : src/DetectionParams.i
+
+# target to generate assembly for a file
+src/DetectionParams.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectionParams.s
+.PHONY : src/DetectionParams.s
+
+# target to build an object file
+src/ImageService.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/ImageService.o
+.PHONY : src/ImageService.o
+
+# target to preprocess a source file
+src/ImageService.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/ImageService.i
+.PHONY : src/ImageService.i
+
+# target to generate assembly for a file
+src/ImageService.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/ImageService.s
+.PHONY : src/ImageService.s
+
+# target to build an object file
+src/KirshStrategy.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/KirshStrategy.o
+.PHONY : src/KirshStrategy.o
+
+# target to preprocess a source file
+src/KirshStrategy.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/KirshStrategy.i
+.PHONY : src/KirshStrategy.i
+
+# target to generate assembly for a file
+src/KirshStrategy.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/KirshStrategy.s
+.PHONY : src/KirshStrategy.s
+
+# target to build an object file
 src/Line.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Line.o
 .PHONY : src/Line.o
@@ -435,6 +495,18 @@ help:
 	@echo "... src/AbstractStrategy.o"
 	@echo "... src/AbstractStrategy.i"
 	@echo "... src/AbstractStrategy.s"
+	@echo "... src/CannyStrategy.o"
+	@echo "... src/CannyStrategy.i"
+	@echo "... src/CannyStrategy.s"
+	@echo "... src/DetectionParams.o"
+	@echo "... src/DetectionParams.i"
+	@echo "... src/DetectionParams.s"
+	@echo "... src/ImageService.o"
+	@echo "... src/ImageService.i"
+	@echo "... src/ImageService.s"
+	@echo "... src/KirshStrategy.o"
+	@echo "... src/KirshStrategy.i"
+	@echo "... src/KirshStrategy.s"
 	@echo "... src/Line.o"
 	@echo "... src/Line.i"
 	@echo "... src/Line.s"

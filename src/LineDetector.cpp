@@ -17,6 +17,8 @@ void LineDetector::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
 {                    
     Timer t1;    
     t1.start();    
+    
+    //ImageService service(msg);
     m_image->setInstance(msg, 4);
                    
     SobelStrategy sobelStrategy(m_image, m_settings);    
@@ -32,12 +34,7 @@ void LineDetector::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
     t1.logTime();
     
     m_image->writeToMessage(msg);
-    
-//    if(line != NULL) 
-//    {
-//        line->writeToMessage(msg);
-//    }
-    
+ 
     SAFE_DELETE(line);                
     
     m_resender.publish(msg); 
