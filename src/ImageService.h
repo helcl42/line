@@ -27,10 +27,12 @@ private:
     
     DetectionSettings* m_settings;    
     
+    AbstractStrategy* m_strategy;
+    
 public:
     ImageService(DetectionSettings* settings);    
     
-    ~ImageService() {}        
+    ~ImageService();  
     
     //void setInstance(const sensor_msgs::Image::ConstPtr& img);
     

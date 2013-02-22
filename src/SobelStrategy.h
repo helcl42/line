@@ -14,6 +14,9 @@
 class SobelStrategy : public AbstractStrategy
 {   
 public:
+    SobelStrategy(DetectionSettings* settings = NULL) 
+        : AbstractStrategy(settings) {}
+    
     SobelStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
         : AbstractStrategy(image, settings) {}
         

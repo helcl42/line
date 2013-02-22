@@ -2,11 +2,23 @@
 #include "Timer.h"
 #include "DetectionParams.h"
 
+
+AbstractStrategy::AbstractStrategy(DetectionSettings* settings)
+: m_settings(settings)
+{
+    setBaseColor();
+    m_bestLine = new Line*[2];
+    m_bestLine[0] = NULL;
+    m_bestLine[1] = NULL;
+}
+
 AbstractStrategy::AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings)
 : m_bmpImage(image), m_settings(settings)
 {
     setBaseColor();
-    m_bestLine = new Line*[2];
+    m_bestLine = new Line*[2];    
+    m_bestLine[0] = NULL;
+    m_bestLine[1] = NULL;
 }
 
 AbstractStrategy::~AbstractStrategy()
@@ -15,7 +27,25 @@ AbstractStrategy::~AbstractStrategy()
     {
         SAFE_DELETE(m_lines[i]);
     }
-    m_lines.clear();
+    m_lines.clear();    
+    SAFE_DELETE_ARRAY(m_bestLine);
+}
+
+void AbstractStrategy::setImage(BmpImage<float>* image)
+{
+    cleanUp();
+    m_bmpImage = image;
+}
+
+void AbstractStrategy::cleanUp()
+{
+    for (unsigned int i = 0; i < m_lines.size(); ++i)
+    {
+        SAFE_DELETE(m_lines[i]);
+    }
+    m_lines.clear();    
+    m_bestLine[0] = NULL;      
+    m_bestLine[1] = NULL;
 }
 
 void AbstractStrategy::smooth()
@@ -372,7 +402,8 @@ Line** AbstractStrategy::findBestLine()
     Line* ret = NULL;
     Line* similar = NULL;
 
-    sortLinesByStraightness();
+    //sortLinesByStraightness();
+    sortLinesByLength();
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {

@@ -29,7 +29,9 @@ protected:
     Line** m_bestLine;
     
 public:
-    AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL);         
+    AbstractStrategy(DetectionSettings* settings);         
+    
+    AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings);         
         
     virtual ~AbstractStrategy();          
     
@@ -46,6 +48,10 @@ public:
      void traverseImage();
      
      Line** findBestLine();
+     
+     void setImage(BmpImage<float>* image);
+     
+     void cleanUp();
           
      virtual Line** detectLine() = 0;        
      

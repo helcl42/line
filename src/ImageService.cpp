@@ -5,6 +5,13 @@ ImageService::ImageService(DetectionSettings* settings)
 : m_shrink(1), m_settings(settings)
 {
     m_image = new BmpImage<float>();
+    m_strategy = new SobelStrategy(settings);
+}
+
+ImageService::~ImageService()
+{
+    SAFE_DELETE(m_image);
+    SAFE_DELETE(m_strategy);
 }
 
 void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
@@ -14,31 +21,36 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     m_timer.start();
     m_image->setInstance(img, m_shrink);
 
-    SobelStrategy sobelStrategy(m_image, m_settings);
-    Line** line = sobelStrategy.detectLine();
+    m_strategy->setImage(m_image);
+    Line** line = m_strategy->detectLine();
 
     //TODO check color(some random points between lines)
 
-    writeImageToMessage(img);
-
-    for (int i = 0; i < 2; i++)
+    if(line != NULL)
     {
-        SAFE_DELETE(line[i]);
+        if(line[0] != NULL && line[1] != NULL) 
+        {
+            std::cout << "CARA!!! " << *line[0] << std::endl;
+        }
     }
-    SAFE_DELETE(line);
+    
+    writeImageToMessage(img);      
 
     m_timer.stop();
 
     timeElapsed = m_timer.getElapsedTimeInMicroSec();
     std::cout << "Elapsed " << timeElapsed << std::endl;
-    if (timeElapsed > 600000)
+    if (timeElapsed > 200000)
     {
         m_shrink++;
         DetectionParams::lineLengthTreshold = 480 / (m_shrink + 1);
     }
     else if (timeElapsed < 50000)
     {
-        m_shrink--;
+        if(m_shrink < 6) 
+        {
+            m_shrink--;
+        }
     }
     std::cout << "Line len = " << DetectionParams::lineLengthTreshold << std::endl;
 }
