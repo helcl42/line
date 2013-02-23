@@ -10,7 +10,7 @@ AbstractStrategy::AbstractStrategy(DetectionSettings* settings)
 }
 
 AbstractStrategy::AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings)
-: m_bmpImage(image), m_settings(settings)
+: m_workImage(image), m_settings(settings)
 {
     setBaseColor();
     m_bestLine = new BestLine();
@@ -26,10 +26,11 @@ AbstractStrategy::~AbstractStrategy()
     SAFE_DELETE(m_bestLine);
 }
 
-void AbstractStrategy::setImage(BmpImage<float>* image)
+void AbstractStrategy::setImages(BmpImage<float>* image, BmpImage<float>* colorImage)
 {
     cleanUp();
-    m_bmpImage = image;
+    m_workImage = image;
+    m_colorImage = colorImage;
 }
 
 void AbstractStrategy::cleanUp()
@@ -49,23 +50,23 @@ void AbstractStrategy::smooth()
 
     Pixel<float>* pixel = NULL;
 
-    for (unsigned int y = 1; y < m_bmpImage->getHeight() - 1; y++)
+    for (unsigned int y = 1; y < m_workImage->getHeight() - 1; y++)
     {
-        for (unsigned int x = 1; x < m_bmpImage->getWidth() - 1; x++)
+        for (unsigned int x = 1; x < m_workImage->getWidth() - 1; x++)
         {
             for (int ch = 0; ch < 3; ch++)
             {
-                pixel = m_bmpImage->getPixel(y, x);
+                pixel = m_workImage->getPixel(y, x);
 
-                result = m * m_bmpImage->getPixelChannelValue(y - 1, x - 1, ch) +
-                        m * m_bmpImage->getPixelChannelValue(y - 1, x, ch) +
-                        m * m_bmpImage->getPixelChannelValue(y - 1, x + 1, ch) +
-                        m * m_bmpImage->getPixelChannelValue(y, x - 1, ch) +
-                        m * m_bmpImage->getPixelChannelValue(y, x, ch) +
-                        m * m_bmpImage->getPixelChannelValue(y, x + 1, ch) +
-                        m * m_bmpImage->getPixelChannelValue(y + 1, x - 1, ch) +
-                        m * m_bmpImage->getPixelChannelValue(y + 1, x, ch) +
-                        m * m_bmpImage->getPixelChannelValue(y + 1, x + 1, ch);
+                result = m * m_workImage->getPixelChannelValue(y - 1, x - 1, ch) +
+                        m * m_workImage->getPixelChannelValue(y - 1, x, ch) +
+                        m * m_workImage->getPixelChannelValue(y - 1, x + 1, ch) +
+                        m * m_workImage->getPixelChannelValue(y, x - 1, ch) +
+                        m * m_workImage->getPixelChannelValue(y, x, ch) +
+                        m * m_workImage->getPixelChannelValue(y, x + 1, ch) +
+                        m * m_workImage->getPixelChannelValue(y + 1, x - 1, ch) +
+                        m * m_workImage->getPixelChannelValue(y + 1, x, ch) +
+                        m * m_workImage->getPixelChannelValue(y + 1, x + 1, ch);
 
                 switch (ch)
                 {
@@ -80,7 +81,7 @@ void AbstractStrategy::smooth()
                         break;
                 }
             }
-            m_bmpImage->setPixelValue(y, x, pixel);
+            m_workImage->setPixelValue(y, x, pixel);
         }
     }
 }
@@ -92,23 +93,23 @@ void AbstractStrategy::gaussianBlur()
 
     Pixel<float>* pixel = NULL;
 
-    for (unsigned int y = 1; y < m_bmpImage->getHeight() - 1; y++)
+    for (unsigned int y = 1; y < m_workImage->getHeight() - 1; y++)
     {
-        for (unsigned int x = 1; x < m_bmpImage->getWidth() - 1; x++)
+        for (unsigned int x = 1; x < m_workImage->getWidth() - 1; x++)
         {
             for (int ch = 0; ch < 3; ch++)
             {
-                pixel = m_bmpImage->getPixel(y, x);
+                pixel = m_workImage->getPixel(y, x);
 
-                result = m * m_bmpImage->getPixelChannelValue(y - 1, x - 1, ch) +
-                        m * 2.0 * m_bmpImage->getPixelChannelValue(y - 1, x, ch) +
-                        m * m_bmpImage->getPixelChannelValue(y - 1, x + 1, ch) +
-                        m * 2.0 * m_bmpImage->getPixelChannelValue(y, x - 1, ch) +
-                        m * 4.0 * m_bmpImage->getPixelChannelValue(y, x, ch) +
-                        m * 2.0 * m_bmpImage->getPixelChannelValue(y, x + 1, ch) +
-                        m * m_bmpImage->getPixelChannelValue(y + 1, x - 1, ch) +
-                        m * 2.0 * m_bmpImage->getPixelChannelValue(y + 1, x, ch) +
-                        m * m_bmpImage->getPixelChannelValue(y + 1, x + 1, ch);
+                result = m * m_workImage->getPixelChannelValue(y - 1, x - 1, ch) +
+                        m * 2.0 * m_workImage->getPixelChannelValue(y - 1, x, ch) +
+                        m * m_workImage->getPixelChannelValue(y - 1, x + 1, ch) +
+                        m * 2.0 * m_workImage->getPixelChannelValue(y, x - 1, ch) +
+                        m * 4.0 * m_workImage->getPixelChannelValue(y, x, ch) +
+                        m * 2.0 * m_workImage->getPixelChannelValue(y, x + 1, ch) +
+                        m * m_workImage->getPixelChannelValue(y + 1, x - 1, ch) +
+                        m * 2.0 * m_workImage->getPixelChannelValue(y + 1, x, ch) +
+                        m * m_workImage->getPixelChannelValue(y + 1, x + 1, ch);
 
                 switch (ch)
                 {
@@ -123,7 +124,7 @@ void AbstractStrategy::gaussianBlur()
                         break;
                 }
             }
-            m_bmpImage->setPixelValue(y, x, pixel);
+            m_workImage->setPixelValue(y, x, pixel);
         }
     }
 }
@@ -138,20 +139,20 @@ void AbstractStrategy::sharpen()
 
     Pixel<float>* pixel = NULL;
 
-    for (unsigned int y = 1; y < m_bmpImage->getHeight() - 1; y++)
+    for (unsigned int y = 1; y < m_workImage->getHeight() - 1; y++)
     {
-        for (unsigned int x = 1; x < m_bmpImage->getWidth() - 1; x++)
+        for (unsigned int x = 1; x < m_workImage->getWidth() - 1; x++)
         {
             for (int ch = 0; ch < 3; ch++)
             {
-                pixel = m_bmpImage->getPixel(y, x);
+                pixel = m_workImage->getPixel(y, x);
 
                 result =
-                        m * -2.0 * m_bmpImage->getPixelChannelValue(y - 1, x, ch) +
-                        m * -2.0 * m_bmpImage->getPixelChannelValue(y, x - 1, ch) +
-                        m * 11.0 * m_bmpImage->getPixelChannelValue(y, x, ch) +
-                        m * -2.0 * m_bmpImage->getPixelChannelValue(y, x + 1, ch) +
-                        m * -2.0 * m_bmpImage->getPixelChannelValue(y + 1, x, ch);
+                        m * -2.0 * m_workImage->getPixelChannelValue(y - 1, x, ch) +
+                        m * -2.0 * m_workImage->getPixelChannelValue(y, x - 1, ch) +
+                        m * 11.0 * m_workImage->getPixelChannelValue(y, x, ch) +
+                        m * -2.0 * m_workImage->getPixelChannelValue(y, x + 1, ch) +
+                        m * -2.0 * m_workImage->getPixelChannelValue(y + 1, x, ch);
 
                 switch (ch)
                 {
@@ -166,7 +167,7 @@ void AbstractStrategy::sharpen()
                         break;
                 }
             }
-            m_bmpImage->setPixelValue(y, x, pixel);
+            m_workImage->setPixelValue(y, x, pixel);
         }
     }
 }
@@ -212,11 +213,11 @@ void AbstractStrategy::replaintSimilarColorPlaces(int interval)
         pixelPlus[i] = m_settings->searchedColor[i] + interval < 255 ? m_settings->searchedColor[i] + interval : 255;
     }
 
-    for (unsigned int i = 0; i < m_bmpImage->getHeight(); ++i)
+    for (unsigned int i = 0; i < m_workImage->getHeight(); ++i)
     {
-        for (unsigned int j = 0; j < m_bmpImage->getWidth(); ++j)
+        for (unsigned int j = 0; j < m_workImage->getWidth(); ++j)
         {
-            pixel = m_bmpImage->getPixel(i, j);
+            pixel = m_workImage->getPixel(i, j);
 
             if (pixel->isInInterval(&pixelMinus, &pixelPlus))
             {
@@ -282,11 +283,11 @@ void AbstractStrategy::traverseImage()
     Pixel<float>* pixel = NULL;
     Line * lines[4];
 
-    for (unsigned int i = 1; i < m_bmpImage->getHeight() - 1; ++i)
+    for (unsigned int i = 1; i < m_workImage->getHeight() - 1; ++i)
     {
-        for (unsigned int j = 1; j < m_bmpImage->getWidth() - 1; ++j)
+        for (unsigned int j = 1; j < m_workImage->getWidth() - 1; ++j)
         {
-            pixel = m_bmpImage->getPixel(i, j);
+            pixel = m_workImage->getPixel(i, j);
 
             if (pixel->r > DetectionParams::selectionTreshold
                     || pixel->b > DetectionParams::selectionTreshold
@@ -300,8 +301,10 @@ void AbstractStrategy::traverseImage()
 
                 if (storeBestLine(lines))
                 {
-                    j += m_bmpImage->getWidth() / 15;
-                    if (j < 1) j++;
+                    if(m_workImage->getWidth() / 15 < 1)
+                        j++;
+                    else
+                        j += m_workImage->getWidth() / 15;
                     //break;
                 }
             }
@@ -453,11 +456,11 @@ void AbstractStrategy::writeLineInImage(Line* line, int r, int g, int b)
         linePoint = line->points[i];
         if (i < 15)
         {
-            m_bmpImage->setPixelValue(linePoint.y, linePoint.x, 0, 255, 255);
+            m_workImage->setPixelValue(linePoint.y, linePoint.x, 0, 255, 255);
         }
         else
         {
-            m_bmpImage->setPixelValue(linePoint.y, linePoint.x, r, g, b);
+            m_workImage->setPixelValue(linePoint.y, linePoint.x, r, g, b);
         }
     }
 }
@@ -486,7 +489,12 @@ void AbstractStrategy::lockedCount()
 }
 
 bool AbstractStrategy::lineColorMatch(Line* l1, Line* l2)
-{
+{        
+    double halfDist1 = l2->getDistanceTo(l1->points.front()) / 2;
+    double halfDist2 = l2->getDistanceTo(l1->points.back()) / 2;
+    
+    //TODO
+    
     //check color between lines if matches
     return true;
 }
@@ -541,12 +549,12 @@ Line* AbstractStrategy::findCorrectLine(int vecY, int vecX, int chY, int chX, un
 
     line->points.push_back(Vector2<int>(posX, posY));
 
-    while (posY > 2 && posX > 2 && posY < m_bmpImage->getHeight() - 2 && posX < m_bmpImage->getWidth() - 2)
+    while (posY > 2 && posX > 2 && posY < m_workImage->getHeight() - 2 && posX < m_workImage->getWidth() - 2)
     {
         posY += vectorY;
         posX += vectorX;
 
-        pixel = m_bmpImage->getPixel(posY, posX);
+        pixel = m_workImage->getPixel(posY, posX);
 
         if (pixel->r > DetectionParams::selectionTreshold
                 || pixel->b > DetectionParams::selectionTreshold

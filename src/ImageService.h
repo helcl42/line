@@ -25,6 +25,8 @@ private:
     
     BmpImage<float>* m_image;
     
+    BmpImage<float>* m_colorImage;
+    
     DetectionSettings* m_settings;    
     
     AbstractStrategy* m_strategy;

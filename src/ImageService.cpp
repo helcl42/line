@@ -5,12 +5,14 @@ ImageService::ImageService(DetectionSettings* settings)
 : m_shrink(1), m_settings(settings)
 {
     m_image = new BmpImage<float>();
+    m_colorImage = new BmpImage<float>();
     m_strategy = new SobelStrategy(settings);
 }
 
 ImageService::~ImageService()
 {
     SAFE_DELETE(m_image);
+    SAFE_DELETE(m_colorImage);
     SAFE_DELETE(m_strategy);
 }
 
@@ -18,10 +20,12 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
 {
     unsigned long timeElapsed;
 
+    m_shrink = 2;
     m_timer.start();
     m_image->setInstance(img, m_shrink);
+    m_colorImage->setInstance(img, m_shrink);
 
-    m_strategy->setImage(m_image);
+    m_strategy->setImages(m_image, m_colorImage);
     BestLine* line = m_strategy->detectLine();
 
     if (line->isValid())
@@ -41,12 +45,12 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     }
     else if (timeElapsed < 100000)
     {
-        if (m_shrink < 5)
+        if (m_shrink < 5 && m_shrink > 1)
         {
             m_shrink--;
         }
     }
-    DetectionParams::recomputeMatrics(m_shrink);
+    //DetectionParams::recomputeMatrics(m_shrink);
 
     std::cout << "Line len = " << DetectionParams::lineLengthTreshold << std::endl;
 }
@@ -90,19 +94,22 @@ void ImageService::writeImageToMessage(const sensor_msgs::Image::ConstPtr& img)
 
         Pixel<float>* pixel = NULL;
         unsigned char* temp;
-        for (unsigned int i = 0, index = 0; i < m_image->getHeight(); i++)
+        unsigned long size = img->height * img->width * 3;
+
+        for (unsigned int i = 0, index = img->width * 3; i < m_image->getHeight(); i++)
         {
-            for (unsigned int j = 0; j < m_image->getWidth(); j++, index += 3)
+            for (unsigned int j = 0; j < m_image->getWidth(); j++, index -= 3)
             {
                 pixel = m_image->getPixel(i, j);
-                temp = (unsigned char*) &img->data[index];
+                temp = (unsigned char*) &img->data[index + 2];
                 *temp = (unsigned char) pixel->b;
                 temp = (unsigned char*) &img->data[index + 1];
                 *temp = (unsigned char) pixel->g;
-                temp = (unsigned char*) &img->data[index + 2];
+                temp = (unsigned char*) &img->data[index];
                 *temp = (unsigned char) pixel->r;
             }
-            index = i * img->width * 3;
+            //index = (i + 1) * img->width * 3;                
+            index = size - (i + 1) * img->width * 3 + img->width * 3;
         }
     }
 }

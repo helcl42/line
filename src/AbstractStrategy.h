@@ -19,15 +19,15 @@
 class AbstractStrategy 
 {
 protected:
-    BmpImage<float>* m_bmpImage;
+    BmpImage<float>* m_workImage;
+    
+    BmpImage<float>* m_colorImage;
     
     DetectionSettings* m_settings;
     
     PixelRGB<float> m_baseColor;            
     
     std::vector<Line*> m_lines;
-    
-    //Line** m_bestLine;
     
     BestLine* m_bestLine;
     
@@ -52,7 +52,7 @@ public:
      
      BestLine* findBestLine();
      
-     void setImage(BmpImage<float>* image);
+     void setImages(BmpImage<float>* image, BmpImage<float>* colorImage);
      
      void cleanUp();
           

@@ -21,8 +21,8 @@ void PrewittStrategy::prewittAlgorithm()
     double max = 0.0;
     const double k = 1 /3;
 
-    unsigned int imageHeight = m_bmpImage->getHeight();
-    unsigned int imageWidth = m_bmpImage->getWidth();
+    unsigned int imageHeight = m_workImage->getHeight();
+    unsigned int imageWidth = m_workImage->getWidth();
 
     double* buffer = new double[imageHeight * imageWidth];
 
@@ -31,14 +31,14 @@ void PrewittStrategy::prewittAlgorithm()
         for (unsigned int j = 1; j < imageWidth - 1; j += 1)
         {
             double gx = k *
-                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1), m_bmpImage->getPixel(i + 1, j - 1)) +
-                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j    ), m_bmpImage->getPixel(i + 1, j    )) +
-                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j + 1), m_bmpImage->getPixel(i + 1, j + 1));
+                    Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j - 1), m_workImage->getPixel(i + 1, j - 1)) +
+                    Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j    ), m_workImage->getPixel(i + 1, j    )) +
+                    Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j + 1), m_workImage->getPixel(i + 1, j + 1));
 
             double gy = k *
-                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1), m_bmpImage->getPixel(i - 1, j + 1)) +
-                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i    , j - 1), m_bmpImage->getPixel(i    , j + 1)) +
-                    Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j - 1), m_bmpImage->getPixel(i + 1, j + 1));
+                    Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j - 1), m_workImage->getPixel(i - 1, j + 1)) +
+                    Pixel<float>::colourDifference(m_workImage->getPixel(i    , j - 1), m_workImage->getPixel(i    , j + 1)) +
+                    Pixel<float>::colourDifference(m_workImage->getPixel(i + 1, j - 1), m_workImage->getPixel(i + 1, j + 1));
 
             double val = pow(gx * gx + gy * gy, 0.5);
 
@@ -70,7 +70,7 @@ void PrewittStrategy::prewittAlgorithm()
                 pixel.b = 0;
             }
 
-            m_bmpImage->setPixelValue(y, x, &pixel);
+            m_workImage->setPixelValue(y, x, &pixel);
         }
     }
     SAFE_DELETE_ARRAY(buffer);

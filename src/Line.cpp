@@ -104,7 +104,7 @@ double Line::computeStraightnessFactor()
                 maxDistance = distance;
             }
         }
-    }    
+    }
     return maxDistance;
 }
 
@@ -141,7 +141,7 @@ Line* Line::getMaxLengthLine(Line** lines)
         if (lines[i] != NULL)
         {
             tempLength = lines[i]->computeLength();
-            
+
             if (tempLength > maxLength)
             {
                 maxLength = tempLength;
@@ -175,7 +175,7 @@ bool Line::isInline(Line* input)
         testedIndex = rand() % input->points.size();
         result = input->points[testedIndex].y - input->points[testedIndex].x * direction;
         if (result + DetectionParams::inlineTolerance > q && result - DetectionParams::inlineTolerance < q)
-        {            
+        {
             return true;
         }
 
@@ -193,12 +193,20 @@ bool Line::isClose(Line* input)
         {
             distance = points[i].distance(input->points[j]);
             if (distance < DetectionParams::minPointDistance || distance > DetectionParams::maxPointDistance)
-            {     
+            {
                 return true;
             }
         }
-    }    
+    }
     return false;
+}
+
+double Line::getDistanceTo(Vector2<int>& point)
+{    
+    Vector2<float> n(-(points.back().y - points.front().y), (points.back().x - points.front().x));
+    int c = -(n.x * points.front().x) - (n.y * points.front().y);    
+
+    return (double)(n.x * point.x + n.y * point.y + c) / (double)sqrt(n.x * n.x + n.y * n.y);
 }
 
 std::ostream& operator<<(std::ostream& out, const Line& line)

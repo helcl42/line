@@ -194,8 +194,9 @@ void BmpImage<T>::writeToMessage(const sensor_msgs::Image::ConstPtr& img)
 template <class T>
 void BmpImage<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink)
 {
+    unsigned int corrector = 0;
     if (img->width > 0 && img->height > 0)
-    {
+    {                
         //allocate first time only
         if (m_height != img->height / shrink || m_width != img->width / shrink)
         {
@@ -218,6 +219,11 @@ void BmpImage<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned 
             }
         }       
 
+        if(m_shrinkRatio == 3)
+        {
+            corrector = 3;
+        }        
+        
         std::vector<unsigned char> data = img->data;
 
         Pixel<T>* pixel = NULL;
@@ -231,6 +237,7 @@ void BmpImage<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned 
                 pixel->b = data[index + 2];
                 m_imageMatrix[i][j] = pixel;
             }
+            index += 3 * img->width * (m_shrinkRatio - 1) + corrector;
         }
     }
 }

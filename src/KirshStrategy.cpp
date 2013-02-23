@@ -23,8 +23,8 @@ void KirshStrategy::kirshAlgorithm()
     double max = 0.0;
     const double k = 1/15;
 
-    unsigned int imageHeight = m_bmpImage->getHeight();
-    unsigned int imageWidth = m_bmpImage->getWidth();
+    unsigned int imageHeight = m_workImage->getHeight();
+    unsigned int imageWidth = m_workImage->getWidth();
 
     double* buffer = new double[imageHeight * imageWidth];
 
@@ -33,24 +33,24 @@ void KirshStrategy::kirshAlgorithm()
         for (unsigned int j = 1; j < imageWidth - 1; j++)
         {
             double gx = k *                    
-                    5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1), m_bmpImage->getPixel(i, j)) 
-                  - 5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j    ), m_bmpImage->getPixel(i, j)) 
-                  - 3 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j + 1), m_bmpImage->getPixel(i, j))
-                  + 5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i    , j - 1), m_bmpImage->getPixel(i, j)) 
-                  - 3 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i    , j + 1), m_bmpImage->getPixel(i, j)) 
-                  - 3 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j - 1), m_bmpImage->getPixel(i, j)) 
-                  - 3 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j    ), m_bmpImage->getPixel(i, j)) 
-                  - 3 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j + 1), m_bmpImage->getPixel(i, j));            
+                    5 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j - 1), m_workImage->getPixel(i, j)) 
+                  - 5 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j    ), m_workImage->getPixel(i, j)) 
+                  - 3 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j + 1), m_workImage->getPixel(i, j))
+                  + 5 * Pixel<float>::colourDifference(m_workImage->getPixel(i    , j - 1), m_workImage->getPixel(i, j)) 
+                  - 3 * Pixel<float>::colourDifference(m_workImage->getPixel(i    , j + 1), m_workImage->getPixel(i, j)) 
+                  - 3 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 1, j - 1), m_workImage->getPixel(i, j)) 
+                  - 3 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 1, j    ), m_workImage->getPixel(i, j)) 
+                  - 3 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 1, j + 1), m_workImage->getPixel(i, j));            
 
             double gy = k *
-                    5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1), m_bmpImage->getPixel(i, j)) 
-                  + 5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i    , j - 1), m_bmpImage->getPixel(i, j))
-                  - 3 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j - 1), m_bmpImage->getPixel(i, j)) 
-                  - 5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j    ), m_bmpImage->getPixel(i, j))
-                  - 3 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j    ), m_bmpImage->getPixel(i, j))
-                  - 3 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j + 1), m_bmpImage->getPixel(i, j))
-                  - 3 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i    , j + 1), m_bmpImage->getPixel(i, j))
-                  - 3 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j + 1), m_bmpImage->getPixel(i, j));
+                    5 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j - 1), m_workImage->getPixel(i, j)) 
+                  + 5 * Pixel<float>::colourDifference(m_workImage->getPixel(i    , j - 1), m_workImage->getPixel(i, j))
+                  - 3 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 1, j - 1), m_workImage->getPixel(i, j)) 
+                  - 5 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j    ), m_workImage->getPixel(i, j))
+                  - 3 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 1, j    ), m_workImage->getPixel(i, j))
+                  - 3 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j + 1), m_workImage->getPixel(i, j))
+                  - 3 * Pixel<float>::colourDifference(m_workImage->getPixel(i    , j + 1), m_workImage->getPixel(i, j))
+                  - 3 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 1, j + 1), m_workImage->getPixel(i, j));
 
             double val = pow(gx * gx + gy * gy, 0.5);
 
@@ -86,7 +86,7 @@ void KirshStrategy::kirshAlgorithm()
 //            pixel.g = val;
 //            pixel.b = val;
             
-            m_bmpImage->setPixelValue(y, x, &pixel);
+            m_workImage->setPixelValue(y, x, &pixel);
         }
     }
     SAFE_DELETE_ARRAY(buffer);

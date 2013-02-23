@@ -23,8 +23,8 @@ void CannyStrategy::cannyAlgorithm()
     double max = 0.0;
     const double k = 1 / 159;
 
-    unsigned int imageHeight = m_bmpImage->getHeight();
-    unsigned int imageWidth = m_bmpImage->getWidth();
+    unsigned int imageHeight = m_workImage->getHeight();
+    unsigned int imageWidth = m_workImage->getWidth();
 
     double* buffer = new double[imageHeight * imageWidth];
 
@@ -33,46 +33,46 @@ void CannyStrategy::cannyAlgorithm()
         for (unsigned int j = 2; j < imageWidth - 2; j++)
         {
             double gx = k *
-                    2 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 2, j - 2), m_bmpImage->getPixel(i + 2, j - 2)) +
-                    4 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 2), m_bmpImage->getPixel(i + 1, j - 2)) +
-                    5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i,     j - 2), m_bmpImage->getPixel(i,     j - 2)) +
+                    2 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 2, j - 2), m_workImage->getPixel(i + 2, j - 2)) +
+                    4 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j - 2), m_workImage->getPixel(i + 1, j - 2)) +
+                    5 * Pixel<float>::colourDifference(m_workImage->getPixel(i,     j - 2), m_workImage->getPixel(i,     j - 2)) +
             
-                    4 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 2, j - 1), m_bmpImage->getPixel(i + 2, j - 1)) +
-                    9 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1), m_bmpImage->getPixel(i + 1, j - 1)) +
-                   12 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i,     j - 1), m_bmpImage->getPixel(i,     j - 1)) +
+                    4 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 2, j - 1), m_workImage->getPixel(i + 2, j - 1)) +
+                    9 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j - 1), m_workImage->getPixel(i + 1, j - 1)) +
+                   12 * Pixel<float>::colourDifference(m_workImage->getPixel(i,     j - 1), m_workImage->getPixel(i,     j - 1)) +
             
-                    5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 2, j), m_bmpImage->getPixel(i + 2, j)) +
-                   12 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j), m_bmpImage->getPixel(i + 1, j)) +
-                   15 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i,     j), m_bmpImage->getPixel(i,     j)) +
+                    5 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 2, j), m_workImage->getPixel(i + 2, j)) +
+                   12 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j), m_workImage->getPixel(i + 1, j)) +
+                   15 * Pixel<float>::colourDifference(m_workImage->getPixel(i,     j), m_workImage->getPixel(i,     j)) +
             
-                    4 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 2, j + 1), m_bmpImage->getPixel(i + 2, j + 1)) +
-                    9 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j + 1), m_bmpImage->getPixel(i + 1, j + 1)) +
-                   12 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i,     j + 1), m_bmpImage->getPixel(i,     j + 1)) +
+                    4 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 2, j + 1), m_workImage->getPixel(i + 2, j + 1)) +
+                    9 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j + 1), m_workImage->getPixel(i + 1, j + 1)) +
+                   12 * Pixel<float>::colourDifference(m_workImage->getPixel(i,     j + 1), m_workImage->getPixel(i,     j + 1)) +
             
-                    2 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 2, j + 2), m_bmpImage->getPixel(i + 2, j + 2)) +
-                    4 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j + 2), m_bmpImage->getPixel(i + 1, j + 2)) +
-                    5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i,     j + 2), m_bmpImage->getPixel(i,     j + 2));
+                    2 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 2, j + 2), m_workImage->getPixel(i + 2, j + 2)) +
+                    4 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j + 2), m_workImage->getPixel(i + 1, j + 2)) +
+                    5 * Pixel<float>::colourDifference(m_workImage->getPixel(i,     j + 2), m_workImage->getPixel(i,     j + 2));
 
             double gy = k *
-                    2 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 2, j - 2), m_bmpImage->getPixel(i - 2, j + 2)) +
-                    4 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 2, j - 1), m_bmpImage->getPixel(i - 2, j + 1)) +
-                    5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 2, j    ), m_bmpImage->getPixel(i - 2, j    )) +
+                    2 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 2, j - 2), m_workImage->getPixel(i - 2, j + 2)) +
+                    4 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 2, j - 1), m_workImage->getPixel(i - 2, j + 1)) +
+                    5 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 2, j    ), m_workImage->getPixel(i - 2, j    )) +
             
-                    4 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 2), m_bmpImage->getPixel(i - 1, j + 2)) +
-                    9 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j - 1), m_bmpImage->getPixel(i - 1, j + 1)) +
-                   12 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i - 1, j    ), m_bmpImage->getPixel(i - 1, j    )) +
+                    4 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j - 2), m_workImage->getPixel(i - 1, j + 2)) +
+                    9 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j - 1), m_workImage->getPixel(i - 1, j + 1)) +
+                   12 * Pixel<float>::colourDifference(m_workImage->getPixel(i - 1, j    ), m_workImage->getPixel(i - 1, j    )) +
             
-                    5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i, j - 2), m_bmpImage->getPixel(i, j + 2)) +
-                   12 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i, j - 1), m_bmpImage->getPixel(i, j + 1)) +
-                   15 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i, j    ), m_bmpImage->getPixel(i, j    )) +
+                    5 * Pixel<float>::colourDifference(m_workImage->getPixel(i, j - 2), m_workImage->getPixel(i, j + 2)) +
+                   12 * Pixel<float>::colourDifference(m_workImage->getPixel(i, j - 1), m_workImage->getPixel(i, j + 1)) +
+                   15 * Pixel<float>::colourDifference(m_workImage->getPixel(i, j    ), m_workImage->getPixel(i, j    )) +
             
-                    4 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j - 2), m_bmpImage->getPixel(i + 1, j + 2)) +
-                    9 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j - 1), m_bmpImage->getPixel(i + 1, j + 1)) +
-                   12 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 1, j    ), m_bmpImage->getPixel(i + 1, j    )) +
+                    4 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 1, j - 2), m_workImage->getPixel(i + 1, j + 2)) +
+                    9 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 1, j - 1), m_workImage->getPixel(i + 1, j + 1)) +
+                   12 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 1, j    ), m_workImage->getPixel(i + 1, j    )) +
             
-                    2 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 2, j - 2), m_bmpImage->getPixel(i + 2, j + 2)) +
-                    4 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 2, j - 1), m_bmpImage->getPixel(i + 2, j + 1)) +
-                    5 * Pixel<float>::colourDifference(m_bmpImage->getPixel(i + 2, j    ), m_bmpImage->getPixel(i + 2, j    ));
+                    2 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 2, j - 2), m_workImage->getPixel(i + 2, j + 2)) +
+                    4 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 2, j - 1), m_workImage->getPixel(i + 2, j + 1)) +
+                    5 * Pixel<float>::colourDifference(m_workImage->getPixel(i + 2, j    ), m_workImage->getPixel(i + 2, j    ));
                     
 
             double val = pow(gx * gx + gy * gy, 0.5);
@@ -109,7 +109,7 @@ void CannyStrategy::cannyAlgorithm()
 //            pixel.g = val;
 //            pixel.b = val;
           
-            m_bmpImage->setPixelValue(y, x, &pixel);
+            m_workImage->setPixelValue(y, x, &pixel);
         }
     }
     SAFE_DELETE_ARRAY(buffer);
