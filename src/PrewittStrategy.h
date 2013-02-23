@@ -13,6 +13,9 @@
 class PrewittStrategy : public AbstractStrategy
 {   
 public:
+    PrewittStrategy(DetectionSettings* settings = NULL) 
+        : AbstractStrategy(settings) {}
+    
     PrewittStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
         : AbstractStrategy(image, settings) {}
                            

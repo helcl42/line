@@ -15,6 +15,9 @@
 class CannyStrategy : public AbstractStrategy
 {   
 public:
+    CannyStrategy(DetectionSettings* settings = NULL) 
+        : AbstractStrategy(settings) {}
+    
     CannyStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
         : AbstractStrategy(image, settings) {}
         

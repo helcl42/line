@@ -13,6 +13,9 @@
 class RobertsStrategy : public AbstractStrategy
 {   
 public:
+    RobertsStrategy(DetectionSettings* settings = NULL) 
+        : AbstractStrategy(settings) {}
+    
     RobertsStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
         : AbstractStrategy(image, settings) {}
                                

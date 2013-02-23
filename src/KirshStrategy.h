@@ -13,6 +13,9 @@
 class KirshStrategy : public AbstractStrategy
 {   
 public:
+    KirshStrategy(DetectionSettings* settings = NULL) 
+        : AbstractStrategy(settings) {}
+    
     KirshStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
         : AbstractStrategy(image, settings) {}
                                
