@@ -50,9 +50,9 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
             m_shrink--;
         }
     }
-    //DetectionParams::recomputeMatrics(m_shrink);
+    //DetectionParams::recomputeMatrics(img->width, img->height, m_shrink);
 
-    std::cout << "Line len = " << DetectionParams::lineLengthTreshold << std::endl;
+    std::cout << "New Line len = " << DetectionParams::lineLengthTreshold << std::endl;
 }
 
 void ImageService::writeLineToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int width)

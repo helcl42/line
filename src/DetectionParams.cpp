@@ -8,12 +8,12 @@ const unsigned int DetectionParams::colorTreshold = 85;
 
 const unsigned int DetectionParams::selectionTreshold = 25;
 
-const unsigned int DetectionParams::directionDeltaDegrees = 32; 
+const unsigned int DetectionParams::directionDeltaDegrees = 33; 
 
 
 unsigned int DetectionParams::lineLengthTreshold = 130;
 
-unsigned int DetectionParams::straightnessTreshold = 120;
+unsigned int DetectionParams::straightnessTreshold = 140;
 
 unsigned int DetectionParams::minPointDistance = 6;
 
@@ -25,28 +25,41 @@ unsigned int DetectionParams::noCheckLineBorder = 40;
 
 unsigned int DetectionParams::checkPointSkip = 12;
 
+unsigned int DetectionParams::imageHeight = 480;
+
+unsigned int DetectionParams::imageWidth = 640;
 
 
-void DetectionParams::recomputeMatrics(unsigned int shrink)
+void DetectionParams::recomputeMatrics(unsigned int w, unsigned int h, unsigned int shrink)
 {
     if(shrink == 0) 
     {
         throw std::runtime_error("shrink == 0");
     }
+   
+    if(w != imageWidth) 
+    {
+        imageWidth = w;
+    }
     
-    lineLengthTreshold = IMAGE_HEIGHT / (shrink + 1);               
+    if(h != imageHeight)
+    {
+        imageHeight = h;
+    }
     
-    straightnessTreshold = IMAGE_HEIGHT / (shrink * 7);
+    lineLengthTreshold = imageHeight / (shrink + 1);               
     
-    minPointDistance = IMAGE_HEIGHT / (shrink * 45);
+    straightnessTreshold = imageHeight / (shrink * 7);
     
-    inlineTolerance = IMAGE_HEIGHT / (120 * shrink);
+    minPointDistance = imageHeight / (shrink * 45);
     
-    maxPointDistance = IMAGE_HEIGHT / (1.3714 * shrink);
+    inlineTolerance = imageHeight / (120 * shrink);
     
-    noCheckLineBorder = IMAGE_HEIGHT / (24 * shrink);
+    maxPointDistance = imageHeight / (1.3714 * shrink);
+    
+    noCheckLineBorder = imageHeight / (24 * shrink);
         
-    checkPointSkip = IMAGE_HEIGHT / (shrink * 40);    
+    checkPointSkip = imageHeight / (shrink * 40);    
 }
 
 

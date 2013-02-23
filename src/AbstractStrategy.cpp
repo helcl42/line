@@ -301,10 +301,11 @@ void AbstractStrategy::traverseImage()
 
                 if (storeBestLine(lines))
                 {
-                    if(m_workImage->getWidth() / 15 < 1)
-                        j++;
-                    else
-                        j += m_workImage->getWidth() / 15;
+//                    if(m_workImage->getWidth() / 15 < 1)
+//                        j++;
+//                    else
+//                        j += m_workImage->getWidth() / 15;
+                    j++;
                     //break;
                 }
             }
