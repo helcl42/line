@@ -14,7 +14,7 @@
 
 class BestLine
 {
-public:
+protected:
     Line* line[2];
     
 public:    
