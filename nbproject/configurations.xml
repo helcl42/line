@@ -79,6 +79,7 @@
       <df name="src">
         <in>AbstractStrategy.cpp</in>
         <in>AbstractStrategy.h</in>
+        <in>BestLine.h</in>
         <in>BmpFileIO.h</in>
         <in>BmpImage.h</in>
         <in>CannyStrategy.cpp</in>
@@ -86,7 +87,6 @@
         <in>DetectionParams.cpp</in>
         <in>DetectionParams.h</in>
         <in>DetectionSettings.h</in>
-        <in>Globals.h</in>
         <in>IPixel.h</in>
         <in>ImageService.cpp</in>
         <in>ImageService.h</in>

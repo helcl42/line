@@ -16,7 +16,7 @@ public:
     KirshStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
         : AbstractStrategy(image, settings) {}
                                
-    Line** detectLine();
+    BestLine* detectLine();
     
 protected:    
     void kirshAlgorithm();        

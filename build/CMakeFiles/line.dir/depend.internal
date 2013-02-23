@@ -4,6 +4,7 @@
 CMakeFiles/line.dir/src/AbstractStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/BestLine.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
@@ -74,6 +75,7 @@ CMakeFiles/line.dir/src/AbstractStrategy.o
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/CannyStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/BestLine.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpFileIO.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/CannyStrategy.cpp
@@ -149,6 +151,7 @@ CMakeFiles/line.dir/src/DetectionParams.o
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
 CMakeFiles/line.dir/src/ImageService.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/BestLine.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
@@ -222,6 +225,7 @@ CMakeFiles/line.dir/src/ImageService.o
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/KirshStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/BestLine.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
@@ -314,6 +318,7 @@ CMakeFiles/line.dir/src/Line.o
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/LineDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/BestLine.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpFileIO.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/CannyStrategy.h
@@ -393,6 +398,7 @@ CMakeFiles/line.dir/src/LineDetector.o
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/PrewittStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/BestLine.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
@@ -464,6 +470,7 @@ CMakeFiles/line.dir/src/PrewittStrategy.o
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/RobertsStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/BestLine.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
@@ -535,6 +542,7 @@ CMakeFiles/line.dir/src/RobertsStrategy.o
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/SobelStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/BestLine.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h

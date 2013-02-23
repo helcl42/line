@@ -2,7 +2,7 @@
 #include "DetectionParams.h"
 
 
-Line** RobertsStrategy::detectLine()
+BestLine* RobertsStrategy::detectLine()
 {    
     //replaintSimilarColorPlaces();    
     robertsAlgorithm();            

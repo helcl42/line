@@ -8,17 +8,20 @@
 #ifndef DETECTIONPARAMS_H
 #define	DETECTIONPARAMS_H
 
+#define IMAGE_HEIGHT 480
+#define IMAGE_WIDTH  640
+
 struct DetectionParams
 {
-    static unsigned int colorTolerance;
+    static const unsigned int colorTolerance;
+        
+    static const unsigned int colorTreshold;
     
-    static unsigned int lineLengthTreshold;
+    static const unsigned int selectionTreshold;
     
-    static unsigned int colorTreshold;
+    static const unsigned int directionDeltaDegrees;
     
-    static unsigned int selectionTreshold;
-    
-    static unsigned int directionDeltaDegrees;
+    static unsigned int lineLengthTreshold;                    
     
     static unsigned int straightnessTreshold;
     
@@ -31,6 +34,8 @@ struct DetectionParams
     static unsigned int noCheckLineBorder;
     
     static unsigned int checkPointSkip;
+    
+    static void recomputeMatrics(unsigned int shrink = 1);
 };
 
 

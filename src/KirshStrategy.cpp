@@ -2,7 +2,7 @@
 #include "DetectionParams.h"
 
 
-Line** KirshStrategy::detectLine()
+BestLine* KirshStrategy::detectLine()
 {    
     //replaintSimilarColorPlaces();    
     kirshAlgorithm(); 

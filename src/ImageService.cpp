@@ -22,36 +22,32 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     m_image->setInstance(img, m_shrink);
 
     m_strategy->setImage(m_image);
-    Line** line = m_strategy->detectLine();
+    BestLine* line = m_strategy->detectLine();
 
-    //TODO check color(some random points between lines)
-
-    if(line != NULL)
+    if (line->isValid())
     {
-        if(line[0] != NULL && line[1] != NULL) 
-        {
-            std::cout << "CARA!!! " << *line[0] << std::endl;
-        }
+        std::cout << "CARA!!! " << line->getFirst()->length << std::endl;
     }
-    
-    writeImageToMessage(img);      
+
+    writeImageToMessage(img);
 
     m_timer.stop();
 
     timeElapsed = m_timer.getElapsedTimeInMicroSec();
     std::cout << "Elapsed " << timeElapsed << std::endl;
-    if (timeElapsed > 200000)
+    if (timeElapsed > 300000)
     {
         m_shrink++;
-        DetectionParams::lineLengthTreshold = 480 / (m_shrink + 1);
     }
-    else if (timeElapsed < 50000)
+    else if (timeElapsed < 100000)
     {
-        if(m_shrink < 6) 
+        if (m_shrink < 5)
         {
             m_shrink--;
         }
     }
+    DetectionParams::recomputeMatrics(m_shrink);
+
     std::cout << "Line len = " << DetectionParams::lineLengthTreshold << std::endl;
 }
 

@@ -14,6 +14,7 @@
 #include "BmpImage.h"
 #include "DetectionSettings.h"
 #include "DetectionParams.h"
+#include "BestLine.h"
 
 class AbstractStrategy 
 {
@@ -26,7 +27,9 @@ protected:
     
     std::vector<Line*> m_lines;
     
-    Line** m_bestLine;
+    //Line** m_bestLine;
+    
+    BestLine* m_bestLine;
     
 public:
     AbstractStrategy(DetectionSettings* settings);         
@@ -47,13 +50,13 @@ public:
      
      void traverseImage();
      
-     Line** findBestLine();
+     BestLine* findBestLine();
      
      void setImage(BmpImage<float>* image);
      
      void cleanUp();
           
-     virtual Line** detectLine() = 0;        
+     virtual BestLine* detectLine() = 0;        
      
 protected:     
      inline bool storeBestLine(Line** lines);     
@@ -70,16 +73,16 @@ protected:
      
      void lockSimilarLines(Line* line);
      
-     void lockAllLines(bool val);
+     void lockAllLines(bool val);          
      
 private:     
-     void setBaseColor();
-     
-     void setBestLine(Line* line1, Line* line2);
+     void setBaseColor();     
      
      void sortLinesByStraightness();
      
      void sortLinesByLength();
+     
+     bool lineColorMatch(Line* l1, Line* l2);
      
      void lockedCount();                    
 };

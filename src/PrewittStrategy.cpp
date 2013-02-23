@@ -1,7 +1,7 @@
 #include "PrewittStrategy.h"
 #include "DetectionParams.h"
 
-Line** PrewittStrategy::detectLine()
+BestLine* PrewittStrategy::detectLine()
 {        
     //replaintSimilarColorPlaces();    
     prewittAlgorithm();    

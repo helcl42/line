@@ -18,7 +18,7 @@ public:
                            
     virtual ~PrewittStrategy() {}        
         
-    Line** detectLine();
+    BestLine* detectLine();
     
 protected:        
     void prewittAlgorithm();            

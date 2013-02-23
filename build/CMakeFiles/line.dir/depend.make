@@ -3,6 +3,7 @@
 
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/AbstractStrategy.cpp
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/AbstractStrategy.h
+CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/BestLine.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/DetectionSettings.h
@@ -73,6 +74,7 @@ CMakeFiles/line.dir/src/AbstractStrategy.o: /opt/ros/fuerte/include/sensor_msgs/
 CMakeFiles/line.dir/src/AbstractStrategy.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
 CMakeFiles/line.dir/src/CannyStrategy.o: ../src/AbstractStrategy.h
+CMakeFiles/line.dir/src/CannyStrategy.o: ../src/BestLine.h
 CMakeFiles/line.dir/src/CannyStrategy.o: ../src/BmpFileIO.h
 CMakeFiles/line.dir/src/CannyStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/CannyStrategy.o: ../src/CannyStrategy.cpp
@@ -148,6 +150,7 @@ CMakeFiles/line.dir/src/DetectionParams.o: ../src/DetectionParams.cpp
 CMakeFiles/line.dir/src/DetectionParams.o: ../src/DetectionParams.h
 
 CMakeFiles/line.dir/src/ImageService.o: ../src/AbstractStrategy.h
+CMakeFiles/line.dir/src/ImageService.o: ../src/BestLine.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/DetectionSettings.h
@@ -221,6 +224,7 @@ CMakeFiles/line.dir/src/ImageService.o: /opt/ros/fuerte/include/sensor_msgs/Imag
 CMakeFiles/line.dir/src/ImageService.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
 CMakeFiles/line.dir/src/KirshStrategy.o: ../src/AbstractStrategy.h
+CMakeFiles/line.dir/src/KirshStrategy.o: ../src/BestLine.h
 CMakeFiles/line.dir/src/KirshStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/KirshStrategy.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/KirshStrategy.o: ../src/DetectionSettings.h
@@ -313,6 +317,7 @@ CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
 CMakeFiles/line.dir/src/Line.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
 CMakeFiles/line.dir/src/LineDetector.o: ../src/AbstractStrategy.h
+CMakeFiles/line.dir/src/LineDetector.o: ../src/BestLine.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/BmpFileIO.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/CannyStrategy.h
@@ -392,6 +397,7 @@ CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/sensor_msgs/Imag
 CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/AbstractStrategy.h
+CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/BestLine.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/DetectionSettings.h
@@ -463,6 +469,7 @@ CMakeFiles/line.dir/src/PrewittStrategy.o: /opt/ros/fuerte/include/sensor_msgs/I
 CMakeFiles/line.dir/src/PrewittStrategy.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/AbstractStrategy.h
+CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/BestLine.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/DetectionSettings.h
@@ -534,6 +541,7 @@ CMakeFiles/line.dir/src/RobertsStrategy.o: /opt/ros/fuerte/include/sensor_msgs/I
 CMakeFiles/line.dir/src/RobertsStrategy.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/AbstractStrategy.h
+CMakeFiles/line.dir/src/SobelStrategy.o: ../src/BestLine.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/DetectionSettings.h

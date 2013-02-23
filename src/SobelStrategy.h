@@ -22,7 +22,7 @@ public:
         
     virtual ~SobelStrategy() {}
         
-    Line** detectLine();
+    BestLine* detectLine();
     
 protected:    
     void sobelAlgorithm();        
