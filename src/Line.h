@@ -39,6 +39,8 @@ public:
     
     bool isInline(Line* input);
     
+    bool addPoint(Vector2<int> pt);        
+    
     double getDistanceTo(Vector2<int>& point);
     
     void computeProperties();                

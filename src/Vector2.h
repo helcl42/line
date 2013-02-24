@@ -26,13 +26,17 @@ public:
 
     Vector2(Type x, Type y);
 
-//    Vector2(const Vector2& other);
-//
-//    Vector2& operator=(const Vector2& other);
+    Vector2(const Vector2& other);
+
+    Vector2& operator=(const Vector2& other);
     
     Vector2& operator+(const Vector2& other);
     
+    Vector2& operator+=(const Vector2& other);
+    
     Vector2& operator-(const Vector2& other);
+    
+    Vector2& operator-=(const Vector2& other);
     
     Vector2& operator*(const Vector2& other);    
 
@@ -44,9 +48,7 @@ public:
     
     bool operator<(const Vector2& other);
     
-    bool operator>(const Vector2& other);
-    
-    //bool isSimilar(const Vector2& other);
+    bool operator>(const Vector2& other);    
     
     static Type toRadians(Type val);
     
@@ -93,27 +95,27 @@ template<class Type>
 Vector2<Type>::Vector2(Type x, Type y)
       : x(x), y(y) {}
 
-//template<class Type>
-//Vector2<Type>::Vector2(const Vector2<Type>& other)
-//{
-//    this->x = other.x;
-//    this->y = other.y;
-//}
-//
-//template<class Type>
-//Vector2<Type>& Vector2<Type>::operator=(const Vector2<Type>& other)
-//{
-//    if (this != &other)
-//    {
-//        this->x = other.x;
-//        this->y = other.y;
-//    }
-//    return (*this);
-//}
+template<class Type>
+Vector2<Type>::Vector2(const Vector2<Type>& other)
+{
+    this->x = other.x;
+    this->y = other.y;
+}
+
+template<class Type>
+Vector2<Type>& Vector2<Type>::operator=(const Vector2<Type>& other)
+{
+    if (this != &other)
+    {
+        this->x = other.x;
+        this->y = other.y;
+    }
+    return (*this);
+}
 
 template<class Type>
 bool Vector2<Type>::operator==(const Vector2<Type>& other)
-{    
+{        
     return x == other.x && y == other.y;    
 }
 
@@ -122,24 +124,6 @@ bool Vector2<Type>::operator!=(const Vector2<Type>& other)
 {
     return x != other.x || y != other.y;
 }
-
-//template<class Type>
-//bool Vector2<Type>::isSimilar(const Vector2& other)
-//{    
-//    int tolerance = 5;            
-//    
-////    if(other.y + tolerance > y && other.y - tolerance < y) 
-////    {
-////        return false;
-////    }
-//    
-//    if((other.x >= x - tolerance && other.x <= x + tolerance)
-//            /*|| (other.y + tolerance > y && other.y - tolerance < y)*/) 
-//    {                
-//        return true;
-//    }
-//    return false;
-//}
 
 template<class Type>
 Vector2<Type>& Vector2<Type>::operator+(const Vector2<Type>& other)
@@ -150,7 +134,23 @@ Vector2<Type>& Vector2<Type>::operator+(const Vector2<Type>& other)
 }
 
 template<class Type>
+Vector2<Type>& Vector2<Type>::operator+=(const Vector2<Type>& other)
+{
+    this->x += other.x;
+    this->y += other.y;
+    return (*this);
+}
+
+template<class Type>
 Vector2<Type>& Vector2<Type>::operator-(const Vector2<Type>& other)
+{
+    this->x -= other.x;
+    this->y -= other.y;
+    return (*this);
+}
+
+template<class Type>
+Vector2<Type>& Vector2<Type>::operator-=(const Vector2<Type>& other)
 {
     this->x -= other.x;
     this->y -= other.y;

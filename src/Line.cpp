@@ -201,12 +201,27 @@ bool Line::isClose(Line* input)
     return false;
 }
 
-double Line::getDistanceTo(Vector2<int>& point)
-{    
-    Vector2<float> n(-(points.back().y - points.front().y), (points.back().x - points.front().x));
-    int c = -(n.x * points.front().x) - (n.y * points.front().y);    
+bool Line::addPoint(Vector2<int> pt)
+{
 
-    return (double)(n.x * point.x + n.y * point.y + c) / (double)sqrt(n.x * n.x + n.y * n.y);
+    for (unsigned int i = 0; i < points.size(); i++)
+    {
+        if (pt == points[i])
+        {
+            return false;
+        }
+    }
+
+    points.push_back(pt);
+    return true;
+}
+
+double Line::getDistanceTo(Vector2<int>& point)
+{
+    Vector2<float> n(-(points.back().y - points.front().y), (points.back().x - points.front().x));
+    int c = -(n.x * points.front().x) - (n.y * points.front().y);
+
+    return (double) (n.x * point.x + n.y * point.y + c) / (double) sqrt(n.x * n.x + n.y * n.y);
 }
 
 std::ostream& operator<<(std::ostream& out, const Line& line)

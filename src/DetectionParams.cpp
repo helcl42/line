@@ -6,16 +6,16 @@ const unsigned int DetectionParams::colorTolerance = 100;
 
 const unsigned int DetectionParams::colorTreshold = 85;
 
-const unsigned int DetectionParams::selectionTreshold = 25;
+const unsigned int DetectionParams::selectionTreshold = 55;
 
 const unsigned int DetectionParams::directionDeltaDegrees = 33; 
 
 
 unsigned int DetectionParams::lineLengthTreshold = 130;
 
-unsigned int DetectionParams::straightnessTreshold = 140;
+unsigned int DetectionParams::straightnessTreshold = 180;
 
-unsigned int DetectionParams::minPointDistance = 6;
+unsigned int DetectionParams::minPointDistance = 8;
 
 unsigned int DetectionParams::maxPointDistance = 650;
 
@@ -47,19 +47,19 @@ void DetectionParams::recomputeMatrics(unsigned int w, unsigned int h, unsigned 
         imageHeight = h;
     }
     
-    lineLengthTreshold = imageHeight / (shrink + 1);               
+    lineLengthTreshold = imageHeight / (shrink * 1.8);               
     
-    straightnessTreshold = imageHeight / (shrink * 7);
-    
-    minPointDistance = imageHeight / (shrink * 45);
-    
-    inlineTolerance = imageHeight / (120 * shrink);
-    
-    maxPointDistance = imageHeight / (1.3714 * shrink);
-    
-    noCheckLineBorder = imageHeight / (24 * shrink);
-        
-    checkPointSkip = imageHeight / (shrink * 40);    
+//    straightnessTreshold = imageHeight / (shrink * 7);
+//    
+//    minPointDistance = imageHeight / (shrink * 45);
+//    
+//    inlineTolerance = imageHeight / (120 * shrink);
+//    
+//    maxPointDistance = imageHeight / (1.3714 * shrink);
+//    
+//    noCheckLineBorder = imageHeight / (24 * shrink);
+//        
+//    checkPointSkip = imageHeight / (shrink * 40);    
 }
 
 

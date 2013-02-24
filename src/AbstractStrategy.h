@@ -63,6 +63,8 @@ protected:
      
      Line* findCorrectLine(int vecY, int vecX, int chX, int chY, unsigned int posY, unsigned int posX);
      
+     Line* findCorrectLine2(Vector2<int>* vecs, Vector2<int> pos);
+     
      void writeLineInImage(Line* line, int r, int g, int b);
      
      Line* findLineWithSameDirection(Line* input);

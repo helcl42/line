@@ -283,6 +283,34 @@ void AbstractStrategy::traverseImage()
     Pixel<float>* pixel = NULL;
     Line * lines[4];
 
+    Vector2<int> vecs1[]
+    {
+        Vector2<int>(0, 1),
+                Vector2<int>(1, 1), Vector2<int>(1, -1),
+                Vector2<int>(1, 0), Vector2<int>(-1, 0)
+    };
+
+    Vector2<int> vecs2[]
+    {
+        Vector2<int>(0, -1),
+                Vector2<int>(1, -1), Vector2<int>(-1, -1),
+                Vector2<int>(1, 0), Vector2<int>(-1, 0)
+    };
+
+    Vector2<int> vecs3[]
+    {
+        Vector2<int>(1, 0),
+                Vector2<int>(1, 1), Vector2<int>(1, -1),
+                Vector2<int>(0, 1), Vector2<int>(0, -1)
+    };
+
+    Vector2<int> vecs4[]
+    {
+        Vector2<int>(-1, 0),
+                Vector2<int>(-1, 1), Vector2<int>(-1, -1),
+                Vector2<int>(0, 1), Vector2<int>(0, -1)
+    };
+
     for (unsigned int i = 1; i < m_workImage->getHeight() - 1; ++i)
     {
         for (unsigned int j = 1; j < m_workImage->getWidth() - 1; ++j)
@@ -293,52 +321,25 @@ void AbstractStrategy::traverseImage()
                     || pixel->b > DetectionParams::selectionTreshold
                     || pixel->g > DetectionParams::selectionTreshold)
             {
-                lines[0] = findCorrectLine(1, 0, 0, 1, i, j);
-                lines[1] = findCorrectLine(-1, 0, 0, 1, i, j);
+                //                lines[0] = findCorrectLine(1, 0, 0, 1, i, j);
+                //                lines[1] = findCorrectLine(-1, 0, 0, 1, i, j);
+                //
+                //                lines[2] = findCorrectLine(0, 1, 1, 0, i, j);
+                //                lines[3] = findCorrectLine(0, -1, 1, 0, i, j);          
 
-                lines[2] = findCorrectLine(0, 1, 1, 0, i, j);
-                lines[3] = findCorrectLine(0, -1, 1, 0, i, j);
+                lines[0] = findCorrectLine2(vecs1, Vector2<int>(j, i));
+                lines[1] = findCorrectLine2(vecs2, Vector2<int>(j, i));
+                lines[2] = findCorrectLine2(vecs3, Vector2<int>(j, i));
+                lines[3] = findCorrectLine2(vecs4, Vector2<int>(j, i));
 
                 if (storeBestLine(lines))
                 {
-//                    if(m_workImage->getWidth() / 15 < 1)
-//                        j++;
-//                    else
-//                        j += m_workImage->getWidth() / 15;
                     j++;
-                    //break;
                 }
             }
         }
     }
 }
-
-//todo rewrite
-//void AbstractStrategy::sortLinesByStraightness()
-//{
-//    Line* temp = NULL;
-//    Timer t;
-//    t.start();
-//    for(unsigned int i = 0; i < m_lines.size(); i++)
-//    {
-//        for(unsigned int j = 0; j < m_lines.size() - 1; j++)
-//        {
-//            if(m_lines[j]->length < m_lines[j + 1]->length)
-//            {
-//                temp = m_lines[j];
-//                m_lines[j] = m_lines[j + 1];
-//                m_lines[j + 1] = temp;
-//            }
-//        }
-//    }
-//    t.stop();
-//    t.logTime();
-//    
-//     for (unsigned int i = 1; i < m_lines.size(); i++)
-//    {
-//        std::cout << "Line: " << m_lines[i]->points.front() << " " << m_lines[i]->points.back() << " len = " << m_lines[i]->length << std::endl;
-//    }
-//}
 
 void AbstractStrategy::sortLinesByLength()
 {
@@ -490,12 +491,12 @@ void AbstractStrategy::lockedCount()
 }
 
 bool AbstractStrategy::lineColorMatch(Line* l1, Line* l2)
-{        
+{
     double halfDist1 = l2->getDistanceTo(l1->points.front()) / 2;
     double halfDist2 = l2->getDistanceTo(l1->points.back()) / 2;
-    
+
     //TODO
-    
+
     //check color between lines if matches
     return true;
 }
@@ -537,6 +538,42 @@ Line* AbstractStrategy::findLineWithSameDirection(Line* input)
     }
 
     return bestLine;
+}
+
+Line* AbstractStrategy::findCorrectLine2(Vector2<int>* vecs, Vector2<int> pos)
+{
+    Pixel<float>* pixel = NULL;
+    Line* line = new Line();
+    int countOfFails = 0;    
+
+    line->points.push_back(Vector2<int>(pos));
+
+    while (pos.y > 2 && pos.x > 2 && pos.y < m_workImage->getHeight() - 2 && pos.x < m_workImage->getWidth() - 2)
+    {        
+        pos += vecs[countOfFails];        
+
+        pixel = m_workImage->getPixel(pos.y, pos.x);
+
+        if (pixel->r > DetectionParams::selectionTreshold || pixel->b > DetectionParams::selectionTreshold || pixel->g > DetectionParams::selectionTreshold)
+        {
+            countOfFails = 0;
+            if (!line->addPoint(Vector2<int>(pos.x, pos.y)))
+            {
+                break; //contains cycle
+            }
+        }
+        else
+        {
+            pos -= vecs[countOfFails];            
+            countOfFails++;
+
+            if (countOfFails > 4)
+            {
+                break;
+            }
+        }
+    }
+    return line;
 }
 
 Line* AbstractStrategy::findCorrectLine(int vecY, int vecX, int chY, int chX, unsigned int posY, unsigned int posX)
