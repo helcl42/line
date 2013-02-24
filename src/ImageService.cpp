@@ -27,7 +27,7 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
 
     m_strategy->setImages(m_image, m_colorImage);
     BestLine* line = m_strategy->detectLine();
-
+    
     if (line->isValid())
     {
         std::cout << "CARA!!! " << line->getFirst()->length << std::endl;

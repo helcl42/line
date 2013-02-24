@@ -5,7 +5,7 @@ BestLine* SobelStrategy::detectLine()
 {        
     //replaintSimilarColorPlaces();    
     sobelAlgorithm();    
-    gaussianBlur();
+    gaussianBlur();    
     traverseImage();    
     return findBestLine();
 }

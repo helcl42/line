@@ -132,16 +132,7 @@ BmpImage<T>::BmpImage(const sensor_msgs::Image::ConstPtr& img, unsigned int shri
 template <class T>
 BmpImage<T>::~BmpImage()
 {
-    cleanUp();
-    //    for (unsigned int i = 0; i < m_height; i++)
-    //    {
-    //        for (unsigned int j = 0; j < m_width; j++)
-    //        {
-    //            SAFE_DELETE(m_imageMatrix[i][j]);
-    //        }
-    //        SAFE_DELETE_ARRAY(m_imageMatrix[i]);
-    //    }
-    //    SAFE_DELETE_ARRAY(m_imageMatrix);
+    cleanUp();    
 }
 
 template <class T>
@@ -219,10 +210,7 @@ void BmpImage<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned 
             }
         }       
 
-        if(m_shrinkRatio == 3)
-        {
-            corrector = 3;
-        }        
+        corrector = (img->width % m_shrinkRatio) * m_shrinkRatio;
         
         std::vector<unsigned char> data = img->data;
 

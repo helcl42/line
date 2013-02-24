@@ -5,32 +5,32 @@
  * 
  * @param img
  */
-void Line::writeToMessage(const sensor_msgs::Image::ConstPtr& img)
-{
-    if (img->width > 0 && img->height > 0)
-    {
-        unsigned char* temp;
-
-        std::vector<Vector2<int> >::iterator ii;
-        for (ii = points.begin(); ii != points.end(); ++ii)
-        {
-            int index = (*ii).y * img->width + (*ii).x;
-            for (int i = 0; i < 3; i++)
-            {
-                if (i == 0)
-                {
-                    temp = (unsigned char*) &img->data[index];
-                    *temp = 255;
-                }
-                else
-                {
-                    temp = (unsigned char*) &img->data[index + i];
-                    *temp = 0;
-                }
-            }
-        }
-    }
-}
+//void Line::writeToMessage(const sensor_msgs::Image::ConstPtr& img)
+//{
+//    if (img->width > 0 && img->height > 0)
+//    {
+//        unsigned char* temp;
+//
+//        std::vector<Vector2<int> >::iterator ii;
+//        for (ii = points.begin(); ii != points.end(); ++ii)
+//        {
+//            int index = (*ii).y * img->width + (*ii).x;
+//            for (int i = 0; i < 3; i++)
+//            {
+//                if (i == 0)
+//                {
+//                    temp = (unsigned char*) &img->data[index];
+//                    *temp = 255;
+//                }
+//                else
+//                {
+//                    temp = (unsigned char*) &img->data[index + i];
+//                    *temp = 0;
+//                }
+//            }
+//        }
+//    }
+//}
 
 Line::Line(const Line& input)
 {
@@ -202,11 +202,11 @@ bool Line::isClose(Line* input)
 }
 
 bool Line::addPoint(Vector2<int> pt)
-{
-
-    for (unsigned int i = 0; i < points.size(); i++)
+{  
+    std::vector<Vector2<int> >::reverse_iterator ri;
+    for(ri = points.rbegin(); ri != points.rend(); ++ri)
     {
-        if (pt == points[i])
+        if(pt == (*ri))
         {
             return false;
         }

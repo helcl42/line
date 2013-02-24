@@ -51,7 +51,7 @@ public:
     
     static Line* getStraightesstLine(Line** lines);   
     
-    inline void writeToMessage(const sensor_msgs::Image::ConstPtr& img);            
+    //inline void writeToMessage(const sensor_msgs::Image::ConstPtr& img);            
     
 public: //should be private
     double computeStraightnessFactor();         
