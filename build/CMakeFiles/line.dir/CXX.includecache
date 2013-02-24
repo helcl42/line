@@ -106,12 +106,6 @@ DetectionParams.h
 AbstractStrategy.h
 /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
 
-/home/lubos/fuerte_workspace/sandbox/line/src/Line.cpp
-Line.h
-/home/lubos/fuerte_workspace/sandbox/line/src/Line.h
-DetectionParams.h
-/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
-
 /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
 sensor_msgs/Image.h
 -

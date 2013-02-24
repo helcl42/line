@@ -281,7 +281,7 @@ bool AbstractStrategy::storeBestLine(Line** lines)
 void AbstractStrategy::traverseImage()
 {
     Pixel<float>* pixel = NULL;
-    Line * lines[4];
+    Line * lines[4];    
 
     Vector2<int> vecs1[]
     {
@@ -327,10 +327,11 @@ void AbstractStrategy::traverseImage()
                 //                lines[2] = findCorrectLine(0, 1, 1, 0, i, j);
                 //                lines[3] = findCorrectLine(0, -1, 1, 0, i, j);          
 
-                lines[0] = findCorrectLine2(vecs1, Vector2<int>(j, i));
-                lines[1] = findCorrectLine2(vecs2, Vector2<int>(j, i));
-                lines[2] = findCorrectLine2(vecs3, Vector2<int>(j, i));
-                lines[3] = findCorrectLine2(vecs4, Vector2<int>(j, i));
+                Vector2<int> index(j, i);
+                lines[0] = findCorrectLine(vecs1, index);
+                lines[1] = findCorrectLine(vecs2, index);
+                lines[2] = findCorrectLine(vecs3, index);
+                lines[3] = findCorrectLine(vecs4, index);
 
                 if (storeBestLine(lines))
                 {
@@ -540,7 +541,7 @@ Line* AbstractStrategy::findLineWithSameDirection(Line* input)
     return bestLine;
 }
 
-Line* AbstractStrategy::findCorrectLine2(Vector2<int>* vecs, Vector2<int> pos)
+Line* AbstractStrategy::findCorrectLine(Vector2<int>* vecs, Vector2<int>& pos)
 {
     Pixel<float>* pixel = NULL;
     Line* line = new Line();
@@ -557,7 +558,7 @@ Line* AbstractStrategy::findCorrectLine2(Vector2<int>* vecs, Vector2<int> pos)
         if (pixel->r > DetectionParams::selectionTreshold || pixel->b > DetectionParams::selectionTreshold || pixel->g > DetectionParams::selectionTreshold)
         {
             countOfFails = 0;
-            if (!line->addPoint(Vector2<int>(pos.x, pos.y)))
+            if (!line->addPoint(Vector2<int>(pos)))
             {
                 break; //contains cycle
             }
@@ -576,51 +577,51 @@ Line* AbstractStrategy::findCorrectLine2(Vector2<int>* vecs, Vector2<int> pos)
     return line;
 }
 
-Line* AbstractStrategy::findCorrectLine(int vecY, int vecX, int chY, int chX, unsigned int posY, unsigned int posX)
-{
-    Pixel<float>* pixel = NULL;
-    Line* line = new Line();
-
-    int countOfFails = 0;
-    int vectorY = vecY;
-    int vectorX = vecX;
-
-    line->points.push_back(Vector2<int>(posX, posY));
-
-    while (posY > 2 && posX > 2 && posY < m_workImage->getHeight() - 2 && posX < m_workImage->getWidth() - 2)
-    {
-        posY += vectorY;
-        posX += vectorX;
-
-        pixel = m_workImage->getPixel(posY, posX);
-
-        if (pixel->r > DetectionParams::selectionTreshold
-                || pixel->b > DetectionParams::selectionTreshold
-                || pixel->g > DetectionParams::selectionTreshold)
-        {
-            if (countOfFails > 0)
-            {
-                vectorY = vecY;
-                vectorX = vecX;
-            }
-            countOfFails = 0;
-            line->points.push_back(Vector2<int>(posX, posY));
-        }
-        else
-        {
-            if (countOfFails > 0)
-                return line;
-
-            //change direction and recover positons
-            posY -= vectorY;
-            posX -= vectorX;
-            countOfFails++;
-            vectorY = chY;
-            vectorX = chX;
-        }
-    }
-    return line;
-}
+//Line* AbstractStrategy::findCorrectLine2(int vecY, int vecX, int chY, int chX, unsigned int posY, unsigned int posX)
+//{
+//    Pixel<float>* pixel = NULL;
+//    Line* line = new Line();
+//
+//    int countOfFails = 0;
+//    int vectorY = vecY;
+//    int vectorX = vecX;
+//
+//    line->points.push_back(Vector2<int>(posX, posY));
+//
+//    while (posY > 2 && posX > 2 && posY < m_workImage->getHeight() - 2 && posX < m_workImage->getWidth() - 2)
+//    {
+//        posY += vectorY;
+//        posX += vectorX;
+//
+//        pixel = m_workImage->getPixel(posY, posX);
+//
+//        if (pixel->r > DetectionParams::selectionTreshold
+//                || pixel->b > DetectionParams::selectionTreshold
+//                || pixel->g > DetectionParams::selectionTreshold)
+//        {
+//            if (countOfFails > 0)
+//            {
+//                vectorY = vecY;
+//                vectorX = vecX;
+//            }
+//            countOfFails = 0;
+//            line->points.push_back(Vector2<int>(posX, posY));
+//        }
+//        else
+//        {
+//            if (countOfFails > 0)
+//                return line;
+//
+//            //change direction and recover positons
+//            posY -= vectorY;
+//            posX -= vectorX;
+//            countOfFails++;
+//            vectorY = chY;
+//            vectorX = chX;
+//        }
+//    }
+//    return line;
+//}
 
 Line* AbstractStrategy::getLongestLine()
 {
