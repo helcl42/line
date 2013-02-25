@@ -39,7 +39,7 @@ public:
     
     bool isInline(Line* input);
     
-    bool addPoint(Vector2<int> pt);        
+    bool addPoint(Vector2<int> pt);
     
     double getDistanceTo(Vector2<int>& point);
     
@@ -47,11 +47,10 @@ public:
     
     friend std::ostream& operator<< (std::ostream& out, const Line& line);     
     
+public:    
     static Line* getMaxLengthLine(Line** lines);    
     
     static Line* getStraightesstLine(Line** lines);   
-    
-    //inline void writeToMessage(const sensor_msgs::Image::ConstPtr& img);            
     
 public: //should be private
     double computeStraightnessFactor();         

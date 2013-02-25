@@ -1,37 +1,6 @@
 #include "Line.h"
 #include "DetectionParams.h"
 
-/**
- * 
- * @param img
- */
-//void Line::writeToMessage(const sensor_msgs::Image::ConstPtr& img)
-//{
-//    if (img->width > 0 && img->height > 0)
-//    {
-//        unsigned char* temp;
-//
-//        std::vector<Vector2<int> >::iterator ii;
-//        for (ii = points.begin(); ii != points.end(); ++ii)
-//        {
-//            int index = (*ii).y * img->width + (*ii).x;
-//            for (int i = 0; i < 3; i++)
-//            {
-//                if (i == 0)
-//                {
-//                    temp = (unsigned char*) &img->data[index];
-//                    *temp = 255;
-//                }
-//                else
-//                {
-//                    temp = (unsigned char*) &img->data[index + i];
-//                    *temp = 0;
-//                }
-//            }
-//        }
-//    }
-//}
-
 Line::Line(const Line& input)
 {
     std::vector<Vector2<int> >::const_iterator ii;
@@ -60,8 +29,8 @@ double Line::computeDirection()
 
 double Line::computeDirectionInDegrees()
 {
-    Vector2<int> tempBeginPoint = points.front();
-    Vector2<int> tempEndPoint = points.back();
+    Vector2<int> tempBeginPoint = points[DetectionParams::noCheckLineBorder];
+    Vector2<int> tempEndPoint = points[points.size() - DetectionParams::noCheckLineBorder];
 
     return atan2(tempEndPoint.y - tempBeginPoint.y, tempEndPoint.x - tempBeginPoint.x) * 180 / M_PI;
 }
@@ -114,7 +83,7 @@ Line* Line::getStraightesstLine(Line** lines)
     double distance = 0;
     Line* straightest = NULL;
 
-    for (unsigned int i = 0; i < 4; i++)
+    for (unsigned int i = 0; i < 8; i++)
     {
         if (lines[i] != NULL)
         {
@@ -136,7 +105,7 @@ Line* Line::getMaxLengthLine(Line** lines)
     double tempLength;
     Line* longest = NULL;
 
-    for (unsigned int i = 0; i < 4; i++)
+    for (unsigned int i = 0; i < 8; i++)
     {
         if (lines[i] != NULL)
         {

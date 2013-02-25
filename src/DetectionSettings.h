@@ -47,6 +47,18 @@ struct DetectionSettings
         item.width = width;
         colors.push_back(item);
     }
+    
+    DetectionLineItem& operator[](int index)
+    {
+        if(index > 0 || index < colors.size())
+        {
+            return colors[index];
+        }
+        else 
+        {
+            throw std::runtime_error("DetectionSettings:operator[]:Invalid index");
+        }            
+    }
 };
 
 #endif	/* DETECTIONSETTINGS_H */

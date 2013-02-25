@@ -6,12 +6,12 @@ const unsigned int DetectionParams::colorTolerance = 100;
 
 const unsigned int DetectionParams::colorTreshold = 85;
 
-const unsigned int DetectionParams::selectionTreshold = 55;
+const unsigned int DetectionParams::selectionTreshold = 60;
 
-const unsigned int DetectionParams::directionDeltaDegrees = 33; 
+const unsigned int DetectionParams::directionDeltaDegrees = 12; 
 
 
-unsigned int DetectionParams::lineLengthTreshold = 130;
+unsigned int DetectionParams::lineLengthTreshold = 120;
 
 unsigned int DetectionParams::straightnessTreshold = 180;
 
@@ -53,13 +53,13 @@ void DetectionParams::recomputeMatrics(unsigned int w, unsigned int h, unsigned 
 //    
 //    minPointDistance = imageHeight / (shrink * 45);
 //    
-//    inlineTolerance = imageHeight / (120 * shrink);
+    inlineTolerance = imageHeight / (120 * shrink);
 //    
 //    maxPointDistance = imageHeight / (1.3714 * shrink);
 //    
-//    noCheckLineBorder = imageHeight / (24 * shrink);
-//        
-//    checkPointSkip = imageHeight / (shrink * 40);    
+    noCheckLineBorder = imageHeight / (24 * shrink);
+      
+    checkPointSkip = imageHeight / (shrink * 18);    
 }
 
 
