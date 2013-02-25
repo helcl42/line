@@ -2,11 +2,11 @@
 #include "DetectionParams.h"
 
 ImageService::ImageService(DetectionSettings* settings)
-: m_shrink(1), m_settings(settings)
+: m_shrink(1), m_settings(settings), m_settingsIndex(0)
 {
     m_image = new BmpImage<float>();
     m_colorImage = new BmpImage<float>();
-    m_strategy = new SobelStrategy(settings);
+    m_strategy = new SobelStrategy(settings->getItem(0));
 }
 
 ImageService::~ImageService()
@@ -31,6 +31,18 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     if (line->isValid())
     {
         std::cout << "CARA!!! " << line->getFirst()->length << std::endl;
+    }
+    else 
+    {
+        m_settingsIndex++;
+        if(m_settingsIndex >= m_settings->getCountOfColors())
+        {
+            //TODO
+            std::cout << "NO lines ...HOME?" << std::endl;
+            m_settingsIndex = 0;
+        }
+        
+        m_strategy->setSettings(m_settings->getItem(m_settingsIndex));
     }
 
     writeImageToMessage(img);

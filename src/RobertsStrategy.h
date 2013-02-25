@@ -13,10 +13,10 @@
 class RobertsStrategy : public AbstractStrategy
 {   
 public:
-    RobertsStrategy(DetectionSettings* settings = NULL) 
+    RobertsStrategy(DetectionLineItem* settings = NULL) 
         : AbstractStrategy(settings) {}
     
-    RobertsStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
+    RobertsStrategy(BmpImage<float>* image, DetectionLineItem* settings = NULL) 
         : AbstractStrategy(image, settings) {}
                                
     virtual ~RobertsStrategy() {}        

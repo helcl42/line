@@ -15,10 +15,10 @@
 class CannyStrategy : public AbstractStrategy
 {   
 public:
-    CannyStrategy(DetectionSettings* settings = NULL) 
+    CannyStrategy(DetectionLineItem* settings = NULL) 
         : AbstractStrategy(settings) {}
     
-    CannyStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
+    CannyStrategy(BmpImage<float>* image, DetectionLineItem* settings = NULL) 
         : AbstractStrategy(image, settings) {}
         
     virtual ~CannyStrategy() {}        

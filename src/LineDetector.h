@@ -36,6 +36,8 @@ private:
     ros::Publisher m_resender;
     
     ImageService* m_imageService;
+    
+    int counter;
             
 public:
     LineDetector(DetectionSettings* settings);

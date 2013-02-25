@@ -2,7 +2,8 @@
 
 LineDetector::LineDetector(DetectionSettings* settings)
 {    
-    m_imageService = new ImageService(settings);        
+    m_imageService = new ImageService(settings);    
+counter = 0;    
 }
 
 LineDetector::~LineDetector()
@@ -18,6 +19,13 @@ void LineDetector::run()
 
 void LineDetector::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
 {
+    counter++;
+    
+    if(counter > 10)
+    {
+        ros::shutdown();
+    }
+    
     m_imageService->perform(msg);
     m_resender.publish(msg);   
 }

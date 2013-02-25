@@ -2,14 +2,14 @@
 #include "Timer.h"
 #include "DetectionParams.h"
 
-AbstractStrategy::AbstractStrategy(DetectionSettings* settings)
+AbstractStrategy::AbstractStrategy(DetectionLineItem* settings)
 : m_settings(settings)
 {
     setBaseColor();
     m_bestLine = new BestLine();
 }
 
-AbstractStrategy::AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings)
+AbstractStrategy::AbstractStrategy(BmpImage<float>* image, DetectionLineItem* settings)
 : m_workImage(image), m_settings(settings)
 {
     setBaseColor();
@@ -24,6 +24,12 @@ AbstractStrategy::~AbstractStrategy()
     }
     m_lines.clear();
     SAFE_DELETE(m_bestLine);
+}
+
+void AbstractStrategy::setSettings(DetectionLineItem* settings)
+{
+    m_settings = settings;
+    setBaseColor();
 }
 
 void AbstractStrategy::setImages(BmpImage<float>* image, BmpImage<float>* colorImage)
@@ -180,7 +186,7 @@ void AbstractStrategy::setBaseColor()
 
     for (int i = 0; i < 3; i++)
     {
-        temp = m_settings->searchedColor[i];
+        temp = m_settings->color[i];
         if (temp > maxValue)
         {
             maxValue = temp;
@@ -209,8 +215,8 @@ void AbstractStrategy::replaintSimilarColorPlaces(int interval)
 
     for (int i = 0; i < 3; i++)
     {
-        pixelMinus[i] = m_settings->searchedColor[i] > interval ? m_settings->searchedColor[i] - interval : 0;
-        pixelPlus[i] = m_settings->searchedColor[i] + interval < 255 ? m_settings->searchedColor[i] + interval : 255;
+        pixelMinus[i] = m_settings->color[i] > interval ? m_settings->color[i] - interval : 0;
+        pixelPlus[i] = m_settings->color[i] + interval < 255 ? m_settings->color[i] + interval : 255;
     }
 
     for (unsigned int i = 0; i < m_workImage->getHeight(); ++i)

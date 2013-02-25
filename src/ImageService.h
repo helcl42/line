@@ -29,6 +29,8 @@ private:
     
     DetectionSettings* m_settings;    
     
+    unsigned int m_settingsIndex;
+    
     AbstractStrategy* m_strategy;
     
 public:

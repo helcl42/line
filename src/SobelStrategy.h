@@ -14,10 +14,10 @@
 class SobelStrategy : public AbstractStrategy
 {   
 public:
-    SobelStrategy(DetectionSettings* settings = NULL) 
+    SobelStrategy(DetectionLineItem* settings = NULL) 
         : AbstractStrategy(settings) {}
     
-    SobelStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
+    SobelStrategy(BmpImage<float>* image, DetectionLineItem* settings = NULL) 
         : AbstractStrategy(image, settings) {}
         
     virtual ~SobelStrategy() {}

@@ -23,7 +23,7 @@ protected:
     
     BmpImage<float>* m_colorImage;
     
-    DetectionSettings* m_settings;
+    DetectionLineItem* m_settings;
     
     PixelRGB<float> m_baseColor;            
     
@@ -32,9 +32,9 @@ protected:
     BestLine* m_bestLine;
     
 public:
-    AbstractStrategy(DetectionSettings* settings);         
+    AbstractStrategy(DetectionLineItem* settings);         
     
-    AbstractStrategy(BmpImage<float>* image, DetectionSettings* settings);         
+    AbstractStrategy(BmpImage<float>* image, DetectionLineItem* settings);         
         
     virtual ~AbstractStrategy();          
     
@@ -52,9 +52,9 @@ public:
      
      BestLine* findBestLine();
      
-     void setImages(BmpImage<float>* image, BmpImage<float>* colorImage);
+     void setImages(BmpImage<float>* image, BmpImage<float>* colorImage);          
      
-     void cleanUp();
+     void setSettings(DetectionLineItem* settings);
           
      virtual BestLine* detectLine() = 0;        
      
@@ -75,7 +75,9 @@ protected:
      
      void lockSimilarLines(Line* line);
      
-     void lockAllLines(bool val);          
+     void lockAllLines(bool val);            
+     
+     void cleanUp();
      
 private:     
      void setBaseColor();     

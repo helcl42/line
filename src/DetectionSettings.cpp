@@ -32,6 +32,23 @@ DetectionSettings::~DetectionSettings()
     }
 }
 
+unsigned int DetectionSettings::getCountOfColors() const
+{
+    return colors.size();
+}
+
+DetectionLineItem* DetectionSettings::getItem(int index) const
+{
+    if (index > 0 || index < colors.size())
+    {
+        return colors[index];
+    }
+    else
+    {
+        throw std::runtime_error("DetectionSettings:getItem:Invalid index");
+    }
+}
+
 DetectionLineItem* DetectionSettings::operator[](int index)
 {
     if (index > 0 || index < colors.size())

@@ -13,10 +13,10 @@
 class KirshStrategy : public AbstractStrategy
 {   
 public:
-    KirshStrategy(DetectionSettings* settings = NULL) 
+    KirshStrategy(DetectionLineItem* settings = NULL) 
         : AbstractStrategy(settings) {}
     
-    KirshStrategy(BmpImage<float>* image, DetectionSettings* settings = NULL) 
+    KirshStrategy(BmpImage<float>* image, DetectionLineItem* settings = NULL) 
         : AbstractStrategy(image, settings) {}
                                
     BestLine* detectLine();

@@ -36,7 +36,11 @@ public:
     //format 334432 657687 657654 ...
     DetectionSettings(int argc, char** argv);
     
-    ~DetectionSettings();
+    ~DetectionSettings();        
+    
+    unsigned int getCountOfColors() const;
+    
+    DetectionLineItem* getItem(int index) const;
     
     DetectionLineItem* operator[](int index);
     
