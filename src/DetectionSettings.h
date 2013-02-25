@@ -8,79 +8,39 @@
 #ifndef DETECTIONSETTINGS_H
 #define	DETECTIONSETTINGS_H
 
+#include <vector>
+#include <cstdlib>
 #include "Pixel.h"
 
 
-struct DetectionLineItem 
+class DetectionLineItem 
 {
-    PixelRGB<unsigned char> color;
+public:
+    PixelRGB<int> color;
     
+public:    
     DetectionLineItem() {}
     
     ~DetectionLineItem() {}        
 };
 
 
-struct DetectionSettings 
+class DetectionSettings 
 {
+public:
     std::vector<DetectionLineItem*> colors;
     
     PixelRGB<unsigned char>  searchedColor;   
     
-    DetectionSettings() {}
+public:            
+    //format 334432 657687 657654 ...
+    DetectionSettings(int argc, char** argv);
     
-    //format #334432 #657687 #657654 ...
-    DetectionSettings(int argc, char** argv)
-    {
-        for(int i = 0; i < argc; i++)
-        {
-            std::string color(argv[i]);
-            if(color[0] == '#' || color.length() == 7)
-            {
-                //todo parse color
-                colors.push_back(new DetectionLineItem());
-            }
-            else 
-            {
-                throw std::runtime_error("Invalid color format");
-            }
-                
-        }
-    }    
+    ~DetectionSettings();
     
-    DetectionSettings(unsigned char r, unsigned char g, unsigned char b) 
-    {
-        searchedColor.r = r;
-        searchedColor.g = g;
-        searchedColor.b = b;        
-    }        
+    DetectionLineItem* operator[](int index);
     
-    ~DetectionSettings() {}
-    
-    void addLineItem(unsigned char r, unsigned char g, unsigned char b) 
-    {
-        DetectionLineItem item;
-        item.color = PixelRGB<unsigned char>(r, g, b);        
-        colors.push_back(&item);
-    }
-    
-    DetectionLineItem* operator[](int index)
-    {
-        if(index > 0 || index < colors.size())
-        {
-            return colors[index];
-        }
-        else 
-        {
-            throw std::runtime_error("DetectionSettings:operator[]:Invalid index");
-        }            
-    }
-    
-    std::ostream& operator<<(std::ostream& out, const DetectionSettings& settings)
-    {
-        
-        return out;
-    }
+    friend std::ostream& operator<<(std::ostream& out, const DetectionSettings& settings);
 };
 
 #endif	/* DETECTIONSETTINGS_H */

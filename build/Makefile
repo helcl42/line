@@ -349,6 +349,21 @@ src/DetectionParams.s:
 .PHONY : src/DetectionParams.s
 
 # target to build an object file
+src/DetectionSettings.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectionSettings.o
+.PHONY : src/DetectionSettings.o
+
+# target to preprocess a source file
+src/DetectionSettings.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectionSettings.i
+.PHONY : src/DetectionSettings.i
+
+# target to generate assembly for a file
+src/DetectionSettings.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectionSettings.s
+.PHONY : src/DetectionSettings.s
+
+# target to build an object file
 src/ImageService.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/ImageService.o
 .PHONY : src/ImageService.o
@@ -516,6 +531,9 @@ help:
 	@echo "... src/DetectionParams.o"
 	@echo "... src/DetectionParams.i"
 	@echo "... src/DetectionParams.s"
+	@echo "... src/DetectionSettings.o"
+	@echo "... src/DetectionSettings.i"
+	@echo "... src/DetectionSettings.s"
 	@echo "... src/ImageService.o"
 	@echo "... src/ImageService.i"
 	@echo "... src/ImageService.s"

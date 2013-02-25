@@ -149,6 +149,15 @@ CMakeFiles/line.dir/src/CannyStrategy.o: /opt/ros/fuerte/include/std_msgs/Header
 CMakeFiles/line.dir/src/DetectionParams.o: ../src/DetectionParams.cpp
 CMakeFiles/line.dir/src/DetectionParams.o: ../src/DetectionParams.h
 
+CMakeFiles/line.dir/src/DetectionSettings.o: ../src/DetectionSettings.cpp
+CMakeFiles/line.dir/src/DetectionSettings.o: ../src/DetectionSettings.h
+CMakeFiles/line.dir/src/DetectionSettings.o: ../src/IPixel.h
+CMakeFiles/line.dir/src/DetectionSettings.o: ../src/Pixel.h
+CMakeFiles/line.dir/src/DetectionSettings.o: ../src/PixelLUV.h
+CMakeFiles/line.dir/src/DetectionSettings.o: ../src/PixelRGB.h
+CMakeFiles/line.dir/src/DetectionSettings.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/DetectionSettings.o: ../src/Utils.h
+
 CMakeFiles/line.dir/src/ImageService.o: ../src/AbstractStrategy.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/BestLine.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/BmpImage.h

@@ -41,6 +41,8 @@ public:
     LineDetector(DetectionSettings* settings);
     
     ~LineDetector();
+    
+    void run();
 
     void imageCallback(const sensor_msgs::Image::ConstPtr& msg_ptr);       
 };

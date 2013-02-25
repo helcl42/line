@@ -149,6 +149,15 @@ CMakeFiles/line.dir/src/CannyStrategy.o
 CMakeFiles/line.dir/src/DetectionParams.o
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
+CMakeFiles/line.dir/src/DetectionSettings.o
+ /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.cpp
+ /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
 CMakeFiles/line.dir/src/ImageService.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BestLine.h

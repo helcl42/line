@@ -101,10 +101,11 @@ Pixel<T>* PixelRGB<T>::convertToXYZ()
 
 template <class T>
 std::ostream& operator<<(std::ostream& out, const PixelRGB<T>& pix)
-{
-    out << "RGB(" << pix.r << ",";
-    out << pix.g << ",";
-    out << pix.b << ")";
+{    
+    out << "RGB(";    
+    out << std::dec<< pix.r << ",";
+    out << std::dec << pix.g << ",";
+    out << std::dec << pix.b << ")";
     return out;
 }
 
