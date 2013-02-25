@@ -18,21 +18,5 @@ void LineDetector::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
     m_resender.publish(msg);   
 }
 
-int main(int argc, char** argv)
-{
-    //TODO read params
-
-    ros::init(argc, argv, "line");
-    ROS_INFO("Line started");
-
-    DetectionSettings settings(0xdc, 0xdc, 0xdc, 120);
-    LineDetector detector(&settings);
-
-    ros::spin();
-    ROS_INFO("Line finished");
-
-    return 0;
-}
-
 
 

@@ -409,6 +409,21 @@ src/LineDetector.s:
 .PHONY : src/LineDetector.s
 
 # target to build an object file
+src/Main.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Main.o
+.PHONY : src/Main.o
+
+# target to preprocess a source file
+src/Main.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Main.i
+.PHONY : src/Main.i
+
+# target to generate assembly for a file
+src/Main.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Main.s
+.PHONY : src/Main.s
+
+# target to build an object file
 src/PrewittStrategy.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/PrewittStrategy.o
 .PHONY : src/PrewittStrategy.o
@@ -513,6 +528,9 @@ help:
 	@echo "... src/LineDetector.o"
 	@echo "... src/LineDetector.i"
 	@echo "... src/LineDetector.s"
+	@echo "... src/Main.o"
+	@echo "... src/Main.i"
+	@echo "... src/Main.s"
 	@echo "... src/PrewittStrategy.o"
 	@echo "... src/PrewittStrategy.i"
 	@echo "... src/PrewittStrategy.s"

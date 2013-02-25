@@ -36,6 +36,7 @@ rosbuild_add_library(line src/PrewittStrategy.cpp)
 rosbuild_add_library(line src/CannyStrategy.cpp)
 rosbuild_add_library(line src/KirshStrategy.cpp)
 
+rosbuild_add_library(line src/Main.cpp)
 rosbuild_add_library(line src/Timer.cpp)
 rosbuild_add_library(line src/Line.cpp)
 rosbuild_add_library(line src/DetectionParams.cpp)

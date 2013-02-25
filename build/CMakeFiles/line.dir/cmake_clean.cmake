@@ -5,6 +5,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/line.dir/src/PrewittStrategy.o"
   "CMakeFiles/line.dir/src/CannyStrategy.o"
   "CMakeFiles/line.dir/src/KirshStrategy.o"
+  "CMakeFiles/line.dir/src/Main.o"
   "CMakeFiles/line.dir/src/Timer.o"
   "CMakeFiles/line.dir/src/Line.o"
   "CMakeFiles/line.dir/src/DetectionParams.o"
