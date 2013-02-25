@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.cpp
+AbstractStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+Timer.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
+DetectionParams.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
 vector
 -
@@ -48,6 +56,12 @@ PixelLUV.h
 PixelXYZ.h
 /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
 
+/home/lubos/fuerte_workspace/sandbox/line/src/CannyStrategy.cpp
+CannyStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/CannyStrategy.h
+DetectionParams.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/CannyStrategy.h
 AbstractStrategy.h
 /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
@@ -66,6 +80,12 @@ Pixel.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
 
+/home/lubos/fuerte_workspace/sandbox/line/src/ImageService.cpp
+ImageService.h
+/home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
+DetectionParams.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
 sensor_msgs/Image.h
 -
@@ -80,9 +100,21 @@ DetectionSettings.h
 SobelStrategy.h
 /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
 
+/home/lubos/fuerte_workspace/sandbox/line/src/KirshStrategy.cpp
+KirshStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/KirshStrategy.h
+DetectionParams.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/KirshStrategy.h
 AbstractStrategy.h
 /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/Line.cpp
+Line.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Line.h
+DetectionParams.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
 sensor_msgs/Image.h
@@ -160,13 +192,31 @@ Pixel.h
 Pixel.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
 
+/home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.cpp
+PrewittStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.h
+DetectionParams.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.h
 AbstractStrategy.h
 /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
 
+/home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.cpp
+RobertsStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.h
+DetectionParams.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.h
 AbstractStrategy.h
 /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.cpp
+SobelStrategy.h
+/home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
+DetectionParams.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
 AbstractStrategy.h

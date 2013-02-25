@@ -54,27 +54,27 @@ public:
     
     static Type toDegrees(Type val);    
     
-    Vector2* set(Type x, Type y);    
+    Vector2& set(Type x, Type y);    
 
-    Vector2* set(Vector2* other);    
+    Vector2& set(Vector2& other);    
 
-    Vector2* add(Type x, Type y);    
+    Vector2& add(Type x, Type y);    
 
-    Vector2* add(Vector2* other);  
+    Vector2& add(Vector2& other);  
 
-    Vector2* sub(Type x, Type y);    
+    Vector2& sub(Type x, Type y);    
 
-    Vector2* sub(Vector2* other);    
+    Vector2& sub(Vector2& other);    
 
-    Vector2* mul(Type scalar);  
+    Vector2& mul(Type scalar);  
 
     Type length();    
 
-    Vector2* normalize();    
+    Vector2& normalize();    
 
     Type angle();    
 
-    Vector2* rotate(Type angle);    
+    Vector2& rotate(Type angle);    
 
     double distance(Vector2& other);    
 
@@ -198,59 +198,59 @@ Type Vector2<Type>::toDegrees(Type val)
 }
 
 template<class Type>
-Vector2<Type>* Vector2<Type>::set(Type x, Type y)
+Vector2<Type>& Vector2<Type>::set(Type x, Type y)
 {
     this->x = x;
     this->y = y;
-    return this;
+    return (*this);
 }
 
 template<class Type>
-Vector2<Type>* Vector2<Type>::set(Vector2<Type>* other)
+Vector2<Type>& Vector2<Type>::set(Vector2<Type>& other)
 {
     this->x = other->x;
     this->y = other->y;
-    return this;
+    return (*this);
 }
 
 template<class Type>
-Vector2<Type>* Vector2<Type>::add(Type x, Type y)
+Vector2<Type>& Vector2<Type>::add(Type x, Type y)
 {
     this->x += x;
     this->y += y;
-    return this;
+    return (*this);
 }
 
 template<class Type>
-Vector2<Type>* Vector2<Type>::add(Vector2<Type>* other)
+Vector2<Type>& Vector2<Type>::add(Vector2<Type>& other)
 {
     this->x += other->x;
     this->y += other->y;
-    return this;
+    return (*this);
 }
 
 template<class Type>
-Vector2<Type>* Vector2<Type>::sub(Type x, Type y)
+Vector2<Type>& Vector2<Type>::sub(Type x, Type y)
 {
     this->x -= x;
     this->y -= y;
-    return this;
+    return (*this);
 }
 
 template<class Type>
-Vector2<Type>* Vector2<Type>::sub(Vector2<Type>* other)
+Vector2<Type>& Vector2<Type>::sub(Vector2<Type>& other)
 {
     this->x -= other->x;
     this->y -= other->y;
-    return this;
+    return (*this);
 }
 
 template<class Type>
-Vector2<Type>* Vector2<Type>::mul(Type scalar)
+Vector2<Type>& Vector2<Type>::mul(Type scalar)
 {
     this->x *= scalar;
     this->y *= scalar;
-    return this;
+    return (*this);
 }
 
 template<class Type>
@@ -260,7 +260,7 @@ Type Vector2<Type>::length()
 }
 
 template<class Type>
-Vector2<Type>* Vector2<Type>::normalize()
+Vector2<Type>& Vector2<Type>::normalize()
 {
     Type len = length();
     if (len != 0)
@@ -268,7 +268,7 @@ Vector2<Type>* Vector2<Type>::normalize()
         this->x /= len;
         this->y /= len;
     }
-    return this;
+    return (*this);
 }
 
 template<class Type>
@@ -283,7 +283,7 @@ Type Vector2<Type>::angle()
 }
 
 template<class Type>
-Vector2<Type>* Vector2<Type>::rotate(Type angle)
+Vector2<Type>& Vector2<Type>::rotate(Type angle)
 {
     Type rad = Vector2::toRadians(angle);
     Type cs = cos(rad);
@@ -295,7 +295,7 @@ Vector2<Type>* Vector2<Type>::rotate(Type angle)
     x = newX;
     y = newY;
 
-    return this;
+    return (*this);
 }
 
 template<class Type>
