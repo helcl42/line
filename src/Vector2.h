@@ -50,31 +50,33 @@ public:
     
     bool operator>(const Vector2& other);    
     
-    static Type toRadians(Type val);
+    static double toRadians(double val);
     
-    static Type toDegrees(Type val);    
+    static double toDegrees(double val);    
     
-    Vector2& set(Type x, Type y);    
+    Vector2* set(Type x, Type y);    
 
-    Vector2& set(Vector2& other);    
+    Vector2* set(Vector2* other);    
 
-    Vector2& add(Type x, Type y);    
+    Vector2* add(Type x, Type y);    
 
-    Vector2& add(Vector2& other);  
+    Vector2* add(Vector2* other);  
 
-    Vector2& sub(Type x, Type y);    
+    Vector2* sub(Type x, Type y);    
 
-    Vector2& sub(Vector2& other);    
+    Vector2* sub(Vector2* other);    
 
-    Vector2& mul(Type scalar);  
+    Vector2* mul(Type scalar);  
 
-    Type length();    
+    double length();    
 
-    Vector2& normalize();    
+    Vector2* normalize();    
 
-    Type angle();    
+    double angleDegrees();
+    
+    double angleRadians();
 
-    Vector2& rotate(Type angle);    
+    Vector2* rotate(Type angle);    
 
     double distance(Vector2& other);    
 
@@ -186,81 +188,81 @@ bool Vector2<Type>::operator>(const Vector2<Type>& other)
 }
 
 template<class Type>
-Type Vector2<Type>::toRadians(Type val)
+double Vector2<Type>::toRadians(double val)
 {
     return val * (1 / 180.0f) * M_PI;
 }
 
 template<class Type>
-Type Vector2<Type>::toDegrees(Type val)
+double Vector2<Type>::toDegrees(double val)
 {
     return val * (1 / M_PI) * 180;
 }
 
 template<class Type>
-Vector2<Type>& Vector2<Type>::set(Type x, Type y)
+Vector2<Type>* Vector2<Type>::set(Type x, Type y)
 {
     this->x = x;
     this->y = y;
-    return (*this);
+    return this;
 }
 
 template<class Type>
-Vector2<Type>& Vector2<Type>::set(Vector2<Type>& other)
+Vector2<Type>* Vector2<Type>::set(Vector2<Type>* other)
 {
     this->x = other->x;
     this->y = other->y;
-    return (*this);
+    return this;
 }
 
 template<class Type>
-Vector2<Type>& Vector2<Type>::add(Type x, Type y)
+Vector2<Type>* Vector2<Type>::add(Type x, Type y)
 {
     this->x += x;
     this->y += y;
-    return (*this);
+    return this;
 }
 
 template<class Type>
-Vector2<Type>& Vector2<Type>::add(Vector2<Type>& other)
+Vector2<Type>* Vector2<Type>::add(Vector2<Type>* other)
 {
     this->x += other->x;
     this->y += other->y;
-    return (*this);
+    return this;
 }
 
 template<class Type>
-Vector2<Type>& Vector2<Type>::sub(Type x, Type y)
+Vector2<Type>* Vector2<Type>::sub(Type x, Type y)
 {
     this->x -= x;
     this->y -= y;
-    return (*this);
+    return this;
 }
 
 template<class Type>
-Vector2<Type>& Vector2<Type>::sub(Vector2<Type>& other)
+Vector2<Type>* Vector2<Type>::sub(Vector2<Type>* other)
 {
     this->x -= other->x;
     this->y -= other->y;
-    return (*this);
+    return this;
 }
 
 template<class Type>
-Vector2<Type>& Vector2<Type>::mul(Type scalar)
+Vector2<Type>* Vector2<Type>::mul(Type scalar)
 {
     this->x *= scalar;
     this->y *= scalar;
-    return (*this);
+    return this;
 }
 
 template<class Type>
-Type Vector2<Type>::length()
+double Vector2<Type>::length()
 {
     return sqrt(x * x + y * y);
 }
 
 template<class Type>
-Vector2<Type>& Vector2<Type>::normalize()
+Vector2<Type>* Vector2<Type>::normalize()
 {
     Type len = length();
     if (len != 0)
@@ -268,13 +270,24 @@ Vector2<Type>& Vector2<Type>::normalize()
         this->x /= len;
         this->y /= len;
     }
-    return (*this);
+    return this;
 }
 
 template<class Type>
-Type Vector2<Type>::angle()
+double Vector2<Type>::angleRadians()
 {
-    Type angle = Vector2::toDegrees(atan2(y, x));
+    double angle = atan2(y, x);
+    if (angle < 0)
+    {
+        angle += 2 * M_PI;
+    }
+    return angle;
+}
+
+template<class Type>
+double Vector2<Type>::angleDegrees()
+{
+    double angle = Vector2::toDegrees(atan2(y, x));
     if (angle < 0)
     {
         angle += 360;
@@ -283,7 +296,7 @@ Type Vector2<Type>::angle()
 }
 
 template<class Type>
-Vector2<Type>& Vector2<Type>::rotate(Type angle)
+Vector2<Type>* Vector2<Type>::rotate(Type angle)
 {
     Type rad = Vector2::toRadians(angle);
     Type cs = cos(rad);
@@ -295,7 +308,7 @@ Vector2<Type>& Vector2<Type>::rotate(Type angle)
     x = newX;
     y = newY;
 
-    return (*this);
+    return this;
 }
 
 template<class Type>

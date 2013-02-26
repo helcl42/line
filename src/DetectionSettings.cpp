@@ -1,6 +1,5 @@
 #include "DetectionSettings.h"
 
-
 //format 334432 657687 657654 ...
 DetectionSettings::DetectionSettings(int argc, char** argv)
 {
@@ -12,8 +11,8 @@ DetectionSettings::DetectionSettings(int argc, char** argv)
         if (color.length() == 6)
         {
             for (int j = 0, index = 0; j < 3; j++, index += 2)
-            {
-                item->color[j] = atoi(color.substr(index, 2).c_str());
+            {                                
+                item->color[j] = Utils::convertStringToHexInt(color.substr(index, 2).c_str(), 2);                
             }
         }
         else

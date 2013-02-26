@@ -17,6 +17,7 @@
 #include "PixelRGB.h"
 #include "PixelXYZ.h"
 #include "PixelLUV.h"
+#include "DetectionParams.h"
 
 template <class T> class Pixel;
 template <class T> std::ostream& operator<<(std::ostream& out, const Pixel<T>& img);
@@ -32,44 +33,52 @@ public:
 
 public:
 
-    Pixel() {}
+    Pixel()
+    {
+    }
 
     Pixel(T r, T g, T b, T a = 0)
-    : r(r), g(g), b(b)/*, a(a)*/ {}
+    : r(r), g(g), b(b)/*, a(a)*/
+    {
+    }
 
-    virtual ~Pixel() {}
+    virtual ~Pixel()
+    {
+    }
 
-    static double colourProduct(Pixel<T>* rgb1);        
-    
-    static double colourDifference(Pixel<T>* rgb1, Pixel<T>* rgb2);            
-    
-    bool isInInterval(Pixel<T>* rgb1, Pixel<T>* rgb2);
-    
+    static double colourProduct(Pixel<T>* rgb1);
+
+    static double colourDifference(Pixel<T>* rgb1, Pixel<T>* rgb2);
+
+    bool isInInterval(Pixel<T>* rgb1, Pixel<T>* rgb2) const;
+
+    bool hasSimilarColor(Pixel<T>* rgb, unsigned int interval = DetectionParams::colorTolerance) const;
+
     T& operator[](int index);
-    
-    friend std::ostream& operator<<<T>(std::ostream& out, const Pixel<T>& img);    
-    
+
+    friend std::ostream& operator<<<T>(std::ostream& out, const Pixel<T>& img);
+
     static void repairNanValues(Pixel<T>* px);
 };
 
 template <class T>
 double Pixel<T>::colourProduct(Pixel<T>* rgb1)
-{        
-    Pixel<T>* luv1 = NULL;    
+{
+    Pixel<T>* luv1 = NULL;
     double prod = 0.0;
 
-    luv1 = rgb1->convertToLUV();    
+    luv1 = rgb1->convertToLUV();
 
     prod = sqrt(luv1->r * luv1->r + luv1->g * luv1->g + luv1->b * luv1->b);
 
-    SAFE_DELETE(luv1);    
+    SAFE_DELETE(luv1);
 
     return prod;
 }
 
 template <class T>
 double Pixel<T>::colourDifference(Pixel<T>* rgb1, Pixel<T>* rgb2)
-{        
+{
     Pixel<T>* luv1 = NULL;
     Pixel<T>* luv2 = NULL;
     double diff = 0.0;
@@ -89,21 +98,21 @@ double Pixel<T>::colourDifference(Pixel<T>* rgb1, Pixel<T>* rgb2)
 }
 
 template <class T>
-void Pixel<T>::repairNanValues(Pixel<T>* px) 
+void Pixel<T>::repairNanValues(Pixel<T>* px)
 {
-    if(px != NULL)
+    if (px != NULL)
     {
-        if(isnan(px->r)) 
+        if (isnan(px->r))
         {
             px->r = 0;
-        } 
-        
-        if(isnan(px->g)) 
+        }
+
+        if (isnan(px->g))
         {
             px->g = 0;
         }
-        
-        if(isnan(px->b))
+
+        if (isnan(px->b))
         {
             px->b = 0;
         }
@@ -111,9 +120,9 @@ void Pixel<T>::repairNanValues(Pixel<T>* px)
 }
 
 template <class T>
-T& Pixel<T>::operator [](int index) 
+T& Pixel<T>::operator [](int index)
 {
-    switch(index) 
+    switch (index)
     {
         case 0:
             return r;
@@ -133,25 +142,37 @@ T& Pixel<T>::operator [](int index)
  * @return 
  */
 template <class T>
-bool Pixel<T>::isInInterval(Pixel<T>* rgb1, Pixel<T>* rgb2)
+bool Pixel<T>::isInInterval(Pixel<T>* rgb1, Pixel<T>* rgb2) const
 {
-    if(b > rgb2->r || b < rgb1->r)        
+    if (b > rgb2->r || b < rgb1->r)
     {
         return false;
     }
-    
-    if(g > rgb2->g || g < rgb1->g)
+
+    if (g > rgb2->g || g < rgb1->g)
     {
         return false;
     }
-    
-    if(r > rgb2->b || r < rgb1->b)
+
+    if (r > rgb2->b || r < rgb1->b)
     {
         return false;
     }
     return true;
 }
 
+template <class T>
+bool Pixel<T>::hasSimilarColor(Pixel<T>* rgb, unsigned int interval) const
+{
+    std::cout << "similar " << *rgb << std::endl;
+    if (b + interval > rgb->r && b - interval < rgb->r
+            && g + interval > rgb->g && g - interval < rgb->g
+            && r + interval > rgb->b && r - interval < rgb->b)
+    {        
+        return true;
+    }
+    return false;
+}
 
 template <class T>
 std::ostream& operator<<(std::ostream& out, const Pixel<T>& img)

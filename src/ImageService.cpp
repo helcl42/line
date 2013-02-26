@@ -33,7 +33,7 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
         std::cout << "CARA!!! " << line->getFirst()->length << std::endl;
     }
     else 
-    {
+    {                        
         m_settingsIndex++;
         if(m_settingsIndex >= m_settings->getCountOfColors())
         {

@@ -86,6 +86,7 @@
         <in>CannyStrategy.h</in>
         <in>DetectionParams.cpp</in>
         <in>DetectionParams.h</in>
+        <in>DetectionSettings.cpp</in>
         <in>DetectionSettings.h</in>
         <in>IPixel.h</in>
         <in>ImageService.cpp</in>
@@ -96,6 +97,7 @@
         <in>Line.h</in>
         <in>LineDetector.cpp</in>
         <in>LineDetector.h</in>
+        <in>Main.cpp</in>
         <in>Pixel.h</in>
         <in>PixelLUV.h</in>
         <in>PixelRGB.h</in>

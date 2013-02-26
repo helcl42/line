@@ -150,6 +150,7 @@ CMakeFiles/line.dir/src/DetectionParams.o
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
 CMakeFiles/line.dir/src/DetectionSettings.o
+ /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h

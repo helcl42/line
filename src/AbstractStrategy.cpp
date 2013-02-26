@@ -287,91 +287,83 @@ bool AbstractStrategy::storeBestLine(Line** lines)
 void AbstractStrategy::traverseImage()
 {
     Pixel<float>* pixel = NULL;
-    Line* lines[8];
+    Line * lines[8];
 
-    Vector2<int> vecs1[] =
-    {
+    Vector2<int> vecs1[] = {
         Vector2<int>(0, 1),
-                Vector2<int>(1, 1), Vector2<int>(-1, 1),
-                Vector2<int>(1, 0)
+        Vector2<int>(1, 1), Vector2<int>(-1, 1),
+        Vector2<int>(1, 0)
     };
 
-    Vector2<int> vecs2[] =
-    {
+    Vector2<int> vecs2[] = {
         Vector2<int>(0, -1),
-                Vector2<int>(1, -1), Vector2<int>(-1, -1),        
-                Vector2<int>(-1, 0)
+        Vector2<int>(1, -1), Vector2<int>(-1, -1),
+        Vector2<int>(-1, 0)
     };
 
-    Vector2<int> vecs3[] =
-    {
+    Vector2<int> vecs3[] = {
         Vector2<int>(1, 0),
-                Vector2<int>(1, 1), Vector2<int>(1, -1),
-                Vector2<int>(0, 1)
+        Vector2<int>(1, 1), Vector2<int>(1, -1),
+        Vector2<int>(0, 1)
     };
 
-    Vector2<int> vecs4[] =
-    {
+    Vector2<int> vecs4[] = {
         Vector2<int>(-1, 0),
-                Vector2<int>(-1, 1), Vector2<int>(-1, -1),
-                Vector2<int>(0, -1)
+        Vector2<int>(-1, 1), Vector2<int>(-1, -1),
+        Vector2<int>(0, -1)
     };
-    
-    Vector2<int> vecs5[] =
-    {
+
+    Vector2<int> vecs5[] = {
         Vector2<int>(1, 1),
-                Vector2<int>(1, 0), Vector2<int>(0, 1),
-                Vector2<int>(1, -1)
+        Vector2<int>(1, 0), Vector2<int>(0, 1),
+        Vector2<int>(1, -1)
     };
-    
-    Vector2<int> vecs6[] =
-    {
+
+    Vector2<int> vecs6[] = {
         Vector2<int>(1, -1),
-                Vector2<int>(0, -1), Vector2<int>(1, 0),        
-                Vector2<int>(1, 1)
+        Vector2<int>(0, -1), Vector2<int>(1, 0),
+        Vector2<int>(1, 1)
     };
-    
-    Vector2<int> vecs7[] =
-    {
+
+    Vector2<int> vecs7[] = {
         Vector2<int>(-1, -1),
-                Vector2<int>(0, -1), Vector2<int>(-1, 0),        
-                Vector2<int>(-1, 1)
+        Vector2<int>(0, -1), Vector2<int>(-1, 0),
+        Vector2<int>(-1, 1)
     };
-    
-    Vector2<int> vecs8[] =
-    {
+
+    Vector2<int> vecs8[] = {
         Vector2<int>(-1, 1),
-                Vector2<int>(0, 1), Vector2<int>(-1, 0),        
-                Vector2<int>(1, 1)
+        Vector2<int>(0, 1), Vector2<int>(-1, 0),
+        Vector2<int>(1, 1)
     };
-    
+
     for (unsigned int i = 1; i < m_workImage->getHeight() - 1; i += 2)
     {
         for (unsigned int j = 1; j < m_workImage->getWidth() - 1; j += 2)
         {
             pixel = m_workImage->getPixel(i, j);
-            
+
             if (pixel->r > DetectionParams::selectionTreshold || pixel->b > DetectionParams::selectionTreshold || pixel->g > DetectionParams::selectionTreshold)
             {
-//             lines[0] = findCorrectLine2(1, 0, 0, 1, i, j);
-//             lines[1] = findCorrectLine2(-1, 0, 0, 1, i, j);
-//             lines[2] = findCorrectLine2(0, 1, 1, 0, i, j);
-//             lines[3] = findCorrectLine2(0, -1, 1, 0, i, j);
-                
-                Vector2<int> index(j, i);                
+                //             lines[0] = findCorrectLine2(1, 0, 0, 1, i, j);
+                //             lines[1] = findCorrectLine2(-1, 0, 0, 1, i, j);
+                //             lines[2] = findCorrectLine2(0, 1, 1, 0, i, j);
+                //             lines[3] = findCorrectLine2(0, -1, 1, 0, i, j);
+
+                Vector2<int> index(j, i);
                 lines[0] = findCorrectLine(vecs1, index);
                 lines[1] = findCorrectLine(vecs2, index);
                 lines[2] = findCorrectLine(vecs3, index);
-                lines[3] = findCorrectLine(vecs4, index);             
-                
+                lines[3] = findCorrectLine(vecs4, index);
+
                 lines[4] = findCorrectLine(vecs5, index);
                 lines[5] = findCorrectLine(vecs6, index);
                 lines[6] = findCorrectLine(vecs7, index);
-                lines[7] = findCorrectLine(vecs8, index);         
+                lines[7] = findCorrectLine(vecs8, index);
 
                 if (storeBestLine(lines))
                 {
-                    j++;                    
+                    j++;
                 }
             }
         }
@@ -399,7 +391,7 @@ void AbstractStrategy::sortLinesByLength()
 }
 
 void AbstractStrategy::sortLinesByStraightness()
-{    
+{
     Line* temp = NULL;
     int j;
 
@@ -432,9 +424,7 @@ BestLine* AbstractStrategy::findBestLine()
         ret = m_lines[i];
 
         lockSimilarLines(ret);
-
         //lockedCount();
-
         similar = findLineWithSameDirection(ret);
 
         if (ret != NULL && similar != NULL)
@@ -447,8 +437,8 @@ BestLine* AbstractStrategy::findBestLine()
                 writeLineInImage(ret, 255, 0, 0);
                 writeLineInImage(similar, 0, 0, 255);
                 m_bestLine->setLine(ret, similar);
-            }
-            break;
+                break;
+            }            
         }
         else
         {
@@ -520,12 +510,38 @@ void AbstractStrategy::lockedCount()
 
 bool AbstractStrategy::lineColorMatch(Line* l1, Line* l2)
 {
-    double halfDist1 = l2->getDistanceTo(l1->points.front()) / 2;
-    double halfDist2 = l2->getDistanceTo(l1->points.back()) / 2;
+    double halfDist;
+    float angle;
+    Pixel<float>* pixel = NULL;
+    unsigned int failCount = 0;
+    unsigned int len = l1->points.size() < l2->points.size() ? l1->points.size() : l2->points.size();
 
-    //TODO
+    for (int i = 0; i < len; i += 20)
+    {
+        Vector2<int> newVector(l2->points[i]);
 
-    //check color between lines if matches
+        halfDist = newVector.distance(l1->points[i]) / 2;
+
+        newVector -= l1->points[i]; //myVector -= l1.points.front();
+
+        angle = newVector.angleRadians();
+
+        Vector2<int> p(halfDist * cos(angle), halfDist * sin(angle));
+        p += l1->points[i];
+
+        pixel = m_colorImage->getPixel(p.y, p.x);
+
+        if (!pixel->hasSimilarColor(&m_settings->color, DetectionParams::colorTolerance))
+        {
+            failCount++;
+        }
+    }
+    
+    if(failCount > 0)
+    {
+        return false;
+    }
+
     return true;
 }
 
@@ -571,19 +587,19 @@ Line* AbstractStrategy::findLineWithSameDirection(Line* input)
 Line* AbstractStrategy::findCorrectLine(Vector2<int>* vecs, Vector2<int> pos)
 {
     Pixel<float>* pixel = NULL;
-    Line* line = new Line();    
-    int countOfFails = 0;    
+    Line* line = new Line();
+    int countOfFails = 0;
 
     line->points.push_back(Vector2<int>(pos));
 
-    while (pos.y > 2 && pos.x > 2 && pos.y < (int)m_workImage->getHeight() - 2 && pos.x < (int)m_workImage->getWidth() - 2)
-    {        
+    while (pos.y > 2 && pos.x > 2 && pos.y < (int) m_workImage->getHeight() - 2 && pos.x < (int) m_workImage->getWidth() - 2)
+    {
         pos += vecs[countOfFails];
-        
+
         pixel = m_workImage->getPixel(pos.y, pos.x);
 
         if (pixel->r > DetectionParams::selectionTreshold || pixel->b > DetectionParams::selectionTreshold || pixel->g > DetectionParams::selectionTreshold)
-        {            
+        {
             countOfFails = 0;
 
             line->points.push_back(pos);
@@ -591,11 +607,11 @@ Line* AbstractStrategy::findCorrectLine(Vector2<int>* vecs, Vector2<int> pos)
         else
         {
             pos -= vecs[countOfFails];
-            
+
             countOfFails++;
 
             if (countOfFails > 3)
-            {                
+            {
                 break;
             }
         }

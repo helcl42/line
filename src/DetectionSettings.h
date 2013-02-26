@@ -11,12 +11,13 @@
 #include <vector>
 #include <cstdlib>
 #include "Pixel.h"
+#include "Utils.h"
 
 
 class DetectionLineItem 
 {
 public:
-    PixelRGB<int> color;
+    PixelRGB<float> color;
     
 public:    
     DetectionLineItem() {}

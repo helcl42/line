@@ -2,7 +2,7 @@
 
 #include "DetectionParams.h"
 
-const unsigned int DetectionParams::colorTolerance = 100;
+const unsigned int DetectionParams::colorTolerance = 70;
 
 const unsigned int DetectionParams::colorTreshold = 85;
 
