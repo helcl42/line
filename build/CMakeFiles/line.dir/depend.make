@@ -13,6 +13,7 @@ CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Timer.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Utils.h
 CMakeFiles/line.dir/src/AbstractStrategy.o: ../src/Vector2.h
@@ -87,6 +88,7 @@ CMakeFiles/line.dir/src/CannyStrategy.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/CannyStrategy.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/CannyStrategy.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/CannyStrategy.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/CannyStrategy.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/CannyStrategy.o: ../src/Utils.h
 CMakeFiles/line.dir/src/CannyStrategy.o: ../src/Vector2.h
 CMakeFiles/line.dir/src/CannyStrategy.o: /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -172,6 +174,7 @@ CMakeFiles/line.dir/src/ImageService.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/ImageService.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/SobelStrategy.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/Timer.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/Utils.h
@@ -246,6 +249,7 @@ CMakeFiles/line.dir/src/KirshStrategy.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/KirshStrategy.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/KirshStrategy.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/KirshStrategy.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/KirshStrategy.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/KirshStrategy.o: ../src/Utils.h
 CMakeFiles/line.dir/src/KirshStrategy.o: ../src/Vector2.h
 CMakeFiles/line.dir/src/KirshStrategy.o: /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -344,6 +348,7 @@ CMakeFiles/line.dir/src/LineDetector.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/PixelXYZ.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/PrewittStrategy.h
+CMakeFiles/line.dir/src/LineDetector.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/RobertsStrategy.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/SobelStrategy.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/Timer.h
@@ -446,6 +451,7 @@ CMakeFiles/line.dir/src/Main.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/Main.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/Main.o: ../src/PixelXYZ.h
 CMakeFiles/line.dir/src/Main.o: ../src/PrewittStrategy.h
+CMakeFiles/line.dir/src/Main.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/Main.o: ../src/RobertsStrategy.h
 CMakeFiles/line.dir/src/Main.o: ../src/SobelStrategy.h
 CMakeFiles/line.dir/src/Main.o: ../src/Timer.h
@@ -521,6 +527,7 @@ CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/PixelXYZ.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/PrewittStrategy.cpp
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/PrewittStrategy.h
+CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/Utils.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: ../src/Vector2.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -580,6 +587,9 @@ CMakeFiles/line.dir/src/PrewittStrategy.o: /opt/ros/fuerte/include/rosconsole/ma
 CMakeFiles/line.dir/src/PrewittStrategy.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
 CMakeFiles/line.dir/src/PrewittStrategy.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
+CMakeFiles/line.dir/src/Rectangle.o: ../src/Rectangle.cpp
+CMakeFiles/line.dir/src/Rectangle.o: ../src/Rectangle.h
+
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/AbstractStrategy.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/BmpImage.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/DetectionParams.h
@@ -591,6 +601,7 @@ CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/RobertsStrategy.cpp
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/RobertsStrategy.h
 CMakeFiles/line.dir/src/RobertsStrategy.o: ../src/Utils.h
@@ -663,6 +674,7 @@ CMakeFiles/line.dir/src/SobelStrategy.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/SobelStrategy.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/SobelStrategy.cpp
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/SobelStrategy.h
 CMakeFiles/line.dir/src/SobelStrategy.o: ../src/Utils.h

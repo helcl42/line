@@ -11,6 +11,11 @@ LinePair* RobertsStrategy::detectLine()
     return findBestLine();
 }
 
+Rectangle* RobertsStrategy::detectRectangle()
+{
+    return NULL;
+}
+
 /** 
  *    | 0   0   0 | 
  *  X | 0   1   0 |

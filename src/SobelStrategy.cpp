@@ -10,6 +10,11 @@ LinePair* SobelStrategy::detectLine()
     return findBestLine();
 }
 
+Rectangle* SobelStrategy::detectRectangle()
+{
+    return NULL;
+}
+
 void SobelStrategy::sobelAlgorithm()
 {
     double min = 1.0;

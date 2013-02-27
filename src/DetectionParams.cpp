@@ -30,7 +30,7 @@ unsigned int DetectionParams::imageHeight = 480;
 unsigned int DetectionParams::imageWidth = 640;
 
 
-void DetectionParams::recomputeMatrics(unsigned int w, unsigned int h, unsigned int shrink)
+void DetectionParams::recomputeMetrics(unsigned int w, unsigned int h, unsigned int shrink)
 {
     if(shrink == 0) 
     {

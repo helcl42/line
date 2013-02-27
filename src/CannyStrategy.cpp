@@ -10,6 +10,11 @@ LinePair* CannyStrategy::detectLine()
     return findBestLine();
 }
 
+Rectangle* CannyStrategy::detectRectangle()
+{
+    return NULL;
+}
+
 /**
  *          | 2   4   5   4   2 |
  *          | 4   9  12   9   4 | 

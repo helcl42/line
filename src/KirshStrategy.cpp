@@ -11,6 +11,10 @@ LinePair* KirshStrategy::detectLine()
     return findBestLine();
 }
 
+Rectangle* KirshStrategy::detectRectangle()
+{
+    return NULL;
+}
 
 /** 
  *  |  5   5  -3 | 

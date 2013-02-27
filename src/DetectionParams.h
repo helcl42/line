@@ -36,7 +36,7 @@ struct DetectionParams
     
     static unsigned int checkPointSkip;
     
-    static void recomputeMatrics(unsigned int w, unsigned int h, unsigned int shrink = 1);
+    static void recomputeMetrics(unsigned int w, unsigned int h, unsigned int shrink = 1);
 };
 
 

@@ -15,6 +15,7 @@
 #include "DetectionSettings.h"
 #include "DetectionParams.h"
 #include "LinePair.h"
+#include "Rectangle.h"
 
 class AbstractStrategy 
 {
@@ -58,6 +59,8 @@ public:
           
      virtual LinePair* detectLine() = 0;        
      
+     virtual Rectangle* detectRectangle() = 0;
+     
 protected:     
      inline bool storeBestLine(Line** lines);     
      
@@ -88,7 +91,7 @@ private:
      
      bool lineColorMatch(Line* l1, Line* l2);
      
-     void lockedCount();                    
+     //void lockedCount();                    
 };
 
 #endif	/* IDETECTSTRATEGY_H */

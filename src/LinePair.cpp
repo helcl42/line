@@ -41,6 +41,6 @@ Line* LinePair::operator[](int index)
     }
     else
     {
-        throw std::runtime_error("BestLine:operator[]:Invalid index.");
+        throw std::runtime_error("LinePair:operator[]:Invalid index.");
     }
 }

@@ -51,6 +51,8 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
             m_settingsIndex++;
             if (m_settingsIndex >= m_settings->getCountOfColors())
             {                
+                //detect home shapes
+                //m_strategy->detectRectangle();
                 m_settingsIndex = 0;
             }
 

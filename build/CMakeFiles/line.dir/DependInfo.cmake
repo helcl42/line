@@ -15,6 +15,7 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/lubos/fuerte_workspace/sandbox/line/src/LinePair.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/LinePair.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/Main.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/Main.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/PrewittStrategy.o"
+  "/home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/Rectangle.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/RobertsStrategy.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/SobelStrategy.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/Timer.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/Timer.o"

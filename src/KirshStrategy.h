@@ -21,6 +21,8 @@ public:
                                
     LinePair* detectLine();
     
+    Rectangle* detectRectangle();
+    
 protected:    
     void kirshAlgorithm();        
 };

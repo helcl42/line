@@ -25,6 +25,8 @@ public:
         
     LinePair* detectLine();
     
+    Rectangle* detectRectangle();
+    
 protected:    
     void cannyAlgorithm();        
 };

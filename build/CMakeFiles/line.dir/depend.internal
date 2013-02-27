@@ -14,6 +14,7 @@ CMakeFiles/line.dir/src/AbstractStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
@@ -88,6 +89,7 @@ CMakeFiles/line.dir/src/CannyStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
  /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -173,6 +175,7 @@ CMakeFiles/line.dir/src/ImageService.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
  /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
@@ -247,6 +250,7 @@ CMakeFiles/line.dir/src/KirshStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
  /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -345,6 +349,7 @@ CMakeFiles/line.dir/src/LineDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
  /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
@@ -447,6 +452,7 @@ CMakeFiles/line.dir/src/Main.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
  /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
@@ -522,6 +528,7 @@ CMakeFiles/line.dir/src/PrewittStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
  /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -580,6 +587,9 @@ CMakeFiles/line.dir/src/PrewittStrategy.o
  /opt/ros/fuerte/include/rosconsole/macros_generated.h
  /opt/ros/fuerte/include/sensor_msgs/Image.h
  /opt/ros/fuerte/include/std_msgs/Header.h
+CMakeFiles/line.dir/src/Rectangle.o
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.cpp
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
 CMakeFiles/line.dir/src/RobertsStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
@@ -592,6 +602,7 @@ CMakeFiles/line.dir/src/RobertsStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
  /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
@@ -664,6 +675,7 @@ CMakeFiles/line.dir/src/SobelStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
  /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h

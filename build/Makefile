@@ -469,6 +469,21 @@ src/PrewittStrategy.s:
 .PHONY : src/PrewittStrategy.s
 
 # target to build an object file
+src/Rectangle.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Rectangle.o
+.PHONY : src/Rectangle.o
+
+# target to preprocess a source file
+src/Rectangle.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Rectangle.i
+.PHONY : src/Rectangle.i
+
+# target to generate assembly for a file
+src/Rectangle.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Rectangle.s
+.PHONY : src/Rectangle.s
+
+# target to build an object file
 src/RobertsStrategy.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RobertsStrategy.o
 .PHONY : src/RobertsStrategy.o
@@ -570,6 +585,9 @@ help:
 	@echo "... src/PrewittStrategy.o"
 	@echo "... src/PrewittStrategy.i"
 	@echo "... src/PrewittStrategy.s"
+	@echo "... src/Rectangle.o"
+	@echo "... src/Rectangle.i"
+	@echo "... src/Rectangle.s"
 	@echo "... src/RobertsStrategy.o"
 	@echo "... src/RobertsStrategy.i"
 	@echo "... src/RobertsStrategy.s"

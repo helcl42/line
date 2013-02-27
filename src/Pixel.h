@@ -183,7 +183,7 @@ bool Pixel<T>::isInInterval(Pixel<T>* rgb1, Pixel<T>* rgb2) const
 template <class T>
 bool Pixel<T>::hasSimilarColor(Pixel<T>* rgb, unsigned int interval) const
 {
-    std::cout << "similar " << *rgb << std::endl;
+    //std::cout << "similar " << *rgb << std::endl;
     if (b + interval > rgb->r && b - interval < rgb->r
             && g + interval > rgb->g && g - interval < rgb->g
             && r + interval > rgb->b && r - interval < rgb->b)

@@ -493,20 +493,20 @@ void AbstractStrategy::lockAllLines(bool val)
     }
 }
 
-void AbstractStrategy::lockedCount()
-{
-    unsigned int count = m_lines.size();
-    unsigned int tmp = 0;
-    for (unsigned int i = 0; i < m_lines.size(); i++)
-    {
-        if (m_lines[i]->locked)
-        {
-            tmp++;
-        }
-    }
-
-    std::cout << "locked/count " << tmp << "/" << count << std::endl;
-}
+//void AbstractStrategy::lockedCount()
+//{
+//    unsigned int count = m_lines.size();
+//    unsigned int tmp = 0;
+//    for (unsigned int i = 0; i < m_lines.size(); i++)
+//    {
+//        if (m_lines[i]->locked)
+//        {
+//            tmp++;
+//        }
+//    }
+//
+//    std::cout << "locked/count " << tmp << "/" << count << std::endl;
+//}
 
 bool AbstractStrategy::lineColorMatch(Line* l1, Line* l2)
 {
@@ -530,8 +530,7 @@ bool AbstractStrategy::lineColorMatch(Line* l1, Line* l2)
         p += l1->points[i];
 
         pixel = m_colorImage->getPixel(p.y, p.x);
-        std::cout << "PIXEL: " << *pixel << std::endl;
-
+        
         if (!pixel->hasSimilarColor(&m_settings->color, DetectionParams::colorTolerance))
         {
             failCount++;
