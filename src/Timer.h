@@ -42,6 +42,8 @@ public:
     
     void stop();
     
+    double getFPS();
+    
     bool isStarted() const;
     
     double getElapsedTimeInSec();

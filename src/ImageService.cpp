@@ -67,7 +67,7 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     m_shrinkTimer.stop();
 
     timeElapsed = m_shrinkTimer.getElapsedTimeInMicroSec();
-    //std::cout << "Elapsed " << timeElapsed << std::endl;
+    std::cout << "Elapsed " << timeElapsed << "ms " << m_shrinkTimer.getFPS() << " FPS" << std::endl;
     if (timeElapsed > 300000)
     {
         m_shrink++;

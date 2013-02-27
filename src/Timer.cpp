@@ -35,6 +35,11 @@ bool Timer::isStarted() const
     return !m_stopped;
 }
 
+double Timer::getFPS()
+{
+    return 1 / getElapsedTimeInSec();
+}
+
 double Timer::getElapsedTimeInMicroSec()
 {
     if (!m_stopped)
