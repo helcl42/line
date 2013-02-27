@@ -4,8 +4,8 @@
 
 /**
  * 
- * Params:
- * bb4a1e - red
+ * Params
+ * c88553 - red
  * 6cabeb - blue
  * ceb66e - orange
  * 6cbe40 - green
@@ -15,6 +15,9 @@
  * @param argv
  * @return 
  */
+
+
+//rosrun line line c88553 6cabeb ceb66e
 
 int main(int argc, char** argv)
 {
