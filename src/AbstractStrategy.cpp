@@ -7,6 +7,7 @@ AbstractStrategy::AbstractStrategy(DetectionLineItem* settings)
 {
     setBaseColor();
     m_bestLine = new LinePair();
+    m_rectangle = new Rectangle();
 }
 
 AbstractStrategy::AbstractStrategy(BmpImage<float>* image, DetectionLineItem* settings)
@@ -14,6 +15,7 @@ AbstractStrategy::AbstractStrategy(BmpImage<float>* image, DetectionLineItem* se
 {
     setBaseColor();
     m_bestLine = new LinePair();
+    m_rectangle = new Rectangle();
 }
 
 AbstractStrategy::~AbstractStrategy()
@@ -24,6 +26,7 @@ AbstractStrategy::~AbstractStrategy()
     }
     m_lines.clear();
     SAFE_DELETE(m_bestLine);
+    SAFE_DELETE(m_rectangle);
 }
 
 void AbstractStrategy::setSettings(DetectionLineItem* settings)
@@ -438,7 +441,7 @@ LinePair* AbstractStrategy::findBestLine()
                 writeLineInImage(similar, 0, 0, 255);
                 m_bestLine->setLine(ret, similar);
                 break;
-            }            
+            }
         }
         else
         {
@@ -446,6 +449,59 @@ LinePair* AbstractStrategy::findBestLine()
         }
     }
     return m_bestLine;
+}
+
+Rectangle* AbstractStrategy::findBestRectangle()
+{
+    Line* rect[4];
+
+    for(int i = 0; i < 4; i++)
+    {
+        rect[i] = NULL;
+    }
+    
+    //sortLinesByStraightness();
+    sortLinesByLength();
+
+    for (unsigned int i = 0; i < m_lines.size(); i++)
+    {
+        lockAllLines(false);
+        rect[0] = m_lines[i];
+
+        lockSimilarLines(rect[0]);
+        //lockedCount();
+        rect[1] = findLineWithDirection(rect[0], 90);
+
+        if (rect[0] != NULL && rect[1] != NULL)
+        {
+            rect[0]->locked = true;
+            rect[1]->locked = true;
+
+            rect[2] = findLineWithDirection(rect[1]);
+
+            if (rect[2] != NULL)
+            {
+                rect[2]->locked = true;
+                
+                rect[3] = findLineWithDirection(rect[1], 90);
+                if(rect[3] != NULL)
+                    
+                if (lineColorMatch(rect[0], rect[2]))
+                {                    
+                    writeLineInImage(rect[0], 255, 0, 0);
+                    writeLineInImage(rect[1], 0, 0, 255);
+                    writeLineInImage(rect[2], 255, 0, 0);
+                    writeLineInImage(rect[3], 0, 0, 255);                    
+                    break;
+                }
+            }
+        }
+        else
+        {
+            std::cout << "fail!" << std::endl;
+        }
+    }
+    return m_rectangle;
 }
 
 void AbstractStrategy::lockSimilarLines(Line* input)
@@ -496,12 +552,12 @@ void AbstractStrategy::lockAllLines(bool val)
 //void AbstractStrategy::lockedCount()
 //{
 //    unsigned int count = m_lines.size();
-//    unsigned int tmp = 0;
-//    for (unsigned int i = 0; i < m_lines.size(); i++)
+//    unsigned int lockedCount = 0;
+//    for (unsigned int i = 0; i < count; i++)
 //    {
 //        if (m_lines[i]->locked)
 //        {
-//            tmp++;
+//            lockedCount++;
 //        }
 //    }
 //
@@ -530,14 +586,14 @@ bool AbstractStrategy::lineColorMatch(Line* l1, Line* l2)
         p += l1->points[i];
 
         pixel = m_colorImage->getPixel(p.y, p.x);
-        
+
         if (!pixel->hasSimilarColor(&m_settings->color, DetectionParams::colorTolerance))
         {
             failCount++;
         }
     }
-    
-    if(failCount > 0)
+
+    if (failCount > 0)
     {
         return false;
     }
@@ -554,29 +610,31 @@ Line* AbstractStrategy::findLineWithDirection(Line* input, float angle)
     if (input == NULL || m_lines.size() == 0) return NULL;
 
     double minDelta = 10000.0;
-    double delta = 0;
-    double direction = input->directionDegrees;
+    double delta;
+    double testedDirection;
     Line* bestLine = NULL;
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {
-        if (!m_lines[i]->locked)
+        if (m_lines[i]->locked)
         {
-            double testedDirection = m_lines[i]->directionDegrees;
+            continue;
+        }
 
-            delta = direction - testedDirection + angle;
-            delta = delta < 0 ? -delta : delta;
+        testedDirection = m_lines[i]->directionDegrees;
 
-            //std::cout << "minDelta " << minDelta << " delta " << delta << " originDirection = " << direction << " testedDirection = " << testedDirection << std::endl;
+        delta = input->directionDegrees - testedDirection + angle;
+        delta = delta < 0 ? -delta : delta;
 
-            if (delta < minDelta)
+        //std::cout << "minDelta " << minDelta << " delta " << delta << " originDirection = " << direction << " testedDirection = " << testedDirection << std::endl;
+
+        if (delta < minDelta)
+        {
+            if (delta < DetectionParams::directionDeltaDegrees)
             {
-                if (delta < DetectionParams::directionDeltaDegrees)
-                {
-                    minDelta = delta;
-                    //std::cout << " change MIN " << minDelta << std::endl;
-                    bestLine = m_lines[i];
-                }
+                minDelta = delta;
+                //std::cout << " change MIN " << minDelta << std::endl;
+                bestLine = m_lines[i];
             }
         }
     }
@@ -610,7 +668,7 @@ Line* AbstractStrategy::findCorrectLine(Vector2<int>* vecs, Vector2<int> pos)
 
             countOfFails++;
 
-            if (countOfFails > 3)
+            if (countOfFails > DetectionParams::countOfDirections)
             {
                 break;
             }

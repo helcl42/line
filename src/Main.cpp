@@ -11,14 +11,12 @@
  * 6cbe40 - green
  * c7deb2 - white
  * 
+ * rosrun line line c88553 6cabeb ceb66e
+ * 
  * @param argc
  * @param argv
  * @return 
  */
-
-
-//rosrun line line c88553 6cabeb ceb66e
-
 int main(int argc, char** argv)
 {
     ros::init(argc, argv, "line");

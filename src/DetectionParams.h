@@ -36,6 +36,8 @@ struct DetectionParams
     
     static unsigned int checkPointSkip;
     
+    static unsigned int countOfDirections;        
+    
     static void recomputeMetrics(unsigned int w, unsigned int h, unsigned int shrink = 1);
 };
 

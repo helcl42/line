@@ -12,7 +12,10 @@ LinePair* SobelStrategy::detectLine()
 
 Rectangle* SobelStrategy::detectRectangle()
 {
-    return NULL;
+    sobelAlgorithm();    
+    gaussianBlur();    
+    traverseImage();   
+    return findBestRectangle();
 }
 
 void SobelStrategy::sobelAlgorithm()

@@ -21,11 +21,13 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     unsigned long timeElapsed;
 
     m_shrink = 2;
+    
     m_shrinkTimer.start();
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
     m_strategy->setImages(m_image, m_colorImage);
+    
     LinePair* line = m_strategy->detectLine();
 
     if (line->isValid())

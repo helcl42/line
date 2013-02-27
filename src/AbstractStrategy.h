@@ -32,6 +32,8 @@ protected:
     
     LinePair* m_bestLine;
     
+    Rectangle* m_rectangle;
+    
 public:
     AbstractStrategy(DetectionLineItem* settings);         
     
@@ -53,9 +55,12 @@ public:
      
      LinePair* findBestLine();
      
+     Rectangle* findBestRectangle();
+     
      void setImages(BmpImage<float>* image, BmpImage<float>* colorImage);          
      
      void setSettings(DetectionLineItem* settings);
+     
           
      virtual LinePair* detectLine() = 0;        
      
