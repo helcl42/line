@@ -25,7 +25,7 @@ DetectionSettings::DetectionSettings(int argc, char** argv)
 
 DetectionSettings::~DetectionSettings()
 {
-    for (int i = 0; i < colors.size(); i++)
+    for (unsigned int i = 0; i < colors.size(); i++)
     {
         SAFE_DELETE(colors[i]);
     }
@@ -38,7 +38,7 @@ unsigned int DetectionSettings::getCountOfColors() const
 
 DetectionLineItem* DetectionSettings::getItem(int index) const
 {
-    if (index > 0 || index < colors.size())
+    if (index >= 0 || index < (int)colors.size())
     {
         return colors[index];
     }
@@ -50,7 +50,7 @@ DetectionLineItem* DetectionSettings::getItem(int index) const
 
 DetectionLineItem* DetectionSettings::operator[](int index)
 {
-    if (index > 0 || index < colors.size())
+    if (index >= 0 || index < (int)colors.size())
     {
         return colors[index];
     }
@@ -63,7 +63,7 @@ DetectionLineItem* DetectionSettings::operator[](int index)
 std::ostream& operator<<(std::ostream& out, const DetectionSettings& settings)
 {
     out << "Detection settings:" << std::endl;
-    for (int i = 0; i < settings.colors.size(); i++)
+    for (unsigned int i = 0; i < settings.colors.size(); i++)
     {
         out << "-------------------------------" << std::endl;
         out << i + 1 << ") color" << std::endl;

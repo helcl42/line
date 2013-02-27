@@ -1,7 +1,7 @@
 #include "SobelStrategy.h"
 #include "DetectionParams.h"
 
-BestLine* SobelStrategy::detectLine()
+LinePair* SobelStrategy::detectLine()
 {        
     //replaintSimilarColorPlaces();    
     sobelAlgorithm();    

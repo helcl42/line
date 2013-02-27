@@ -30,6 +30,11 @@ void Timer::stop()
     gettimeofday(&m_endCount, NULL);
 }
 
+bool Timer::isStarted() const
+{
+    return !m_stopped;
+}
+
 double Timer::getElapsedTimeInMicroSec()
 {
     if (!m_stopped)

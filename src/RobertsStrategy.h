@@ -21,7 +21,7 @@ public:
                                
     virtual ~RobertsStrategy() {}        
         
-    BestLine* detectLine();
+    LinePair* detectLine();
     
 protected:        
     void robertsAlgorithm();            

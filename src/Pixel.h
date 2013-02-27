@@ -50,6 +50,8 @@ public:
 
     static double colourDifference(Pixel<T>* rgb1, Pixel<T>* rgb2);
 
+    static std::string getColorPartString(int index);
+
     bool isInInterval(Pixel<T>* rgb1, Pixel<T>* rgb2) const;
 
     bool hasSimilarColor(Pixel<T>* rgb, unsigned int interval = DetectionParams::colorTolerance) const;
@@ -60,6 +62,23 @@ public:
 
     static void repairNanValues(Pixel<T>* px);
 };
+
+
+template <class T>
+std::string Pixel<T>::getColorPartString(int index)
+{
+    switch (index)
+    {
+        case 0:
+            return "Red";
+        case 1:
+            return "Green";
+        case 2:
+            return "Blue";
+        default:
+            throw std::runtime_error("Pixel:getColorPartString:InvalidIndex");
+    }
+}
 
 template <class T>
 double Pixel<T>::colourProduct(Pixel<T>* rgb1)
@@ -168,18 +187,18 @@ bool Pixel<T>::hasSimilarColor(Pixel<T>* rgb, unsigned int interval) const
     if (b + interval > rgb->r && b - interval < rgb->r
             && g + interval > rgb->g && g - interval < rgb->g
             && r + interval > rgb->b && r - interval < rgb->b)
-    {        
+    {
         return true;
     }
     return false;
 }
 
 template <class T>
-std::ostream& operator<<(std::ostream& out, const Pixel<T>& img)
+std::ostream& operator<<(std::ostream& out, const Pixel<T>& pix)
 {
-    out << "{" << img.r << ",";
-    out << img.g << ",";
-    out << img.b << "}";
+    out << "{" << pix.r << ",";
+    out << pix.g << ",";
+    out << pix.b << "}";    
     return out;
 }
 

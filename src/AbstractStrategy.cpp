@@ -6,14 +6,14 @@ AbstractStrategy::AbstractStrategy(DetectionLineItem* settings)
 : m_settings(settings)
 {
     setBaseColor();
-    m_bestLine = new BestLine();
+    m_bestLine = new LinePair();
 }
 
 AbstractStrategy::AbstractStrategy(BmpImage<float>* image, DetectionLineItem* settings)
 : m_workImage(image), m_settings(settings)
 {
     setBaseColor();
-    m_bestLine = new BestLine();
+    m_bestLine = new LinePair();
 }
 
 AbstractStrategy::~AbstractStrategy()
@@ -410,7 +410,7 @@ void AbstractStrategy::sortLinesByStraightness()
     }
 }
 
-BestLine* AbstractStrategy::findBestLine()
+LinePair* AbstractStrategy::findBestLine()
 {
     Line* ret = NULL;
     Line* similar = NULL;
@@ -431,7 +431,7 @@ BestLine* AbstractStrategy::findBestLine()
         {
             if (lineColorMatch(ret, similar))
             {
-                std::cout << "RET " << ret->computeDirectionInDegrees() << " similar " << similar->computeDirectionInDegrees() << std::endl;
+                //std::cout << "RET " << ret->computeDirectionInDegrees() << " similar " << similar->computeDirectionInDegrees() << std::endl;
                 std::cout << *ret << std::endl;
                 std::cout << *similar << std::endl;
                 writeLineInImage(ret, 255, 0, 0);
@@ -530,6 +530,7 @@ bool AbstractStrategy::lineColorMatch(Line* l1, Line* l2)
         p += l1->points[i];
 
         pixel = m_colorImage->getPixel(p.y, p.x);
+        std::cout << "PIXEL: " << *pixel << std::endl;
 
         if (!pixel->hasSimilarColor(&m_settings->color, DetectionParams::colorTolerance))
         {
@@ -574,7 +575,7 @@ Line* AbstractStrategy::findLineWithSameDirection(Line* input)
                 if (delta < DetectionParams::directionDeltaDegrees)
                 {
                     minDelta = delta;
-                    std::cout << " change MIN " << minDelta << std::endl;
+                    //std::cout << " change MIN " << minDelta << std::endl;
                     bestLine = m_lines[i];
                 }
             }

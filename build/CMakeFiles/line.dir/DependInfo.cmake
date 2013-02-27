@@ -12,6 +12,7 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/lubos/fuerte_workspace/sandbox/line/src/KirshStrategy.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/KirshStrategy.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/Line.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/Line.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/LineDetector.o"
+  "/home/lubos/fuerte_workspace/sandbox/line/src/LinePair.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/LinePair.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/Main.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/Main.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/PrewittStrategy.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/PrewittStrategy.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/RobertsStrategy.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/RobertsStrategy.o"

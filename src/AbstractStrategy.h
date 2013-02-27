@@ -14,7 +14,7 @@
 #include "BmpImage.h"
 #include "DetectionSettings.h"
 #include "DetectionParams.h"
-#include "BestLine.h"
+#include "LinePair.h"
 
 class AbstractStrategy 
 {
@@ -29,7 +29,7 @@ protected:
     
     std::vector<Line*> m_lines;
     
-    BestLine* m_bestLine;
+    LinePair* m_bestLine;
     
 public:
     AbstractStrategy(DetectionLineItem* settings);         
@@ -50,13 +50,13 @@ public:
      
      void traverseImage();
      
-     BestLine* findBestLine();
+     LinePair* findBestLine();
      
      void setImages(BmpImage<float>* image, BmpImage<float>* colorImage);          
      
      void setSettings(DetectionLineItem* settings);
           
-     virtual BestLine* detectLine() = 0;        
+     virtual LinePair* detectLine() = 0;        
      
 protected:     
      inline bool storeBestLine(Line** lines);     

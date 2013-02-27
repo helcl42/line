@@ -21,36 +21,49 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     unsigned long timeElapsed;
 
     m_shrink = 2;
-    m_timer.start();
+    m_shrinkTimer.start();
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
     m_strategy->setImages(m_image, m_colorImage);
-    BestLine* line = m_strategy->detectLine();
-    
+    LinePair* line = m_strategy->detectLine();
+
     if (line->isValid())
     {
         std::cout << "CARA!!! " << line->getFirst()->length << std::endl;
-    }
-    else 
-    {                        
-        m_settingsIndex++;
-        if(m_settingsIndex >= m_settings->getCountOfColors())
-        {
-            //TODO
-            std::cout << "NO lines ...HOME?" << std::endl;
-            m_settingsIndex = 0;
-        }
         
-        m_strategy->setSettings(m_settings->getItem(m_settingsIndex));
+        if (m_changeColorTimer.isStarted())
+        {
+            m_changeColorTimer.stop();
+        }
+    }
+    else
+    {
+        if (!m_changeColorTimer.isStarted())
+        {
+            m_changeColorTimer.start();
+        }
+        else if(m_changeColorTimer.getElapsedTimeInMilliSec() > 5000) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
+        {
+            m_changeColorTimer.stop();
+            std::cout << "Hledam dalsi!!" << std::endl;
+            
+            m_settingsIndex++;
+            if (m_settingsIndex >= m_settings->getCountOfColors())
+            {                
+                m_settingsIndex = 0;
+            }
+
+            m_strategy->setSettings(m_settings->getItem(m_settingsIndex));
+        }
     }
 
     writeImageToMessage(img);
 
-    m_timer.stop();
+    m_shrinkTimer.stop();
 
-    timeElapsed = m_timer.getElapsedTimeInMicroSec();
-    std::cout << "Elapsed " << timeElapsed << std::endl;
+    timeElapsed = m_shrinkTimer.getElapsedTimeInMicroSec();
+    //std::cout << "Elapsed " << timeElapsed << std::endl;
     if (timeElapsed > 300000)
     {
         m_shrink++;
@@ -64,7 +77,7 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     }
     //DetectionParams::recomputeMatrics(img->width, img->height, m_shrink);
 
-    std::cout << "New Line len = " << DetectionParams::lineLengthTreshold << std::endl;
+    //std::cout << "New Line len = " << DetectionParams::lineLengthTreshold << std::endl;
 }
 
 void ImageService::writeLineToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int width)

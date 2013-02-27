@@ -1,7 +1,7 @@
 #include "CannyStrategy.h"
 #include "DetectionParams.h"
 
-BestLine* CannyStrategy::detectLine()
+LinePair* CannyStrategy::detectLine()
 {        
     //replaintSimilarColorPlaces();    
     cannyAlgorithm();    

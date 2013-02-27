@@ -42,6 +42,8 @@ public:
     
     void stop();
     
+    bool isStarted() const;
+    
     double getElapsedTimeInSec();
     
     double getElapsedTimeInMilliSec();

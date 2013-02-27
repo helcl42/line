@@ -6,8 +6,8 @@
  * 
  * Params:
  * bb4a1e - red
- * 1f9ea7 - blue
- * d78716 - orange
+ * 6cabeb - blue
+ * ceb66e - orange
  * 6cbe40 - green
  * c7deb2 - white
  * 

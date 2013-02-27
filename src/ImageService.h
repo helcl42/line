@@ -21,7 +21,9 @@ class ImageService
 private:                    
     unsigned int m_shrink;
     
-    Timer m_timer;
+    Timer m_shrinkTimer;
+    
+    Timer m_changeColorTimer;
     
     BmpImage<float>* m_image;
     
@@ -31,7 +33,7 @@ private:
     
     unsigned int m_settingsIndex;
     
-    AbstractStrategy* m_strategy;
+    AbstractStrategy* m_strategy;        
     
 public:
     ImageService(DetectionSettings* settings);    
