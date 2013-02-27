@@ -70,7 +70,7 @@ protected:
      
      void writeLineInImage(Line* line, int r, int g, int b);
      
-     Line* findLineWithSameDirection(Line* input);
+     Line* findLineWithDirection(Line* input, float angle = 0);
      
      void resolveSimilarColor(int interval = 50);     
      

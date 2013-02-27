@@ -425,7 +425,7 @@ LinePair* AbstractStrategy::findBestLine()
 
         lockSimilarLines(ret);
         //lockedCount();
-        similar = findLineWithSameDirection(ret);
+        similar = findLineWithDirection(ret);
 
         if (ret != NULL && similar != NULL)
         {
@@ -549,7 +549,7 @@ bool AbstractStrategy::lineColorMatch(Line* l1, Line* l2)
  * @param input
  * @return Line*
  */
-Line* AbstractStrategy::findLineWithSameDirection(Line* input)
+Line* AbstractStrategy::findLineWithDirection(Line* input, float angle)
 {
     if (input == NULL || m_lines.size() == 0) return NULL;
 
@@ -564,7 +564,7 @@ Line* AbstractStrategy::findLineWithSameDirection(Line* input)
         {
             double testedDirection = m_lines[i]->directionDegrees;
 
-            delta = direction - testedDirection;
+            delta = direction - testedDirection + angle;
             delta = delta < 0 ? -delta : delta;
 
             //std::cout << "minDelta " << minDelta << " delta " << delta << " originDirection = " << direction << " testedDirection = " << testedDirection << std::endl;
