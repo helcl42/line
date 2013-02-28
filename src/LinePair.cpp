@@ -21,6 +21,11 @@ Line* LinePair::getSecond() const
     return m_line[1];
 }
 
+Line** LinePair::getLines()
+{
+    return m_line;
+}
+
 void LinePair::setLine(Line* l1, Line* l2)
 {
     m_line[0] = l1;

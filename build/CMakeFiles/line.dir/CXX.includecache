@@ -55,6 +55,8 @@ ImageService.h
 /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
 DetectionParams.h
 /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
+Line.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Line.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
 sensor_msgs/Image.h
@@ -71,7 +73,9 @@ SobelStrategy.h
 /home/lubos/fuerte_workspace/sandbox/line/src/SobelStrategy.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
-sensor_msgs/Image.h
+vector
+-
+cstdlib
 -
 Vector2.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
@@ -133,6 +137,10 @@ sstream
 -
 
 /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
+cstdlib
+-
+stdexcept
+-
 
 /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
 cmath

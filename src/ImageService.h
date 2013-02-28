@@ -46,7 +46,7 @@ public:
     
     void writeImageToMessage(const sensor_msgs::Image::ConstPtr& img);
     
-    void writeLineToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int width);        
+    void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width = 1);        
 };
 
 #endif	/* IMAGEMESSAGESERVICE_H */

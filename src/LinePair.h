@@ -29,6 +29,8 @@ public:
     
     Line* getSecond() const;
     
+    Line** getLines();
+    
     void setLine(Line* l1, Line* l2);
     
     void invalidate();

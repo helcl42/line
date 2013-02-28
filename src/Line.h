@@ -8,8 +8,9 @@
 #ifndef LINE_H
 #define	LINE_H
 
-#include <sensor_msgs/Image.h>
 
+#include <vector>
+#include <cstdlib>
 #include "Vector2.h"
 
 class Line

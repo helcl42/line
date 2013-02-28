@@ -8,10 +8,11 @@
 #ifndef UTILS_H
 #define	UTILS_H
 
+#include <cstdlib>
+#include <stdexcept>
 
 #define SAFE_DELETE( p ) { if( p ) { delete ( p ); ( p ) = NULL; } }
 #define SAFE_DELETE_ARRAY( p ) { if( p ) { delete[] ( p ); ( p ) = NULL; } }
-
 
 class Utils
 {

@@ -6,6 +6,7 @@
  * LineDetection Params
  */
 
+
 const unsigned int DetectionParams::colorTolerance = 50;
 
 const unsigned int DetectionParams::colorTreshold = 85;
@@ -14,26 +15,47 @@ const unsigned int DetectionParams::selectionTreshold = 60;
 
 const unsigned int DetectionParams::directionDeltaDegrees = 12; 
 
+//shrink 1
+unsigned int DetectionParams::lineLengthTreshold = 240;
 
-unsigned int DetectionParams::lineLengthTreshold = 120;
+unsigned int DetectionParams::straightnessTreshold = 360;
 
-unsigned int DetectionParams::straightnessTreshold = 180;
+unsigned int DetectionParams::minPointDistance = 16;
 
-unsigned int DetectionParams::minPointDistance = 8;
+unsigned int DetectionParams::maxPointDistance = 1300;
 
-unsigned int DetectionParams::maxPointDistance = 650;
+unsigned int DetectionParams::inlineTolerance = 8;
 
-unsigned int DetectionParams::inlineTolerance = 4;
+unsigned int DetectionParams::noCheckLineBorder = 80;
 
-unsigned int DetectionParams::noCheckLineBorder = 40;
-
-unsigned int DetectionParams::checkPointSkip = 12;
+unsigned int DetectionParams::checkPointSkip = 24;
 
 unsigned int DetectionParams::countOfDirections = 3; //index = count - 1
 
 unsigned int DetectionParams::imageHeight = 480;
 
 unsigned int DetectionParams::imageWidth = 640;
+
+//shrink 2
+//unsigned int DetectionParams::lineLengthTreshold = 120;
+//
+//unsigned int DetectionParams::straightnessTreshold = 180;
+//
+//unsigned int DetectionParams::minPointDistance = 8;
+//
+//unsigned int DetectionParams::maxPointDistance = 650;
+//
+//unsigned int DetectionParams::inlineTolerance = 4;
+//
+//unsigned int DetectionParams::noCheckLineBorder = 40;
+//
+//unsigned int DetectionParams::checkPointSkip = 12;
+//
+//unsigned int DetectionParams::countOfDirections = 3; //index = count - 1
+//
+//unsigned int DetectionParams::imageHeight = 480;
+//
+//unsigned int DetectionParams::imageWidth = 640;
 
 
 void DetectionParams::recomputeMetrics(unsigned int w, unsigned int h, unsigned int shrink)
@@ -53,19 +75,19 @@ void DetectionParams::recomputeMetrics(unsigned int w, unsigned int h, unsigned 
         imageHeight = h;
     }
     
-    lineLengthTreshold = imageHeight / (shrink * 1.8);               
+    lineLengthTreshold = imageHeight / (shrink * 2);
     
-//    straightnessTreshold = imageHeight / (shrink * 7);
-//    
-//    minPointDistance = imageHeight / (shrink * 45);
-//    
-    inlineTolerance = imageHeight / (120 * shrink);
-//    
-//    maxPointDistance = imageHeight / (1.3714 * shrink);
-//    
-    noCheckLineBorder = imageHeight / (24 * shrink);
+    straightnessTreshold = 3 * imageHeight / (shrink * 4);
+    
+    minPointDistance = imageHeight / (shrink * 30);
+
+    inlineTolerance = imageHeight / (shrink * 60);
+
+    maxPointDistance =  2.5 * imageHeight / shrink;
+
+    noCheckLineBorder = lineLengthTreshold / 3;
       
-    checkPointSkip = imageHeight / (shrink * 18);    
+    checkPointSkip = lineLengthTreshold / 10;
 }
 
 

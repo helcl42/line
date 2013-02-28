@@ -1,5 +1,6 @@
 #include "ImageService.h"
 #include "DetectionParams.h"
+#include "Line.h"
 
 ImageService::ImageService(DetectionSettings* settings)
 : m_shrink(1), m_settings(settings), m_settingsIndex(0)
@@ -20,24 +21,23 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
 {
     unsigned long timeElapsed;
 
-    m_shrink = 2;
-    
     m_shrinkTimer.start();
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
     m_strategy->setImages(m_image, m_colorImage);
-    
+
     LinePair* line = m_strategy->detectLine();
 
     if (line->isValid())
     {
         std::cout << "CARA!!! " << line->getFirst()->length << std::endl;
-        
+
         if (m_changeColorTimer.isStarted())
         {
             m_changeColorTimer.stop();
         }
+        writeLinesToMessage(img, line->getLines(), 2); 
     }
     else
     {
@@ -45,14 +45,14 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
         {
             m_changeColorTimer.start();
         }
-        else if(m_changeColorTimer.getElapsedTimeInMilliSec() > 5000) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
+        else if (m_changeColorTimer.getElapsedTimeInMilliSec() > 5000) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
         {
             m_changeColorTimer.stop();
             std::cout << "Hledam dalsi!!" << std::endl;
-            
+
             m_settingsIndex++;
             if (m_settingsIndex >= m_settings->getCountOfColors())
-            {                
+            {
                 //detect home shapes
                 //m_strategy->detectRectangle();
                 m_settingsIndex = 0;
@@ -62,51 +62,68 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
         }
     }
 
+//    Line * lines[2];
+//    Line l;
+//    for (int i = 0, j = 0; i < m_image->getHeight(); i++, j++)
+//    {
+//        l.points.push_back(Vector2<int>(i, j));
+//    }
+//
+//    Line lineReverse;
+//    for (int i = m_image->getHeight() - 1, j = 0; i >= 0; i--, j++)
+//    {
+//        lineReverse.points.push_back(Vector2<int>(i, j));
+//    }
+//
+//    lines[0] = &l;
+//    lines[1] = &lineReverse;
+//
+//    writeLinesToMessage(img, lines, 2);
+    
     writeImageToMessage(img);
 
-    m_shrinkTimer.stop();
-
+    m_shrinkTimer.stop();   
+    
     timeElapsed = m_shrinkTimer.getElapsedTimeInMicroSec();
     std::cout << "Elapsed " << timeElapsed << "ms " << m_shrinkTimer.getFPS() << " FPS" << std::endl;
-    if (timeElapsed > 300000)
+    if (timeElapsed > 450000)
     {
         m_shrink++;
     }
-    else if (timeElapsed < 100000)
+    else if (timeElapsed < 150000)
     {
         if (m_shrink < 5 && m_shrink > 1)
         {
             m_shrink--;
         }
-    }
-    //DetectionParams::recomputeMatrics(img->width, img->height, m_shrink);
+    }    
+    
+    DetectionParams::recomputeMetrics(img->width, img->height, m_shrink);
 
-    //std::cout << "New Line len = " << DetectionParams::lineLengthTreshold << std::endl;
+    std::cout << "Params: len = " << DetectionParams::lineLengthTreshold << std::endl;
 }
 
-void ImageService::writeLineToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int width)
+void ImageService::writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width)
 {
     if (img->width > 0 && img->height > 0)
-    {
+    {        
         unsigned char* temp;
         Line* oneLine = NULL;
-
-        for (unsigned int i = 0; i < 2; i++)
+        unsigned long size = img->height * img->width * 3;       
+        
+        for (unsigned int i = 0; i < count; i++)
         {
             oneLine = line[i];
             for (unsigned int j = 0, index = 0; j < oneLine->points.size(); j++)
             {
-                index = i * img->width * 3;
+                index = size - (oneLine->points[j].y + 1) * img->width * 3 * m_shrink + (m_image->getWidth() - oneLine->points[j].x)  * m_shrink * 3;
 
-                for (unsigned int k = index - width / 2; k < index + width / 2; k++)
-                {
-                    temp = (unsigned char*) &img->data[k];
-                    *temp = (unsigned char) 255;
-                    temp = (unsigned char*) &img->data[k + 1];
-                    *temp = (unsigned char) 0;
-                    temp = (unsigned char*) &img->data[k + 2];
-                    *temp = (unsigned char) 0;
-                }
+                temp = (unsigned char*) &img->data[index];
+                *temp = (unsigned char) 0;
+                temp = (unsigned char*) &img->data[index + 1];
+                *temp = (unsigned char) 0;
+                temp = (unsigned char*) &img->data[index + 2];
+                *temp = (unsigned char) 255;
             }
         }
     }

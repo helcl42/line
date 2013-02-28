@@ -314,22 +314,6 @@ CMakeFiles/line.dir/src/Line.o
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
- /opt/ros/fuerte/include/ros/builtin_message_traits.h
- /opt/ros/fuerte/include/ros/duration.h
- /opt/ros/fuerte/include/ros/exception.h
- /opt/ros/fuerte/include/ros/macros.h
- /opt/ros/fuerte/include/ros/message_forward.h
- /opt/ros/fuerte/include/ros/message_operations.h
- /opt/ros/fuerte/include/ros/message_traits.h
- /opt/ros/fuerte/include/ros/platform.h
- /opt/ros/fuerte/include/ros/roscpp_serialization_macros.h
- /opt/ros/fuerte/include/ros/rostime_decl.h
- /opt/ros/fuerte/include/ros/serialization.h
- /opt/ros/fuerte/include/ros/serialized_message.h
- /opt/ros/fuerte/include/ros/time.h
- /opt/ros/fuerte/include/ros/types.h
- /opt/ros/fuerte/include/sensor_msgs/Image.h
- /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/LineDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpFileIO.h
@@ -417,22 +401,6 @@ CMakeFiles/line.dir/src/LinePair.o
  /home/lubos/fuerte_workspace/sandbox/line/src/LinePair.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
- /opt/ros/fuerte/include/ros/builtin_message_traits.h
- /opt/ros/fuerte/include/ros/duration.h
- /opt/ros/fuerte/include/ros/exception.h
- /opt/ros/fuerte/include/ros/macros.h
- /opt/ros/fuerte/include/ros/message_forward.h
- /opt/ros/fuerte/include/ros/message_operations.h
- /opt/ros/fuerte/include/ros/message_traits.h
- /opt/ros/fuerte/include/ros/platform.h
- /opt/ros/fuerte/include/ros/roscpp_serialization_macros.h
- /opt/ros/fuerte/include/ros/rostime_decl.h
- /opt/ros/fuerte/include/ros/serialization.h
- /opt/ros/fuerte/include/ros/serialized_message.h
- /opt/ros/fuerte/include/ros/time.h
- /opt/ros/fuerte/include/ros/types.h
- /opt/ros/fuerte/include/sensor_msgs/Image.h
- /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/Main.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpFileIO.h
