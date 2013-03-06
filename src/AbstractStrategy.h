@@ -94,9 +94,7 @@ private:
      
      void sortLinesByLength();
      
-     bool lineColorMatch(Line* l1, Line* l2);
-     
-     //void lockedCount();                    
+     bool lineColorMatch(Line* l1, Line* l2);     
 };
 
 #endif	/* IDETECTSTRATEGY_H */

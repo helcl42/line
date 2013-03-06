@@ -2,6 +2,8 @@
 #include "DetectionParams.h"
 #include "Line.h"
 
+int counter = 0;
+
 ImageService::ImageService(DetectionSettings* settings)
 : m_shrink(1), m_settings(settings), m_settingsIndex(0)
 {
@@ -17,7 +19,7 @@ ImageService::~ImageService()
     SAFE_DELETE(m_strategy);
 }
 
-void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
+void ImageService::perform(const sensor_msgs::Image::ConstPtr& img, const sensor_msgs::Image::ConstPtr& depth)
 {
     unsigned long timeElapsed;
 
@@ -37,7 +39,8 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
         {
             m_changeColorTimer.stop();
         }
-        writeLinesToMessage(img, line->getLines(), 2); 
+        writeLinesToMessage(img, line->getLines(), 2);
+        getWayPoint(line, depth);
     }
     else
     {
@@ -62,61 +65,70 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
         }
     }
 
-//    Line * lines[2];
-//    Line l;
-//    for (int i = 0, j = 0; i < m_image->getHeight(); i++, j++)
-//    {
-//        l.points.push_back(Vector2<int>(i, j));
-//    }
-//
-//    Line lineReverse;
-//    for (int i = m_image->getHeight() - 1, j = 0; i >= 0; i--, j++)
-//    {
-//        lineReverse.points.push_back(Vector2<int>(i, j));
-//    }
-//
-//    lines[0] = &l;
-//    lines[1] = &lineReverse;
-//
-//    writeLinesToMessage(img, lines, 2);
-    
     writeImageToMessage(img);
 
-    m_shrinkTimer.stop();   
-    
+    m_shrinkTimer.stop();
+
     timeElapsed = m_shrinkTimer.getElapsedTimeInMicroSec();
     std::cout << "Elapsed " << timeElapsed << "ms " << m_shrinkTimer.getFPS() << " FPS" << std::endl;
+
     if (timeElapsed > 450000)
     {
         m_shrink++;
     }
     else if (timeElapsed < 150000)
     {
-        if (m_shrink < 5 && m_shrink > 1)
+        if (m_shrink > 1)
         {
             m_shrink--;
         }
-    }    
-    
+    }
+
     DetectionParams::recomputeMetrics(img->width, img->height, m_shrink);
 
     std::cout << "Params: len = " << DetectionParams::lineLengthTreshold << std::endl;
 }
 
+Vector2<float>* ImageService::getWayPoint(LinePair* line, const sensor_msgs::Image::ConstPtr& depth)
+{
+    Line* l1 = line->getFirst();
+    Line* l2 = line->getSecond();
+    
+    float distance;
+    unsigned int index;
+    unsigned int thirdLength = l1->points.size() < l2->points.size() ? l1->points.size() / 3: l2->points.size() / 3;
+
+    Vector2<int> midPoint = Vector2<int>::getPointBetween(l1->points[thirdLength], l2->points[thirdLength]);      
+    
+    std::cout << "MID point: " << midPoint << std::endl;
+    
+    index = midPoint.x * 4 * m_shrink + midPoint.y * depth->width * 4 * m_shrink;
+    BYTES_TO_FLOAT_L(distance, depth->data, index);
+    
+    std::cout << "distance = " << distance << std::endl;
+ 
+    counter++;
+    if(counter > 10) {
+        ros::shutdown();
+    }
+    
+    return NULL;
+}
+
 void ImageService::writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width)
 {
     if (img->width > 0 && img->height > 0)
-    {        
+    {
         unsigned char* temp;
         Line* oneLine = NULL;
-        unsigned long size = img->height * img->width * 3;       
-        
+        unsigned long size = img->height * img->width * 3;
+
         for (unsigned int i = 0; i < count; i++)
         {
             oneLine = line[i];
             for (unsigned int j = 0, index = 0; j < oneLine->points.size(); j++)
             {
-                index = size - (oneLine->points[j].y + 1) * img->width * 3 * m_shrink + (m_image->getWidth() - oneLine->points[j].x)  * m_shrink * 3;
+                index = size - (oneLine->points[j].y + 1) * img->width * 3 * m_shrink + (m_image->getWidth() - oneLine->points[j].x) * m_shrink * 3;
 
                 temp = (unsigned char*) &img->data[index];
                 *temp = (unsigned char) 0;
@@ -132,12 +144,7 @@ void ImageService::writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, 
 void ImageService::writeImageToMessage(const sensor_msgs::Image::ConstPtr& img)
 {
     if (img->width > 0 && img->height > 0)
-    {
-        //        short* widthPtr = (short*)img->width;
-        //        *widthPtr = m_width;
-        //        short* heightPtr = (short*)img->height;
-        //        *heightPtr = m_height;
-
+    {        
         Pixel<float>* pixel = NULL;
         unsigned char* temp;
         unsigned long size = img->height * img->width * 3;
@@ -154,7 +161,7 @@ void ImageService::writeImageToMessage(const sensor_msgs::Image::ConstPtr& img)
                 temp = (unsigned char*) &img->data[index];
                 *temp = (unsigned char) pixel->r;
             }
-            //index = (i + 1) * img->width * 3;                
+            
             index = size - (i + 1) * img->width * 3 + img->width * 3;
         }
     }

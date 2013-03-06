@@ -44,5 +44,5 @@ rosbuild_add_library(line src/Rectangle.cpp)
 rosbuild_add_library(line src/Line.cpp)
 rosbuild_add_library(line src/DetectionParams.cpp)
 rosbuild_add_library(line src/ImageService.cpp)
-rosbuild_add_executable(line src/LineDetector.cpp)
+rosbuild_add_executable(line src/LineDetectorTopic.cpp)
 

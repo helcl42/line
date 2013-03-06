@@ -79,7 +79,6 @@
       <df name="src">
         <in>AbstractStrategy.cpp</in>
         <in>AbstractStrategy.h</in>
-        <in>BestLine.h</in>
         <in>BmpFileIO.h</in>
         <in>BmpImage.h</in>
         <in>CannyStrategy.cpp</in>
@@ -95,8 +94,10 @@
         <in>KirshStrategy.h</in>
         <in>Line.cpp</in>
         <in>Line.h</in>
-        <in>LineDetector.cpp</in>
-        <in>LineDetector.h</in>
+        <in>LineDetectorTopic.cpp</in>
+        <in>LineDetectorTopic.h</in>
+        <in>LinePair.cpp</in>
+        <in>LinePair.h</in>
         <in>Main.cpp</in>
         <in>Pixel.h</in>
         <in>PixelLUV.h</in>
@@ -104,6 +105,8 @@
         <in>PixelXYZ.h</in>
         <in>PrewittStrategy.cpp</in>
         <in>PrewittStrategy.h</in>
+        <in>Rectangle.cpp</in>
+        <in>Rectangle.h</in>
         <in>RobertsStrategy.cpp</in>
         <in>RobertsStrategy.h</in>
         <in>SobelStrategy.cpp</in>

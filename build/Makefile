@@ -409,19 +409,19 @@ src/Line.s:
 .PHONY : src/Line.s
 
 # target to build an object file
-src/LineDetector.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.o
-.PHONY : src/LineDetector.o
+src/LineDetectorTopic.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetectorTopic.o
+.PHONY : src/LineDetectorTopic.o
 
 # target to preprocess a source file
-src/LineDetector.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.i
-.PHONY : src/LineDetector.i
+src/LineDetectorTopic.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetectorTopic.i
+.PHONY : src/LineDetectorTopic.i
 
 # target to generate assembly for a file
-src/LineDetector.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.s
-.PHONY : src/LineDetector.s
+src/LineDetectorTopic.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetectorTopic.s
+.PHONY : src/LineDetectorTopic.s
 
 # target to build an object file
 src/LinePair.o:
@@ -573,9 +573,9 @@ help:
 	@echo "... src/Line.o"
 	@echo "... src/Line.i"
 	@echo "... src/Line.s"
-	@echo "... src/LineDetector.o"
-	@echo "... src/LineDetector.i"
-	@echo "... src/LineDetector.s"
+	@echo "... src/LineDetectorTopic.o"
+	@echo "... src/LineDetectorTopic.i"
+	@echo "... src/LineDetectorTopic.s"
 	@echo "... src/LinePair.o"
 	@echo "... src/LinePair.i"
 	@echo "... src/LinePair.s"

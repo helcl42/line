@@ -41,6 +41,8 @@ public:
     BmpImage(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink = 1);
 
     virtual ~BmpImage();
+        
+    void setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink = 1);
 
     inline long getRowBytes() const;
 
@@ -53,8 +55,6 @@ public:
     void setHeight(unsigned int height);
 
     void setImageMatrix(Pixel<T>*** matrix);
-
-    void setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink = 1);
 
     Pixel<T>*** getImageMatrix() const;
 
@@ -72,7 +72,7 @@ public:
 
     inline void setPixelValue(unsigned int y, unsigned int x, T r, T g, T b);
 
-    inline void writeToMessage(const sensor_msgs::Image::ConstPtr& img);
+    //inline void writeToMessage(const sensor_msgs::Image::ConstPtr& img);
 
     friend std::ostream& operator<<<T>(std::ostream& out, const BmpImage<T>& img);
 };
@@ -100,33 +100,7 @@ BmpImage<T>::BmpImage(unsigned int w, unsigned int h, unsigned int shrink)
 template <class T>
 BmpImage<T>::BmpImage(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink)
 {
-    if (img->width > 0 && img->height > 0)
-    {
-        m_width = img->width / shrink;
-        m_height = img->height / shrink;
-
-        m_imageMatrix = new Pixel<T>** [m_height];
-        for (unsigned int i = 0; i < m_height; ++i)
-        {
-            m_imageMatrix[i] = new Pixel<T>* [m_width];
-        }
-
-        std::vector<unsigned char> data = img->data;
-
-        int index = 0;
-        Pixel<T>* pixel = NULL;
-        for (int i = m_height - 1; i >= 0; --i)
-        {
-            for (int j = m_width - 1; j >= 0; --j, index += 3)
-            {
-                pixel = new PixelRGB<T > ();
-                pixel->r = data[index];
-                pixel->g = data[index + 1];
-                pixel->b = data[index + 2];
-                m_imageMatrix[i][j] = pixel;
-            }
-        }
-    }
+    setInstance(img, shrink);
 }
 
 template <class T>
@@ -153,34 +127,29 @@ void BmpImage<T>::cleanUp()
     m_width = 0;
 }
 
-template <class T>
-void BmpImage<T>::writeToMessage(const sensor_msgs::Image::ConstPtr& img)
-{
-    if (img->width > 0 && img->height > 0)
-    {
-        //        short* widthPtr = (short*)img->width;
-        //        *widthPtr = m_width;
-        //        short* heightPtr = (short*)img->height;
-        //        *heightPtr = m_height;
-                
-        Pixel<T>* pixel = NULL;
-        unsigned char* temp;
-        for (int i = 0, index = 0; i < m_height; i++)
-        {            
-            for (int j = 0; j < m_width; j++, index += 3)
-            {
-                pixel = m_imageMatrix[i][j];
-                temp = (unsigned char*) &img->data[index];
-                *temp = (unsigned char) pixel->b;
-                temp = (unsigned char*) &img->data[index + 1];
-                *temp = (unsigned char) pixel->g;
-                temp = (unsigned char*) &img->data[index + 2];
-                *temp = (unsigned char) pixel->r;
-            }            
-            index = i * img->width * 3;
-        }
-    }
-}
+//template <class T>
+//void BmpImage<T>::writeToMessage(const sensor_msgs::Image::ConstPtr& img)
+//{
+//    if (img->width > 0 && img->height > 0)
+//    {        
+//        Pixel<T>* pixel = NULL;
+//        unsigned char* temp;
+//        for (int i = 0, index = 0; i < m_height; i++)
+//        {            
+//            for (int j = 0; j < m_width; j++, index += 3)
+//            {
+//                pixel = m_imageMatrix[i][j];
+//                temp = (unsigned char*) &img->data[index];
+//                *temp = (unsigned char) pixel->b;
+//                temp = (unsigned char*) &img->data[index + 1];
+//                *temp = (unsigned char) pixel->g;
+//                temp = (unsigned char*) &img->data[index + 2];
+//                *temp = (unsigned char) pixel->r;
+//            }            
+//            index = i * img->width * 3;
+//        }
+//    }
+//}
 
 template <class T>
 void BmpImage<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink)

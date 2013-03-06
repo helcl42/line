@@ -52,6 +52,7 @@ public:
     static Line* getMaxLengthLine(Line** lines);    
     
     static Line* getStraightesstLine(Line** lines);   
+            
     
 public: //should be private
     double computeStraightnessFactor();         
@@ -60,7 +61,7 @@ public: //should be private
     
     double computeDirection();
     
-    double computeLength();
+    double computeLength();        
 };
 
 

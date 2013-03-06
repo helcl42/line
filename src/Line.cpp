@@ -171,11 +171,11 @@ bool Line::isClose(Line* input)
 }
 
 bool Line::addPoint(Vector2<int> pt)
-{  
+{
     std::vector<Vector2<int> >::reverse_iterator ri;
-    for(ri = points.rbegin(); ri != points.rend(); ++ri)
+    for (ri = points.rbegin(); ri != points.rend(); ++ri)
     {
-        if(pt == (*ri))
+        if (pt == (*ri))
         {
             return false;
         }

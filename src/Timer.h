@@ -38,9 +38,14 @@ public:
     
     ~Timer() {}
 
+public:
     void start();
     
     void stop();
+    
+    bool isElapsedMs(unsigned int ms);
+    
+    bool isElapsedS(unsigned int s);
     
     double getFPS();
     

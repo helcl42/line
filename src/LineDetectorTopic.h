@@ -24,27 +24,35 @@
 #include "CannyStrategy.h"
 #include "ImageService.h"
 
-class LineDetector
+class LineDetectorTopic
 {
 private:
-    ros::NodeHandle m_handler;
+    const sensor_msgs::Image::ConstPtr* m_depthMsg;
     
-    ros::NodeHandle m_sendHandler;
+    ros::NodeHandle m_handler;        
+    
+    ros::NodeHandle m_handlerDepth;
     
     ros::Subscriber m_sub;
     
-    ros::Publisher m_resender;
+    ros::Subscriber m_subDepth;         
     
-    ImageService* m_imageService;       
+    ros::NodeHandle m_sendHandler;        
+    
+    ros::Publisher m_resender;    
+    
+    ImageService* m_imageService;               
             
 public:
-    LineDetector(DetectionSettings* settings);
+    LineDetectorTopic(DetectionSettings* settings);
     
-    ~LineDetector();
+    ~LineDetectorTopic();
     
     void run();
 
     void imageCallback(const sensor_msgs::Image::ConstPtr& msg_ptr);       
+    
+    void depthImageCallback(const sensor_msgs::Image::ConstPtr& msg);
 };
 
 

@@ -14,6 +14,22 @@
 #define SAFE_DELETE( p ) { if( p ) { delete ( p ); ( p ) = NULL; } }
 #define SAFE_DELETE_ARRAY( p ) { if( p ) { delete[] ( p ); ( p ) = NULL; } }
 
+#define BYTES_TO_FLOAT_L(var, buffer, index)\
+        {\
+        *((unsigned char *)&var) = buffer[index];\
+        *((unsigned char *)&var + 1) = buffer[index + 1];\
+        *((unsigned char *)&var + 2) = buffer[index + 2];\
+        *((unsigned char *)&var + 3) = buffer[index + 3];\
+        }
+
+#define BYTES_TO_FLOAT_B(var, buffer, index)\
+        {\
+        *((unsigned char *)&var + 3) = buffer[index];\
+        *((unsigned char *)&var + 2) = buffer[index + 1];\
+        *((unsigned char *)&var + 1) = buffer[index + 2];\
+        *((unsigned char *)&var) = buffer[index + 3];\
+        }
+
 class Utils
 {
 public:
@@ -64,10 +80,6 @@ public:
                         break;                   
                 }
             }
-//            else
-//            {                 
-//                throw std::runtime_error("Utils:convertFromStringToHex:Invalid hex format.");
-//            }
         }
         return value;
     }

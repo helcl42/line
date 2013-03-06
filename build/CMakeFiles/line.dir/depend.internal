@@ -314,7 +314,7 @@ CMakeFiles/line.dir/src/Line.o
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
-CMakeFiles/line.dir/src/LineDetector.o
+CMakeFiles/line.dir/src/LineDetectorTopic.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpFileIO.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
@@ -325,8 +325,8 @@ CMakeFiles/line.dir/src/LineDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
  /home/lubos/fuerte_workspace/sandbox/line/src/KirshStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
- /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp
- /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/LineDetectorTopic.cpp
+ /home/lubos/fuerte_workspace/sandbox/line/src/LineDetectorTopic.h
  /home/lubos/fuerte_workspace/sandbox/line/src/LinePair.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
@@ -412,7 +412,7 @@ CMakeFiles/line.dir/src/Main.o
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
  /home/lubos/fuerte_workspace/sandbox/line/src/KirshStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
- /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/LineDetectorTopic.h
  /home/lubos/fuerte_workspace/sandbox/line/src/LinePair.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Main.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h

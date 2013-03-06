@@ -42,11 +42,14 @@ public:
     
     //void setInstance(const sensor_msgs::Image::ConstPtr& img);
     
-    void perform(const sensor_msgs::Image::ConstPtr& img);
+    void perform(const sensor_msgs::Image::ConstPtr& img, const sensor_msgs::Image::ConstPtr& depth);
     
     void writeImageToMessage(const sensor_msgs::Image::ConstPtr& img);
     
     void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width = 1);        
+    
+private:
+    Vector2<float>* getWayPoint(LinePair* line, const sensor_msgs::Image::ConstPtr& depth);
 };
 
 #endif	/* IMAGEMESSAGESERVICE_H */

@@ -35,6 +35,34 @@ bool Timer::isStarted() const
     return !m_stopped;
 }
 
+bool Timer::isElapsedMs(unsigned int ms)
+{
+    if(m_stopped)
+    {
+        return false; //not stared yet
+    }
+    
+    if(((m_endTimeInMicroSec - m_startTimeInMicroSec) * 0.001) > ms)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool Timer::isElapsedS(unsigned int s)
+{
+    if(m_stopped)
+    {
+        return false;
+    }
+    
+    if(((m_endTimeInMicroSec - m_startTimeInMicroSec) * 0.0000001) > s)
+    {
+        return true;
+    }
+    return false;
+}
+
 double Timer::getFPS()
 {
     return 1 / getElapsedTimeInSec();

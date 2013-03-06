@@ -54,6 +54,8 @@ public:
     
     static double toDegrees(double val);    
     
+    static Vector2<Type> getPointBetween(Vector2<Type> p1, Vector2<Type> p2);
+    
     Vector2* set(Type x, Type y);    
 
     Vector2* set(Vector2* other);    
@@ -197,6 +199,23 @@ template<class Type>
 double Vector2<Type>::toDegrees(double val)
 {
     return val * (1 / M_PI) * 180;
+}
+
+template<class Type>
+Vector2<Type> Vector2<Type>::getPointBetween(Vector2<Type> p1, Vector2<Type> p2)
+{
+    double halfDist;
+    double angle;   
+
+    halfDist = p2.distance(p1) / 2;
+
+    p2 -= p1;
+    angle = p2.angleRadians();
+
+    Vector2<int> p(halfDist * cos(angle), halfDist * sin(angle));
+    p += p1;
+    
+    return p;
 }
 
 template<class Type>

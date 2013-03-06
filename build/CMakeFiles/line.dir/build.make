@@ -438,33 +438,33 @@ CMakeFiles/line.dir/src/ImageService.o.provides: CMakeFiles/line.dir/src/ImageSe
 
 CMakeFiles/line.dir/src/ImageService.o.provides.build: CMakeFiles/line.dir/src/ImageService.o
 
-CMakeFiles/line.dir/src/LineDetector.o: CMakeFiles/line.dir/flags.make
-CMakeFiles/line.dir/src/LineDetector.o: ../src/LineDetector.cpp
-CMakeFiles/line.dir/src/LineDetector.o: ../manifest.xml
-CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/share/std_msgs/manifest.xml
-CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/share/roslang/manifest.xml
-CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/share/rospy/manifest.xml
-CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/share/roscpp/manifest.xml
+CMakeFiles/line.dir/src/LineDetectorTopic.o: CMakeFiles/line.dir/flags.make
+CMakeFiles/line.dir/src/LineDetectorTopic.o: ../src/LineDetectorTopic.cpp
+CMakeFiles/line.dir/src/LineDetectorTopic.o: ../manifest.xml
+CMakeFiles/line.dir/src/LineDetectorTopic.o: /opt/ros/fuerte/share/std_msgs/manifest.xml
+CMakeFiles/line.dir/src/LineDetectorTopic.o: /opt/ros/fuerte/share/roslang/manifest.xml
+CMakeFiles/line.dir/src/LineDetectorTopic.o: /opt/ros/fuerte/share/rospy/manifest.xml
+CMakeFiles/line.dir/src/LineDetectorTopic.o: /opt/ros/fuerte/share/roscpp/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles $(CMAKE_PROGRESS_15)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/LineDetector.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/LineDetector.o -c /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/LineDetectorTopic.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/LineDetectorTopic.o -c /home/lubos/fuerte_workspace/sandbox/line/src/LineDetectorTopic.cpp
 
-CMakeFiles/line.dir/src/LineDetector.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/LineDetector.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp > CMakeFiles/line.dir/src/LineDetector.i
+CMakeFiles/line.dir/src/LineDetectorTopic.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/LineDetectorTopic.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/LineDetectorTopic.cpp > CMakeFiles/line.dir/src/LineDetectorTopic.i
 
-CMakeFiles/line.dir/src/LineDetector.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/LineDetector.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp -o CMakeFiles/line.dir/src/LineDetector.s
+CMakeFiles/line.dir/src/LineDetectorTopic.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/LineDetectorTopic.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/LineDetectorTopic.cpp -o CMakeFiles/line.dir/src/LineDetectorTopic.s
 
-CMakeFiles/line.dir/src/LineDetector.o.requires:
-.PHONY : CMakeFiles/line.dir/src/LineDetector.o.requires
+CMakeFiles/line.dir/src/LineDetectorTopic.o.requires:
+.PHONY : CMakeFiles/line.dir/src/LineDetectorTopic.o.requires
 
-CMakeFiles/line.dir/src/LineDetector.o.provides: CMakeFiles/line.dir/src/LineDetector.o.requires
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.o.provides.build
-.PHONY : CMakeFiles/line.dir/src/LineDetector.o.provides
+CMakeFiles/line.dir/src/LineDetectorTopic.o.provides: CMakeFiles/line.dir/src/LineDetectorTopic.o.requires
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetectorTopic.o.provides.build
+.PHONY : CMakeFiles/line.dir/src/LineDetectorTopic.o.provides
 
-CMakeFiles/line.dir/src/LineDetector.o.provides.build: CMakeFiles/line.dir/src/LineDetector.o
+CMakeFiles/line.dir/src/LineDetectorTopic.o.provides.build: CMakeFiles/line.dir/src/LineDetectorTopic.o
 
 # Object files for target line
 line_OBJECTS = \
@@ -482,7 +482,7 @@ line_OBJECTS = \
 "CMakeFiles/line.dir/src/Line.o" \
 "CMakeFiles/line.dir/src/DetectionParams.o" \
 "CMakeFiles/line.dir/src/ImageService.o" \
-"CMakeFiles/line.dir/src/LineDetector.o"
+"CMakeFiles/line.dir/src/LineDetectorTopic.o"
 
 # External object files for target line
 line_EXTERNAL_OBJECTS =
@@ -501,7 +501,7 @@ line_EXTERNAL_OBJECTS =
 ../bin/line: CMakeFiles/line.dir/src/Line.o
 ../bin/line: CMakeFiles/line.dir/src/DetectionParams.o
 ../bin/line: CMakeFiles/line.dir/src/ImageService.o
-../bin/line: CMakeFiles/line.dir/src/LineDetector.o
+../bin/line: CMakeFiles/line.dir/src/LineDetectorTopic.o
 ../bin/line: CMakeFiles/line.dir/build.make
 ../bin/line: CMakeFiles/line.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable ../bin/line"
@@ -525,7 +525,7 @@ CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/Rectangle.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/Line.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/DetectionParams.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/ImageService.o.requires
-CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/LineDetector.o.requires
+CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/LineDetectorTopic.o.requires
 .PHONY : CMakeFiles/line.dir/requires
 
 CMakeFiles/line.dir/clean:

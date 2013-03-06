@@ -549,43 +549,17 @@ void AbstractStrategy::lockAllLines(bool val)
     }
 }
 
-//void AbstractStrategy::lockedCount()
-//{
-//    unsigned int count = m_lines.size();
-//    unsigned int lockedCount = 0;
-//    for (unsigned int i = 0; i < count; i++)
-//    {
-//        if (m_lines[i]->locked)
-//        {
-//            lockedCount++;
-//        }
-//    }
-//
-//    std::cout << "locked/count " << tmp << "/" << count << std::endl;
-//}
-
 bool AbstractStrategy::lineColorMatch(Line* l1, Line* l2)
 {
-    double halfDist;
-    float angle;
     Pixel<float>* pixel = NULL;
     unsigned int failCount = 0;
     unsigned int len = l1->points.size() < l2->points.size() ? l1->points.size() : l2->points.size();
 
     for (int i = 0; i < len; i += 20)
     {
-        Vector2<int> newVector(l2->points[i]);
-
-        halfDist = newVector.distance(l1->points[i]) / 2;
-
-        newVector -= l1->points[i]; //myVector -= l1.points.front();
-
-        angle = newVector.angleRadians();
-
-        Vector2<int> p(halfDist * cos(angle), halfDist * sin(angle));
-        p += l1->points[i];
-
-        pixel = m_colorImage->getPixel(p.y, p.x);
+        Vector2<int> ret = Vector2<int>::getPointBetween(l1->points[i], l2->points[i]);
+     
+        pixel = m_colorImage->getPixel(ret.y, ret.x);
 
         if (!pixel->hasSimilarColor(&m_settings->color, DetectionParams::colorTolerance))
         {
