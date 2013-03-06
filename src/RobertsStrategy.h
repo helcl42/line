@@ -16,7 +16,7 @@ public:
     RobertsStrategy(DetectionLineItem* settings = NULL) 
         : AbstractStrategy(settings) {}
     
-    RobertsStrategy(BmpImage<float>* image, DetectionLineItem* settings = NULL) 
+    RobertsStrategy(Image<float>* image, DetectionLineItem* settings = NULL) 
         : AbstractStrategy(image, settings) {}
                                
     virtual ~RobertsStrategy() {}        

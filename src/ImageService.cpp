@@ -7,8 +7,8 @@ int counter = 0;
 ImageService::ImageService(DetectionSettings* settings)
 : m_shrink(1), m_settings(settings), m_settingsIndex(0)
 {
-    m_image = new BmpImage<float>();
-    m_colorImage = new BmpImage<float>();
+    m_image = new Image<float>();
+    m_colorImage = new Image<float>();
     m_strategy = new SobelStrategy(settings->getItem(0));
 }
 

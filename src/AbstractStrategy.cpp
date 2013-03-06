@@ -10,7 +10,7 @@ AbstractStrategy::AbstractStrategy(DetectionLineItem* settings)
     m_rectangle = new Rectangle();
 }
 
-AbstractStrategy::AbstractStrategy(BmpImage<float>* image, DetectionLineItem* settings)
+AbstractStrategy::AbstractStrategy(Image<float>* image, DetectionLineItem* settings)
 : m_workImage(image), m_settings(settings)
 {
     setBaseColor();
@@ -35,7 +35,7 @@ void AbstractStrategy::setSettings(DetectionLineItem* settings)
     setBaseColor();
 }
 
-void AbstractStrategy::setImages(BmpImage<float>* image, BmpImage<float>* colorImage)
+void AbstractStrategy::setImages(Image<float>* image, Image<float>* colorImage)
 {
     cleanUp();
     m_workImage = image;

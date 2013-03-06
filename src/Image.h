@@ -17,11 +17,11 @@
 #include "PixelLUV.h"
 #include "PixelXYZ.h"
 
-template <class T> class BmpImage;
-template <class T> std::ostream& operator<<(std::ostream& out, const BmpImage<T>& img);
+template <class T> class Image;
+template <class T> std::ostream& operator<<(std::ostream& out, const Image<T>& img);
 
 template <class T>
-class BmpImage
+class Image
 {
 private:
     Pixel<T>*** m_imageMatrix;
@@ -34,13 +34,13 @@ private:
 
 public:
 
-    BmpImage();
+    Image();
 
-    BmpImage(unsigned int w, unsigned int h, unsigned int shrink = 1);
+    Image(unsigned int w, unsigned int h, unsigned int shrink = 1);
 
-    BmpImage(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink = 1);
+    Image(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink = 1);
 
-    virtual ~BmpImage();
+    virtual ~Image();
         
     void setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink = 1);
 
@@ -74,17 +74,17 @@ public:
 
     //inline void writeToMessage(const sensor_msgs::Image::ConstPtr& img);
 
-    friend std::ostream& operator<<<T>(std::ostream& out, const BmpImage<T>& img);
+    friend std::ostream& operator<<<T>(std::ostream& out, const Image<T>& img);
 };
 
 template <class T>
-BmpImage<T>::BmpImage()
+Image<T>::Image()
 : m_imageMatrix(NULL), m_width(0), m_height(0), m_shrinkRatio(1)
 {
 }
 
 template <class T>
-BmpImage<T>::BmpImage(unsigned int w, unsigned int h, unsigned int shrink)
+Image<T>::Image(unsigned int w, unsigned int h, unsigned int shrink)
 : m_shrinkRatio(shrink)
 {
     m_width = w / shrink;
@@ -98,19 +98,19 @@ BmpImage<T>::BmpImage(unsigned int w, unsigned int h, unsigned int shrink)
 }
 
 template <class T>
-BmpImage<T>::BmpImage(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink)
+Image<T>::Image(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink)
 {
     setInstance(img, shrink);
 }
 
 template <class T>
-BmpImage<T>::~BmpImage()
+Image<T>::~Image()
 {
     cleanUp();    
 }
 
 template <class T>
-void BmpImage<T>::cleanUp()
+void Image<T>::cleanUp()
 {
     for (unsigned int i = 0; i < m_height; i++)
     {
@@ -152,7 +152,7 @@ void BmpImage<T>::cleanUp()
 //}
 
 template <class T>
-void BmpImage<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink)
+void Image<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink)
 {
     unsigned int corrector = 0;
     if (img->width > 0 && img->height > 0)
@@ -200,49 +200,49 @@ void BmpImage<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned 
 }
 
 template <class T>
-long BmpImage<T>::getRowBytes() const
+long Image<T>::getRowBytes() const
 {
     return ((3 * m_width + 3) >> 2) << 2;
 }
 
 template <class T>
-unsigned int BmpImage<T>::getWidth() const
+unsigned int Image<T>::getWidth() const
 {
     return m_width;
 }
 
 template <class T>
-void BmpImage<T>::setWidth(unsigned int width)
+void Image<T>::setWidth(unsigned int width)
 {
     m_width = width;
 }
 
 template <class T>
-unsigned int BmpImage<T>::getHeight() const
+unsigned int Image<T>::getHeight() const
 {
     return m_height;
 }
 
 template <class T>
-void BmpImage<T>::setHeight(unsigned int height)
+void Image<T>::setHeight(unsigned int height)
 {
     m_height = height;
 }
 
 template <class T>
-void BmpImage<T>::setImageMatrix(Pixel<T>*** matrix)
+void Image<T>::setImageMatrix(Pixel<T>*** matrix)
 {
     m_imageMatrix = matrix;
 }
 
 template <class T>
-Pixel<T>*** BmpImage<T>::getImageMatrix() const
+Pixel<T>*** Image<T>::getImageMatrix() const
 {
     return m_imageMatrix;
 }
 
 template <class T>
-void BmpImage<T>::shrinkImage(unsigned int times)
+void Image<T>::shrinkImage(unsigned int times)
 {
     unsigned int width = m_width / times;
     unsigned int height = m_height / times;
@@ -270,7 +270,7 @@ void BmpImage<T>::shrinkImage(unsigned int times)
 }
 
 template <class T>
-Pixel<T>* BmpImage<T>::getPixel(unsigned int y, unsigned int x) const
+Pixel<T>* Image<T>::getPixel(unsigned int y, unsigned int x) const
 {
     Pixel<T>* ret = NULL;
     if (x < m_width && x >= 0 && y < m_height && y >= 0)
@@ -285,7 +285,7 @@ Pixel<T>* BmpImage<T>::getPixel(unsigned int y, unsigned int x) const
 }
 
 template <class T>
-T BmpImage<T>::getPixelChannelValue(unsigned int y, unsigned int x, unsigned int channel) const
+T Image<T>::getPixelChannelValue(unsigned int y, unsigned int x, unsigned int channel) const
 {
     if (x < m_width && x >= 0 && y < m_height && y >= 0)
     {
@@ -310,7 +310,7 @@ T BmpImage<T>::getPixelChannelValue(unsigned int y, unsigned int x, unsigned int
 }
 
 template <class T>
-void BmpImage<T>::setPixelValue(unsigned int y, unsigned int x, Pixel<T>* pixel)
+void Image<T>::setPixelValue(unsigned int y, unsigned int x, Pixel<T>* pixel)
 {
     if (y < m_height && y >= 0 && x < m_width && x >= 0)
     {
@@ -326,7 +326,7 @@ void BmpImage<T>::setPixelValue(unsigned int y, unsigned int x, Pixel<T>* pixel)
 }
 
 template <class T>
-void BmpImage<T>::setPixelValue(unsigned int y, unsigned int x, T r, T g, T b)
+void Image<T>::setPixelValue(unsigned int y, unsigned int x, T r, T g, T b)
 {
     if (y < m_height && y >= 0 && x < m_width && x >= 0)
     {
@@ -342,7 +342,7 @@ void BmpImage<T>::setPixelValue(unsigned int y, unsigned int x, T r, T g, T b)
 }
 
 template <class T>
-void BmpImage<T>::setPixel(unsigned int y, unsigned int x, Pixel<T>* pixel)
+void Image<T>::setPixel(unsigned int y, unsigned int x, Pixel<T>* pixel)
 {
     if (y < m_height && y >= 0 && x < m_width && x >= 0)
     {
@@ -355,7 +355,7 @@ void BmpImage<T>::setPixel(unsigned int y, unsigned int x, Pixel<T>* pixel)
 }
 
 template <class T>
-std::ostream& operator<<(std::ostream& out, const BmpImage<T>& img)
+std::ostream& operator<<(std::ostream& out, const Image<T>& img)
 {
     out << img.m_width << " x " << img.m_height << std::endl;
     for (unsigned int i = 0; i < img.m_height; i++)

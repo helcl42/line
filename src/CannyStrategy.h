@@ -18,7 +18,7 @@ public:
     CannyStrategy(DetectionLineItem* settings = NULL) 
         : AbstractStrategy(settings) {}
     
-    CannyStrategy(BmpImage<float>* image, DetectionLineItem* settings = NULL) 
+    CannyStrategy(Image<float>* image, DetectionLineItem* settings = NULL) 
         : AbstractStrategy(image, settings) {}
         
     virtual ~CannyStrategy() {}        

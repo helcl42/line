@@ -11,7 +11,7 @@
 #include <cstdio>
 #include <stdexcept>
 
-#include "BmpImage.h"
+#include "Image.h"
 
 template <class T>
 class BmpFileIO
@@ -45,9 +45,9 @@ public:
 
     static BmpFileIO* getInstance();
     
-    BmpImage<T>* loadFile(const char* filename);    
+    Image<T>* loadFile(const char* filename);    
 
-    void writeFile(const char* filename, BmpImage<T>* image);    
+    void writeFile(const char* filename, Image<T>* image);    
 };
 
 template <class T>
@@ -150,7 +150,7 @@ void BmpFileIO<T>::skipBytes(int numChars)
 }
 
 template <class T>
-BmpImage<T>* BmpFileIO<T>::loadFile(const char* filename)
+Image<T>* BmpFileIO<T>::loadFile(const char* filename)
 {
     m_file = fopen(filename, "rb");
     if (!m_file)
@@ -190,7 +190,7 @@ BmpImage<T>* BmpFileIO<T>::loadFile(const char* filename)
         throw std::runtime_error("Not a valid 24-bit bitmap file: ...");
     }
 
-    BmpImage<T>* image = new BmpImage<T > (width, height);
+    Image<T>* image = new Image<T > (width, height);
 
     Pixel<T>* pixel = NULL;
     for (unsigned int i = 0; i < height; i++)
@@ -217,7 +217,7 @@ BmpImage<T>* BmpFileIO<T>::loadFile(const char* filename)
 }
 
 template <class T>
-void BmpFileIO<T>::writeFile(const char* filename, BmpImage<T>* image)
+void BmpFileIO<T>::writeFile(const char* filename, Image<T>* image)
 {
     m_file = fopen(filename, "wb");
     if (!m_file)

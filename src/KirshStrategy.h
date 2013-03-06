@@ -16,7 +16,7 @@ public:
     KirshStrategy(DetectionLineItem* settings = NULL) 
         : AbstractStrategy(settings) {}
     
-    KirshStrategy(BmpImage<float>* image, DetectionLineItem* settings = NULL) 
+    KirshStrategy(Image<float>* image, DetectionLineItem* settings = NULL) 
         : AbstractStrategy(image, settings) {}
                                
     LinePair* detectLine();

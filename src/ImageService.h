@@ -11,7 +11,7 @@
 #include <sensor_msgs/Image.h>
 
 #include "Line.h"
-#include "BmpImage.h"
+#include "Image.h"
 #include "Timer.h"
 #include "DetectionSettings.h"
 #include "SobelStrategy.h"
@@ -25,9 +25,9 @@ private:
     
     Timer m_changeColorTimer;
     
-    BmpImage<float>* m_image;
+    Image<float>* m_image;
     
-    BmpImage<float>* m_colorImage;
+    Image<float>* m_colorImage;
     
     DetectionSettings* m_settings;    
     

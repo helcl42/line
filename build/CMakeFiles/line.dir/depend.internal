@@ -4,10 +4,11 @@
 CMakeFiles/line.dir/src/AbstractStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
- /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
  /home/lubos/fuerte_workspace/sandbox/line/src/LinePair.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
@@ -77,12 +78,13 @@ CMakeFiles/line.dir/src/AbstractStrategy.o
 CMakeFiles/line.dir/src/CannyStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpFileIO.h
- /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/CannyStrategy.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/CannyStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
  /home/lubos/fuerte_workspace/sandbox/line/src/LinePair.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
@@ -163,10 +165,11 @@ CMakeFiles/line.dir/src/DetectionSettings.o
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
 CMakeFiles/line.dir/src/ImageService.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
- /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
@@ -238,10 +241,11 @@ CMakeFiles/line.dir/src/ImageService.o
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/KirshStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
- /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
  /home/lubos/fuerte_workspace/sandbox/line/src/KirshStrategy.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/KirshStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
@@ -317,11 +321,12 @@ CMakeFiles/line.dir/src/Line.o
 CMakeFiles/line.dir/src/LineDetectorTopic.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpFileIO.h
- /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/CannyStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
  /home/lubos/fuerte_workspace/sandbox/line/src/KirshStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
@@ -404,11 +409,12 @@ CMakeFiles/line.dir/src/LinePair.o
 CMakeFiles/line.dir/src/Main.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/BmpFileIO.h
- /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/CannyStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
  /home/lubos/fuerte_workspace/sandbox/line/src/KirshStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
@@ -484,10 +490,11 @@ CMakeFiles/line.dir/src/Main.o
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/PrewittStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
- /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
  /home/lubos/fuerte_workspace/sandbox/line/src/LinePair.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
@@ -560,10 +567,11 @@ CMakeFiles/line.dir/src/Rectangle.o
  /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
 CMakeFiles/line.dir/src/RobertsStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
- /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
  /home/lubos/fuerte_workspace/sandbox/line/src/LinePair.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
@@ -633,10 +641,11 @@ CMakeFiles/line.dir/src/RobertsStrategy.o
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/SobelStrategy.o
  /home/lubos/fuerte_workspace/sandbox/line/src/AbstractStrategy.h
- /home/lubos/fuerte_workspace/sandbox/line/src/BmpImage.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
  /home/lubos/fuerte_workspace/sandbox/line/src/LinePair.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h

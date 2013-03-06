@@ -16,7 +16,7 @@ public:
     PrewittStrategy(DetectionLineItem* settings = NULL) 
         : AbstractStrategy(settings) {}
     
-    PrewittStrategy(BmpImage<float>* image, DetectionLineItem* settings = NULL) 
+    PrewittStrategy(Image<float>* image, DetectionLineItem* settings = NULL) 
         : AbstractStrategy(image, settings) {}
                            
     virtual ~PrewittStrategy() {}        

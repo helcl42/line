@@ -11,18 +11,19 @@
 #include <vector>
 
 #include "Line.h"
-#include "BmpImage.h"
+#include "Image.h"
 #include "DetectionSettings.h"
 #include "DetectionParams.h"
 #include "LinePair.h"
 #include "Rectangle.h"
+#include "ImageFilter.h"
 
 class AbstractStrategy 
 {
 protected:
-    BmpImage<float>* m_workImage;
+    Image<float>* m_workImage;
     
-    BmpImage<float>* m_colorImage;
+    Image<float>* m_colorImage;
     
     DetectionLineItem* m_settings;
     
@@ -37,7 +38,7 @@ protected:
 public:
     AbstractStrategy(DetectionLineItem* settings);         
     
-    AbstractStrategy(BmpImage<float>* image, DetectionLineItem* settings);         
+    AbstractStrategy(Image<float>* image, DetectionLineItem* settings);         
         
     virtual ~AbstractStrategy();          
     
@@ -57,7 +58,7 @@ public:
      
      Rectangle* findBestRectangle();
      
-     void setImages(BmpImage<float>* image, BmpImage<float>* colorImage);          
+     void setImages(Image<float>* image, Image<float>* colorImage);          
      
      void setSettings(DetectionLineItem* settings);
      

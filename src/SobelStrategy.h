@@ -17,7 +17,7 @@ public:
     SobelStrategy(DetectionLineItem* settings = NULL) 
         : AbstractStrategy(settings) {}
     
-    SobelStrategy(BmpImage<float>* image, DetectionLineItem* settings = NULL) 
+    SobelStrategy(Image<float>* image, DetectionLineItem* settings = NULL) 
         : AbstractStrategy(image, settings) {}
         
     virtual ~SobelStrategy() {}

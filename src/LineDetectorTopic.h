@@ -16,7 +16,7 @@
 #include "Utils.h"
 #include "Timer.h"
 #include "DetectionSettings.h"
-#include "BmpImage.h"
+#include "Image.h"
 #include "SobelStrategy.h"
 #include "RobertsStrategy.h"
 #include "PrewittStrategy.h"
