@@ -6,7 +6,6 @@
  * LineDetection Params
  */
 
-
 const unsigned int DetectionParams::colorTolerance = 50;
 
 const unsigned int DetectionParams::colorTreshold = 85;

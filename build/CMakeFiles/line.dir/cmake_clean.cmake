@@ -1,10 +1,4 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/line.dir/src/AbstractStrategy.o"
-  "CMakeFiles/line.dir/src/SobelStrategy.o"
-  "CMakeFiles/line.dir/src/RobertsStrategy.o"
-  "CMakeFiles/line.dir/src/PrewittStrategy.o"
-  "CMakeFiles/line.dir/src/CannyStrategy.o"
-  "CMakeFiles/line.dir/src/KirshStrategy.o"
   "CMakeFiles/line.dir/src/Main.o"
   "CMakeFiles/line.dir/src/DetectionSettings.o"
   "CMakeFiles/line.dir/src/Timer.o"
@@ -13,7 +7,11 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/line.dir/src/Line.o"
   "CMakeFiles/line.dir/src/DetectionParams.o"
   "CMakeFiles/line.dir/src/ImageService.o"
-  "CMakeFiles/line.dir/src/LineDetectorTopic.o"
+  "CMakeFiles/line.dir/src/ObjectDetector.o"
+  "CMakeFiles/line.dir/src/LineDetector.o"
+  "CMakeFiles/line.dir/src/StraightObjectDetector.o"
+  "CMakeFiles/line.dir/src/RectangleDetector.o"
+  "CMakeFiles/line.dir/src/DetectorTopic.o"
   "../bin/line.pdb"
   "../bin/line"
 )

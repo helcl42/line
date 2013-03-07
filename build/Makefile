@@ -304,36 +304,6 @@ tests/fast:
 .PHONY : tests/fast
 
 # target to build an object file
-src/AbstractStrategy.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/AbstractStrategy.o
-.PHONY : src/AbstractStrategy.o
-
-# target to preprocess a source file
-src/AbstractStrategy.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/AbstractStrategy.i
-.PHONY : src/AbstractStrategy.i
-
-# target to generate assembly for a file
-src/AbstractStrategy.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/AbstractStrategy.s
-.PHONY : src/AbstractStrategy.s
-
-# target to build an object file
-src/CannyStrategy.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CannyStrategy.o
-.PHONY : src/CannyStrategy.o
-
-# target to preprocess a source file
-src/CannyStrategy.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CannyStrategy.i
-.PHONY : src/CannyStrategy.i
-
-# target to generate assembly for a file
-src/CannyStrategy.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CannyStrategy.s
-.PHONY : src/CannyStrategy.s
-
-# target to build an object file
 src/DetectionParams.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectionParams.o
 .PHONY : src/DetectionParams.o
@@ -364,6 +334,21 @@ src/DetectionSettings.s:
 .PHONY : src/DetectionSettings.s
 
 # target to build an object file
+src/DetectorTopic.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectorTopic.o
+.PHONY : src/DetectorTopic.o
+
+# target to preprocess a source file
+src/DetectorTopic.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectorTopic.i
+.PHONY : src/DetectorTopic.i
+
+# target to generate assembly for a file
+src/DetectorTopic.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectorTopic.s
+.PHONY : src/DetectorTopic.s
+
+# target to build an object file
 src/ImageService.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/ImageService.o
 .PHONY : src/ImageService.o
@@ -377,21 +362,6 @@ src/ImageService.i:
 src/ImageService.s:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/ImageService.s
 .PHONY : src/ImageService.s
-
-# target to build an object file
-src/KirshStrategy.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/KirshStrategy.o
-.PHONY : src/KirshStrategy.o
-
-# target to preprocess a source file
-src/KirshStrategy.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/KirshStrategy.i
-.PHONY : src/KirshStrategy.i
-
-# target to generate assembly for a file
-src/KirshStrategy.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/KirshStrategy.s
-.PHONY : src/KirshStrategy.s
 
 # target to build an object file
 src/Line.o:
@@ -409,19 +379,19 @@ src/Line.s:
 .PHONY : src/Line.s
 
 # target to build an object file
-src/LineDetectorTopic.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetectorTopic.o
-.PHONY : src/LineDetectorTopic.o
+src/LineDetector.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.o
+.PHONY : src/LineDetector.o
 
 # target to preprocess a source file
-src/LineDetectorTopic.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetectorTopic.i
-.PHONY : src/LineDetectorTopic.i
+src/LineDetector.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.i
+.PHONY : src/LineDetector.i
 
 # target to generate assembly for a file
-src/LineDetectorTopic.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetectorTopic.s
-.PHONY : src/LineDetectorTopic.s
+src/LineDetector.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.s
+.PHONY : src/LineDetector.s
 
 # target to build an object file
 src/LinePair.o:
@@ -454,19 +424,19 @@ src/Main.s:
 .PHONY : src/Main.s
 
 # target to build an object file
-src/PrewittStrategy.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/PrewittStrategy.o
-.PHONY : src/PrewittStrategy.o
+src/ObjectDetector.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/ObjectDetector.o
+.PHONY : src/ObjectDetector.o
 
 # target to preprocess a source file
-src/PrewittStrategy.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/PrewittStrategy.i
-.PHONY : src/PrewittStrategy.i
+src/ObjectDetector.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/ObjectDetector.i
+.PHONY : src/ObjectDetector.i
 
 # target to generate assembly for a file
-src/PrewittStrategy.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/PrewittStrategy.s
-.PHONY : src/PrewittStrategy.s
+src/ObjectDetector.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/ObjectDetector.s
+.PHONY : src/ObjectDetector.s
 
 # target to build an object file
 src/Rectangle.o:
@@ -484,34 +454,34 @@ src/Rectangle.s:
 .PHONY : src/Rectangle.s
 
 # target to build an object file
-src/RobertsStrategy.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RobertsStrategy.o
-.PHONY : src/RobertsStrategy.o
+src/RectangleDetector.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RectangleDetector.o
+.PHONY : src/RectangleDetector.o
 
 # target to preprocess a source file
-src/RobertsStrategy.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RobertsStrategy.i
-.PHONY : src/RobertsStrategy.i
+src/RectangleDetector.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RectangleDetector.i
+.PHONY : src/RectangleDetector.i
 
 # target to generate assembly for a file
-src/RobertsStrategy.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RobertsStrategy.s
-.PHONY : src/RobertsStrategy.s
+src/RectangleDetector.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RectangleDetector.s
+.PHONY : src/RectangleDetector.s
 
 # target to build an object file
-src/SobelStrategy.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SobelStrategy.o
-.PHONY : src/SobelStrategy.o
+src/StraightObjectDetector.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/StraightObjectDetector.o
+.PHONY : src/StraightObjectDetector.o
 
 # target to preprocess a source file
-src/SobelStrategy.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SobelStrategy.i
-.PHONY : src/SobelStrategy.i
+src/StraightObjectDetector.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/StraightObjectDetector.i
+.PHONY : src/StraightObjectDetector.i
 
 # target to generate assembly for a file
-src/SobelStrategy.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SobelStrategy.s
-.PHONY : src/SobelStrategy.s
+src/StraightObjectDetector.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/StraightObjectDetector.s
+.PHONY : src/StraightObjectDetector.s
 
 # target to build an object file
 src/Timer.o:
@@ -552,48 +522,42 @@ help:
 	@echo "... test-results"
 	@echo "... test-results-run"
 	@echo "... tests"
-	@echo "... src/AbstractStrategy.o"
-	@echo "... src/AbstractStrategy.i"
-	@echo "... src/AbstractStrategy.s"
-	@echo "... src/CannyStrategy.o"
-	@echo "... src/CannyStrategy.i"
-	@echo "... src/CannyStrategy.s"
 	@echo "... src/DetectionParams.o"
 	@echo "... src/DetectionParams.i"
 	@echo "... src/DetectionParams.s"
 	@echo "... src/DetectionSettings.o"
 	@echo "... src/DetectionSettings.i"
 	@echo "... src/DetectionSettings.s"
+	@echo "... src/DetectorTopic.o"
+	@echo "... src/DetectorTopic.i"
+	@echo "... src/DetectorTopic.s"
 	@echo "... src/ImageService.o"
 	@echo "... src/ImageService.i"
 	@echo "... src/ImageService.s"
-	@echo "... src/KirshStrategy.o"
-	@echo "... src/KirshStrategy.i"
-	@echo "... src/KirshStrategy.s"
 	@echo "... src/Line.o"
 	@echo "... src/Line.i"
 	@echo "... src/Line.s"
-	@echo "... src/LineDetectorTopic.o"
-	@echo "... src/LineDetectorTopic.i"
-	@echo "... src/LineDetectorTopic.s"
+	@echo "... src/LineDetector.o"
+	@echo "... src/LineDetector.i"
+	@echo "... src/LineDetector.s"
 	@echo "... src/LinePair.o"
 	@echo "... src/LinePair.i"
 	@echo "... src/LinePair.s"
 	@echo "... src/Main.o"
 	@echo "... src/Main.i"
 	@echo "... src/Main.s"
-	@echo "... src/PrewittStrategy.o"
-	@echo "... src/PrewittStrategy.i"
-	@echo "... src/PrewittStrategy.s"
+	@echo "... src/ObjectDetector.o"
+	@echo "... src/ObjectDetector.i"
+	@echo "... src/ObjectDetector.s"
 	@echo "... src/Rectangle.o"
 	@echo "... src/Rectangle.i"
 	@echo "... src/Rectangle.s"
-	@echo "... src/RobertsStrategy.o"
-	@echo "... src/RobertsStrategy.i"
-	@echo "... src/RobertsStrategy.s"
-	@echo "... src/SobelStrategy.o"
-	@echo "... src/SobelStrategy.i"
-	@echo "... src/SobelStrategy.s"
+	@echo "... src/RectangleDetector.o"
+	@echo "... src/RectangleDetector.i"
+	@echo "... src/RectangleDetector.s"
+	@echo "... src/StraightObjectDetector.o"
+	@echo "... src/StraightObjectDetector.i"
+	@echo "... src/StraightObjectDetector.s"
 	@echo "... src/Timer.o"
 	@echo "... src/Timer.i"
 	@echo "... src/Timer.s"

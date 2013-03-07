@@ -40,7 +40,7 @@ public:
         int base;        
         char c;
 
-        for(int i = len - 1, j = 0; i >=0; i--, j++)
+        for(int i = len - 1, j = 0; i >= 0; i--, j++)
         {            
             base = pow(16, j);
             c = str[i];

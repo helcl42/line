@@ -1,4 +1,4 @@
-#include "LineDetectorTopic.h"
+#include "DetectorTopic.h"
 #include "DetectionSettings.h"
 
 
@@ -28,11 +28,11 @@ int main(int argc, char** argv)
     }
     
     DetectionSettings settings(argc, argv);
-    //std::cout << settings << std::endl;    
+    //std::cout << settings << std::endl;
     
     ROS_INFO("Line started");               
     
-    LineDetectorTopic detector(&settings);
+    DetectorTopic detector(&settings);
     detector.run();
     
     ros::spin();

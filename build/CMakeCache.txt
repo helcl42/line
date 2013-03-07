@@ -189,7 +189,7 @@ TOOLCHAINCONFIG:FILEPATH=TOOLCHAINCONFIG-NOTFOUND
 USERCONFIG:FILEPATH=USERCONFIG-NOTFOUND
 
 //Path to a file.
-_file_name:FILEPATH=/home/lubos/fuerte_workspace/sandbox/line/src/LineDetectorTopic.cpp
+_file_name:FILEPATH=/home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.cpp
 
 //Value Computed by CMake
 line_BINARY_DIR:STATIC=/home/lubos/fuerte_workspace/sandbox/line/build

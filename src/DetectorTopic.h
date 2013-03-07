@@ -5,8 +5,8 @@
  * Created on February 9, 2013, 8:38 PM
  */
 
-#ifndef LINEDETECTOR_H
-#define	LINEDETECTOR_H
+#ifndef DETECTORTOPIC_H
+#define	DETECTORTOPIC_H
 
 #include "ros/ros.h"
 #include <sensor_msgs/Image.h>
@@ -17,14 +17,9 @@
 #include "Timer.h"
 #include "DetectionSettings.h"
 #include "Image.h"
-#include "SobelStrategy.h"
-#include "RobertsStrategy.h"
-#include "PrewittStrategy.h"
-#include "KirshStrategy.h"
-#include "CannyStrategy.h"
 #include "ImageService.h"
 
-class LineDetectorTopic
+class DetectorTopic
 {
 private:
     const sensor_msgs::Image::ConstPtr* m_depthMsg;
@@ -44,9 +39,9 @@ private:
     ImageService* m_imageService;               
             
 public:
-    LineDetectorTopic(DetectionSettings* settings);
+    DetectorTopic(DetectionSettings* settings);
     
-    ~LineDetectorTopic();
+    ~DetectorTopic();
     
     void run();
 
@@ -56,5 +51,5 @@ public:
 };
 
 
-#endif	/* LINEDETECTOR_H */
+#endif	/* DETECTORTOPIC_H */
 

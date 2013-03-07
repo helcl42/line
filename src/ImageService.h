@@ -14,7 +14,7 @@
 #include "Image.h"
 #include "Timer.h"
 #include "DetectionSettings.h"
-#include "SobelStrategy.h"
+#include "LineDetector.h"
 
 class ImageService
 {
@@ -33,14 +33,12 @@ private:
     
     unsigned int m_settingsIndex;
     
-    AbstractStrategy* m_strategy;        
+    LineDetector* m_lineDetector;
     
 public:
     ImageService(DetectionSettings* settings);    
     
     ~ImageService();  
-    
-    //void setInstance(const sensor_msgs::Image::ConstPtr& img);
     
     void perform(const sensor_msgs::Image::ConstPtr& img, const sensor_msgs::Image::ConstPtr& depth);
     

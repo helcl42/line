@@ -17,16 +17,39 @@ private:
     Image<T>* m_image;
 
 public:
-    ImageFilter(Image<T>* image);
+     ImageFilter() 
+    : m_image(NULL) {}
+    
+    ImageFilter(Image<T>* image) 
+    : m_image(image) {}
 
-    ~ImageFilter() {}
-
+    virtual ~ImageFilter() {}
+    
+public:
     void smooth();
 
     void gaussianBlur();
 
     void sharpen();
+    
+    void setImage(Image<T>* image);
+    
+    Image<T>* getImage() const;
 };
+
+
+template <class T>
+void ImageFilter<T>::setImage(Image<T>* image)
+{
+    m_image = image;
+}
+
+
+template <class T>        
+Image<T>* ImageFilter<T>::getImage() const
+{
+    return m_image;
+}
 
 
 template <class T>

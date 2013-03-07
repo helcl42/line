@@ -5,18 +5,18 @@
 int counter = 0;
 
 ImageService::ImageService(DetectionSettings* settings)
-: m_shrink(1), m_settings(settings), m_settingsIndex(0)
+: m_shrink(2), m_settings(settings), m_settingsIndex(0)
 {
     m_image = new Image<float>();
-    m_colorImage = new Image<float>();
-    m_strategy = new SobelStrategy(settings->getItem(0));
+    m_colorImage = new Image<float>();    
+    m_lineDetector = new LineDetector(settings->getItem(0));
 }
 
 ImageService::~ImageService()
 {
     SAFE_DELETE(m_image);
-    SAFE_DELETE(m_colorImage);
-    SAFE_DELETE(m_strategy);
+    SAFE_DELETE(m_colorImage);    
+    SAFE_DELETE(m_lineDetector);
 }
 
 void ImageService::perform(const sensor_msgs::Image::ConstPtr& img, const sensor_msgs::Image::ConstPtr& depth)
@@ -24,12 +24,13 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img, const sensor
     unsigned long timeElapsed;
 
     m_shrinkTimer.start();
+    
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-    m_strategy->setImages(m_image, m_colorImage);
-
-    LinePair* line = m_strategy->detectLine();
+    m_lineDetector->invalidate();
+    m_lineDetector->setImages(m_image, m_colorImage);
+    LinePair* line = m_lineDetector->detectLine();    
 
     if (line->isValid())
     {
@@ -61,7 +62,7 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img, const sensor
                 m_settingsIndex = 0;
             }
 
-            m_strategy->setSettings(m_settings->getItem(m_settingsIndex));
+            m_lineDetector->setColorSettings(m_settings->getItem(m_settingsIndex));            
         }
     }
 
@@ -74,19 +75,22 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img, const sensor
 
     if (timeElapsed > 450000)
     {
-        m_shrink++;
+        if(m_shrink < 6) m_shrink++;
     }
     else if (timeElapsed < 150000)
     {
-        if (m_shrink > 1)
-        {
-            m_shrink--;
-        }
+        if (m_shrink > 1) m_shrink--;        
     }
 
     DetectionParams::recomputeMetrics(img->width, img->height, m_shrink);
 
     std::cout << "Params: len = " << DetectionParams::lineLengthTreshold << std::endl;
+    
+//    
+//    counter++;
+//    if(counter > 3) {
+//        ros::shutdown();
+//    }
 }
 
 Vector2<float>* ImageService::getWayPoint(LinePair* line, const sensor_msgs::Image::ConstPtr& depth)
@@ -105,12 +109,7 @@ Vector2<float>* ImageService::getWayPoint(LinePair* line, const sensor_msgs::Ima
     index = midPoint.x * 4 * m_shrink + midPoint.y * depth->width * 4 * m_shrink;
     BYTES_TO_FLOAT_L(distance, depth->data, index);
     
-    std::cout << "distance = " << distance << std::endl;
- 
-    counter++;
-    if(counter > 10) {
-        ros::shutdown();
-    }
+    std::cout << "distance = " << distance << std::endl; 
     
     return NULL;
 }

@@ -8,7 +8,9 @@
 #ifndef RECTANGLE_H
 #define	RECTANGLE_H
 
+#include <stdexcept>
 #include "Line.h"
+
 
 class Rectangle
 {

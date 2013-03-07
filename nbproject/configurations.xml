@@ -80,35 +80,46 @@
         <in>AbstractStrategy.cpp</in>
         <in>AbstractStrategy.h</in>
         <in>BmpFileIO.h</in>
-        <in>BmpImage.h</in>
+        <in>CannyFilterStategy.h</in>
         <in>CannyStrategy.cpp</in>
         <in>CannyStrategy.h</in>
         <in>DetectionParams.cpp</in>
         <in>DetectionParams.h</in>
         <in>DetectionSettings.cpp</in>
         <in>DetectionSettings.h</in>
+        <in>DetectorTopic.cpp</in>
+        <in>DetectorTopic.h</in>
+        <in>EdgeFilterStrategy.h</in>
         <in>IPixel.h</in>
+        <in>Image.h</in>
+        <in>ImageFilter.h</in>
         <in>ImageService.cpp</in>
         <in>ImageService.h</in>
+        <in>KirshFilterStrategy.h</in>
         <in>KirshStrategy.cpp</in>
         <in>KirshStrategy.h</in>
         <in>Line.cpp</in>
         <in>Line.h</in>
-        <in>LineDetectorTopic.cpp</in>
-        <in>LineDetectorTopic.h</in>
+        <in>LineDetector.cpp</in>
+        <in>LineDetector.h</in>
         <in>LinePair.cpp</in>
         <in>LinePair.h</in>
         <in>Main.cpp</in>
+        <in>ObjectDetector.cpp</in>
+        <in>ObjectDetector.h</in>
         <in>Pixel.h</in>
         <in>PixelLUV.h</in>
         <in>PixelRGB.h</in>
         <in>PixelXYZ.h</in>
+        <in>PrewittFilterStrategy.h</in>
         <in>PrewittStrategy.cpp</in>
         <in>PrewittStrategy.h</in>
         <in>Rectangle.cpp</in>
         <in>Rectangle.h</in>
+        <in>RobertsFilterStrategy.h</in>
         <in>RobertsStrategy.cpp</in>
         <in>RobertsStrategy.h</in>
+        <in>SobelFilterStrategy.h</in>
         <in>SobelStrategy.cpp</in>
         <in>SobelStrategy.h</in>
         <in>Timer.cpp</in>

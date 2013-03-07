@@ -14,24 +14,24 @@
 #include "Utils.h"
 
 
-class DetectionLineItem 
+class DetectionColorItem 
 {
 public:
     PixelRGB<float> color;
     
 public:    
-    DetectionLineItem() {}
+    DetectionColorItem() {}
     
-    ~DetectionLineItem() {}        
+    ~DetectionColorItem() {}        
 };
 
 
 class DetectionSettings 
 {
 public:
-    std::vector<DetectionLineItem*> colors;
+    std::vector<DetectionColorItem*> colors;  
     
-    PixelRGB<unsigned char>  searchedColor;   
+    unsigned int colorIndex;
     
 public:            
     //format 334432 657687 657654 ...
@@ -41,9 +41,11 @@ public:
     
     unsigned int getCountOfColors() const;
     
-    DetectionLineItem* getItem(int index) const;
+    DetectionColorItem* getItem(int index) const;
     
-    DetectionLineItem* operator[](int index);
+    DetectionColorItem* getNext();
+    
+    DetectionColorItem* operator[](int index);
     
     friend std::ostream& operator<<(std::ostream& out, const DetectionSettings& settings);
 };

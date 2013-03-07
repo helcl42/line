@@ -2,16 +2,17 @@
 
 //format 334432 657687 657654 ...
 DetectionSettings::DetectionSettings(int argc, char** argv)
+: colorIndex(0)
 {
     for (int i = 1; i < argc; i++)
     {
-        DetectionLineItem* item = new DetectionLineItem();
+        DetectionColorItem* item = new DetectionColorItem();
 
         std::string color(argv[i]);
         if (color.length() == 6)
         {
             for (int j = 0, index = 0; j < 3; j++, index += 2)
-            {                                
+            {                                                
                 item->color[j] = Utils::convertStringToHexInt(color.substr(index, 2).c_str(), 2);                
             }
         }
@@ -36,7 +37,19 @@ unsigned int DetectionSettings::getCountOfColors() const
     return colors.size();
 }
 
-DetectionLineItem* DetectionSettings::getItem(int index) const
+DetectionColorItem* DetectionSettings::getNext()
+{
+    colorIndex++;
+    
+    if(colorIndex >= colors.size()) 
+    {
+        colorIndex = 0;        
+    }
+    return colors[colorIndex];
+}
+
+
+DetectionColorItem* DetectionSettings::getItem(int index) const
 {
     if (index >= 0 || index < (int)colors.size())
     {
@@ -48,7 +61,7 @@ DetectionLineItem* DetectionSettings::getItem(int index) const
     }
 }
 
-DetectionLineItem* DetectionSettings::operator[](int index)
+DetectionColorItem* DetectionSettings::operator[](int index)
 {
     if (index >= 0 || index < (int)colors.size())
     {
