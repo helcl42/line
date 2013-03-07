@@ -33,18 +33,12 @@ public:
 
 public:
 
-    Pixel()
-    {
-    }
+    Pixel() {}
 
     Pixel(T r, T g, T b, T a = 0)
-    : r(r), g(g), b(b)/*, a(a)*/
-    {
-    }
+    : r(r), g(g), b(b)/*, a(a)*/ {}
 
-    virtual ~Pixel()
-    {
-    }
+    virtual ~Pixel() {}
 
     static double colourProduct(Pixel<T>* rgb1);
 
