@@ -79,19 +79,21 @@ LinePair* LineDetector::findBestLine()
 bool LineDetector::lineColorMatch(Line* l1, Line* l2)
 {
     Pixel<float>* pixel = NULL;
+    Vector2<int>* ret = NULL;
     unsigned int failCount = 0;
     unsigned int len = l1->points.size() < l2->points.size() ? l1->points.size() : l2->points.size();
 
     for (unsigned int i = 0; i < len; i += 20)
     {
-        Vector2<int> ret = Vector2<int>::getPointBetween(l1->points[i], l2->points[i]);
+        ret = Vector2<int>::getPointBetween(l1->points[i], l2->points[i]);
      
-        pixel = m_colorImage->getPixel(ret.y, ret.x);
+        pixel = m_colorImage->getPixel(ret->y, ret->x);
 
         if (!pixel->hasSimilarColor(&m_settings->color, DetectionParams::colorTolerance))
         {
             failCount++;
         }
+        SAFE_DELETE(ret);
     }
 
     if (failCount > 0)

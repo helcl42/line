@@ -38,19 +38,20 @@ private:
 public:
     ImageService(DetectionSettings* settings);    
     
-    ~ImageService();  
+    ~ImageService();      
     
-    //temp
-    void test(const sensor_msgs::Image::ConstPtr& depth);
+    Vector2<int>* perform(const sensor_msgs::Image::ConstPtr& img);
     
-    void perform(const sensor_msgs::Image::ConstPtr& img, const sensor_msgs::Image::ConstPtr& depth);
+    unsigned int getShrink() const;
+    
+    void writePointToMessage(const sensor_msgs::Image::ConstPtr& img, Vector2<int>* point, unsigned int size = 3);
     
     void writeImageToMessage(const sensor_msgs::Image::ConstPtr& img);
     
     void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width = 1);        
     
 private:
-    Vector2<float>* getWayPoint(LinePair* line, const sensor_msgs::Image::ConstPtr& depth);
+    Vector2<int>* getObjectPoint(LinePair* line);
 };
 
 #endif	/* IMAGEMESSAGESERVICE_H */

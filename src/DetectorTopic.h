@@ -21,8 +21,10 @@
 
 class DetectorTopic
 {
-private:
-    const sensor_msgs::Image::ConstPtr* m_depthMsg;
+private:            
+    Vector2<int>* m_objectPoint;
+    
+    unsigned int m_shrink;
     
     ros::NodeHandle m_handler;        
     
@@ -36,7 +38,7 @@ private:
     
     ros::Publisher m_resender;    
     
-    ImageService* m_imageService;               
+    ImageService* m_imageService;                   
             
 public:
     DetectorTopic(DetectionSettings* settings);
