@@ -33,19 +33,15 @@ public:
 
 public:
 
-    Pixel() {}
+    Pixel()
+    : r(0), g(0), b(0) {}
 
     Pixel(T r, T g, T b, T a = 0)
     : r(r), g(g), b(b)/*, a(a)*/ {}
 
-    virtual ~Pixel() {}
-
-    static double colourProduct(Pixel<T>* rgb1);
-
-    static double colourDifference(Pixel<T>* rgb1, Pixel<T>* rgb2);
-
-    static std::string getColorPartString(int index);
-
+    virtual ~Pixel() {}       
+    
+public:
     bool isInInterval(Pixel<T>* rgb1, Pixel<T>* rgb2) const;
 
     bool hasSimilarColor(Pixel<T>* rgb, unsigned int interval = DetectionParams::colorTolerance) const;
@@ -53,7 +49,14 @@ public:
     T& operator[](int index);
 
     friend std::ostream& operator<<<T>(std::ostream& out, const Pixel<T>& img);
+    
+public:    
+    static double colourProduct(Pixel<T>* rgb1);
 
+    static double colourDifference(Pixel<T>* rgb1, Pixel<T>* rgb2);
+    
+    static std::string getColorPartString(int index);
+    
     static void repairNanValues(Pixel<T>* px);
 };
 

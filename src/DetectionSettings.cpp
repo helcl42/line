@@ -3,7 +3,7 @@
 //format 334432 657687 657654 ...
 DetectionSettings::DetectionSettings(int argc, char** argv)
 : colorIndex(0)
-{
+{                
     for (int i = 1; i < argc; i++)
     {
         DetectionColorItem* item = new DetectionColorItem();
@@ -12,8 +12,8 @@ DetectionSettings::DetectionSettings(int argc, char** argv)
         if (color.length() == 6)
         {
             for (int j = 0, index = 0; j < 3; j++, index += 2)
-            {                                                
-                item->color[j] = Utils::convertStringToHexInt(color.substr(index, 2).c_str(), 2);                
+            {                     
+                item->color[j] = Utils::convertStringToHexInt(color.substr(index, 2));                
             }
         }
         else

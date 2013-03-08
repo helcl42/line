@@ -9,6 +9,7 @@
 #define	UTILS_H
 
 #include <cstdlib>
+#include <string.h>
 #include <stdexcept>
 
 #define SAFE_DELETE( p ) { if( p ) { delete ( p ); ( p ) = NULL; } }
@@ -34,14 +35,14 @@ class Utils
 {
 public:
         
-    static int convertStringToHexInt(const char* str, int len)
+    static int convertStringToHexInt(std::string str)
     {
         int value = 0;
         int base;        
         char c;
 
-        for(int i = len - 1, j = 0; i >= 0; i--, j++)
-        {            
+        for(int i = str.length() - 1, j = 0; i >= 0; i--, j++)
+        {                        
             base = pow(16, j);
             c = str[i];
 

@@ -40,6 +40,9 @@ public:
     
     ~ImageService();  
     
+    //temp
+    void test(const sensor_msgs::Image::ConstPtr& depth);
+    
     void perform(const sensor_msgs::Image::ConstPtr& img, const sensor_msgs::Image::ConstPtr& depth);
     
     void writeImageToMessage(const sensor_msgs::Image::ConstPtr& img);

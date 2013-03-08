@@ -2,8 +2,6 @@
 #include "DetectionParams.h"
 #include "Line.h"
 
-int counter = 0;
-
 ImageService::ImageService(DetectionSettings* settings)
 : m_shrink(2), m_settings(settings), m_settingsIndex(0)
 {
@@ -45,6 +43,8 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img, const sensor
     }
     else
     {
+        test(depth);
+        
         if (!m_changeColorTimer.isStarted())
         {
             m_changeColorTimer.start();
@@ -84,13 +84,18 @@ void ImageService::perform(const sensor_msgs::Image::ConstPtr& img, const sensor
 
     DetectionParams::recomputeMetrics(img->width, img->height, m_shrink);
 
-    std::cout << "Params: len = " << DetectionParams::lineLengthTreshold << std::endl;
+    std::cout << "Params: len = " << DetectionParams::lineLengthTreshold << std::endl;    
+}
+
+void ImageService::test(const sensor_msgs::Image::ConstPtr& depth)
+{
+    float distance;
+    unsigned int index;    
     
-//    
-//    counter++;
-//    if(counter > 3) {
-//        ros::shutdown();
-//    }
+    //index = 100 * 4 * m_shrink + 100 * depth->width * 4 * m_shrink;
+    BYTES_TO_FLOAT_B(distance, depth->data, 0);
+    
+    std::cout << "distance = " << distance << std::endl; 
 }
 
 Vector2<float>* ImageService::getWayPoint(LinePair* line, const sensor_msgs::Image::ConstPtr& depth)
@@ -100,14 +105,15 @@ Vector2<float>* ImageService::getWayPoint(LinePair* line, const sensor_msgs::Ima
     
     float distance;
     unsigned int index;
-    unsigned int thirdLength = l1->points.size() < l2->points.size() ? l1->points.size() / 3: l2->points.size() / 3;
+    unsigned int halfLength = l1->points.size() < l2->points.size() ? l1->points.size() / 2: l2->points.size() / 2;
 
-    Vector2<int> midPoint = Vector2<int>::getPointBetween(l1->points[thirdLength], l2->points[thirdLength]);      
+    Vector2<int> midPoint = Vector2<int>::getPointBetween(l1->points[halfLength], l2->points[halfLength]);      
     
     std::cout << "MID point: " << midPoint << std::endl;
     
     index = midPoint.x * 4 * m_shrink + midPoint.y * depth->width * 4 * m_shrink;
-    BYTES_TO_FLOAT_L(distance, depth->data, index);
+  
+    BYTES_TO_FLOAT_B(distance, depth->data, index);
     
     std::cout << "distance = " << distance << std::endl; 
     

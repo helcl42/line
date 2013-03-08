@@ -27,16 +27,17 @@ int main(int argc, char** argv)
         return 1;
     }
     
-    DetectionSettings settings(argc, argv);
-    //std::cout << settings << std::endl;
+    DetectionSettings* settings = new DetectionSettings(argc, argv);
+    std::cout << *settings << std::endl;
     
     ROS_INFO("Line started");               
     
-    DetectorTopic detector(&settings);
+    DetectorTopic detector(settings);
     detector.run();
     
     ros::spin();
     ROS_INFO("Line finished");
+    SAFE_DELETE(settings);
 
     return 0;
 }

@@ -15,6 +15,7 @@ void DetectorTopic::run()
 {
     m_sub = m_handler.subscribe("/camera/rgb/image_color", 1, &DetectorTopic::imageCallback, this);
     m_subDepth = m_handlerDepth.subscribe("/camera/depth/image", 1, &DetectorTopic::depthImageCallback, this);
+    //m_subDepth = m_handlerDepth.subscribe("/camera/depth/image_rect", 1, &DetectorTopic::depthImageCallback, this);
     m_resender = m_sendHandler.advertise<sensor_msgs::Image > ("resender", 500);
 }
 
