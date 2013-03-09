@@ -18,6 +18,30 @@ Pixel.h
 Utils.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
 
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.cpp
+DetectorTopic.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.h
+ros/ros.h
+/home/lubos/fuerte_workspace/sandbox/line/src/ros/ros.h
+sensor_msgs/Image.h
+-
+cstdio
+-
+ctime
+-
+Utils.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
+Timer.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
+DetectionSettings.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
+Image.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Image.h
+ImageService.h
+/home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/EdgeFilterStrategy.h
 Image.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
@@ -41,14 +65,6 @@ PixelXYZ.h
 /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
 Image.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
-
-/home/lubos/fuerte_workspace/sandbox/line/src/ImageService.cpp
-ImageService.h
-/home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
-DetectionParams.h
-/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
-Line.h
-/home/lubos/fuerte_workspace/sandbox/line/src/Line.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
 sensor_msgs/Image.h

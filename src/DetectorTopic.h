@@ -38,7 +38,9 @@ private:
     
     ros::Publisher m_resender;    
     
-    ImageService* m_imageService;                   
+    ImageService* m_imageService;        
+    
+    Timer m_checkCameraY;
             
 public:
     DetectorTopic(DetectionSettings* settings);
@@ -46,6 +48,8 @@ public:
     ~DetectorTopic();
     
     void run();
+    
+    float getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg);
 
     void imageCallback(const sensor_msgs::Image::ConstPtr& msg_ptr);       
     

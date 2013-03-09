@@ -113,34 +113,26 @@ Vector2<int>* ImageService::getObjectPoint(LinePair* line)
 
 void ImageService::writePointToMessage(const sensor_msgs::Image::ConstPtr& img, Vector2<int>* point, unsigned int size)
 {
-
     unsigned char* temp;
     unsigned long imageSize = img->height * img->width * 3;
-
-//    if(size % 2 == 0) size++;    
-    //TODO check bounds
+    unsigned int index;
+    unsigned int min;
+    unsigned int max;    
     
-    unsigned int minX;
-    unsigned int maxX;
-    unsigned int minY;
-    unsigned int maxY;
-    
-    if(size == 1) 
+    if(size <= 1) 
     {
-        minX = minY = 1;        
-        maxX = maxY = 1;        
+        min = 0;        
+        max = 1;        
     }
     else 
     {
-        minX = point->x - size / 2;
-        maxX = point->x + size / 2;
-        minY = point->y - size / 2;
-        maxY = point->y + size / 2;
+        min = size / 2;
+        max = size / 2;        
     }
 
-    for (unsigned int i = minX; i < maxX; i++)
+    for (unsigned int i = point->x - min; i < point->x + max; i++)
     {
-        for (unsigned int j = minY, index = 0; j < maxY; j++)
+        for (unsigned int j = point->y - min; j < point->y + max; j++)
         {
             index = imageSize - (j + 1) * img->width * 3 * m_shrink + (m_image->getWidth() - i) * m_shrink * 3;
             
@@ -165,15 +157,8 @@ void ImageService::writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, 
             oneLine = line[i];
             for (unsigned int j = 0; j < oneLine->points.size(); j++)
             {
-//                index = size - (oneLine->points[j].y + 1) * img->width * 3 * m_shrink + (m_image->getWidth() - oneLine->points[j].x) * m_shrink * 3;
-//
-//                temp = (unsigned char*) &img->data[index];
-//                *temp = (unsigned char) 0;
-//                temp = (unsigned char*) &img->data[index + 1];
-//                *temp = (unsigned char) 0;
-//                temp = (unsigned char*) &img->data[index + 2];
-//                *temp = (unsigned char) 255;                
-                writePointToMessage(img, &(oneLine->points[j]), width);
+                Vector2<int> point = oneLine->points[j];
+                writePointToMessage(img, &point, width);
             }
         }
     }

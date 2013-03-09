@@ -23,11 +23,17 @@ public:
     ~Rectangle() {}
     
 public:
-    bool isValid() const;
+    bool isValid(unsigned int a = 4) const;
+    
+    void setLocked(unsigned int a = 4);
         
     void setInstance(Line** lines);
     
     void invalidate();
+    
+    void setAt(Line* line, unsigned int index);
+    
+    Line* getAt(unsigned int index) const;
     
     Line* operator[](int index);
 };

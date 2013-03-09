@@ -3,19 +3,19 @@
 
 LineDetector::LineDetector(DetectionColorItem* settings)
 : StraightObjectDetector(settings)
-{    
+{
     m_bestLine = new LinePair();
 }
 
 LineDetector::LineDetector(Image<float>* image, Image<float>* colorImage)
 : StraightObjectDetector(image, colorImage)
-{   
+{
     m_bestLine = new LinePair();
 }
 
 LineDetector::~LineDetector()
-{    
-    SAFE_DELETE(m_bestLine);    
+{
+    SAFE_DELETE(m_bestLine);
 }
 
 LinePair* LineDetector::detectLine()
@@ -24,7 +24,7 @@ LinePair* LineDetector::detectLine()
     m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
     m_imageFilter->setImage(m_workImage);
     m_imageFilter->gaussianBlur();
-    traverseImage();    
+    traverseImage();
     return findBestLine();
 }
 
@@ -37,7 +37,6 @@ void LineDetector::invalidate()
     m_lines.clear();
     m_bestLine->invalidate();
 }
-
 
 LinePair* LineDetector::findBestLine()
 {
@@ -52,13 +51,13 @@ LinePair* LineDetector::findBestLine()
         lockAllLines(false);
         ret = m_lines[i];
 
-        lockSimilarLines(ret);        
+        lockSimilarLines(ret);
         similar = findLineWithDirection(ret);
 
         if (ret != NULL && similar != NULL)
         {
             if (lineColorMatch(ret, similar))
-            {                
+            {
                 std::cout << *ret << std::endl;
                 std::cout << *similar << std::endl;
                 writeLineInImage(ret, 255, 0, 0);
@@ -66,15 +65,14 @@ LinePair* LineDetector::findBestLine()
                 m_bestLine->setLine(ret, similar);
                 break;
             }
-        }
-        else
-        {
-            std::cout << "fail!" << std::endl;
+            else
+            {
+                std::cout << "color fail!" << std::endl;
+            }
         }
     }
     return m_bestLine;
 }
-
 
 bool LineDetector::lineColorMatch(Line* l1, Line* l2)
 {
@@ -86,7 +84,7 @@ bool LineDetector::lineColorMatch(Line* l1, Line* l2)
     for (unsigned int i = 0; i < len; i += 20)
     {
         ret = Vector2<int>::getPointBetween(l1->points[i], l2->points[i]);
-     
+
         pixel = m_colorImage->getPixel(ret->y, ret->x);
 
         if (!pixel->hasSimilarColor(&m_settings->color, DetectionParams::colorTolerance))
@@ -104,9 +102,8 @@ bool LineDetector::lineColorMatch(Line* l1, Line* l2)
     return true;
 }
 
-
 void LineDetector::initDetectionParams()
-{            
+{
     DetectionParams::lineLengthTreshold = 240;
 
     DetectionParams::straightnessTreshold = 360;

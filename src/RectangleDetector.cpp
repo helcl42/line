@@ -2,23 +2,20 @@
 
 RectangleDetector::RectangleDetector(DetectionColorItem* settings)
 : StraightObjectDetector(settings)
-{    
+{
     m_bestRectangle = new Rectangle();
 }
-
 
 RectangleDetector::RectangleDetector(Image<float>* image, Image<float>* colorImage)
 : StraightObjectDetector(image, colorImage)
-{   
+{
     m_bestRectangle = new Rectangle();
 }
 
-
 RectangleDetector::~RectangleDetector()
-{    
+{
     SAFE_DELETE(m_bestRectangle);
 }
-
 
 Rectangle* RectangleDetector::detectRectangle()
 {
@@ -26,10 +23,9 @@ Rectangle* RectangleDetector::detectRectangle()
     m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
     m_imageFilter->setImage(m_workImage);
     m_imageFilter->gaussianBlur();
-    traverseImage();    
+    traverseImage();
     return findBestRectangle();
 }
-
 
 void RectangleDetector::invalidate()
 {
@@ -41,49 +37,36 @@ void RectangleDetector::invalidate()
     m_bestRectangle->invalidate();
 }
 
-
 Rectangle* RectangleDetector::findBestRectangle()
 {
-    Line* rect[4];
-
-    for(int i = 0; i < 4; i++)
-    {
-        rect[i] = NULL;
-    }
-    
+    m_bestRectangle->invalidate();
     //sortLinesByStraightness();
     sortLinesByLength();
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {
         lockAllLines(false);
-        rect[0] = m_lines[i];
-
-        lockSimilarLines(rect[0]);        
-        rect[1] = findLineWithDirection(rect[0], 90);
-
-        if (rect[0] != NULL && rect[1] != NULL)
+        
+        for (unsigned int j = 0; j < 4; j++)
         {
-            rect[0]->locked = true;
-            rect[1]->locked = true;
+            m_bestRectangle->setAt(m_lines[i], j);
+            lockSimilarLines(m_bestRectangle->getAt(j));
+            m_bestRectangle->setAt(findLineWithDirection(m_bestRectangle->getAt(j), 90), j);
 
-            rect[2] = findLineWithDirection(rect[1]);
+            if (!m_bestRectangle->isValid(j + 1)) break;
 
-            if (rect[2] != NULL)
+            m_bestRectangle->setLocked(j + 1);
+        }
+
+        if (m_bestRectangle->isValid())
+        {
+            //if (lineColorMatch(rect[0], rect[2]))
             {
-                rect[2]->locked = true;
-                
-                rect[3] = findLineWithDirection(rect[1], 90);
-                if(rect[3] != NULL)
-                    
-                //if (lineColorMatch(rect[0], rect[2]))
-                {                    
-                    writeLineInImage(rect[0], 255, 0, 0);
-                    writeLineInImage(rect[1], 0, 0, 255);
-                    writeLineInImage(rect[2], 255, 0, 0);
-                    writeLineInImage(rect[3], 0, 0, 255);                    
-                    break;
-                }
+                writeLineInImage(m_bestRectangle->getAt(0), 255, 0, 0);
+                writeLineInImage(m_bestRectangle->getAt(1), 0, 0, 255);
+                writeLineInImage(m_bestRectangle->getAt(2), 255, 0, 0);
+                writeLineInImage(m_bestRectangle->getAt(3), 0, 0, 255);
+                break;
             }
         }
         else
@@ -94,9 +77,8 @@ Rectangle* RectangleDetector::findBestRectangle()
     return m_bestRectangle;
 }
 
-
 void RectangleDetector::initDetectionParams()
-{            
+{
     DetectionParams::lineLengthTreshold = 240;
 
     DetectionParams::straightnessTreshold = 360;

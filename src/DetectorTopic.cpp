@@ -34,6 +34,19 @@ void DetectorTopic::depthImageCallback(const sensor_msgs::Image::ConstPtr& depth
 
         SAFE_DELETE(m_objectPoint);       
     }
+    
+    float cameraY;
+    
+    if(!m_checkCameraY.isStarted()) 
+    {
+        m_checkCameraY.start();
+    }
+    else if(m_checkCameraY.isElapsedMs(8000)) 
+    {
+        
+        cameraY = getCameraYPosition(depth);
+        std::cout << cameraY << std::endl;
+    }
 }
 
 void DetectorTopic::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
@@ -44,5 +57,17 @@ void DetectorTopic::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
 
 }
 
+
+float DetectorTopic::getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg)
+{
+    float highMidDistance;
+    float lowMidDistance;
+    BYTES_TO_FLOAT_L(highMidDistance, msg->data, 4 * msg->width / 2);
+    BYTES_TO_FLOAT_L(lowMidDistance, msg->data, (4 * msg->width * msg->height) - (4 * msg->width / 2));
+    
+    std::cout << "High = " << highMidDistance << " Low = " << lowMidDistance << std::endl;
+    //fake
+    return highMidDistance;
+}
 
 
