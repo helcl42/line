@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+/home/lubos/fuerte_workspace/sandbox/line/src/CameraService.cpp
+CameraService.h
+/home/lubos/fuerte_workspace/sandbox/line/src/CameraService.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/CameraService.h
+sensor_msgs/Image.h
+-
+Utils.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
@@ -17,10 +27,6 @@ Pixel.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
 Utils.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
-
-/home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.cpp
-DetectorTopic.h
-/home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.h
 ros/ros.h
@@ -41,6 +47,8 @@ Image.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
 ImageService.h
 /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
+CameraService.h
+/home/lubos/fuerte_workspace/sandbox/line/src/CameraService.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/EdgeFilterStrategy.h
 Image.h

@@ -18,6 +18,7 @@
 #include "DetectionSettings.h"
 #include "Image.h"
 #include "ImageService.h"
+#include "CameraService.h"
 
 class DetectorTopic
 {
@@ -41,17 +42,15 @@ private:
     ros::Publisher m_resender;            
     
     ImageService* m_imageService;                
+    
+    CameraService m_cameraService;
             
 public:
     DetectorTopic(DetectionSettings* settings);
     
     ~DetectorTopic();
     
-    void run();
-    
-    double getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg);
-    
-    double getCameraHeight(float distLow, float distHigh);
+    void run();        
 
     void imageCallback(const sensor_msgs::Image::ConstPtr& msg_ptr);       
     

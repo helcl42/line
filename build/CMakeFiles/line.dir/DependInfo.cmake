@@ -4,6 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
+  "/home/lubos/fuerte_workspace/sandbox/line/src/CameraService.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/CameraService.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/DetectionParams.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/DetectionSettings.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/DetectorTopic.o"

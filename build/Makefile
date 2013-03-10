@@ -304,6 +304,21 @@ tests/fast:
 .PHONY : tests/fast
 
 # target to build an object file
+src/CameraService.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CameraService.o
+.PHONY : src/CameraService.o
+
+# target to preprocess a source file
+src/CameraService.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CameraService.i
+.PHONY : src/CameraService.i
+
+# target to generate assembly for a file
+src/CameraService.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CameraService.s
+.PHONY : src/CameraService.s
+
+# target to build an object file
 src/DetectionParams.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectionParams.o
 .PHONY : src/DetectionParams.o
@@ -522,6 +537,9 @@ help:
 	@echo "... test-results"
 	@echo "... test-results-run"
 	@echo "... tests"
+	@echo "... src/CameraService.o"
+	@echo "... src/CameraService.i"
+	@echo "... src/CameraService.s"
 	@echo "... src/DetectionParams.o"
 	@echo "... src/DetectionParams.i"
 	@echo "... src/DetectionParams.s"

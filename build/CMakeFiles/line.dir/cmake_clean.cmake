@@ -7,6 +7,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/line.dir/src/Line.o"
   "CMakeFiles/line.dir/src/DetectionParams.o"
   "CMakeFiles/line.dir/src/ImageService.o"
+  "CMakeFiles/line.dir/src/CameraService.o"
   "CMakeFiles/line.dir/src/ObjectDetector.o"
   "CMakeFiles/line.dir/src/LineDetector.o"
   "CMakeFiles/line.dir/src/StraightObjectDetector.o"
