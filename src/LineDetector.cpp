@@ -1,15 +1,18 @@
 #include "LineDetector.h"
-#include "CannyFilterStategy.h"
 
 LineDetector::LineDetector(DetectionColorItem* settings)
 : StraightObjectDetector(settings)
 {
+    this->setSettingsParam(480);
+    this->initDetectionParams();    
     m_bestLine = new LinePair();
 }
 
 LineDetector::LineDetector(Image<float>* image, Image<float>* colorImage)
 : StraightObjectDetector(image, colorImage)
 {
+    this->setSettingsParam(480);
+    this->initDetectionParams();
     m_bestLine = new LinePair();
 }
 
@@ -118,9 +121,5 @@ void LineDetector::initDetectionParams()
 
     DetectionParams::checkPointSkip = 24;
 
-    DetectionParams::countOfDirections = 3; //index = count - 1
-
-    DetectionParams::imageHeight = 480;
-
-    DetectionParams::imageWidth = 640;
+    DetectionParams::countOfDirections = 3; //index = count - 1   
 }

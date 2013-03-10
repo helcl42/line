@@ -8,18 +8,21 @@ ImageService::ImageService(DetectionSettings* settings)
     m_image = new Image<float>();
     m_colorImage = new Image<float>();
     m_lineDetector = new LineDetector(settings->getItem(0));
+    m_rectangleDetector = new RectangleDetector();
 }
 
 ImageService::~ImageService()
 {
-    SAFE_DELETE(m_image);
-    SAFE_DELETE(m_colorImage);
+    SAFE_DELETE(m_rectangleDetector);
     SAFE_DELETE(m_lineDetector);
+    SAFE_DELETE(m_colorImage);
+    SAFE_DELETE(m_image);
 }
 
 Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
 {
     unsigned long timeElapsed;
+    unsigned int settingsParam;
     Vector2<int>* objectPoint = NULL;
 
     m_shrinkTimer.start();
@@ -27,49 +30,67 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-    m_lineDetector->invalidate();
-    m_lineDetector->setImages(m_image, m_colorImage);
-    LinePair* line = m_lineDetector->detectLine();
+//    m_lineDetector->invalidate();
+//    m_lineDetector->setImages(m_image, m_colorImage);
+//    settingsParam = m_lineDetector->getSettingsParam();
+//    LinePair* line = m_lineDetector->detectLine();
 
-    if (line->isValid())
+    m_rectangleDetector->invalidate();
+    settingsParam = m_rectangleDetector->getSettingsParam();
+    m_rectangleDetector->setImages(m_image, m_colorImage);
+    Rectangle* rect = m_rectangleDetector->detectRectangle();
+    if (rect->isValid())
     {
-        std::cout << "CARA!!! " << line->getFirst()->length << std::endl;
-
-        if (m_changeColorTimer.isStarted())
-        {
-            m_changeColorTimer.stop();
-        }
-        writeLinesToMessage(img, line->getLines(), 2);
-        
-        objectPoint = getObjectPoint(line);
-        if(objectPoint != NULL)
-        {
-            writePointToMessage(img, objectPoint);
-        }
+        std::cout << "Found rect!!!" << std::endl;
+        writeLinesToMessage(img, rect->getLines(), 4);
     }
-    else
-    {
-        if (!m_changeColorTimer.isStarted())
-        {
-            m_changeColorTimer.start();
-        }
-        else if (m_changeColorTimer.getElapsedTimeInMilliSec() > 5000) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
-        {
-            m_changeColorTimer.stop();
-            std::cout << "Hledam dalsi!!" << std::endl;
 
-            m_settingsIndex++;
-
-            if (m_settingsIndex >= m_settings->getCountOfColors())
-            {
-                //detect home shapes
-                //m_strategy->detectRectangle();
-                m_settingsIndex = 0;
-            }
-
-            m_lineDetector->setColorSettings(m_settings->getItem(m_settingsIndex));
-        }
-    }
+//    if (line->isValid())
+//    {
+//        std::cout << "CARA!!! " << line->getFirst()->length << std::endl;
+//
+//        if (m_changeColorTimer.isStarted())
+//        {
+//            m_changeColorTimer.stop();
+//        }
+//        writeLinesToMessage(img, line->getLines(), 2);
+//
+//        objectPoint = getObjectPoint(line);
+//        if (objectPoint != NULL)
+//        {
+//            writePointToMessage(img, objectPoint);
+//        }
+//    }
+//    else
+//    {
+//        if (!m_changeColorTimer.isStarted())
+//        {
+//            m_changeColorTimer.start();
+//        }
+//        else if (m_changeColorTimer.getElapsedTimeInMilliSec() > 5000) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
+//        {
+//            m_changeColorTimer.stop();
+//            std::cout << "Hledam dalsi!!" << std::endl;
+//
+//            m_settingsIndex++;
+//
+//            if (m_settingsIndex >= m_settings->getCountOfColors())
+//            {
+//                //detect home shapes                
+//                m_rectangleDetector->setImages(m_image, m_colorImage);
+//                settingsParam = m_rectangleDetector->getSettingsParam();
+//                Rectangle* rect = m_rectangleDetector->findBestRectangle();
+//                if (rect->isValid())
+//                {
+//                    std::cout << "Found rect!!!" << std::endl;
+//                    writeLinesToMessage(img, rect->getLines(), 4);
+//                }
+//                m_settingsIndex = 0;
+//            }
+//
+//            m_lineDetector->setColorSettings(m_settings->getItem(m_settingsIndex));
+//        }
+//    }
 
     writeImageToMessage(img);
 
@@ -80,14 +101,14 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
 
     if (timeElapsed > 450000)
     {
-        if (m_shrink < 6) m_shrink++;
+        if (m_shrink < 5) m_shrink++;
     }
     else if (timeElapsed < 150000)
     {
         if (m_shrink > 1) m_shrink--;
     }
 
-    DetectionParams::recomputeMetrics(img->width, img->height, m_shrink);
+    DetectionParams::recomputeMetrics(img->width, img->height, settingsParam, m_shrink);
     std::cout << "Params: len = " << DetectionParams::lineLengthTreshold << std::endl;
 
     return objectPoint;
@@ -117,17 +138,17 @@ void ImageService::writePointToMessage(const sensor_msgs::Image::ConstPtr& img, 
     unsigned long imageSize = img->height * img->width * 3;
     unsigned int index;
     unsigned int min;
-    unsigned int max;    
-    
-    if(size <= 1) 
+    unsigned int max;
+
+    if (size <= 1)
     {
-        min = 0;        
-        max = 1;        
+        min = 0;
+        max = 1;
     }
-    else 
+    else
     {
         min = size / 2;
-        max = size / 2;        
+        max = size / 2;
     }
 
     for (unsigned int i = point->x - min; i < point->x + max; i++)
@@ -135,7 +156,7 @@ void ImageService::writePointToMessage(const sensor_msgs::Image::ConstPtr& img, 
         for (unsigned int j = point->y - min; j < point->y + max; j++)
         {
             index = imageSize - (j + 1) * img->width * 3 * m_shrink + (m_image->getWidth() - i) * m_shrink * 3;
-            
+
             temp = (unsigned char*) &img->data[index];
             *temp = (unsigned char) 255;
             temp = (unsigned char*) &img->data[index + 1];
@@ -148,10 +169,10 @@ void ImageService::writePointToMessage(const sensor_msgs::Image::ConstPtr& img, 
 
 void ImageService::writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width)
 {
-    Line* oneLine = NULL;        
-    
+    Line* oneLine = NULL;
+
     if (img->width > 0 && img->height > 0)
-    {                
+    {
         for (unsigned int i = 0; i < count; i++)
         {
             oneLine = line[i];

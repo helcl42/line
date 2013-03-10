@@ -52,6 +52,8 @@ CMakeFiles/line.dir/src/DetectorTopic.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/DetectorTopic.o: ../src/Rectangle.h
+CMakeFiles/line.dir/src/DetectorTopic.o: ../src/RectangleDetector.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/Timer.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/Utils.h
@@ -129,6 +131,8 @@ CMakeFiles/line.dir/src/ImageService.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/ImageService.o: ../src/Rectangle.h
+CMakeFiles/line.dir/src/ImageService.o: ../src/RectangleDetector.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/Timer.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/Utils.h
@@ -195,7 +199,6 @@ CMakeFiles/line.dir/src/Line.o: ../src/Line.cpp
 CMakeFiles/line.dir/src/Line.o: ../src/Line.h
 CMakeFiles/line.dir/src/Line.o: ../src/Vector2.h
 
-CMakeFiles/line.dir/src/LineDetector.o: ../src/CannyFilterStategy.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/DetectionSettings.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/EdgeFilterStrategy.h
@@ -295,6 +298,8 @@ CMakeFiles/line.dir/src/Main.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/Main.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/Main.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/Main.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/Main.o: ../src/Rectangle.h
+CMakeFiles/line.dir/src/Main.o: ../src/RectangleDetector.h
 CMakeFiles/line.dir/src/Main.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/Main.o: ../src/Timer.h
 CMakeFiles/line.dir/src/Main.o: ../src/Utils.h

@@ -15,7 +15,7 @@
 class Rectangle
 {
 protected:
-    Line* m_line[4];
+    Line* m_lines[4];
     
 public:    
     Rectangle();
@@ -34,6 +34,8 @@ public:
     void setAt(Line* line, unsigned int index);
     
     Line* getAt(unsigned int index) const;
+    
+    Line** getLines();
     
     Line* operator[](int index);
 };

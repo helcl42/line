@@ -15,6 +15,7 @@
 #include "Timer.h"
 #include "DetectionSettings.h"
 #include "LineDetector.h"
+#include "RectangleDetector.h"
 
 class ImageService
 {
@@ -34,6 +35,8 @@ private:
     unsigned int m_settingsIndex;
     
     LineDetector* m_lineDetector;
+    
+    RectangleDetector* m_rectangleDetector;
     
 public:
     ImageService(DetectionSettings* settings);    

@@ -38,7 +38,7 @@ struct DetectionParams
     
     static unsigned int countOfDirections;        
     
-    static void recomputeMetrics(unsigned int w, unsigned int h, unsigned int shrink = 1);
+    static void recomputeMetrics(unsigned int w, unsigned int h, unsigned int settingsParam, unsigned int shrink = 1);
 };
 
 

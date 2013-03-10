@@ -30,8 +30,8 @@ public:
     
     Rectangle* findBestRectangle();    
 
-private:
-    static void initDetectionParams();
+protected:
+    void initDetectionParams();
 };
 
 #endif	/* RECTANGLEDETECTOR_H */

@@ -57,32 +57,26 @@ unsigned int DetectionParams::imageWidth = 640;
 //unsigned int DetectionParams::imageWidth = 640;
 
 
-void DetectionParams::recomputeMetrics(unsigned int w, unsigned int h, unsigned int shrink)
+void DetectionParams::recomputeMetrics(unsigned int w, unsigned int h, unsigned int settingsParam, unsigned int shrink)
 {
     if(shrink == 0) 
     {
         throw std::runtime_error("shrink == 0");
     }
    
-    if(w != imageWidth) 
-    {
-        imageWidth = w;
-    }
+    imageWidth = w;   
+       
+    imageHeight = h;    
     
-    if(h != imageHeight)
-    {
-        imageHeight = h;
-    }
+    lineLengthTreshold = settingsParam / (shrink * 2);
     
-    lineLengthTreshold = imageHeight / (shrink * 2);
+    straightnessTreshold = 3 * settingsParam / (shrink * 4);
     
-    straightnessTreshold = 3 * imageHeight / (shrink * 4);
-    
-    minPointDistance = imageHeight / (shrink * 30);
+    minPointDistance = settingsParam / (shrink * 30);
 
-    inlineTolerance = imageHeight / (shrink * 60);
+    inlineTolerance = settingsParam / (shrink * 60);
 
-    maxPointDistance =  2.5 * imageHeight / shrink;
+    maxPointDistance =  2.5 * settingsParam / shrink;
 
     noCheckLineBorder = lineLengthTreshold / 3;
       

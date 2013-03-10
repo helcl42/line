@@ -29,12 +29,10 @@ public:
     
     LinePair* findBestLine();
     
-protected:
-    
+protected:    
     bool lineColorMatch(Line* l1, Line* l2);    
 
-private:
-    static void initDetectionParams();
+    void initDetectionParams();
 };
 
 

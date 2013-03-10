@@ -1,14 +1,16 @@
 #include "ObjectDetector.h"
 #include "SobelFilterStrategy.h"
 
-
 ObjectDetector::ObjectDetector(DetectionColorItem* settings)
 : m_workImage(NULL), m_colorImage(NULL), m_settings(settings)
 {
     m_imageFilter = new ImageFilter<float>();
     m_edgeFilter = new SobelFilterStrategy<float>();
+    if (m_settings != NULL)
+    {
+        setBaseColor();
+    }
 }
-
 
 ObjectDetector::ObjectDetector(Image<float>* image, Image<float>* colorImage)
 : m_workImage(image), m_colorImage(colorImage), m_settings(NULL)
@@ -17,13 +19,11 @@ ObjectDetector::ObjectDetector(Image<float>* image, Image<float>* colorImage)
     m_edgeFilter = new SobelFilterStrategy<float>();
 }
 
-
 ObjectDetector::~ObjectDetector()
 {
     SAFE_DELETE(m_edgeFilter);
-    SAFE_DELETE(m_imageFilter);    
+    SAFE_DELETE(m_imageFilter);
 }
-
 
 void ObjectDetector::setBaseColor()
 {
@@ -54,12 +54,10 @@ void ObjectDetector::setBaseColor()
     }
 }
 
-
 PixelRGB<float> ObjectDetector::getBaseColor() const
 {
     return m_baseColor;
 }
-
 
 void ObjectDetector::setColorSettings(DetectionColorItem* settings)
 {
@@ -67,19 +65,26 @@ void ObjectDetector::setColorSettings(DetectionColorItem* settings)
     setBaseColor();
 }
 
-
 DetectionColorItem* ObjectDetector::getColorSettings() const
 {
     return m_settings;
 }
 
+unsigned int ObjectDetector::getSettingsParam() const
+{
+    return m_settingsParam;
+}
+
+void ObjectDetector::setSettingsParam(unsigned int param)
+{
+    m_settingsParam = param;
+}
 
 void ObjectDetector::setImages(Image<float>* image, Image<float>* colorImage)
-{    
+{
     m_workImage = image;
     m_colorImage = colorImage;
 }
-
 
 void ObjectDetector::replaintSimilarColorPlaces(int interval)
 {

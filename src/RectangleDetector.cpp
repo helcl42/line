@@ -3,12 +3,16 @@
 RectangleDetector::RectangleDetector(DetectionColorItem* settings)
 : StraightObjectDetector(settings)
 {
+    this->setSettingsParam(160);
+    this->initDetectionParams();
     m_bestRectangle = new Rectangle();
 }
 
 RectangleDetector::RectangleDetector(Image<float>* image, Image<float>* colorImage)
 : StraightObjectDetector(image, colorImage)
 {
+    this->setSettingsParam(160);
+    this->initDetectionParams();
     m_bestRectangle = new Rectangle();
 }
 
@@ -79,19 +83,19 @@ Rectangle* RectangleDetector::findBestRectangle()
 
 void RectangleDetector::initDetectionParams()
 {
-    DetectionParams::lineLengthTreshold = 240;
+    DetectionParams::lineLengthTreshold = 80;
 
-    DetectionParams::straightnessTreshold = 360;
+    DetectionParams::straightnessTreshold = 3;
 
-    DetectionParams::minPointDistance = 16;
+    DetectionParams::minPointDistance = 40;
 
-    DetectionParams::maxPointDistance = 1300;
+    DetectionParams::maxPointDistance = 600;
 
-    DetectionParams::inlineTolerance = 8;
+    DetectionParams::inlineTolerance = 20;
 
     DetectionParams::noCheckLineBorder = 80;
 
-    DetectionParams::checkPointSkip = 24;
+    DetectionParams::checkPointSkip = 10;
 
     DetectionParams::countOfDirections = 3; //index = count - 1
 
