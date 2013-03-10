@@ -24,10 +24,7 @@ private:
     FILE* m_file;
 
 private:
-
     BmpFileIO() {}
-
-    static void onDestroy();
 
     short readShort();
     
@@ -38,6 +35,9 @@ private:
     void writeLong(long data);
     
     void writeShort(short data);
+    
+private:    
+    static void onDestroy();
     
 public:
     

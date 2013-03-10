@@ -100,6 +100,12 @@ Line.h
 Utils.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
 
+/home/lubos/fuerte_workspace/sandbox/line/src/Main.cpp
+DetectorTopic.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.h
+DetectionSettings.h
+/home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/ObjectDetector.h
 Pixel.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h

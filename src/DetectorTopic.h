@@ -25,6 +25,8 @@ private:
     Vector2<int>* m_objectPoint;
     
     unsigned int m_shrink;
+        
+    double m_cameraY;
     
     ros::NodeHandle m_handler;        
     
@@ -36,11 +38,9 @@ private:
     
     ros::NodeHandle m_sendHandler;        
     
-    ros::Publisher m_resender;    
+    ros::Publisher m_resender;            
     
-    ImageService* m_imageService;        
-    
-    Timer m_checkCameraY;
+    ImageService* m_imageService;                
             
 public:
     DetectorTopic(DetectionSettings* settings);
@@ -49,11 +49,13 @@ public:
     
     void run();
     
-    float getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg);
+    double getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg);
+    
+    double getCameraHeight(float distLow, float distHigh);
 
     void imageCallback(const sensor_msgs::Image::ConstPtr& msg_ptr);       
     
-    void depthImageCallback(const sensor_msgs::Image::ConstPtr& msg);
+    void depthImageCallback(const sensor_msgs::Image::ConstPtr& msg);        
 };
 
 

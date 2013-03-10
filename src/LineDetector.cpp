@@ -65,10 +65,10 @@ LinePair* LineDetector::findBestLine()
                 m_bestLine->setLine(ret, similar);
                 break;
             }
-            else
-            {
-                std::cout << "color fail!" << std::endl;
-            }
+//            else
+//            {
+//                std::cout << "color fail!" << std::endl;
+//            }
         }
     }
     return m_bestLine;

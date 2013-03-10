@@ -1,8 +1,7 @@
 #include "DetectorTopic.h"
 
-
 DetectorTopic::DetectorTopic(DetectionSettings* settings)
-: m_objectPoint(NULL), m_shrink(0)
+: m_objectPoint(NULL), m_shrink(0), m_cameraY(0)
 {
     m_imageService = new ImageService(settings);
 }
@@ -21,6 +20,13 @@ void DetectorTopic::run()
 
 void DetectorTopic::depthImageCallback(const sensor_msgs::Image::ConstPtr& depth)
 {
+    double temp = getCameraYPosition(depth);
+    if (!isnan(temp) && temp > 0)
+    {
+        m_cameraY = temp;
+    }
+    std::cout << "Cam Height!!!!: " << m_cameraY << std::endl;
+
     if (m_objectPoint != NULL)
     {
         float distance;
@@ -32,20 +38,7 @@ void DetectorTopic::depthImageCallback(const sensor_msgs::Image::ConstPtr& depth
 
         //send waypoint
 
-        SAFE_DELETE(m_objectPoint);       
-    }
-    
-    float cameraY;
-    
-    if(!m_checkCameraY.isStarted()) 
-    {
-        m_checkCameraY.start();
-    }
-    else if(m_checkCameraY.isElapsedMs(8000)) 
-    {
-        
-        cameraY = getCameraYPosition(depth);
-        std::cout << cameraY << std::endl;
+        SAFE_DELETE(m_objectPoint);
     }
 }
 
@@ -57,17 +50,51 @@ void DetectorTopic::imageCallback(const sensor_msgs::Image::ConstPtr& msg)
 
 }
 
-
-float DetectorTopic::getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg)
+double DetectorTopic::getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg)
 {
-    float highMidDistance;
     float lowMidDistance;
-    BYTES_TO_FLOAT_L(highMidDistance, msg->data, 4 * msg->width / 2);
-    BYTES_TO_FLOAT_L(lowMidDistance, msg->data, (4 * msg->width * msg->height) - (4 * msg->width / 2));
-    
-    std::cout << "High = " << highMidDistance << " Low = " << lowMidDistance << std::endl;
-    //fake
-    return highMidDistance;
+    float lowMidDistancePlusHalf;
+    double height;
+    double temp;
+
+    int countOfOks = 0;
+    unsigned int size = (4 * msg->width * msg->height);
+
+    for (int i = 0; i < 3; i++)
+    {
+        BYTES_TO_FLOAT_L(lowMidDistance, msg->data, size - ((i + 1) * msg->width));
+        BYTES_TO_FLOAT_L(lowMidDistancePlusHalf, msg->data, size - (msg->width * msg->height / 2) - ((i + 1) * msg->width));
+        temp = getCameraHeight(lowMidDistance, lowMidDistancePlusHalf);
+        if (!isnan(temp))
+        {
+            height += temp;
+            countOfOks++;
+        }
+    }
+
+    if (countOfOks != 0)
+    {
+        return height / countOfOks;
+    }
+    else
+    {
+        return -1;
+    }
 }
 
+double DetectorTopic::getCameraHeight(float distLow, float distHigh)
+{
+    float alpha = 6;
+    double angle;
+    double x1 = distLow * sin(alpha * M_PI / 180);
+    double x2 = distLow * cos(alpha * M_PI / 180);
+
+    x2 = distHigh - x2;
+
+    angle = atan(x1 / x2) * 180 / M_PI;
+
+    angle = 90 - angle - alpha;
+
+    return 1.15 * distLow * cos(angle * M_PI / 180) + 0.009 / acos(cos(angle * M_PI / 180));
+}
 
