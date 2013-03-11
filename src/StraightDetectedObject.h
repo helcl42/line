@@ -8,7 +8,7 @@
 #ifndef STRAIGHTDETECTEDOBJECT_H
 #define	STRAIGHTDETECTEDOBJECT_H
 
-#include "DetectedObject.h"
+#include "IDetectedObject.h"
 #include "Line.h"
 #include "Utils.h"
 
