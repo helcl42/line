@@ -147,7 +147,6 @@ bool Line::isInline(Line* input)
         {
             return true;
         }
-
     }
     return false;
 }
@@ -171,6 +170,26 @@ bool Line::isClose(Line* input, unsigned int crossCount)
                 }
             }
         }
+    }
+    return false;
+}
+
+bool Line::isTooNarrow()
+{
+    float h = pow(2, 0.5) * length / 5.5;
+    if(straightnessFactor >= h)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool Line::hasLengthInInterval(Line* similar, float divider)
+{
+    if(length + DetectionParams::minLineLengthTreshold / divider > similar->length
+            && length - DetectionParams::minLineLengthTreshold / divider < similar->length)
+    {
+        return true;
     }
     return false;
 }
@@ -200,7 +219,7 @@ double Line::getDistanceTo(Vector2<int>& point)
 
 std::ostream& operator<<(std::ostream& out, const Line& line)
 {
-    out << "Line len = " << line.length << std::endl;
+    out << "Line len = " << line.length << " Straightness = " << line.straightnessFactor << std::endl;
 
     std::vector<Vector2<int> >::const_iterator ii;
     for (ii = line.points.begin(); ii != line.points.end(); ++ii)

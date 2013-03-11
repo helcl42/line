@@ -16,15 +16,19 @@ struct DetectionParams
     
     static const unsigned int selectionTreshold;
     
-    static const unsigned int directionDeltaDegrees;
+    static float directionDeltaDegrees;
     
     static unsigned int imageWidth;
     
     static unsigned int imageHeight;
     
-    static unsigned int lineLengthTreshold;                    
+    static float minLineLengthTreshold;
     
-    static unsigned int straightnessTreshold;
+    static float maxLineLengthTreshold;
+    
+    static float maxStraightnessTreshold;
+    
+    static float minStraightnessTreshold;
     
     static unsigned int minPointDistance;
     
@@ -36,9 +40,7 @@ struct DetectionParams
     
     static unsigned int checkPointSkip;
     
-    static unsigned int countOfDirections;        
-    
-    static void recomputeMetrics(unsigned int w, unsigned int h, unsigned int settingsParam, unsigned int shrink = 1);
+    static unsigned int countOfDirections;            
 };
 
 

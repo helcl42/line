@@ -28,7 +28,6 @@ protected:
 
     EdgeFilterStrategy<float>* m_edgeFilter;
     
-    unsigned int m_settingsParam;
 
 public:       
     ObjectDetector(DetectionColorItem* settings = NULL);
@@ -46,19 +45,15 @@ public:
 
     DetectionColorItem* getColorSettings() const;
 
-    void setImages(Image<float>* image, Image<float>* colorImage);
-    
-    void setSettingsParam(unsigned int param);
-    
-    unsigned int getSettingsParam() const;
+    void setImages(Image<float>* image, Image<float>* colorImage);    
     
 public:    
     virtual void invalidate() = 0;    
+        
+    virtual void initDetectionParams(unsigned int shrink = 1) = 0;
     
 protected:        
-    void replaintSimilarColorPlaces(int interval = DetectionParams::colorTolerance);
-        
-    virtual void initDetectionParams() = 0;
+    void replaintSimilarColorPlaces(int interval = DetectionParams::colorTolerance);        
 };
 
 #endif	/* OBJECTDETECTOR_H */

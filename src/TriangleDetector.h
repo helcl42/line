@@ -29,11 +29,11 @@ public:
     void invalidate();
     
     StraightDetectedObject* findObject();
+    
+    void initDetectionParams(unsigned int shrink = 1);
 
 protected:
-    StraightDetectedObject* findBestTriangle();
-    
-    void initDetectionParams();
+    StraightDetectedObject* findBestTriangle();    
 };
 
 

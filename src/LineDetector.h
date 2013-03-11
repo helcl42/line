@@ -28,12 +28,12 @@ public:
     
     StraightDetectedObject* findObject();
     
+    void initDetectionParams(unsigned int shrink = 1);
+    
 protected:    
     bool lineColorMatch(Line* l1, Line* l2);    
     
-    StraightDetectedObject* findBestLine();
-
-    void initDetectionParams();
+    StraightDetectedObject* findBestLine();   
 };
 
 

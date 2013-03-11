@@ -24,14 +24,15 @@ public:
 
     virtual ~RectangleDetector();
 
+public:    
     StraightDetectedObject* findObject();
         
     void invalidate();           
+    
+    void initDetectionParams(unsigned int shrink = 1);
 
 protected:
-    StraightDetectedObject* findBestRectangle(); 
-    
-    void initDetectionParams();
+    StraightDetectedObject* findBestRectangle();     
 };
 
 #endif	/* RECTANGLEDETECTOR_H */

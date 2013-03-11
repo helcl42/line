@@ -1,11 +1,14 @@
 #include "StraightObjectDetector.h"
 
-
 StraightObjectDetector::StraightObjectDetector(DetectionColorItem* settings)
-: ObjectDetector(settings) {}
+: ObjectDetector(settings)
+{
+}
 
 StraightObjectDetector::StraightObjectDetector(Image<float>* image, Image<float>* colorImage)
-: ObjectDetector(image, colorImage) {}
+: ObjectDetector(image, colorImage)
+{
+}
 
 StraightObjectDetector::~StraightObjectDetector()
 {
@@ -13,7 +16,7 @@ StraightObjectDetector::~StraightObjectDetector()
     {
         SAFE_DELETE(m_lines[i]);
     }
-    m_lines.clear();        
+    m_lines.clear();
 }
 
 void StraightObjectDetector::writeLineInImage(Line* line, int r, int g, int b)
@@ -36,7 +39,6 @@ void StraightObjectDetector::writeLineInImage(Line* line, int r, int g, int b)
     }
 }
 
-
 void StraightObjectDetector::lockSimilarLines(Line* input, unsigned int crossCount)
 {
     Line* temp = NULL;
@@ -53,7 +55,6 @@ void StraightObjectDetector::lockSimilarLines(Line* input, unsigned int crossCou
         }
     }
 }
-
 
 void StraightObjectDetector::lockAllLines(bool val)
 {
@@ -135,7 +136,7 @@ void StraightObjectDetector::traverseImage()
                 lines[6] = findCorrectLine(vecs7, index);
                 lines[7] = findCorrectLine(vecs8, index);
 
-                if (storeBestLine(lines)) j++;                
+                if (storeBestLine(lines)) j++;
             }
         }
     }
@@ -145,7 +146,8 @@ bool StraightObjectDetector::storeBestLine(Line** lines)
 {
     for (int i = 0; i < 8; i++)
     {
-        if (lines[i]->computeLength() < DetectionParams::lineLengthTreshold)
+        if (lines[i]->computeLength() < DetectionParams::minLineLengthTreshold
+                || lines[i]->computeLength() > DetectionParams::maxLineLengthTreshold)
         {
             SAFE_DELETE(lines[i]);
         }
@@ -164,8 +166,9 @@ bool StraightObjectDetector::storeBestLine(Line** lines)
         }
 
         best->computeProperties();
-        if (best->straightnessFactor < DetectionParams::straightnessTreshold)
-        {            
+        if (best->straightnessFactor < DetectionParams::maxStraightnessTreshold
+                && best->straightnessFactor > DetectionParams::minStraightnessTreshold)
+        {
             writeLineInImage(best, 255, 255, 0);
             m_lines.push_back(best);
             return true;
@@ -218,8 +221,7 @@ Line* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector2<int> p
     return line;
 }
 
-
-void StraightObjectDetector::sortLinesByLength()
+void StraightObjectDetector::sortLinesByLength(bool reverse)
 {
     Line* temp = NULL;
     int j;
@@ -229,9 +231,19 @@ void StraightObjectDetector::sortLinesByLength()
         temp = m_lines[i];
         for (j = i - 1; j >= 0; j--)
         {
-            if (m_lines[j]->length > temp->length)
+            if (reverse)
             {
-                break;
+                if (m_lines[j]->length < temp->length)
+                {
+                    break;
+                }
+            }
+            else
+            {
+                if (m_lines[j]->length > temp->length)
+                {
+                    break;
+                }
             }
             m_lines[j + 1] = m_lines[j];
         }
@@ -239,8 +251,7 @@ void StraightObjectDetector::sortLinesByLength()
     }
 }
 
-
-void StraightObjectDetector::sortLinesByStraightness()
+void StraightObjectDetector::sortLinesByStraightness(bool reverse)
 {
     Line* temp = NULL;
     int j;
@@ -250,16 +261,25 @@ void StraightObjectDetector::sortLinesByStraightness()
         temp = m_lines[i];
         for (j = i - 1; j >= 0; j--)
         {
-            if (m_lines[j]->straightnessFactor < temp->straightnessFactor)
+            if (reverse)
             {
-                break;
+                if (m_lines[j]->straightnessFactor > temp->straightnessFactor)
+                {
+                    break;
+                }
+            }
+            else
+            {
+                if (m_lines[j]->straightnessFactor < temp->straightnessFactor)
+                {
+                    break;
+                }
             }
             m_lines[j + 1] = m_lines[j];
         }
         m_lines[j + 1] = temp;
     }
 }
-
 
 /** 
  * @param input
@@ -276,11 +296,14 @@ Line* StraightObjectDetector::findLineWithDirection(Line* input, float angle)
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {
-        if (m_lines[i]->locked) continue;        
+        if (m_lines[i]->locked) continue;
 
         testedDirection = m_lines[i]->directionDegrees;
 
         delta = input->directionDegrees - testedDirection + angle;
+
+        //std::cout << "testDirection: " << testedDirection << " delta: " << delta << std::endl;
+
         delta = delta < 0 ? -delta : delta;
 
         if (delta < minDelta)
@@ -321,7 +344,6 @@ Line* StraightObjectDetector::getLongestLine()
     }
     return longest;
 }
-
 
 Line* StraightObjectDetector::getStraightestLine()
 {

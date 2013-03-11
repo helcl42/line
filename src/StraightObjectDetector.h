@@ -25,7 +25,7 @@ public:
     virtual ~StraightObjectDetector();
     
 public:
-    virtual StraightDetectedObject* findObject() = 0;
+    virtual StraightDetectedObject* findObject() = 0;    
     
 protected:
     Line* getLongestLine();
@@ -46,9 +46,9 @@ protected:
 
     Line* findCorrectLine(Vector2<int>* vecs, Vector2<int> pos);
 
-    void sortLinesByStraightness();
+    void sortLinesByStraightness(bool reverse = false);
 
-    void sortLinesByLength();        
+    void sortLinesByLength(bool reverse = false);        
 };
 
 

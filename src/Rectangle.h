@@ -14,7 +14,7 @@ class Rectangle : public StraightDetectedObject
 {
 public:
     Rectangle()
-    : StraightDetectedObject(4) {}
+    : StraightDetectedObject(2) {}
     
     virtual ~Rectangle() {}
 };

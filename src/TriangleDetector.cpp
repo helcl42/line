@@ -3,16 +3,14 @@
 
 TriangleDetector::TriangleDetector(DetectionColorItem* settings)
 : StraightObjectDetector(settings)
-{
-    this->setSettingsParam(240);
+{    
     this->initDetectionParams();
     m_bestTriangle = new Triangle();
 }
 
 TriangleDetector::TriangleDetector(Image<float>* image, Image<float>* colorImage)
 : StraightObjectDetector(image, colorImage)
-{
-    this->setSettingsParam(240);
+{    
     this->initDetectionParams();
     m_bestTriangle = new Triangle();
 }
@@ -72,8 +70,7 @@ StraightDetectedObject* TriangleDetector::findBestTriangle()
             {
                 writeLineInImage(m_bestTriangle->getAt(0), 255, 0, 0);
                 writeLineInImage(m_bestTriangle->getAt(1), 0, 0, 255);
-                writeLineInImage(m_bestTriangle->getAt(2), 255, 0, 0);
-                writeLineInImage(m_bestTriangle->getAt(3), 0, 0, 255);
+                writeLineInImage(m_bestTriangle->getAt(2), 255, 0, 0);           
                 break;
             }
         }
@@ -85,11 +82,11 @@ StraightDetectedObject* TriangleDetector::findBestTriangle()
     return m_bestTriangle;
 }
 
-void TriangleDetector::initDetectionParams()
+void TriangleDetector::initDetectionParams(unsigned int shrink)
 {
-    DetectionParams::lineLengthTreshold = 80;
+    DetectionParams::minLineLengthTreshold = 80;
 
-    DetectionParams::straightnessTreshold = 3;
+    DetectionParams::maxStraightnessTreshold = 3;
 
     DetectionParams::minPointDistance = 40;
 

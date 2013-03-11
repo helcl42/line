@@ -2,16 +2,14 @@
 
 LineDetector::LineDetector(DetectionColorItem* settings)
 : StraightObjectDetector(settings)
-{
-    this->setSettingsParam(480);
+{    
     this->initDetectionParams();    
     m_bestLine = new LinePair();
 }
 
 LineDetector::LineDetector(Image<float>* image, Image<float>* colorImage)
 : StraightObjectDetector(image, colorImage)
-{
-    this->setSettingsParam(480);
+{    
     this->initDetectionParams();
     m_bestLine = new LinePair();
 }
@@ -46,21 +44,24 @@ StraightDetectedObject* LineDetector::findBestLine()
     Line* ret = NULL;
     Line* similar = NULL;
 
-    //sortLinesByStraightness();
     sortLinesByLength();
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
-    {
+    {        
         lockAllLines(false);
         ret = m_lines[i];
 
+        if(ret->isTooNarrow()) continue;            
+        
         lockSimilarLines(ret);
-        similar = findLineWithDirection(ret);
+        similar = findLineWithDirection(ret);        
 
         if (ret != NULL && similar != NULL)
         {
-            if (lineColorMatch(ret, similar))
-            {
+            if(similar->isTooNarrow()) continue;
+            
+            if (lineColorMatch(ret, similar) && ret->hasLengthInInterval(similar))
+            {                
                 std::cout << *ret << std::endl;
                 std::cout << *similar << std::endl;
                 writeLineInImage(ret, 255, 0, 0);
@@ -106,21 +107,29 @@ bool LineDetector::lineColorMatch(Line* l1, Line* l2)
     return true;
 }
 
-void LineDetector::initDetectionParams()
+void LineDetector::initDetectionParams(unsigned int shrink)
 {
-    DetectionParams::lineLengthTreshold = 240;
+    unsigned int settingsParam = 480;
+     
+    DetectionParams::directionDeltaDegrees = 10;
+    
+    DetectionParams::minLineLengthTreshold = settingsParam / (shrink * 2);
+    
+    DetectionParams::maxLineLengthTreshold = 2 * settingsParam;
 
-    DetectionParams::straightnessTreshold = 360;
+    DetectionParams::minStraightnessTreshold = 0;
+    
+    DetectionParams::maxStraightnessTreshold = 3 * settingsParam / (shrink * 4);        
 
-    DetectionParams::minPointDistance = 16;
+    DetectionParams::minPointDistance = settingsParam / (shrink * 30);
 
-    DetectionParams::maxPointDistance = 1300;
+    DetectionParams::maxPointDistance = 2.5 * settingsParam / shrink;
 
-    DetectionParams::inlineTolerance = 8;
+    DetectionParams::inlineTolerance = settingsParam / (shrink * 60);
 
-    DetectionParams::noCheckLineBorder = 80;
+    DetectionParams::noCheckLineBorder = DetectionParams::minLineLengthTreshold / 3;
 
-    DetectionParams::checkPointSkip = 24;
+    DetectionParams::checkPointSkip = DetectionParams::minLineLengthTreshold / 10;
 
     DetectionParams::countOfDirections = 3; //index = count - 1   
 }

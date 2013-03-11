@@ -70,16 +70,6 @@ DetectionColorItem* ObjectDetector::getColorSettings() const
     return m_settings;
 }
 
-unsigned int ObjectDetector::getSettingsParam() const
-{
-    return m_settingsParam;
-}
-
-void ObjectDetector::setSettingsParam(unsigned int param)
-{
-    m_settingsParam = param;
-}
-
 void ObjectDetector::setImages(Image<float>* image, Image<float>* colorImage)
 {
     m_workImage = image;

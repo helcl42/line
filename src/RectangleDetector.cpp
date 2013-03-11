@@ -2,16 +2,14 @@
 
 RectangleDetector::RectangleDetector(DetectionColorItem* settings)
 : StraightObjectDetector(settings)
-{
-    this->setSettingsParam(240);
+{ 
     this->initDetectionParams();
     m_bestRectangle = new Rectangle();
 }
 
 RectangleDetector::RectangleDetector(Image<float>* image, Image<float>* colorImage)
 : StraightObjectDetector(image, colorImage)
-{
-    this->setSettingsParam(240);
+{    
     this->initDetectionParams();
     m_bestRectangle = new Rectangle();
 }
@@ -42,67 +40,61 @@ void RectangleDetector::invalidate()
 }
 
 StraightDetectedObject* RectangleDetector::findBestRectangle()
-{
-    m_bestRectangle->invalidate();
-    sortLinesByStraightness();    
+{        
+    Line* ret = NULL;
+    Line* similar = NULL;
+    
+    //sortLinesByStraightness(true);    
+    sortLinesByLength();
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
-    {
+    {        
         lockAllLines(false);
+        ret = m_lines[i];   
         
-        //set first as default
-        m_bestRectangle->setAt(m_lines[i], 0);
-        
-        //iterate trough all left needed lines
-        for (unsigned int j = 1; j < 4; j++)
-        {            
-            //one cross allowed here
-            lockSimilarLines(m_bestRectangle->getAt(j), 1);
-            m_bestRectangle->setAt(findLineWithDirection(m_bestRectangle->getAt(j), 90), j);
+        lockSimilarLines(ret);
+        similar = findLineWithDirection(ret);        
 
-            if (!m_bestRectangle->isValid(j)) break;
-
-            m_bestRectangle->setLocked(j);
-        }
-
-        if (m_bestRectangle->isValid())
-        {
-            //if (lineColorMatch(rect[0], rect[2]))
-            {
-                writeLineInImage(m_bestRectangle->getAt(0), 255, 0, 0);
-                writeLineInImage(m_bestRectangle->getAt(1), 0, 0, 255);
-                writeLineInImage(m_bestRectangle->getAt(2), 255, 0, 0);
-                writeLineInImage(m_bestRectangle->getAt(3), 0, 0, 255);
+        if (ret != NULL && similar != NULL)
+        {                        
+            if (/*lineColorMatch(ret, similar)*/ ret->hasLengthInInterval(similar, 5))
+            {                
+                std::cout << *ret << std::endl;
+                std::cout << *similar << std::endl;
+                writeLineInImage(ret, 255, 0, 0);
+                writeLineInImage(similar, 0, 0, 255);
+                m_bestRectangle->setAt(ret, 0);
+                m_bestRectangle->setAt(similar, 1);
                 break;
-            }
-        }
-        else
-        {
-            std::cout << "fail!" << std::endl;
+            }            
         }
     }
     return m_bestRectangle;
 }
 
-void RectangleDetector::initDetectionParams()
+void RectangleDetector::initDetectionParams(unsigned int shrink)
 {
-    DetectionParams::lineLengthTreshold = 80;
+    unsigned int settingsParam = 480;
+     
+    DetectionParams::directionDeltaDegrees = 13;
+        
+    DetectionParams::minLineLengthTreshold = settingsParam / (shrink * 8);
+    
+    DetectionParams::maxLineLengthTreshold = settingsParam / (shrink * 4);
 
-    DetectionParams::straightnessTreshold = 3;
+    DetectionParams::minStraightnessTreshold = pow(2, 0.5) * DetectionParams::minLineLengthTreshold / 4;
+    
+    DetectionParams::maxStraightnessTreshold = pow(2, 0.5) * DetectionParams::maxLineLengthTreshold;
 
-    DetectionParams::minPointDistance = 40;
+    DetectionParams::minPointDistance = settingsParam / (shrink * 30);
 
-    DetectionParams::maxPointDistance = 600;
+    DetectionParams::maxPointDistance = pow(2 * DetectionParams::maxLineLengthTreshold * DetectionParams::maxLineLengthTreshold, 0.5);
 
-    DetectionParams::inlineTolerance = 20;
+    DetectionParams::inlineTolerance = settingsParam / (shrink * 20);
 
-    DetectionParams::noCheckLineBorder = 80;
+    DetectionParams::noCheckLineBorder = DetectionParams::minLineLengthTreshold / 10;
 
-    DetectionParams::checkPointSkip = 10;
+    DetectionParams::checkPointSkip = DetectionParams::minLineLengthTreshold / 6;
 
-    DetectionParams::countOfDirections = 3; //index = count - 1
-
-    DetectionParams::imageHeight = 480;
-
-    DetectionParams::imageWidth = 640;
+    DetectionParams::countOfDirections = 3; //index = count - 1       
 }
