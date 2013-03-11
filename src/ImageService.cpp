@@ -1,5 +1,4 @@
 #include "ImageService.h"
-#include "DetectionParams.h"
 #include "Line.h"
 
 ImageService::ImageService(DetectionSettings* settings)
@@ -24,6 +23,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     unsigned long timeElapsed;
     unsigned int settingsParam;
     Vector2<int>* objectPoint = NULL;
+    StraightDetectedObject* object = NULL;
 
     m_shrinkTimer.start();
 
@@ -33,7 +33,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     m_lineDetector->invalidate();
     m_lineDetector->setImages(m_image, m_colorImage);
     settingsParam = m_lineDetector->getSettingsParam();
-    LinePair* line = m_lineDetector->detectLine();
+    object = m_lineDetector->findObject();
 
 //    m_rectangleDetector->invalidate();
 //    settingsParam = m_rectangleDetector->getSettingsParam();
@@ -45,17 +45,17 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
 //        writeLinesToMessage(img, rect->getLines(), 4);
 //    }
 
-    if (line->isValid())
+    if (object->isValid())
     {
-        std::cout << "CARA!!! " << line->getAt(0)->length << std::endl;
+        std::cout << "CARA!!! " << object->getAt(0)->length << std::endl;
 
         if (m_changeColorTimer.isStarted())
         {
             m_changeColorTimer.stop();
         }
-        writeLinesToMessage(img, line->getLines(), 2);
+        writeLinesToMessage(img, object->getLines(), 2);
 
-        objectPoint = getObjectPoint(line);
+        objectPoint = getObjectPoint(object);
         if (objectPoint != NULL)
         {
             writePointToMessage(img, objectPoint);
@@ -79,11 +79,11 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
                 //detect home shapes                
                 m_rectangleDetector->setImages(m_image, m_colorImage);
                 settingsParam = m_rectangleDetector->getSettingsParam();
-                Rectangle* rect = m_rectangleDetector->findBestRectangle();
-                if (rect->isValid())
+                object = m_rectangleDetector->findObject();
+                if (object->isValid())
                 {
                     std::cout << "Found rect!!!" << std::endl;
-                    writeLinesToMessage(img, rect->getLines(), 4);
+                    writeLinesToMessage(img, object->getLines(), 4);
                 }
                 m_settingsIndex = 0;
             }
@@ -114,7 +114,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     return objectPoint;
 }
 
-Vector2<int>* ImageService::getObjectPoint(LinePair* line)
+Vector2<int>* ImageService::getObjectPoint(StraightDetectedObject* line)
 {
     Line* l1 = line->getAt(0);
     Line* l2 = line->getAt(1);

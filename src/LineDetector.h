@@ -23,14 +23,15 @@ public:
 
     virtual ~LineDetector();
 
-    LinePair* detectLine();
-        
-    void invalidate();
+public:    
+    void invalidate();    
     
-    LinePair* findBestLine();
+    StraightDetectedObject* findObject();
     
 protected:    
     bool lineColorMatch(Line* l1, Line* l2);    
+    
+    StraightDetectedObject* findBestLine();
 
     void initDetectionParams();
 };

@@ -81,7 +81,6 @@
         <in>CameraService.cpp</in>
         <in>CameraService.h</in>
         <in>CannyFilterStategy.h</in>
-        <in>DetectedObject.h</in>
         <in>DetectionParams.cpp</in>
         <in>DetectionParams.h</in>
         <in>DetectionSettings.cpp</in>
@@ -89,6 +88,7 @@
         <in>DetectorTopic.cpp</in>
         <in>DetectorTopic.h</in>
         <in>EdgeFilterStrategy.h</in>
+        <in>IDetectedObject.h</in>
         <in>IPixel.h</in>
         <in>Image.h</in>
         <in>ImageFilter.h</in>
@@ -99,7 +99,6 @@
         <in>Line.h</in>
         <in>LineDetector.cpp</in>
         <in>LineDetector.h</in>
-        <in>LinePair.cpp</in>
         <in>LinePair.h</in>
         <in>Main.cpp</in>
         <in>ObjectDetector.cpp</in>
@@ -109,7 +108,6 @@
         <in>PixelRGB.h</in>
         <in>PixelXYZ.h</in>
         <in>PrewittFilterStrategy.h</in>
-        <in>Rectangle.cpp</in>
         <in>Rectangle.h</in>
         <in>RectangleDetector.cpp</in>
         <in>RectangleDetector.h</in>

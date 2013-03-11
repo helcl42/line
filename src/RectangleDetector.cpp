@@ -21,7 +21,7 @@ RectangleDetector::~RectangleDetector()
     SAFE_DELETE(m_bestRectangle);
 }
 
-Rectangle* RectangleDetector::detectRectangle()
+StraightDetectedObject* RectangleDetector::findObject()
 {
     m_edgeFilter->setImage(m_workImage);
     m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
@@ -41,7 +41,7 @@ void RectangleDetector::invalidate()
     m_bestRectangle->invalidate();
 }
 
-Rectangle* RectangleDetector::findBestRectangle()
+StraightDetectedObject* RectangleDetector::findBestRectangle()
 {
     m_bestRectangle->invalidate();
     sortLinesByStraightness();    

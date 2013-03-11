@@ -12,8 +12,6 @@ sensor_msgs/Image.h
 Utils.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
 
-/home/lubos/fuerte_workspace/sandbox/line/src/DetectedObject.h
-
 /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
@@ -25,10 +23,6 @@ Pixel.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
 Utils.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
-
-/home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.cpp
-DetectorTopic.h
-/home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.h
 ros/ros.h
@@ -56,6 +50,8 @@ CameraService.h
 Image.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
 
+/home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
@@ -75,14 +71,6 @@ PixelXYZ.h
 /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
 Image.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
-
-/home/lubos/fuerte_workspace/sandbox/line/src/ImageService.cpp
-ImageService.h
-/home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
-DetectionParams.h
-/home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
-Line.h
-/home/lubos/fuerte_workspace/sandbox/line/src/Line.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/ImageService.h
 sensor_msgs/Image.h
@@ -107,10 +95,6 @@ cstdlib
 -
 Vector2.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
-
-/home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp
-LineDetector.h
-/home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.h
 LinePair.h
@@ -174,10 +158,6 @@ Pixel.h
 StraightDetectedObject.h
 /home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
 
-/home/lubos/fuerte_workspace/sandbox/line/src/RectangleDetector.cpp
-RectangleDetector.h
-/home/lubos/fuerte_workspace/sandbox/line/src/RectangleDetector.h
-
 /home/lubos/fuerte_workspace/sandbox/line/src/RectangleDetector.h
 Rectangle.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
@@ -185,8 +165,8 @@ StraightObjectDetector.h
 /home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
-DetectedObject.h
-/home/lubos/fuerte_workspace/sandbox/line/src/DetectedObject.h
+IDetectedObject.h
+/home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
 Line.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
 Utils.h
@@ -197,6 +177,8 @@ Line.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
 ObjectDetector.h
 /home/lubos/fuerte_workspace/sandbox/line/src/ObjectDetector.h
+StraightDetectedObject.h
+/home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
 cstdlib

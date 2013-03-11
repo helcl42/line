@@ -1,23 +1,23 @@
 #include "StraightDetectedObject.h"
 
 
-StraightDetectedObejct::StraightDetectedObejct(unsigned int lineCount)
+StraightDetectedObject::StraightDetectedObject(unsigned int lineCount)
 {
     m_lineCount = lineCount;
     m_lines = new Line*[lineCount];
 }
 
-StraightDetectedObejct::~StraightDetectedObejct()
+StraightDetectedObject::~StraightDetectedObject()
 {
     SAFE_DELETE_ARRAY(m_lines);
 }
 
-void StraightDetectedObejct::setLocked()
+void StraightDetectedObject::setLocked()
 {
     setLocked(m_lineCount);
 }
 
-void StraightDetectedObejct::setLocked(unsigned int count)
+void StraightDetectedObject::setLocked(unsigned int count)
 {
     for(unsigned int i = 0; i < count; i++)
     {
@@ -25,18 +25,18 @@ void StraightDetectedObejct::setLocked(unsigned int count)
     }
 }
 
-Line** StraightDetectedObejct::getLines()
+Line** StraightDetectedObject::getLines()
 {
     return m_lines;
 }
 
-unsigned int StraightDetectedObejct::getLineCount() const
+unsigned int StraightDetectedObject::getLineCount() const
 {
     return m_lineCount;
 }
 
 
-Line* StraightDetectedObejct::getAt(unsigned int index) const 
+Line* StraightDetectedObject::getAt(unsigned int index) const 
 {
     if (index >= 0 && index < m_lineCount)
     {
@@ -48,7 +48,7 @@ Line* StraightDetectedObejct::getAt(unsigned int index) const
     }
 }
 
-void StraightDetectedObejct::setAt(Line* line, unsigned int index)
+void StraightDetectedObject::setAt(Line* line, unsigned int index)
 {
     if (index >= 0 && index < m_lineCount)
     {
@@ -60,12 +60,12 @@ void StraightDetectedObejct::setAt(Line* line, unsigned int index)
     }
 }
 
-bool StraightDetectedObejct::isValid() const
+bool StraightDetectedObject::isValid() const
 {
     return isValid(m_lineCount);
 }
 
-bool StraightDetectedObejct::isValid(unsigned int count) const
+bool StraightDetectedObject::isValid(unsigned int count) const
 {
     for(unsigned int i = 0; i < count; i++)
     {
@@ -77,7 +77,7 @@ bool StraightDetectedObejct::isValid(unsigned int count) const
     return true;
 }
 
-void StraightDetectedObejct::invalidate()
+void StraightDetectedObject::invalidate()
 {
     for (unsigned int i = 0; i < m_lineCount; i++)
     {

@@ -11,11 +11,11 @@
 #include "StraightDetectedObject.h"
 
 
-class Triangle
+class Triangle : public StraightDetectedObject
 { 
 public:
     Triangle()
-     : StraightDetectedObejct(3) {}
+     : StraightDetectedObject(3) {}
 
     virtual ~Triangle() {}    
 };

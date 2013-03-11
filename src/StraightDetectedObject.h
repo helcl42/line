@@ -12,7 +12,7 @@
 #include "Line.h"
 #include "Utils.h"
 
-class StraightDetectedObejct : public DetectedObject
+class StraightDetectedObject : public DetectedObject
 {
 protected:
     Line** m_lines;
@@ -20,9 +20,9 @@ protected:
     unsigned int m_lineCount;
     
 public:    
-    StraightDetectedObejct(unsigned int lineCount);
+    StraightDetectedObject(unsigned int lineCount);
     
-    virtual ~StraightDetectedObejct();
+    virtual ~StraightDetectedObject();
     
 public:    
     void setLocked();        

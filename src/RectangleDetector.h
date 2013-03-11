@@ -24,13 +24,13 @@ public:
 
     virtual ~RectangleDetector();
 
-    Rectangle* detectRectangle();
+    StraightDetectedObject* findObject();
         
-    void invalidate();
-    
-    Rectangle* findBestRectangle();    
+    void invalidate();           
 
 protected:
+    StraightDetectedObject* findBestRectangle(); 
+    
     void initDetectionParams();
 };
 

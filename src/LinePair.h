@@ -11,11 +11,11 @@
 #include "StraightDetectedObject.h"
 
 
-class LinePair : public StraightDetectedObejct
+class LinePair : public StraightDetectedObject
 {
 public:
     LinePair() 
-    : StraightDetectedObejct(2) {}
+    : StraightDetectedObject(2) {}
     
     virtual ~LinePair() {}
 };

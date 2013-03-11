@@ -36,12 +36,12 @@ CMakeFiles/line.dir/src/DetectionSettings.o
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
 CMakeFiles/line.dir/src/DetectorTopic.o
  /home/lubos/fuerte_workspace/sandbox/line/src/CameraService.h
- /home/lubos/fuerte_workspace/sandbox/line/src/DetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.h
  /home/lubos/fuerte_workspace/sandbox/line/src/EdgeFilterStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
@@ -118,10 +118,10 @@ CMakeFiles/line.dir/src/DetectorTopic.o
  /opt/ros/fuerte/include/sensor_msgs/Image.h
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/ImageService.o
- /home/lubos/fuerte_workspace/sandbox/line/src/DetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/EdgeFilterStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
@@ -204,10 +204,10 @@ CMakeFiles/line.dir/src/Line.o
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
 CMakeFiles/line.dir/src/LineDetector.o
- /home/lubos/fuerte_workspace/sandbox/line/src/DetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/EdgeFilterStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
@@ -282,11 +282,11 @@ CMakeFiles/line.dir/src/LineDetector.o
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/Main.o
  /home/lubos/fuerte_workspace/sandbox/line/src/CameraService.h
- /home/lubos/fuerte_workspace/sandbox/line/src/DetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectorTopic.h
  /home/lubos/fuerte_workspace/sandbox/line/src/EdgeFilterStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
@@ -435,10 +435,10 @@ CMakeFiles/line.dir/src/ObjectDetector.o
  /opt/ros/fuerte/include/sensor_msgs/Image.h
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/RectangleDetector.o
- /home/lubos/fuerte_workspace/sandbox/line/src/DetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/EdgeFilterStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
@@ -512,7 +512,7 @@ CMakeFiles/line.dir/src/RectangleDetector.o
  /opt/ros/fuerte/include/sensor_msgs/Image.h
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/line.dir/src/StraightDetectedObject.o
- /home/lubos/fuerte_workspace/sandbox/line/src/DetectedObject.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
@@ -522,6 +522,7 @@ CMakeFiles/line.dir/src/StraightObjectDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/EdgeFilterStrategy.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IPixel.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
@@ -531,6 +532,7 @@ CMakeFiles/line.dir/src/StraightObjectDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h

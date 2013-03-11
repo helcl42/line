@@ -21,7 +21,7 @@ LineDetector::~LineDetector()
     SAFE_DELETE(m_bestLine);
 }
 
-LinePair* LineDetector::detectLine()
+StraightDetectedObject* LineDetector::findObject()
 {
     m_edgeFilter->setImage(m_workImage);
     m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
@@ -41,7 +41,7 @@ void LineDetector::invalidate()
     m_bestLine->invalidate();
 }
 
-LinePair* LineDetector::findBestLine()
+StraightDetectedObject* LineDetector::findBestLine()
 {
     Line* ret = NULL;
     Line* similar = NULL;

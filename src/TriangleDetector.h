@@ -16,7 +16,7 @@
 class TriangleDetector : public StraightObjectDetector
 {
 private:
-    Triangle* m_bestRectangle;
+    Triangle* m_bestTriangle;
 
 public:
     TriangleDetector(DetectionColorItem* settings = NULL);
@@ -25,13 +25,14 @@ public:
 
     virtual ~TriangleDetector();
 
-    Triangle* detectTriangle();
-        
+public:    
     void invalidate();
     
-    Triangle* findBestTriangle();    
+    StraightDetectedObject* findObject();
 
 protected:
+    StraightDetectedObject* findBestTriangle();
+    
     void initDetectionParams();
 };
 

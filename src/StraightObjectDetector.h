@@ -10,6 +10,7 @@
 
 #include "Line.h"
 #include "ObjectDetector.h"
+#include "StraightDetectedObject.h"
 
 class StraightObjectDetector : public ObjectDetector
 {
@@ -22,6 +23,9 @@ public:
     StraightObjectDetector(Image<float>* image, Image<float>* colorImage);
 
     virtual ~StraightObjectDetector();
+    
+public:
+    virtual StraightDetectedObject* findObject() = 0;
     
 protected:
     Line* getLongestLine();
