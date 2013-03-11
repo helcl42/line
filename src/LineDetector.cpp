@@ -65,13 +65,14 @@ LinePair* LineDetector::findBestLine()
                 std::cout << *similar << std::endl;
                 writeLineInImage(ret, 255, 0, 0);
                 writeLineInImage(similar, 0, 0, 255);
-                m_bestLine->setLine(ret, similar);
+                m_bestLine->setAt(ret, 0);
+                m_bestLine->setAt(similar, 1);
                 break;
             }
-//            else
-//            {
-//                std::cout << "color fail!" << std::endl;
-//            }
+            else
+            {
+                std::cout << "color fail!" << std::endl;
+            }
         }
     }
     return m_bestLine;

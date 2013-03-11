@@ -30,67 +30,67 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-//    m_lineDetector->invalidate();
-//    m_lineDetector->setImages(m_image, m_colorImage);
-//    settingsParam = m_lineDetector->getSettingsParam();
-//    LinePair* line = m_lineDetector->detectLine();
+    m_lineDetector->invalidate();
+    m_lineDetector->setImages(m_image, m_colorImage);
+    settingsParam = m_lineDetector->getSettingsParam();
+    LinePair* line = m_lineDetector->detectLine();
 
-    m_rectangleDetector->invalidate();
-    settingsParam = m_rectangleDetector->getSettingsParam();
-    m_rectangleDetector->setImages(m_image, m_colorImage);
-    Rectangle* rect = m_rectangleDetector->detectRectangle();
-    if (rect->isValid())
+//    m_rectangleDetector->invalidate();
+//    settingsParam = m_rectangleDetector->getSettingsParam();
+//    m_rectangleDetector->setImages(m_image, m_colorImage);
+//    Rectangle* rect = m_rectangleDetector->detectRectangle();
+//    if (rect->isValid())
+//    {
+//        std::cout << "Found rect!!!" << std::endl;
+//        writeLinesToMessage(img, rect->getLines(), 4);
+//    }
+
+    if (line->isValid())
     {
-        std::cout << "Found rect!!!" << std::endl;
-        writeLinesToMessage(img, rect->getLines(), 4);
-    }
+        std::cout << "CARA!!! " << line->getAt(0)->length << std::endl;
 
-//    if (line->isValid())
-//    {
-//        std::cout << "CARA!!! " << line->getFirst()->length << std::endl;
-//
-//        if (m_changeColorTimer.isStarted())
-//        {
-//            m_changeColorTimer.stop();
-//        }
-//        writeLinesToMessage(img, line->getLines(), 2);
-//
-//        objectPoint = getObjectPoint(line);
-//        if (objectPoint != NULL)
-//        {
-//            writePointToMessage(img, objectPoint);
-//        }
-//    }
-//    else
-//    {
-//        if (!m_changeColorTimer.isStarted())
-//        {
-//            m_changeColorTimer.start();
-//        }
-//        else if (m_changeColorTimer.getElapsedTimeInMilliSec() > 5000) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
-//        {
-//            m_changeColorTimer.stop();
-//            std::cout << "Hledam dalsi!!" << std::endl;
-//
-//            m_settingsIndex++;
-//
-//            if (m_settingsIndex >= m_settings->getCountOfColors())
-//            {
-//                //detect home shapes                
-//                m_rectangleDetector->setImages(m_image, m_colorImage);
-//                settingsParam = m_rectangleDetector->getSettingsParam();
-//                Rectangle* rect = m_rectangleDetector->findBestRectangle();
-//                if (rect->isValid())
-//                {
-//                    std::cout << "Found rect!!!" << std::endl;
-//                    writeLinesToMessage(img, rect->getLines(), 4);
-//                }
-//                m_settingsIndex = 0;
-//            }
-//
-//            m_lineDetector->setColorSettings(m_settings->getItem(m_settingsIndex));
-//        }
-//    }
+        if (m_changeColorTimer.isStarted())
+        {
+            m_changeColorTimer.stop();
+        }
+        writeLinesToMessage(img, line->getLines(), 2);
+
+        objectPoint = getObjectPoint(line);
+        if (objectPoint != NULL)
+        {
+            writePointToMessage(img, objectPoint);
+        }
+    }
+    else
+    {
+        if (!m_changeColorTimer.isStarted())
+        {
+            m_changeColorTimer.start();
+        }
+        else if (m_changeColorTimer.getElapsedTimeInMilliSec() > 5000) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
+        {
+            m_changeColorTimer.stop();
+            std::cout << "Hledam dalsi!!" << std::endl;
+
+            m_settingsIndex++;
+
+            if (m_settingsIndex >= m_settings->getCountOfColors())
+            {
+                //detect home shapes                
+                m_rectangleDetector->setImages(m_image, m_colorImage);
+                settingsParam = m_rectangleDetector->getSettingsParam();
+                Rectangle* rect = m_rectangleDetector->findBestRectangle();
+                if (rect->isValid())
+                {
+                    std::cout << "Found rect!!!" << std::endl;
+                    writeLinesToMessage(img, rect->getLines(), 4);
+                }
+                m_settingsIndex = 0;
+            }
+
+            m_lineDetector->setColorSettings(m_settings->getItem(m_settingsIndex));
+        }
+    }
 
     writeImageToMessage(img);
 
@@ -116,8 +116,8 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
 
 Vector2<int>* ImageService::getObjectPoint(LinePair* line)
 {
-    Line* l1 = line->getFirst();
-    Line* l2 = line->getSecond();
+    Line* l1 = line->getAt(0);
+    Line* l2 = line->getAt(1);
     unsigned int halfLength;
 
     if (l1->points.size() < l2->points.size())

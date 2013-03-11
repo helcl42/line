@@ -3,7 +3,7 @@
 RectangleDetector::RectangleDetector(DetectionColorItem* settings)
 : StraightObjectDetector(settings)
 {
-    this->setSettingsParam(160);
+    this->setSettingsParam(240);
     this->initDetectionParams();
     m_bestRectangle = new Rectangle();
 }
@@ -11,7 +11,7 @@ RectangleDetector::RectangleDetector(DetectionColorItem* settings)
 RectangleDetector::RectangleDetector(Image<float>* image, Image<float>* colorImage)
 : StraightObjectDetector(image, colorImage)
 {
-    this->setSettingsParam(160);
+    this->setSettingsParam(240);
     this->initDetectionParams();
     m_bestRectangle = new Rectangle();
 }
@@ -44,22 +44,25 @@ void RectangleDetector::invalidate()
 Rectangle* RectangleDetector::findBestRectangle()
 {
     m_bestRectangle->invalidate();
-    //sortLinesByStraightness();
-    sortLinesByLength();
+    sortLinesByStraightness();    
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {
         lockAllLines(false);
         
-        for (unsigned int j = 0; j < 4; j++)
-        {
-            m_bestRectangle->setAt(m_lines[i], j);
-            lockSimilarLines(m_bestRectangle->getAt(j));
+        //set first as default
+        m_bestRectangle->setAt(m_lines[i], 0);
+        
+        //iterate trough all left needed lines
+        for (unsigned int j = 1; j < 4; j++)
+        {            
+            //one cross allowed here
+            lockSimilarLines(m_bestRectangle->getAt(j), 1);
             m_bestRectangle->setAt(findLineWithDirection(m_bestRectangle->getAt(j), 90), j);
 
-            if (!m_bestRectangle->isValid(j + 1)) break;
+            if (!m_bestRectangle->isValid(j)) break;
 
-            m_bestRectangle->setLocked(j + 1);
+            m_bestRectangle->setLocked(j);
         }
 
         if (m_bestRectangle->isValid())

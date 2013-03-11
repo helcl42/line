@@ -78,7 +78,10 @@
       </df>
       <df name="src">
         <in>BmpFileIO.h</in>
+        <in>CameraService.cpp</in>
+        <in>CameraService.h</in>
         <in>CannyFilterStategy.h</in>
+        <in>DetectedObject.h</in>
         <in>DetectionParams.cpp</in>
         <in>DetectionParams.h</in>
         <in>DetectionSettings.cpp</in>
@@ -112,10 +115,14 @@
         <in>RectangleDetector.h</in>
         <in>RobertsFilterStrategy.h</in>
         <in>SobelFilterStrategy.h</in>
+        <in>StraightDetectedObject.cpp</in>
+        <in>StraightDetectedObject.h</in>
         <in>StraightObjectDetector.cpp</in>
         <in>StraightObjectDetector.h</in>
         <in>Timer.cpp</in>
         <in>Timer.h</in>
+        <in>Triangle.h</in>
+        <in>TriangleDetector.h</in>
         <in>Utils.h</in>
         <in>Vector2.h</in>
       </df>

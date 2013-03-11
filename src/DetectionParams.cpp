@@ -78,7 +78,14 @@ void DetectionParams::recomputeMetrics(unsigned int w, unsigned int h, unsigned 
 
     maxPointDistance =  2.5 * settingsParam / shrink;
 
-    noCheckLineBorder = lineLengthTreshold / 3;
+    if(lineLengthTreshold / 2 < lineLengthTreshold / 3)
+    {
+        noCheckLineBorder = lineLengthTreshold / 4;
+    }
+    else
+    {
+        noCheckLineBorder = lineLengthTreshold / 3;
+    }
       
     checkPointSkip = lineLengthTreshold / 10;
 }

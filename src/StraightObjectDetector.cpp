@@ -37,7 +37,7 @@ void StraightObjectDetector::writeLineInImage(Line* line, int r, int g, int b)
 }
 
 
-void StraightObjectDetector::lockSimilarLines(Line* input)
+void StraightObjectDetector::lockSimilarLines(Line* input, unsigned int crossCount)
 {
     Line* temp = NULL;
 
@@ -47,7 +47,7 @@ void StraightObjectDetector::lockSimilarLines(Line* input)
     {
         temp = m_lines[index];
 
-        if (temp->isClose(input) || temp->isInline(input))
+        if (temp->isClose(input, crossCount) || temp->isInline(input))
         {
             temp->locked = true;
         }

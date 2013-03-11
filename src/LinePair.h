@@ -8,34 +8,16 @@
 #ifndef BESTLINE_H
 #define	BESTLINE_H
 
-#include "Line.h"
-#include "Utils.h"
+#include "StraightDetectedObject.h"
 
 
-class LinePair
+class LinePair : public StraightDetectedObejct
 {
-protected:
-    Line* m_line[2];
-    
-public:    
-    LinePair();
-    
-    ~LinePair() {}
-    
 public:
-    bool isValid() const;
+    LinePair() 
+    : StraightDetectedObejct(2) {}
     
-    Line* getFirst() const;
-    
-    Line* getSecond() const;
-    
-    Line** getLines();
-    
-    void setLine(Line* l1, Line* l2);
-    
-    void invalidate();
-    
-    Line* operator[](int index);
+    virtual ~LinePair() {}
 };
 
 #endif	/* BESTLINE_H */

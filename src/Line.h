@@ -36,7 +36,7 @@ public:
     
     virtual ~Line() {}    
             
-    bool isClose(Line* input); 
+    bool isClose(Line* input, unsigned int crossCount = 0); 
     
     bool isInline(Line* input);
     

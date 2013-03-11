@@ -35,6 +35,7 @@ CMakeFiles/line.dir/src/DetectionSettings.o: ../src/PixelXYZ.h
 CMakeFiles/line.dir/src/DetectionSettings.o: ../src/Utils.h
 
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/CameraService.h
+CMakeFiles/line.dir/src/DetectorTopic.o: ../src/DetectedObject.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/DetectionSettings.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/DetectorTopic.cpp
@@ -54,6 +55,7 @@ CMakeFiles/line.dir/src/DetectorTopic.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/PixelXYZ.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/RectangleDetector.h
+CMakeFiles/line.dir/src/DetectorTopic.o: ../src/StraightDetectedObject.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/Timer.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/Utils.h
@@ -115,6 +117,7 @@ CMakeFiles/line.dir/src/DetectorTopic.o: /opt/ros/fuerte/include/rosconsole/macr
 CMakeFiles/line.dir/src/DetectorTopic.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
 CMakeFiles/line.dir/src/DetectorTopic.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
+CMakeFiles/line.dir/src/ImageService.o: ../src/DetectedObject.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/DetectionSettings.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/EdgeFilterStrategy.h
@@ -133,6 +136,7 @@ CMakeFiles/line.dir/src/ImageService.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/PixelXYZ.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/RectangleDetector.h
+CMakeFiles/line.dir/src/ImageService.o: ../src/StraightDetectedObject.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/Timer.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/Utils.h
@@ -199,6 +203,7 @@ CMakeFiles/line.dir/src/Line.o: ../src/Line.cpp
 CMakeFiles/line.dir/src/Line.o: ../src/Line.h
 CMakeFiles/line.dir/src/Line.o: ../src/Vector2.h
 
+CMakeFiles/line.dir/src/LineDetector.o: ../src/DetectedObject.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/DetectionSettings.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/EdgeFilterStrategy.h
@@ -214,6 +219,7 @@ CMakeFiles/line.dir/src/LineDetector.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/LineDetector.o: ../src/StraightDetectedObject.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/Utils.h
 CMakeFiles/line.dir/src/LineDetector.o: ../src/Vector2.h
@@ -274,13 +280,8 @@ CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/rosconsole/macro
 CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
 CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
-CMakeFiles/line.dir/src/LinePair.o: ../src/Line.h
-CMakeFiles/line.dir/src/LinePair.o: ../src/LinePair.cpp
-CMakeFiles/line.dir/src/LinePair.o: ../src/LinePair.h
-CMakeFiles/line.dir/src/LinePair.o: ../src/Utils.h
-CMakeFiles/line.dir/src/LinePair.o: ../src/Vector2.h
-
 CMakeFiles/line.dir/src/Main.o: ../src/CameraService.h
+CMakeFiles/line.dir/src/Main.o: ../src/DetectedObject.h
 CMakeFiles/line.dir/src/Main.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/Main.o: ../src/DetectionSettings.h
 CMakeFiles/line.dir/src/Main.o: ../src/DetectorTopic.h
@@ -300,6 +301,7 @@ CMakeFiles/line.dir/src/Main.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/Main.o: ../src/PixelXYZ.h
 CMakeFiles/line.dir/src/Main.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/Main.o: ../src/RectangleDetector.h
+CMakeFiles/line.dir/src/Main.o: ../src/StraightDetectedObject.h
 CMakeFiles/line.dir/src/Main.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/Main.o: ../src/Timer.h
 CMakeFiles/line.dir/src/Main.o: ../src/Utils.h
@@ -432,11 +434,7 @@ CMakeFiles/line.dir/src/ObjectDetector.o: /opt/ros/fuerte/include/rosconsole/mac
 CMakeFiles/line.dir/src/ObjectDetector.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
 CMakeFiles/line.dir/src/ObjectDetector.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
-CMakeFiles/line.dir/src/Rectangle.o: ../src/Line.h
-CMakeFiles/line.dir/src/Rectangle.o: ../src/Rectangle.cpp
-CMakeFiles/line.dir/src/Rectangle.o: ../src/Rectangle.h
-CMakeFiles/line.dir/src/Rectangle.o: ../src/Vector2.h
-
+CMakeFiles/line.dir/src/RectangleDetector.o: ../src/DetectedObject.h
 CMakeFiles/line.dir/src/RectangleDetector.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/RectangleDetector.o: ../src/DetectionSettings.h
 CMakeFiles/line.dir/src/RectangleDetector.o: ../src/EdgeFilterStrategy.h
@@ -452,6 +450,7 @@ CMakeFiles/line.dir/src/RectangleDetector.o: ../src/PixelXYZ.h
 CMakeFiles/line.dir/src/RectangleDetector.o: ../src/Rectangle.h
 CMakeFiles/line.dir/src/RectangleDetector.o: ../src/RectangleDetector.cpp
 CMakeFiles/line.dir/src/RectangleDetector.o: ../src/RectangleDetector.h
+CMakeFiles/line.dir/src/RectangleDetector.o: ../src/StraightDetectedObject.h
 CMakeFiles/line.dir/src/RectangleDetector.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/RectangleDetector.o: ../src/Utils.h
 CMakeFiles/line.dir/src/RectangleDetector.o: ../src/Vector2.h
@@ -511,6 +510,13 @@ CMakeFiles/line.dir/src/RectangleDetector.o: /opt/ros/fuerte/include/ros/wall_ti
 CMakeFiles/line.dir/src/RectangleDetector.o: /opt/ros/fuerte/include/rosconsole/macros_generated.h
 CMakeFiles/line.dir/src/RectangleDetector.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
 CMakeFiles/line.dir/src/RectangleDetector.o: /opt/ros/fuerte/include/std_msgs/Header.h
+
+CMakeFiles/line.dir/src/StraightDetectedObject.o: ../src/DetectedObject.h
+CMakeFiles/line.dir/src/StraightDetectedObject.o: ../src/Line.h
+CMakeFiles/line.dir/src/StraightDetectedObject.o: ../src/StraightDetectedObject.cpp
+CMakeFiles/line.dir/src/StraightDetectedObject.o: ../src/StraightDetectedObject.h
+CMakeFiles/line.dir/src/StraightDetectedObject.o: ../src/Utils.h
+CMakeFiles/line.dir/src/StraightDetectedObject.o: ../src/Vector2.h
 
 CMakeFiles/line.dir/src/StraightObjectDetector.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/StraightObjectDetector.o: ../src/DetectionSettings.h

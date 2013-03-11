@@ -8,36 +8,15 @@
 #ifndef RECTANGLE_H
 #define	RECTANGLE_H
 
-#include <stdexcept>
-#include "Line.h"
+#include "StraightDetectedObject.h"
 
-
-class Rectangle
+class Rectangle : public StraightDetectedObejct
 {
-protected:
-    Line* m_lines[4];
-    
-public:    
-    Rectangle();
-    
-    ~Rectangle() {}
-    
 public:
-    bool isValid(unsigned int a = 4) const;
+    Rectangle()
+    : StraightDetectedObejct(4) {}
     
-    void setLocked(unsigned int a = 4);
-        
-    void setInstance(Line** lines);
-    
-    void invalidate();
-    
-    void setAt(Line* line, unsigned int index);
-    
-    Line* getAt(unsigned int index) const;
-    
-    Line** getLines();
-    
-    Line* operator[](int index);
+    virtual ~Rectangle() {}
 };
 
 #endif	/* RECTANGLE_H */

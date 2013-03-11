@@ -152,9 +152,10 @@ bool Line::isInline(Line* input)
     return false;
 }
 
-bool Line::isClose(Line* input)
+bool Line::isClose(Line* input, unsigned int crossCount)
 {
     double distance = 0;
+    unsigned int foundCrosses = 0;
 
     for (unsigned int i = DetectionParams::noCheckLineBorder; i < points.size() - DetectionParams::noCheckLineBorder; i += DetectionParams::checkPointSkip)
     {
@@ -163,7 +164,11 @@ bool Line::isClose(Line* input)
             distance = points[i].distance(input->points[j]);
             if (distance < DetectionParams::minPointDistance || distance > DetectionParams::maxPointDistance)
             {
-                return true;
+                foundCrosses++;
+                if(foundCrosses >= crossCount)
+                {
+                    return true;
+                }
             }
         }
     }

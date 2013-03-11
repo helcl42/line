@@ -34,7 +34,7 @@ protected:
 
     void lockAllLines(bool val);
     
-    void lockSimilarLines(Line* line);
+    void lockSimilarLines(Line* line, unsigned int crossCount = 0);
 
     void traverseImage();
 
