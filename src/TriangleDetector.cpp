@@ -68,6 +68,10 @@ StraightDetectedObject* TriangleDetector::findBestTriangle()
                 writeLineInImage(m_bestTriangle->getAt(1), 0, 0, 255);
                 break;
             }
+            else 
+            {
+                m_bestTriangle->invalidate();
+            }
         }
     }
     return m_bestTriangle;

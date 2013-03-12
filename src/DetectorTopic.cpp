@@ -20,24 +20,26 @@ void DetectorTopic::run()
 
 void DetectorTopic::depthImageCallback(const sensor_msgs::Image::ConstPtr& depth)
 {
-    double temp = m_cameraService.getCameraYPosition(depth);
-    if (!isnan(temp) && temp > 0)
+    float distance;    
+    float x, y;
+    double tempCamY = m_cameraService.getCameraYPosition(depth);
+    
+    if (!isnan(tempCamY) && tempCamY > 0)
     {
-        m_cameraY = temp;
+        m_cameraY = tempCamY;
     }
     std::cout << "Cam Height!!!!: " << m_cameraY << std::endl;
 
     if (m_objectPoint != NULL)
-    {
-        float distance;
-        unsigned int index;
-
-        index = m_objectPoint->x * 4 * m_shrink + m_objectPoint->y * depth->width * 4 * m_shrink;
-        BYTES_TO_FLOAT_L(distance, depth->data, index);
-        std::cout << "distance = " << distance << std::endl;
+    {                
+        BYTES_TO_FLOAT_L(distance, depth->data, m_objectPoint->x * 4 * m_shrink + m_objectPoint->y * depth->width * 4 * m_shrink);        
 
         //send waypoint
-
+        y = pow(distance * distance - m_cameraY * m_cameraY, 0.5);
+        x = 0; //WTF??
+        std::cout << "X = " << x << " Y = " << y << std::endl;
+        
+        
         SAFE_DELETE(m_objectPoint);
     }
 }

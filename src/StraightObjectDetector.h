@@ -48,7 +48,7 @@ protected:
 
     void sortLinesByStraightness(bool reverse = false);
 
-    void sortLinesByLength(bool reverse = false);        
+    void sortLinesByLength(bool reverse = true);
 };
 
 

@@ -64,6 +64,10 @@ StraightDetectedObject* RectangleDetector::findBestRectangle()
                 writeLineInImage(m_bestRectangle->getAt(1), 0, 0, 255);                
                 break;
             }            
+            else
+            {
+                m_bestRectangle->invalidate();
+            }
         }
     }
     return m_bestRectangle;

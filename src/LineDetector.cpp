@@ -59,15 +59,16 @@ StraightDetectedObject* LineDetector::findBestLine()
         {
             //if(similar->isTooNarrow()) continue;
             
-            if (colorMatch() && m_bestLine->hasLengthInInterval())
+            if (colorMatch() /*&& m_bestLine->hasLengthInInterval()*/)
             {                
                 std::cout << *m_bestLine << std::endl;                
                 writeLineInImage(m_bestLine->getAt(0), 255, 0, 0);
-                writeLineInImage(m_bestLine->getAt(0), 0, 0, 255); 
+                writeLineInImage(m_bestLine->getAt(1), 0, 0, 255); 
                 break;
             }
             else
             {
+                m_bestLine->invalidate();
                 std::cout << "color fail!" << std::endl;
             }
         }

@@ -233,14 +233,14 @@ void StraightObjectDetector::sortLinesByLength(bool reverse)
         {
             if (reverse)
             {
-                if (m_lines[j]->length < temp->length)
+                if (m_lines[j]->length > temp->length)
                 {
                     break;
                 }
             }
             else
             {
-                if (m_lines[j]->length > temp->length)
+                if (m_lines[j]->length < temp->length)
                 {
                     break;
                 }

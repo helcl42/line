@@ -30,25 +30,25 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-    //    if (m_lookUpLines)
-    //    {
-    //        m_lineDetector->invalidate();
-    //        m_lineDetector->initDetectionParams(m_shrink);
-    //        m_lineDetector->setImages(m_image, m_colorImage);
-    //        object = m_lineDetector->findObject();
-    //    }
-    //    else
-//    {
-//        m_rectangleDetector->invalidate();
-//        m_rectangleDetector->initDetectionParams();
-//        m_rectangleDetector->setImages(m_image, m_colorImage);
-//        object = m_rectangleDetector->findObject();
-//    }
-    
-    m_triangleDetector->invalidate();
-    m_triangleDetector->initDetectionParams(m_shrink);
-    m_triangleDetector->setImages(m_image, m_colorImage);
-    object = m_triangleDetector->findObject();
+    if (m_lookUpLines)
+    {
+        m_lineDetector->invalidate();
+        m_lineDetector->initDetectionParams(m_shrink);
+        m_lineDetector->setImages(m_image, m_colorImage);
+        object = m_lineDetector->findObject();
+    }
+    else
+    {
+        m_rectangleDetector->invalidate();
+        m_rectangleDetector->initDetectionParams();
+        m_rectangleDetector->setImages(m_image, m_colorImage);
+        object = m_rectangleDetector->findObject();
+    }
+
+    //    m_triangleDetector->invalidate();
+    //    m_triangleDetector->initDetectionParams(m_shrink);
+    //    m_triangleDetector->setImages(m_image, m_colorImage);
+    //    object = m_triangleDetector->findObject();
 
     if (object->isValid())
     {
