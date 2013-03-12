@@ -34,6 +34,8 @@ public:
 
 protected:
     StraightDetectedObject* findBestTriangle();    
+    
+    bool colorMatch(unsigned int failCount = 0);
 };
 
 

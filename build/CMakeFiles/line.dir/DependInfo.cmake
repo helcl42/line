@@ -19,6 +19,7 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/StraightDetectedObject.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/StraightObjectDetector.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/Timer.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/Timer.o"
+  "/home/lubos/fuerte_workspace/sandbox/line/src/Triangle.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/Triangle.o"
   "/home/lubos/fuerte_workspace/sandbox/line/src/TriangleDetector.cpp" "/home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles/line.dir/src/TriangleDetector.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")

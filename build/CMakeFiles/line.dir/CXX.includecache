@@ -52,6 +52,20 @@ cstdlib
 Vector2.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
 
+/home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.cpp
+LineDetector.h
+/home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/LineDetector.h
+LinePair.h
+/home/lubos/fuerte_workspace/sandbox/line/src/LinePair.h
+StraightObjectDetector.h
+/home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/LinePair.h
+StraightDetectedObject.h
+/home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
+
 /home/lubos/fuerte_workspace/sandbox/line/src/ObjectDetector.h
 Pixel.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h

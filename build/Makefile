@@ -529,6 +529,21 @@ src/Timer.s:
 .PHONY : src/Timer.s
 
 # target to build an object file
+src/Triangle.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Triangle.o
+.PHONY : src/Triangle.o
+
+# target to preprocess a source file
+src/Triangle.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Triangle.i
+.PHONY : src/Triangle.i
+
+# target to generate assembly for a file
+src/Triangle.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Triangle.s
+.PHONY : src/Triangle.s
+
+# target to build an object file
 src/TriangleDetector.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/TriangleDetector.o
 .PHONY : src/TriangleDetector.o
@@ -612,6 +627,9 @@ help:
 	@echo "... src/Timer.o"
 	@echo "... src/Timer.i"
 	@echo "... src/Timer.s"
+	@echo "... src/Triangle.o"
+	@echo "... src/Triangle.i"
+	@echo "... src/Triangle.s"
 	@echo "... src/TriangleDetector.o"
 	@echo "... src/TriangleDetector.i"
 	@echo "... src/TriangleDetector.s"

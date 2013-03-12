@@ -33,6 +33,8 @@ public:
 
 protected:
     StraightDetectedObject* findBestRectangle();     
+    
+    bool colorMatch(unsigned int failCount = 0);
 };
 
 #endif	/* RECTANGLEDETECTOR_H */

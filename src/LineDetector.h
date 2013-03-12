@@ -30,10 +30,10 @@ public:
     
     void initDetectionParams(unsigned int shrink = 1);
     
-protected:    
-    bool lineColorMatch();
-    
+protected:            
     StraightDetectedObject* findBestLine();   
+    
+    bool colorMatch(unsigned int failCount = 0);
 };
 
 

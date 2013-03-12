@@ -59,6 +59,8 @@ CMakeFiles/line.dir/src/DetectorTopic.o
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Triangle.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/TriangleDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
  /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -140,6 +142,8 @@ CMakeFiles/line.dir/src/ImageService.o
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Triangle.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/TriangleDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
  /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -314,6 +318,8 @@ CMakeFiles/line.dir/src/Main.o
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Triangle.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/TriangleDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
  /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -614,6 +620,15 @@ CMakeFiles/line.dir/src/StraightObjectDetector.o
 CMakeFiles/line.dir/src/Timer.o
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
+CMakeFiles/line.dir/src/Triangle.o
+ /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Triangle.cpp
+ /home/lubos/fuerte_workspace/sandbox/line/src/Triangle.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
 CMakeFiles/line.dir/src/TriangleDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h

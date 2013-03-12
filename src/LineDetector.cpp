@@ -59,7 +59,7 @@ StraightDetectedObject* LineDetector::findBestLine()
         {
             //if(similar->isTooNarrow()) continue;
             
-            if (lineColorMatch() && m_bestLine->hasLengthInInterval())
+            if (colorMatch() && m_bestLine->hasLengthInInterval())
             {                
                 std::cout << *m_bestLine << std::endl;                
                 writeLineInImage(m_bestLine->getAt(0), 255, 0, 0);
@@ -75,17 +75,18 @@ StraightDetectedObject* LineDetector::findBestLine()
     return m_bestLine;
 }
 
-bool LineDetector::lineColorMatch()
+bool LineDetector::colorMatch(unsigned int failCount)
 {
     Pixel<float>* pixel = NULL;
     Vector2<int>* ret = NULL;
+    
     Line* l1 = m_bestLine->getAt(0);
     Line* l2 = m_bestLine->getAt(1);
     
-    unsigned int failCount = 0;
+    unsigned int count = 0;
     unsigned int len = l1->points.size() < l2->points.size() ? l1->points.size() : l2->points.size();
 
-    for (unsigned int i = 0; i < len; i += 20)
+    for (unsigned int i = 0; i < len; i += DetectionParams::minLineLengthTreshold / 10)
     {
         ret = Vector2<int>::getPointBetween(l1->points[i], l2->points[i]);
 
@@ -93,12 +94,12 @@ bool LineDetector::lineColorMatch()
 
         if (!pixel->hasSimilarColor(&m_settings->color, DetectionParams::colorTolerance))
         {
-            failCount++;
+            count++;
         }
         SAFE_DELETE(ret);
     }
 
-    if (failCount > 0)
+    if (count > failCount)
     {
         return false;
     }

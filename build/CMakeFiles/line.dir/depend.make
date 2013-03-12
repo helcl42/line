@@ -58,6 +58,8 @@ CMakeFiles/line.dir/src/DetectorTopic.o: ../src/RectangleDetector.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/StraightDetectedObject.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/Timer.h
+CMakeFiles/line.dir/src/DetectorTopic.o: ../src/Triangle.h
+CMakeFiles/line.dir/src/DetectorTopic.o: ../src/TriangleDetector.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/Utils.h
 CMakeFiles/line.dir/src/DetectorTopic.o: ../src/Vector2.h
 CMakeFiles/line.dir/src/DetectorTopic.o: /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -139,6 +141,8 @@ CMakeFiles/line.dir/src/ImageService.o: ../src/RectangleDetector.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/StraightDetectedObject.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/Timer.h
+CMakeFiles/line.dir/src/ImageService.o: ../src/Triangle.h
+CMakeFiles/line.dir/src/ImageService.o: ../src/TriangleDetector.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/Utils.h
 CMakeFiles/line.dir/src/ImageService.o: ../src/Vector2.h
 CMakeFiles/line.dir/src/ImageService.o: /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -313,6 +317,8 @@ CMakeFiles/line.dir/src/Main.o: ../src/RectangleDetector.h
 CMakeFiles/line.dir/src/Main.o: ../src/StraightDetectedObject.h
 CMakeFiles/line.dir/src/Main.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/Main.o: ../src/Timer.h
+CMakeFiles/line.dir/src/Main.o: ../src/Triangle.h
+CMakeFiles/line.dir/src/Main.o: ../src/TriangleDetector.h
 CMakeFiles/line.dir/src/Main.o: ../src/Utils.h
 CMakeFiles/line.dir/src/Main.o: ../src/Vector2.h
 CMakeFiles/line.dir/src/Main.o: /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -613,6 +619,15 @@ CMakeFiles/line.dir/src/StraightObjectDetector.o: /opt/ros/fuerte/include/std_ms
 
 CMakeFiles/line.dir/src/Timer.o: ../src/Timer.cpp
 CMakeFiles/line.dir/src/Timer.o: ../src/Timer.h
+
+CMakeFiles/line.dir/src/Triangle.o: ../src/DetectionParams.h
+CMakeFiles/line.dir/src/Triangle.o: ../src/IDetectedObject.h
+CMakeFiles/line.dir/src/Triangle.o: ../src/Line.h
+CMakeFiles/line.dir/src/Triangle.o: ../src/StraightDetectedObject.h
+CMakeFiles/line.dir/src/Triangle.o: ../src/Triangle.cpp
+CMakeFiles/line.dir/src/Triangle.o: ../src/Triangle.h
+CMakeFiles/line.dir/src/Triangle.o: ../src/Utils.h
+CMakeFiles/line.dir/src/Triangle.o: ../src/Vector2.h
 
 CMakeFiles/line.dir/src/TriangleDetector.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/TriangleDetector.o: ../src/DetectionSettings.h

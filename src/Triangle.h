@@ -15,9 +15,11 @@ class Triangle : public StraightDetectedObject
 { 
 public:
     Triangle()
-     : StraightDetectedObject(3) {}
+     : StraightDetectedObject(2) {}
 
     virtual ~Triangle() {}    
+    
+    friend std::ostream& operator<<(std::ostream& out, const Triangle& linePair);
 };
 
 #endif	/* TRIANGLE_H */

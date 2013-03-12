@@ -57,7 +57,7 @@ StraightDetectedObject* RectangleDetector::findBestRectangle()
 
         if (m_bestRectangle->isValid())
         {                        
-            if (/*lineColorMatch(ret, similar) &&*/ m_bestRectangle->hasLengthInInterval(5))
+            if (colorMatch() && m_bestRectangle->hasLengthInInterval(5))
             {                
                 std::cout << *m_bestRectangle << std::endl;
                 writeLineInImage(m_bestRectangle->getAt(0), 255, 0, 0);
@@ -67,6 +67,38 @@ StraightDetectedObject* RectangleDetector::findBestRectangle()
         }
     }
     return m_bestRectangle;
+}
+
+bool RectangleDetector::colorMatch(unsigned int failCount)
+{
+    Pixel<float>* pixel = NULL;
+    Vector2<int>* ret = NULL;
+    
+    Line* l1 = m_bestRectangle->getAt(0);
+    Line* l2 = m_bestRectangle->getAt(1);
+    
+    unsigned int count = 0;
+    unsigned int len = l1->points.size() < l2->points.size() ? l1->points.size() : l2->points.size();
+
+    for (unsigned int i = 0; i < len; i += DetectionParams::minLineLengthTreshold / 15)
+    {
+        ret = Vector2<int>::getPointBetween(l1->points[i], l2->points[i]);
+
+        pixel = m_colorImage->getPixel(ret->y, ret->x);
+
+        if (!pixel->hasSimilarColor(&m_settings->color, DetectionParams::colorTolerance))
+        {
+            count++;
+        }
+        SAFE_DELETE(ret);
+    }
+
+    if (count > failCount)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 void RectangleDetector::initDetectionParams(unsigned int shrink)

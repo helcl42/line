@@ -11,5 +11,3 @@ std::ostream& operator<<(std::ostream& out, const Rectangle& linePair)
     }
     return out;
 }
-
-

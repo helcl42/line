@@ -16,6 +16,7 @@
 #include "DetectionSettings.h"
 #include "LineDetector.h"
 #include "RectangleDetector.h"
+#include "TriangleDetector.h"
 
 class ImageService
 {
@@ -38,7 +39,9 @@ private:
     
     LineDetector* m_lineDetector;
     
-    RectangleDetector* m_rectangleDetector;    
+    RectangleDetector* m_rectangleDetector;   
+    
+    TriangleDetector* m_triangleDetector;
     
 public:
     ImageService(DetectionSettings* settings);    
@@ -58,7 +61,7 @@ public:
 private:
     Vector2<int>* getObjectPoint(StraightDetectedObject* line);
     
-    bool tryChangeSettings();        
+    void tryChangeSettings();        
 };
 
 #endif	/* IMAGEMESSAGESERVICE_H */

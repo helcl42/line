@@ -8,6 +8,7 @@ ImageService::ImageService(DetectionSettings* settings)
     m_colorImage = new Image<float>();
     m_lineDetector = new LineDetector(settings->getItem(0));
     m_rectangleDetector = new RectangleDetector(settings->getItem(0));
+    m_triangleDetector = new TriangleDetector(settings->getItem(0));
 }
 
 ImageService::~ImageService()
@@ -28,36 +29,38 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
 
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
-    
-//    if (m_lookUpLines)
+
+    //    if (m_lookUpLines)
+    //    {
+    //        m_lineDetector->invalidate();
+    //        m_lineDetector->initDetectionParams(m_shrink);
+    //        m_lineDetector->setImages(m_image, m_colorImage);
+    //        object = m_lineDetector->findObject();
+    //    }
+    //    else
 //    {
-//        m_lineDetector->invalidate();
-//        m_lineDetector->initDetectionParams(m_shrink);
-//        m_lineDetector->setImages(m_image, m_colorImage);
-//        object = m_lineDetector->findObject();
+//        m_rectangleDetector->invalidate();
+//        m_rectangleDetector->initDetectionParams();
+//        m_rectangleDetector->setImages(m_image, m_colorImage);
+//        object = m_rectangleDetector->findObject();
 //    }
-//    else
-    {
-        m_rectangleDetector->invalidate();
-        m_rectangleDetector->initDetectionParams();
-        m_rectangleDetector->setImages(m_image, m_colorImage);
-        object = m_rectangleDetector->findObject();
-    }
+    
+    m_triangleDetector->invalidate();
+    m_triangleDetector->initDetectionParams(m_shrink);
+    m_triangleDetector->setImages(m_image, m_colorImage);
+    object = m_triangleDetector->findObject();
 
-    if (object != NULL)
+    if (object->isValid())
     {
-        if (object->isValid())
+        std::cout << "OBJECT!!! " << object->getAt(0)->length << std::endl;
+        m_changeColorTimer.stop();
+
+        writeLinesToMessage(img, object->getLines(), object->getLineCount());
+
+        objectPoint = getObjectPoint(object);
+        if (objectPoint != NULL)
         {
-            std::cout << "OBJECT!!! " << object->getAt(0)->length << std::endl;
-            m_changeColorTimer.stop();
-
-            writeLinesToMessage(img, object->getLines(), object->getLineCount());
-
-            objectPoint = getObjectPoint(object);
-            if (objectPoint != NULL)
-            {
-                writePointToMessage(img, objectPoint);
-            }
+            writePointToMessage(img, objectPoint);
         }
     }
     else
@@ -86,7 +89,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     return objectPoint;
 }
 
-bool ImageService::tryChangeSettings()
+void ImageService::tryChangeSettings()
 {
     if (!m_changeColorTimer.isStarted())
     {
