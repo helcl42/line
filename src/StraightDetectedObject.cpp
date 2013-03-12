@@ -1,6 +1,5 @@
 #include "StraightDetectedObject.h"
 
-
 StraightDetectedObject::StraightDetectedObject(unsigned int lineCount)
 {
     m_lineCount = lineCount;
@@ -19,13 +18,13 @@ void StraightDetectedObject::setLocked()
 
 void StraightDetectedObject::setLocked(unsigned int count)
 {
-    for(unsigned int i = 0; i < count; i++)
+    for (unsigned int i = 0; i < count; i++)
     {
-        m_lines[i]->locked = true;        
+        m_lines[i]->locked = true;
     }
 }
 
-Line** StraightDetectedObject::getLines()
+Line** StraightDetectedObject::getLines() const
 {
     return m_lines;
 }
@@ -35,8 +34,7 @@ unsigned int StraightDetectedObject::getLineCount() const
     return m_lineCount;
 }
 
-
-Line* StraightDetectedObject::getAt(unsigned int index) const 
+Line* StraightDetectedObject::getAt(unsigned int index) const
 {
     if (index >= 0 && index < m_lineCount)
     {
@@ -67,9 +65,9 @@ bool StraightDetectedObject::isValid() const
 
 bool StraightDetectedObject::isValid(unsigned int count) const
 {
-    for(unsigned int i = 0; i < count; i++)
+    for (unsigned int i = 0; i < count; i++)
     {
-        if(m_lines[i] == NULL)
+        if (m_lines[i] == NULL)
         {
             return false;
         }
@@ -83,5 +81,19 @@ void StraightDetectedObject::invalidate()
     {
         m_lines[i] = NULL;
     }
+}
+
+bool StraightDetectedObject::hasLengthInInterval(float divider)
+{
+    for (unsigned int i = 0; i < m_lineCount; i++)
+    {
+        if (m_lines[i]->length + DetectionParams::minLineLengthTreshold / divider < m_lines[i]->length
+                || m_lines[i]->length - DetectionParams::minLineLengthTreshold / divider > m_lines[i]->length)
+        {
+            return false;
+        }
+
+    }
+    return true;
 }
 

@@ -21,7 +21,7 @@ RectangleDetector::~RectangleDetector()
 
 StraightDetectedObject* RectangleDetector::findObject()
 {
-    //repaintSimilarColorPlaces();
+    //gitrepaintSimilarColorPlaces();
     m_edgeFilter->setImage(m_workImage);
     m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
     m_imageFilter->setImage(m_workImage);
@@ -58,7 +58,7 @@ StraightDetectedObject* RectangleDetector::findBestRectangle()
 
         if (ret != NULL && similar != NULL)
         {                        
-            if (/*lineColorMatch(ret, similar) &&*/ ret->hasLengthInInterval(similar, 5))
+            if (/*lineColorMatch(ret, similar) &&*/ m_bestRectangle->hasLengthInInterval(10))
             {                
                 std::cout << *ret << std::endl;
                 std::cout << *similar << std::endl;

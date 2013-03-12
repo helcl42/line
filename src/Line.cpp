@@ -184,16 +184,6 @@ bool Line::isTooNarrow()
     return false;
 }
 
-bool Line::hasLengthInInterval(Line* similar, float divider)
-{
-    if(length + DetectionParams::minLineLengthTreshold / divider > similar->length
-            && length - DetectionParams::minLineLengthTreshold / divider < similar->length)
-    {
-        return true;
-    }
-    return false;
-}
-
 bool Line::addPoint(Vector2<int> pt)
 {
     std::vector<Vector2<int> >::reverse_iterator ri;

@@ -17,6 +17,8 @@ public:
     : StraightDetectedObject(2) {}
     
     virtual ~Rectangle() {}
+    
+    friend std::ostream& operator<<(std::ostream& out, const Rectangle& linePair);
 };
 
 #endif	/* RECTANGLE_H */

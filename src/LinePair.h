@@ -17,7 +17,9 @@ public:
     LinePair() 
     : StraightDetectedObject(2) {}
     
-    virtual ~LinePair() {}
+    virtual ~LinePair() {}            
+    
+    friend std::ostream& operator<<(std::ostream& out, const LinePair& linePair);
 };
 
 #endif	/* BESTLINE_H */

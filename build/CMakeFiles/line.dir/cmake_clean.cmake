@@ -3,6 +3,8 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/line.dir/src/DetectionSettings.o"
   "CMakeFiles/line.dir/src/Timer.o"
   "CMakeFiles/line.dir/src/Line.o"
+  "CMakeFiles/line.dir/src/LinePair.o"
+  "CMakeFiles/line.dir/src/Rectangle.o"
   "CMakeFiles/line.dir/src/DetectionParams.o"
   "CMakeFiles/line.dir/src/StraightDetectedObject.o"
   "CMakeFiles/line.dir/src/ImageService.o"

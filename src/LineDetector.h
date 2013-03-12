@@ -31,7 +31,7 @@ public:
     void initDetectionParams(unsigned int shrink = 1);
     
 protected:    
-    bool lineColorMatch(Line* l1, Line* l2);    
+    bool lineColorMatch();
     
     StraightDetectedObject* findBestLine();   
 };

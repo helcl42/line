@@ -41,34 +41,29 @@ void LineDetector::invalidate()
 }
 
 StraightDetectedObject* LineDetector::findBestLine()
-{
-    Line* ret = NULL;
-    Line* similar = NULL;
-
+{    
     sortLinesByLength();
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {        
+        m_bestLine->invalidate();
         lockAllLines(false);
-        ret = m_lines[i];
+        m_bestLine->setAt(m_lines[i], 0);
 
         //if(ret->isTooNarrow()) continue;            
         
-        lockSimilarLines(ret);
-        similar = findLineWithDirection(ret);        
+        lockSimilarLines(m_bestLine->getAt(0));
+        m_bestLine->setAt(findLineWithDirection(m_bestLine->getAt(0)), 1);        
 
-        if (ret != NULL && similar != NULL)
+        if (m_bestLine->isValid())
         {
             //if(similar->isTooNarrow()) continue;
             
-            if (lineColorMatch(ret, similar) && ret->hasLengthInInterval(similar))
+            if (lineColorMatch() && m_bestLine->hasLengthInInterval())
             {                
-                std::cout << *ret << std::endl;
-                std::cout << *similar << std::endl;
-                writeLineInImage(ret, 255, 0, 0);
-                writeLineInImage(similar, 0, 0, 255);
-                m_bestLine->setAt(ret, 0);
-                m_bestLine->setAt(similar, 1);
+                std::cout << *m_bestLine << std::endl;                
+                writeLineInImage(m_bestLine->getAt(0), 255, 0, 0);
+                writeLineInImage(m_bestLine->getAt(0), 0, 0, 255); 
                 break;
             }
             else
@@ -80,10 +75,13 @@ StraightDetectedObject* LineDetector::findBestLine()
     return m_bestLine;
 }
 
-bool LineDetector::lineColorMatch(Line* l1, Line* l2)
+bool LineDetector::lineColorMatch()
 {
     Pixel<float>* pixel = NULL;
     Vector2<int>* ret = NULL;
+    Line* l1 = m_bestLine->getAt(0);
+    Line* l2 = m_bestLine->getAt(1);
+    
     unsigned int failCount = 0;
     unsigned int len = l1->points.size() < l2->points.size() ? l1->points.size() : l2->points.size();
 

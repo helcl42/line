@@ -280,6 +280,15 @@ CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/rosconsole/macro
 CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
 CMakeFiles/line.dir/src/LineDetector.o: /opt/ros/fuerte/include/std_msgs/Header.h
 
+CMakeFiles/line.dir/src/LinePair.o: ../src/DetectionParams.h
+CMakeFiles/line.dir/src/LinePair.o: ../src/IDetectedObject.h
+CMakeFiles/line.dir/src/LinePair.o: ../src/Line.h
+CMakeFiles/line.dir/src/LinePair.o: ../src/LinePair.cpp
+CMakeFiles/line.dir/src/LinePair.o: ../src/LinePair.h
+CMakeFiles/line.dir/src/LinePair.o: ../src/StraightDetectedObject.h
+CMakeFiles/line.dir/src/LinePair.o: ../src/Utils.h
+CMakeFiles/line.dir/src/LinePair.o: ../src/Vector2.h
+
 CMakeFiles/line.dir/src/Main.o: ../src/CameraService.h
 CMakeFiles/line.dir/src/Main.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/Main.o: ../src/DetectionSettings.h
@@ -433,6 +442,15 @@ CMakeFiles/line.dir/src/ObjectDetector.o: /opt/ros/fuerte/include/ros/wall_timer
 CMakeFiles/line.dir/src/ObjectDetector.o: /opt/ros/fuerte/include/rosconsole/macros_generated.h
 CMakeFiles/line.dir/src/ObjectDetector.o: /opt/ros/fuerte/include/sensor_msgs/Image.h
 CMakeFiles/line.dir/src/ObjectDetector.o: /opt/ros/fuerte/include/std_msgs/Header.h
+
+CMakeFiles/line.dir/src/Rectangle.o: ../src/DetectionParams.h
+CMakeFiles/line.dir/src/Rectangle.o: ../src/IDetectedObject.h
+CMakeFiles/line.dir/src/Rectangle.o: ../src/Line.h
+CMakeFiles/line.dir/src/Rectangle.o: ../src/Rectangle.cpp
+CMakeFiles/line.dir/src/Rectangle.o: ../src/Rectangle.h
+CMakeFiles/line.dir/src/Rectangle.o: ../src/StraightDetectedObject.h
+CMakeFiles/line.dir/src/Rectangle.o: ../src/Utils.h
+CMakeFiles/line.dir/src/Rectangle.o: ../src/Vector2.h
 
 CMakeFiles/line.dir/src/RectangleDetector.o: ../src/DetectionParams.h
 CMakeFiles/line.dir/src/RectangleDetector.o: ../src/DetectionSettings.h

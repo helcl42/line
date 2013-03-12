@@ -280,6 +280,15 @@ CMakeFiles/line.dir/src/LineDetector.o
  /opt/ros/fuerte/include/rosconsole/macros_generated.h
  /opt/ros/fuerte/include/sensor_msgs/Image.h
  /opt/ros/fuerte/include/std_msgs/Header.h
+CMakeFiles/line.dir/src/LinePair.o
+ /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/LinePair.cpp
+ /home/lubos/fuerte_workspace/sandbox/line/src/LinePair.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
 CMakeFiles/line.dir/src/Main.o
  /home/lubos/fuerte_workspace/sandbox/line/src/CameraService.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
@@ -434,6 +443,15 @@ CMakeFiles/line.dir/src/ObjectDetector.o
  /opt/ros/fuerte/include/rosconsole/macros_generated.h
  /opt/ros/fuerte/include/sensor_msgs/Image.h
  /opt/ros/fuerte/include/std_msgs/Header.h
+CMakeFiles/line.dir/src/Rectangle.o
+ /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.cpp
+ /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/StraightDetectedObject.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
 CMakeFiles/line.dir/src/RectangleDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h

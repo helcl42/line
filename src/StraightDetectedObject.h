@@ -9,6 +9,7 @@
 #define	STRAIGHTDETECTEDOBJECT_H
 
 #include "IDetectedObject.h"
+#include "DetectionParams.h"
 #include "Line.h"
 #include "Utils.h"
 
@@ -39,7 +40,9 @@ public:
     
     Line* getAt(unsigned int index) const;
     
-    Line** getLines();
+    Line** getLines() const;
+    
+    bool hasLengthInInterval(float divider = 10);
     
     unsigned int getLineCount() const;
 };

@@ -58,7 +58,7 @@ public:
 private:
     Vector2<int>* getObjectPoint(StraightDetectedObject* line);
     
-    bool tryChangeSettings();
+    bool tryChangeSettings();        
 };
 
 #endif	/* IMAGEMESSAGESERVICE_H */

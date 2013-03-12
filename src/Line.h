@@ -40,9 +40,7 @@ public:
     
     bool isInline(Line* input);
     
-    bool isTooNarrow();
-    
-    bool hasLengthInInterval(Line* similar, float divider = 10);
+    bool isTooNarrow();    
     
     bool addPoint(Vector2<int> pt);
     
