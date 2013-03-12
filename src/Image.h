@@ -61,6 +61,8 @@ public:
     void cleanUp();
 
     void shrinkImage(unsigned int times);
+    
+    void writeCircle(int x0, int y0, int radius);
 
     inline Pixel<T>* getPixel(unsigned int x, unsigned int y) const;
 
@@ -72,7 +74,7 @@ public:
 
     inline void setPixelValue(unsigned int y, unsigned int x, T r, T g, T b);
 
-    //inline void writeToMessage(const sensor_msgs::Image::ConstPtr& img);
+    //inline void writeToMessage(const sensor_msgs::Image::ConstPtr& img);        
 
     friend std::ostream& operator<<<T>(std::ostream& out, const Image<T>& img);
 };
@@ -196,6 +198,47 @@ void Image<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int
             }
             index += 3 * img->width * (m_shrinkRatio - 1) + corrector;
         }
+    }
+}
+
+template <class T>
+void Image<T>::writeCircle(int x0, int y0, int radius)
+{
+    int f = 1 - radius;
+    int ddFx = 1;
+    int ddFy = -2 * radius;
+    int x = 0;
+    int y = radius;
+ 
+    setPixelValue(y0 + radius, x0, 0, 0, 255);
+    setPixelValue(y0 - radius, x0, 0, 0, 255);
+    setPixelValue(y0, x0 + radius, 0, 0, 255);
+    setPixelValue(y0, x0 - radius, 0, 0, 255);
+ 
+    while(x < y)
+    {
+        // ddF_x == 2 * x + 1;
+        // ddF_y == -2 * y;
+        // f == x*x + y*y - radius*radius + 2*x - y + 1;
+        if(f >= 0) 
+        {
+            y--;
+            ddFy += 2;
+            f += ddFy;
+        }
+        
+        x++;
+        ddFx += 2;
+        f += ddFx;    
+        
+        setPixelValue(y0 + y, x0 + x, 0, 0, 255);
+        setPixelValue(y0 + y, x0 - x, 0, 0, 255);
+        setPixelValue(y0 - y, x0 + x, 0, 0, 255);
+        setPixelValue(y0 - y, x0 - x, 0, 0, 255);
+        setPixelValue(y0 + x, x0 + y, 0, 0, 255);
+        setPixelValue(y0 + x, x0 - y, 0, 0, 255);
+        setPixelValue(y0 - x, x0 + y, 0, 0, 255);
+        setPixelValue(y0 - x, x0 - y, 0, 0, 255);
     }
 }
 

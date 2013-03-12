@@ -68,6 +68,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
         tryChangeSettings();
     }
 
+    //m_image->writeCircle(20, 20, 8);
     writeImageToMessage(img);
 
     m_shrinkTimer.stop();

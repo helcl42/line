@@ -54,7 +54,7 @@ public:
     
     void writePointToMessage(const sensor_msgs::Image::ConstPtr& img, Vector2<int>* point, unsigned int size = 3);
     
-    void writeImageToMessage(const sensor_msgs::Image::ConstPtr& img);
+    void writeImageToMessage(const sensor_msgs::Image::ConstPtr& img);        
     
     void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width = 1);        
     
