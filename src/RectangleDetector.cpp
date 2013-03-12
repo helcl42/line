@@ -41,31 +41,27 @@ void RectangleDetector::invalidate()
 }
 
 StraightDetectedObject* RectangleDetector::findBestRectangle()
-{        
-    Line* ret = NULL;
-    Line* similar = NULL;
-    
-    //sortLinesByStraightness(true);    
-    sortLinesByLength();
+{                
+    sortLinesByStraightness(true);    
+    //sortLinesByLength();
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {        
+        m_bestRectangle->invalidate();
         lockAllLines(false);
-        ret = m_lines[i];   
         
-        lockSimilarLines(ret);
-        similar = findLineWithDirection(ret);        
+        m_bestRectangle->setAt(m_lines[i], 0);
+        
+        lockSimilarLines(m_bestRectangle->getAt(0));
+        m_bestRectangle->setAt(findLineWithDirection(m_bestRectangle->getAt(0)), 1);
 
-        if (ret != NULL && similar != NULL)
+        if (m_bestRectangle->isValid())
         {                        
-            if (/*lineColorMatch(ret, similar) &&*/ m_bestRectangle->hasLengthInInterval(10))
+            if (/*lineColorMatch(ret, similar) &&*/ m_bestRectangle->hasLengthInInterval(5))
             {                
-                std::cout << *ret << std::endl;
-                std::cout << *similar << std::endl;
-                writeLineInImage(ret, 255, 0, 0);
-                writeLineInImage(similar, 0, 0, 255);
-                m_bestRectangle->setAt(ret, 0);
-                m_bestRectangle->setAt(similar, 1);
+                std::cout << *m_bestRectangle << std::endl;
+                writeLineInImage(m_bestRectangle->getAt(0), 255, 0, 0);
+                writeLineInImage(m_bestRectangle->getAt(1), 0, 0, 255);                
                 break;
             }            
         }

@@ -2,7 +2,7 @@
 #include "Line.h"
 
 ImageService::ImageService(DetectionSettings* settings)
-: m_shrink(2), m_settings(settings), m_settingsIndex(0), m_lookUpLines(false)
+: m_shrink(2), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
 {
     m_image = new Image<float>();
     m_colorImage = new Image<float>();
@@ -28,15 +28,15 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
 
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
-
-    if (m_lookUpLines)
-    {
-        m_lineDetector->invalidate();
-        m_lineDetector->initDetectionParams(m_shrink);
-        m_lineDetector->setImages(m_image, m_colorImage);
-        object = m_lineDetector->findObject();       
-    }
-    else
+    
+//    if (m_lookUpLines)
+//    {
+//        m_lineDetector->invalidate();
+//        m_lineDetector->initDetectionParams(m_shrink);
+//        m_lineDetector->setImages(m_image, m_colorImage);
+//        object = m_lineDetector->findObject();
+//    }
+//    else
     {
         m_rectangleDetector->invalidate();
         m_rectangleDetector->initDetectionParams();
@@ -44,17 +44,20 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
         object = m_rectangleDetector->findObject();
     }
 
-    if (object->isValid())
+    if (object != NULL)
     {
-        std::cout << "OBJECT!!! " << object->getAt(0)->length << std::endl;
-        m_changeColorTimer.stop();
-
-        writeLinesToMessage(img, object->getLines(), object->getLineCount());
-
-        objectPoint = getObjectPoint(object);
-        if (objectPoint != NULL)
+        if (object->isValid())
         {
-            writePointToMessage(img, objectPoint);
+            std::cout << "OBJECT!!! " << object->getAt(0)->length << std::endl;
+            m_changeColorTimer.stop();
+
+            writeLinesToMessage(img, object->getLines(), object->getLineCount());
+
+            objectPoint = getObjectPoint(object);
+            if (objectPoint != NULL)
+            {
+                writePointToMessage(img, objectPoint);
+            }
         }
     }
     else
@@ -97,7 +100,7 @@ bool ImageService::tryChangeSettings()
         m_settingsIndex++;
 
         if (m_settingsIndex >= m_settings->getCountOfColors())
-        {            
+        {
             m_lookUpLines = !m_lookUpLines;
             m_settingsIndex = 0;
         }
