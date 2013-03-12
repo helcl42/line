@@ -53,7 +53,7 @@ public:
     virtual void initDetectionParams(unsigned int shrink = 1) = 0;
     
 protected:        
-    void replaintSimilarColorPlaces(int interval = DetectionParams::colorTolerance);        
+    void repaintSimilarColorPlaces(int interval = DetectionParams::colorTolerance);        
 };
 
 #endif	/* OBJECTDETECTOR_H */

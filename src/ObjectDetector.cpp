@@ -76,7 +76,7 @@ void ObjectDetector::setImages(Image<float>* image, Image<float>* colorImage)
     m_colorImage = colorImage;
 }
 
-void ObjectDetector::replaintSimilarColorPlaces(int interval)
+void ObjectDetector::repaintSimilarColorPlaces(int interval)
 {
     PixelRGB<float> pixelMinus;
     PixelRGB<float> pixelPlus;

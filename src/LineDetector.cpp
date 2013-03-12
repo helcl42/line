@@ -21,6 +21,7 @@ LineDetector::~LineDetector()
 
 StraightDetectedObject* LineDetector::findObject()
 {
+    //repaintSimilarColorPlaces();
     m_edgeFilter->setImage(m_workImage);
     m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
     m_imageFilter->setImage(m_workImage);
@@ -51,14 +52,14 @@ StraightDetectedObject* LineDetector::findBestLine()
         lockAllLines(false);
         ret = m_lines[i];
 
-        if(ret->isTooNarrow()) continue;            
+        //if(ret->isTooNarrow()) continue;            
         
         lockSimilarLines(ret);
         similar = findLineWithDirection(ret);        
 
         if (ret != NULL && similar != NULL)
         {
-            if(similar->isTooNarrow()) continue;
+            //if(similar->isTooNarrow()) continue;
             
             if (lineColorMatch(ret, similar) && ret->hasLengthInInterval(similar))
             {                

@@ -2,12 +2,12 @@
 #include "Line.h"
 
 ImageService::ImageService(DetectionSettings* settings)
-: m_shrink(2), m_settings(settings), m_settingsIndex(0)
+: m_shrink(2), m_settings(settings), m_settingsIndex(0), m_lookUpLines(false)
 {
     m_image = new Image<float>();
     m_colorImage = new Image<float>();
     m_lineDetector = new LineDetector(settings->getItem(0));
-    m_rectangleDetector = new RectangleDetector();
+    m_rectangleDetector = new RectangleDetector(settings->getItem(0));
 }
 
 ImageService::~ImageService()
@@ -20,7 +20,7 @@ ImageService::~ImageService()
 
 Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
 {
-    unsigned long timeElapsed;    
+    unsigned long timeElapsed;
     Vector2<int>* objectPoint = NULL;
     StraightDetectedObject* object = NULL;
 
@@ -29,30 +29,26 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-    m_lineDetector->invalidate();
-    m_lineDetector->initDetectionParams(m_shrink);
-    m_lineDetector->setImages(m_image, m_colorImage);
-    object = m_lineDetector->findObject();
-
-//    m_rectangleDetector->invalidate();
-//    m_rectangleDetector->initDetectionParams();        
-//    m_rectangleDetector->setImages(m_image, m_colorImage);
-//    object = m_rectangleDetector->findObject();
-//    
-//    if (object->isValid())
-//    {
-//        std::cout << "Found rect!!!" << std::endl;
-//        writeLinesToMessage(img, object->getLines(), object->getLineCount());
-//    }
+    if (m_lookUpLines)
+    {
+        m_lineDetector->invalidate();
+        m_lineDetector->initDetectionParams(m_shrink);
+        m_lineDetector->setImages(m_image, m_colorImage);
+        object = m_lineDetector->findObject();       
+    }
+    else
+    {
+        m_rectangleDetector->invalidate();
+        m_rectangleDetector->initDetectionParams();
+        m_rectangleDetector->setImages(m_image, m_colorImage);
+        object = m_rectangleDetector->findObject();
+    }
 
     if (object->isValid())
     {
-        std::cout << "CARA!!! " << object->getAt(0)->length << std::endl;
+        std::cout << "OBJECT!!! " << object->getAt(0)->length << std::endl;
+        m_changeColorTimer.stop();
 
-        if (m_changeColorTimer.isStarted())
-        {
-            m_changeColorTimer.stop();
-        }
         writeLinesToMessage(img, object->getLines(), object->getLineCount());
 
         objectPoint = getObjectPoint(object);
@@ -63,35 +59,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     }
     else
     {
-        if (!m_changeColorTimer.isStarted())
-        {
-            m_changeColorTimer.start();
-        }
-        else if (m_changeColorTimer.getElapsedTimeInMilliSec() > 5000) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
-        {
-            m_changeColorTimer.stop();
-            std::cout << "Hledam dalsi!!" << std::endl;
-
-            m_settingsIndex++;
-
-            if (m_settingsIndex >= m_settings->getCountOfColors())
-            {
-                //detect home shapes                
-                m_rectangleDetector->invalidate();
-                m_rectangleDetector->initDetectionParams();        
-                m_rectangleDetector->setImages(m_image, m_colorImage);                       
-                object = m_rectangleDetector->findObject();
-                
-                if (object->isValid())
-                {
-                    std::cout << "Found rect!!!" << std::endl;
-                    writeLinesToMessage(img, object->getLines(), object->getLineCount());
-                }
-                m_settingsIndex = 0;
-            }
-
-            m_lineDetector->setColorSettings(m_settings->getItem(m_settingsIndex));
-        }
+        tryChangeSettings();
     }
 
     writeImageToMessage(img);
@@ -109,10 +77,33 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
     {
         if (m_shrink > 1) m_shrink--;
     }
-    
+
     std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
 
     return objectPoint;
+}
+
+bool ImageService::tryChangeSettings()
+{
+    if (!m_changeColorTimer.isStarted())
+    {
+        m_changeColorTimer.start();
+    }
+    else if (m_changeColorTimer.getElapsedTimeInMilliSec() > 5000) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
+    {
+        m_changeColorTimer.stop();
+        std::cout << "Hledam dalsi!!" << std::endl;
+
+        m_settingsIndex++;
+
+        if (m_settingsIndex >= m_settings->getCountOfColors())
+        {            
+            m_lookUpLines = !m_lookUpLines;
+            m_settingsIndex = 0;
+        }
+
+        m_lineDetector->setColorSettings(m_settings->getItem(m_settingsIndex));
+    }
 }
 
 Vector2<int>* ImageService::getObjectPoint(StraightDetectedObject* line)

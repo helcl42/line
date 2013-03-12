@@ -56,8 +56,8 @@ StraightDetectedObject* TriangleDetector::findBestTriangle()
         for (unsigned int j = 1; j < 3; j++)
         {            
             //one cross allowed here
-            lockSimilarLines(m_bestTriangle->getAt(j), 1);
-            m_bestTriangle->setAt(findLineWithDirection(m_bestTriangle->getAt(j), 60), j);
+            lockSimilarLines(m_bestTriangle->getAt(j - 1), 1);
+            m_bestTriangle->setAt(findLineWithDirection(m_bestTriangle->getAt(j - 1), 60), j);
 
             if (!m_bestTriangle->isValid(j)) break;
 
