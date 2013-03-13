@@ -43,9 +43,9 @@ double CameraService::getCameraHeight(float distLow, float distHigh)
 
     angle = atan(x1 / x2) * 180 / M_PI;
     
-    angle = 90 - angle - alpha;
-
-    return 1.15 * distLow * cos(angle * M_PI / 180) + 0.009 / acos(cos(angle * M_PI / 180));            
+    return 1.17 * distHigh * sin(angle * M_PI / 180) + 0.01 * acos(cos(angle / 2 * M_PI / 180));
+    //angle = 90 - angle - alpha;    
+    //return 1.15 * distLow * cos(angle * M_PI / 180) + 0.009 / acos(cos(angle * M_PI / 180));            
 }
 
 
