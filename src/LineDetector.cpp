@@ -50,15 +50,11 @@ StraightDetectedObject* LineDetector::findBestLine()
         lockAllLines(false);
         m_bestLine->setAt(m_lines[i], 0);
 
-        //if(ret->isTooNarrow()) continue;            
-        
         lockSimilarLines(m_bestLine->getAt(0));
         m_bestLine->setAt(findLineWithDirection(m_bestLine->getAt(0)), 1);        
 
         if (m_bestLine->isValid())
-        {
-            //if(similar->isTooNarrow()) continue;
-            
+        {            
             if (colorMatch() /*&& m_bestLine->hasLengthInInterval()*/)
             {                
                 std::cout << *m_bestLine << std::endl;                

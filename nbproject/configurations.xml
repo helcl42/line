@@ -99,6 +99,7 @@
         <in>Line.h</in>
         <in>LineDetector.cpp</in>
         <in>LineDetector.h</in>
+        <in>LinePair.cpp</in>
         <in>LinePair.h</in>
         <in>Main.cpp</in>
         <in>ObjectDetector.cpp</in>
@@ -108,6 +109,7 @@
         <in>PixelRGB.h</in>
         <in>PixelXYZ.h</in>
         <in>PrewittFilterStrategy.h</in>
+        <in>Rectangle.cpp</in>
         <in>Rectangle.h</in>
         <in>RectangleDetector.cpp</in>
         <in>RectangleDetector.h</in>
@@ -119,6 +121,7 @@
         <in>StraightObjectDetector.h</in>
         <in>Timer.cpp</in>
         <in>Timer.h</in>
+        <in>Triangle.cpp</in>
         <in>Triangle.h</in>
         <in>TriangleDetector.cpp</in>
         <in>TriangleDetector.h</in>

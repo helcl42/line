@@ -67,54 +67,54 @@ void StraightObjectDetector::lockAllLines(bool val)
 void StraightObjectDetector::traverseImage()
 {
     Pixel<float>* pixel = NULL;
-    Line * lines[8];
+    Line* lines[8];
 
     Vector2<int> vecs1[] = {
         Vector2<int>(0, 1),
         Vector2<int>(1, 1), Vector2<int>(-1, 1),
-        Vector2<int>(1, 0)
+        Vector2<int>(1, 0), Vector2<int>(-1, -1)
     };
 
     Vector2<int> vecs2[] = {
         Vector2<int>(0, -1),
         Vector2<int>(1, -1), Vector2<int>(-1, -1),
-        Vector2<int>(-1, 0)
+        Vector2<int>(-1, 0), Vector2<int>(-1, 1)
     };
 
     Vector2<int> vecs3[] = {
         Vector2<int>(1, 0),
         Vector2<int>(1, 1), Vector2<int>(1, -1),
-        Vector2<int>(0, 1)
+        Vector2<int>(0, 1), Vector2<int>(-1, 1)
     };
 
     Vector2<int> vecs4[] = {
         Vector2<int>(-1, 0),
         Vector2<int>(-1, 1), Vector2<int>(-1, -1),
-        Vector2<int>(0, -1)
+        Vector2<int>(0, -1), Vector2<int>(-1, -1)
     };
 
     Vector2<int> vecs5[] = {
         Vector2<int>(1, 1),
         Vector2<int>(1, 0), Vector2<int>(0, 1),
-        Vector2<int>(1, -1)
+        Vector2<int>(1, -1), Vector2<int>(0, -1)
     };
 
     Vector2<int> vecs6[] = {
         Vector2<int>(1, -1),
         Vector2<int>(0, -1), Vector2<int>(1, 0),
-        Vector2<int>(1, 1)
+        Vector2<int>(1, 1), Vector2<int>(0, 1)
     };
 
     Vector2<int> vecs7[] = {
         Vector2<int>(-1, -1),
         Vector2<int>(0, -1), Vector2<int>(-1, 0),
-        Vector2<int>(-1, 1)
+        Vector2<int>(-1, 1), Vector2<int>(0, 1)
     };
 
     Vector2<int> vecs8[] = {
         Vector2<int>(-1, 1),
         Vector2<int>(0, 1), Vector2<int>(-1, 0),
-        Vector2<int>(1, 1)
+        Vector2<int>(1, 1), Vector2<int>(1, 0)
     };
 
     for (unsigned int i = 1; i < m_workImage->getHeight() - 1; i += 2)
@@ -192,11 +192,11 @@ Line* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector2<int> p
     Line* line = new Line();
     unsigned int countOfFails = 0;
 
-    line->points.push_back(Vector2<int>(pos));
+    line->points.push_back(Vector2<int>(pos));    
 
     while (pos.y > 2 && pos.x > 2 && pos.y < (int) m_workImage->getHeight() - 2 && pos.x < (int) m_workImage->getWidth() - 2)
     {
-        pos += vecs[countOfFails];
+        pos += vecs[countOfFails];        
 
         pixel = m_workImage->getPixel(pos.y, pos.x);
 
@@ -204,7 +204,7 @@ Line* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector2<int> p
         {
             countOfFails = 0;
 
-            line->points.push_back(pos);
+            line->points.push_back(pos);            
         }
         else
         {
@@ -301,8 +301,6 @@ Line* StraightObjectDetector::findLineWithDirection(Line* input, float angle)
         testedDirection = m_lines[i]->directionDegrees;
 
         delta = input->directionDegrees - testedDirection + angle;
-
-        //std::cout << "testDirection: " << testedDirection << " delta: " << delta << std::endl;
 
         delta = delta < 0 ? -delta : delta;
 
