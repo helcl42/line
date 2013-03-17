@@ -174,6 +174,11 @@ bool Line::isClose(Line* input, unsigned int crossCount)
     return false;
 }
 
+unsigned int Line::getCountOfPoints() const
+{
+    return points.size();
+}
+
 bool Line::isTooNarrow()
 {
     float h = pow(2, 0.5) * length / 5.5;
@@ -205,6 +210,16 @@ double Line::getDistanceTo(Vector2<int>& point)
     int c = -(n.x * points.front().x) - (n.y * points.front().y);
 
     return (double) (n.x * point.x + n.y * point.y + c) / (double) sqrt(n.x * n.x + n.y * n.y);
+}
+
+Vector2<int> Line::getBegin()
+{
+    return points.front();
+}
+
+Vector2<int> Line::getEnd()
+{
+    return points.back();
 }
 
 std::ostream& operator<<(std::ostream& out, const Line& line)

@@ -1,22 +1,22 @@
-#include "StraightDetectedObject.h"
+#include "LineDescribableObject.h"
 
-StraightDetectedObject::StraightDetectedObject(unsigned int lineCount)
+LineDescribableObject::LineDescribableObject(unsigned int lineCount)
 {
     m_lineCount = lineCount;
     m_lines = new Line*[lineCount];
 }
 
-StraightDetectedObject::~StraightDetectedObject()
+LineDescribableObject::~LineDescribableObject()
 {
     SAFE_DELETE_ARRAY(m_lines);
 }
 
-void StraightDetectedObject::setLocked()
+void LineDescribableObject::setLocked()
 {
     setLocked(m_lineCount);
 }
 
-void StraightDetectedObject::setLocked(unsigned int count)
+void LineDescribableObject::setLocked(unsigned int count)
 {
     for (unsigned int i = 0; i < count; i++)
     {
@@ -24,17 +24,17 @@ void StraightDetectedObject::setLocked(unsigned int count)
     }
 }
 
-Line** StraightDetectedObject::getLines() const
+Line** LineDescribableObject::getLines() const
 {
     return m_lines;
 }
 
-unsigned int StraightDetectedObject::getLineCount() const
+unsigned int LineDescribableObject::getLineCount() const
 {
     return m_lineCount;
 }
 
-Line* StraightDetectedObject::getAt(unsigned int index) const
+Line* LineDescribableObject::getAt(unsigned int index) const
 {
     if (index >= 0 && index < m_lineCount)
     {
@@ -46,7 +46,7 @@ Line* StraightDetectedObject::getAt(unsigned int index) const
     }
 }
 
-void StraightDetectedObject::setAt(Line* line, unsigned int index)
+void LineDescribableObject::setAt(Line* line, unsigned int index)
 {
     if (index >= 0 && index < m_lineCount)
     {
@@ -58,12 +58,12 @@ void StraightDetectedObject::setAt(Line* line, unsigned int index)
     }
 }
 
-bool StraightDetectedObject::isValid() const
+bool LineDescribableObject::isValid() const
 {
     return isValid(m_lineCount);
 }
 
-bool StraightDetectedObject::isValid(unsigned int count) const
+bool LineDescribableObject::isValid(unsigned int count) const
 {
     for (unsigned int i = 0; i < count; i++)
     {
@@ -75,7 +75,7 @@ bool StraightDetectedObject::isValid(unsigned int count) const
     return true;
 }
 
-void StraightDetectedObject::invalidate()
+void LineDescribableObject::invalidate()
 {
     for (unsigned int i = 0; i < m_lineCount; i++)
     {
@@ -83,7 +83,7 @@ void StraightDetectedObject::invalidate()
     }
 }
 
-bool StraightDetectedObject::hasLengthInInterval(float divider)
+bool LineDescribableObject::hasLengthInInterval(float divider)
 {
     for (unsigned int i = 0; i < m_lineCount; i++)
     {

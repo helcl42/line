@@ -75,7 +75,7 @@ void SobelFilterStrategy<T>::applyFilter(unsigned int threshold)
 {    
     sobelAlgorithm();
     this->resolveThreshold(threshold);
-    SAFE_DELETE_ARRAY(this->m_buffer);
+    SAFE_DELETE_ARRAY(this->m_buffer);    
 }
 
 #endif	/* SOBELFILTERSTRATEGY_H */

@@ -62,7 +62,7 @@ public:
 
     void shrinkImage(unsigned int times);
     
-    void writeCircle(int x0, int y0, int radius);
+    void writeCircle(int x0, int y0, int radius, double angle);
 
     inline Pixel<T>* getPixel(unsigned int x, unsigned int y) const;
 
@@ -202,16 +202,17 @@ void Image<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int
 }
 
 template <class T>
-void Image<T>::writeCircle(int x0, int y0, int radius)
+void Image<T>::writeCircle(int x0, int y0, int radius, double angle)
 {
     int f = 1 - radius;
     int ddFx = 1;
-    int ddFy = -2 * radius;
+    int ddFy = -2 * radius;// * cos(angle * M_PI / 180);
     int x = 0;
-    int y = radius;
+    int y = radius; // * cos(angle * M_PI / 180);
+    float ellipse = sin(angle * M_PI / 180);
  
-    setPixelValue(y0 + radius, x0, 0, 0, 255);
-    setPixelValue(y0 - radius, x0, 0, 0, 255);
+    setPixelValue(y0 + radius * ellipse, x0, 0, 0, 255);
+    setPixelValue(y0 - radius * ellipse, x0, 0, 0, 255);
     setPixelValue(y0, x0 + radius, 0, 0, 255);
     setPixelValue(y0, x0 - radius, 0, 0, 255);
  
@@ -231,14 +232,15 @@ void Image<T>::writeCircle(int x0, int y0, int radius)
         ddFx += 2;
         f += ddFx;    
         
-        setPixelValue(y0 + y, x0 + x, 0, 0, 255);
-        setPixelValue(y0 + y, x0 - x, 0, 0, 255);
-        setPixelValue(y0 - y, x0 + x, 0, 0, 255);
-        setPixelValue(y0 - y, x0 - x, 0, 0, 255);
-        setPixelValue(y0 + x, x0 + y, 0, 0, 255);
-        setPixelValue(y0 + x, x0 - y, 0, 0, 255);
-        setPixelValue(y0 - x, x0 + y, 0, 0, 255);
-        setPixelValue(y0 - x, x0 - y, 0, 0, 255);
+        setPixelValue(y0 + y * ellipse, x0 + x, 0, 0, 255);
+        setPixelValue(y0 + y * ellipse, x0 - x, 0, 0, 255);
+        setPixelValue(y0 - y * ellipse, x0 + x, 0, 0, 255);
+        setPixelValue(y0 - y * ellipse, x0 - x, 0, 0, 255);
+        
+        setPixelValue(y0 + x * ellipse, x0 + y, 0, 0, 255);
+        setPixelValue(y0 + x * ellipse, x0 - y, 0, 0, 255);
+        setPixelValue(y0 - x * ellipse, x0 + y, 0, 0, 255);
+        setPixelValue(y0 - x * ellipse, x0 - y, 0, 0, 255);
     }
 }
 
@@ -322,7 +324,7 @@ Pixel<T>* Image<T>::getPixel(unsigned int y, unsigned int x) const
     }
     else
     {
-        throw std::runtime_error("Index out of bounds.");
+        throw std::runtime_error("Image:getPixel ->Index out of bounds.");
     }
     return ret;
 }
@@ -347,7 +349,7 @@ T Image<T>::getPixelChannelValue(unsigned int y, unsigned int x, unsigned int ch
     }
     else
     {
-        throw std::runtime_error("Index out of bounds.");
+        throw std::runtime_error("Image:GetPixelChannelValue ->Index out of bounds.");
     }
     return 0.0;
 }
@@ -364,7 +366,7 @@ void Image<T>::setPixelValue(unsigned int y, unsigned int x, Pixel<T>* pixel)
     }
     else
     {
-        throw std::runtime_error("Index out of bounds.");
+        throw std::runtime_error("Image:SetPixelValue -> Index out of bounds.");
     }
 }
 
@@ -380,7 +382,8 @@ void Image<T>::setPixelValue(unsigned int y, unsigned int x, T r, T g, T b)
     }
     else
     {
-        throw std::runtime_error("Index out of bounds.");
+        std::cout << "y = " << y << " x = " << x << std::endl;
+        throw std::runtime_error("Image:SetPixelValue -> Index out of bounds.");
     }
 }
 
@@ -393,7 +396,7 @@ void Image<T>::setPixel(unsigned int y, unsigned int x, Pixel<T>* pixel)
     }
     else
     {
-        throw std::runtime_error("Index out of bounds.");
+        throw std::runtime_error("Image:SetPixel ->Index out of bounds.");
     }
 }
 

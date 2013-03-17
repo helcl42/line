@@ -14,7 +14,7 @@ struct DetectionParams
         
     static const unsigned int colorTreshold;
     
-    static const unsigned int selectionTreshold;
+    static float selectionTreshold;
     
     static float directionDeltaDegrees;
     

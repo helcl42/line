@@ -6,8 +6,8 @@
  * 
  * Params
  * c88553 - red - 875349
- * 6cabeb - blue - 7cacc3
- * ceb66e - orange
+ * 6cabeb - blue - 7cacc3 - 97d5fe
+ * ceb66e - orange - e9cd8f
  * 6cbe40 - green
  * c7deb2 - white
  * 

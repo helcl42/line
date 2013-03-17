@@ -19,13 +19,14 @@ RectangleDetector::~RectangleDetector()
     SAFE_DELETE(m_bestRectangle);
 }
 
-StraightDetectedObject* RectangleDetector::findObject()
+LineDescribableObject* RectangleDetector::findObject()
 {
     //gitrepaintSimilarColorPlaces();
     m_edgeFilter->setImage(m_workImage);
     m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
     m_imageFilter->setImage(m_workImage);
     m_imageFilter->gaussianBlur();
+    m_imageMap->setImage(m_workImage);
     traverseImage();
     return findBestRectangle();
 }
@@ -40,11 +41,11 @@ void RectangleDetector::invalidate()
     m_bestRectangle->invalidate();
 }
 
-StraightDetectedObject* RectangleDetector::findBestRectangle()
-{                
-    sortLinesByStraightness(true);    
+LineDescribableObject* RectangleDetector::findBestRectangle()
+{                        
+    sortLinesByLength();
     //sortLinesByLength();
-
+    
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {        
         m_bestRectangle->invalidate();
@@ -56,19 +57,15 @@ StraightDetectedObject* RectangleDetector::findBestRectangle()
         m_bestRectangle->setAt(findLineWithDirection(m_bestRectangle->getAt(0)), 1);
 
         if (m_bestRectangle->isValid())
-        {                        
-            if (colorMatch() && m_bestRectangle->hasLengthInInterval(5))
+        {                                                                            
+            if (colorMatch() /*&& m_bestRectangle->hasLengthInInterval(5)*/)
             {                
                 std::cout << *m_bestRectangle << std::endl;
                 writeLineInImage(m_bestRectangle->getAt(0), 255, 0, 0);
                 writeLineInImage(m_bestRectangle->getAt(1), 0, 0, 255);                
                 break;
             }            
-            else
-            {
-                m_bestRectangle->invalidate();
-            }
-        }
+        }        
     }
     return m_bestRectangle;
 }
@@ -109,19 +106,19 @@ void RectangleDetector::initDetectionParams(unsigned int shrink)
 {
     unsigned int settingsParam = 480;
      
-    DetectionParams::directionDeltaDegrees = 13;
+    DetectionParams::directionDeltaDegrees = 15;
         
-    DetectionParams::minLineLengthTreshold = settingsParam / (shrink * 8);
+    DetectionParams::minLineLengthTreshold = settingsParam / (shrink * 12);
     
     DetectionParams::maxLineLengthTreshold = settingsParam / (shrink * 4);
 
     DetectionParams::minStraightnessTreshold = pow(2, 0.5) * DetectionParams::minLineLengthTreshold / 4;
     
-    DetectionParams::maxStraightnessTreshold = pow(2, 0.5) * DetectionParams::maxLineLengthTreshold;
+    DetectionParams::maxStraightnessTreshold = pow(2, 0.5) * DetectionParams::maxLineLengthTreshold * 2;
 
-    DetectionParams::minPointDistance = settingsParam / (shrink * 30);
+    DetectionParams::minPointDistance = 0; //settingsParam / (shrink * 30);
 
-    DetectionParams::maxPointDistance = pow(2 * DetectionParams::maxLineLengthTreshold * DetectionParams::maxLineLengthTreshold, 0.5);
+    DetectionParams::maxPointDistance = pow(2 * DetectionParams::maxLineLengthTreshold * DetectionParams::maxLineLengthTreshold, 0.5) * 2;
 
     DetectionParams::inlineTolerance = settingsParam / (shrink * 20);
 

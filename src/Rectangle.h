@@ -8,13 +8,13 @@
 #ifndef RECTANGLE_H
 #define	RECTANGLE_H
 
-#include "StraightDetectedObject.h"
+#include "LineDescribableObject.h"
 
-class Rectangle : public StraightDetectedObject
+class Rectangle : public LineDescribableObject
 {
 public:
     Rectangle()
-    : StraightDetectedObject(2) {}
+    : LineDescribableObject(2) {}
     
     virtual ~Rectangle() {}
     

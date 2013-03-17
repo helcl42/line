@@ -25,14 +25,14 @@ public:
     virtual ~RectangleDetector();
 
 public:    
-    StraightDetectedObject* findObject();
+    LineDescribableObject* findObject();
         
     void invalidate();           
     
     void initDetectionParams(unsigned int shrink = 1);
 
 protected:
-    StraightDetectedObject* findBestRectangle();     
+    LineDescribableObject* findBestRectangle();     
     
     bool colorMatch(unsigned int failCount = 0);
 };

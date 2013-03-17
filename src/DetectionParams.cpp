@@ -10,9 +10,8 @@ const unsigned int DetectionParams::colorTolerance = 50;
 
 const unsigned int DetectionParams::colorTreshold = 85;
 
-const unsigned int DetectionParams::selectionTreshold = 20;
-
-
+//const unsigned int DetectionParams::selectionTreshold = 20;
+float DetectionParams::selectionTreshold = 120;
 //shrink 1
 float DetectionParams::directionDeltaDegrees = 12; 
 

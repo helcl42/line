@@ -24,7 +24,7 @@ public:
        
     virtual ~PrewittFilterStrategy() {}
          
-    void applyFilter(unsigned int threshold);    
+    ImageMap<unsigned int>* applyFilter(unsigned int threshold);    
 
 private:    
     void prewittAlgorithm();
@@ -74,11 +74,12 @@ void PrewittFilterStrategy<T>::prewittAlgorithm()
 
 
 template <class T>
-void PrewittFilterStrategy<T>::applyFilter(unsigned int threshold)
+ImageMap<unsigned int>* PrewittFilterStrategy<T>::applyFilter(unsigned int threshold)
 { 
     prewittAlgorithm();
     this->resolveThreshold(threshold);
     SAFE_DELETE_ARRAY(buffer);
+    return this->m_imageMap;
 }
 
 #endif	/* PREWITTFILTERSTRATEGY_H */

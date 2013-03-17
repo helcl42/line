@@ -8,6 +8,7 @@
 #ifndef IMAGEMESSAGESERVICE_H
 #define	IMAGEMESSAGESERVICE_H
 
+#include <vector>
 #include <sensor_msgs/Image.h>
 
 #include "Line.h"
@@ -17,6 +18,7 @@
 #include "LineDetector.h"
 #include "RectangleDetector.h"
 #include "TriangleDetector.h"
+#include "CircleDetector.h"
 
 class ImageService
 {
@@ -37,18 +39,21 @@ private:
         
     bool m_lookUpLines;
     
+    
     LineDetector* m_lineDetector;
     
     RectangleDetector* m_rectangleDetector;   
     
     TriangleDetector* m_triangleDetector;
     
+    CircleDetector * m_circleDetector;
+    
 public:
     ImageService(DetectionSettings* settings);    
     
     ~ImageService();      
     
-    Vector2<int>* perform(const sensor_msgs::Image::ConstPtr& img);
+    Vector2<int>* perform(const sensor_msgs::Image::ConstPtr& img, std::vector<float> cameraGroundAngles);
     
     unsigned int getShrink() const;
     
@@ -59,7 +64,7 @@ public:
     void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width = 1);        
     
 private:
-    Vector2<int>* getObjectPoint(StraightDetectedObject* line);
+    Vector2<int>* getObjectPoint(LineDescribableObject* line);
     
     void tryChangeSettings();        
 };

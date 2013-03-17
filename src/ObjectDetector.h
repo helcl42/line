@@ -28,6 +28,8 @@ protected:
 
     EdgeFilterStrategy<float>* m_edgeFilter;
     
+    ImageMap<unsigned int>* m_imageMap;
+    
 
 public:       
     ObjectDetector(DetectionColorItem* settings = NULL);

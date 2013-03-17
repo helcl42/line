@@ -22,7 +22,7 @@ public:
 
     virtual ~CannyFilterStrategy() {}
 
-    void applyFilter(unsigned int threshold);
+    ImageMap<unsigned int>* applyFilter(unsigned int threshold);
 
 private:
     void cannyAlgorithm();
@@ -106,11 +106,12 @@ void CannyFilterStrategy<T>::cannyAlgorithm()
 
 
 template <class T>
-void CannyFilterStrategy<T>::applyFilter(unsigned int threshold)
+ImageMap<unsigned int>* CannyFilterStrategy<T>::applyFilter(unsigned int threshold)
 {
     cannyAlgorithm();
     this->resolveThreshold(threshold);
     SAFE_DELETE_ARRAY(this->m_buffer);
+    return this->m_imageMap;
 }
 
 

@@ -10,10 +10,9 @@
 
 #include "IDetectedObject.h"
 #include "DetectionParams.h"
-#include "Line.h"
 #include "Utils.h"
 
-class StraightDetectedObject : public DetectedObject
+class LineDescribableObject : public IDetectedObject
 {
 protected:
     Line** m_lines;
@@ -21,9 +20,9 @@ protected:
     unsigned int m_lineCount;
     
 public:    
-    StraightDetectedObject(unsigned int lineCount);
+    LineDescribableObject(unsigned int lineCount);
     
-    virtual ~StraightDetectedObject();
+    virtual ~LineDescribableObject();
     
 public:    
     void setLocked();        

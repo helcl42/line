@@ -9,54 +9,73 @@ ImageService::ImageService(DetectionSettings* settings)
     m_lineDetector = new LineDetector(settings->getItem(0));
     m_rectangleDetector = new RectangleDetector(settings->getItem(0));
     m_triangleDetector = new TriangleDetector(settings->getItem(0));
+    m_circleDetector = new CircleDetector(settings->getItem(0));
 }
 
 ImageService::~ImageService()
 {
+    SAFE_DELETE(m_circleDetector);
+    SAFE_DELETE(m_triangleDetector);    
     SAFE_DELETE(m_rectangleDetector);
     SAFE_DELETE(m_lineDetector);
     SAFE_DELETE(m_colorImage);
     SAFE_DELETE(m_image);
 }
 
-Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
+int counter = 0;
+
+Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std::vector<float> cameraGroundAngles)
 {
+    counter++;
+    if(counter > 10)
+    {
+        ros::shutdown();
+    }
     unsigned long timeElapsed;
     Vector2<int>* objectPoint = NULL;
-    StraightDetectedObject* object = NULL;
+    LineDescribableObject* object = NULL;
 
     m_shrinkTimer.start();
 
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-    //if (m_lookUpLines)
+
+    if (m_lookUpLines)
     {
         m_lineDetector->invalidate();
         m_lineDetector->initDetectionParams(m_shrink);
         m_lineDetector->setImages(m_image, m_colorImage);
         object = m_lineDetector->findObject();
     }
-//    else
-//    {
-//        m_rectangleDetector->invalidate();
-//        m_rectangleDetector->initDetectionParams();
-//        m_rectangleDetector->setImages(m_image, m_colorImage);
-//        object = m_rectangleDetector->findObject();
-//    }
-
-    //    m_triangleDetector->invalidate();
-    //    m_triangleDetector->initDetectionParams(m_shrink);
-    //    m_triangleDetector->setImages(m_image, m_colorImage);
-    //    object = m_triangleDetector->findObject();
+    else
+    {
+        m_circleDetector->invalidate();
+        m_circleDetector->initDetectionParams(m_shrink);
+        m_circleDetector->setImages(m_image, m_colorImage);
+        m_circleDetector->setAngles(cameraGroundAngles);
+        object = m_circleDetector->findObject();
+    }
+    
+    //        m_rectangleDetector->invalidate();
+    //        m_rectangleDetector->initDetectionParams();
+    //        m_rectangleDetector->setImages(m_image, m_colorImage);
+    //        object = m_rectangleDetector->findObject();
+    
+    //        m_triangleDetector->invalidate();
+    //        m_triangleDetector->initDetectionParams(m_shrink);
+    //        m_triangleDetector->setImages(m_image, m_colorImage);
+    //        object = m_triangleDetector->findObject();
 
     if (object->isValid())
     {
-        std::cout << "OBJECT!!! " << object->getAt(0)->length << std::endl;
+        std::cout << "OBJECT!!! " << std::endl;
         m_changeColorTimer.stop();
 
         writeLinesToMessage(img, object->getLines(), object->getLineCount());
 
+        if(objectPoint != NULL) SAFE_DELETE(objectPoint);
+        
         objectPoint = getObjectPoint(object);
         if (objectPoint != NULL)
         {
@@ -68,7 +87,11 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img)
         tryChangeSettings();
     }
 
-    //m_image->writeCircle(20, 20, 8);
+    for (unsigned int j = 0, k = 22; j < cameraGroundAngles.size(); j++, k += 22)
+    {
+        m_image->writeCircle(k + 22, 22, 20, cameraGroundAngles[j]);
+    }
+
     writeImageToMessage(img);
 
     m_shrinkTimer.stop();
@@ -99,7 +122,7 @@ void ImageService::tryChangeSettings()
     else if (m_changeColorTimer.getElapsedTimeInMilliSec() > 5000) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
     {
         m_changeColorTimer.stop();
-        std::cout << "Hledam dalsi!!" << std::endl;
+        std::cout << "Hledam dalsi !!" << std::endl;
 
         m_settingsIndex++;
 
@@ -113,7 +136,7 @@ void ImageService::tryChangeSettings()
     }
 }
 
-Vector2<int>* ImageService::getObjectPoint(StraightDetectedObject* line)
+Vector2<int>* ImageService::getObjectPoint(LineDescribableObject* line)
 {
     Line* l1 = line->getAt(0);
     Line* l2 = line->getAt(1);

@@ -8,14 +8,14 @@
 #ifndef TRIANGLE_H
 #define	TRIANGLE_H
 
-#include "StraightDetectedObject.h"
+#include "LineDescribableObject.h"
 
 
-class Triangle : public StraightDetectedObject
+class Triangle : public LineDescribableObject
 { 
 public:
     Triangle()
-     : StraightDetectedObject(2) {}
+     : LineDescribableObject(2) {}
 
     virtual ~Triangle() {}    
     

@@ -57,7 +57,7 @@ void StraightObjectDetector::lockSimilarLines(Line* input, unsigned int crossCou
 }
 
 void StraightObjectDetector::lockAllLines(bool val)
-{
+{    
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {
         m_lines[i]->locked = val;
@@ -66,7 +66,7 @@ void StraightObjectDetector::lockAllLines(bool val)
 
 void StraightObjectDetector::traverseImage()
 {
-    Pixel<float>* pixel = NULL;
+    unsigned int value;
     Line* lines[8];
 
     Vector2<int> vecs1[] = {
@@ -117,13 +117,13 @@ void StraightObjectDetector::traverseImage()
         Vector2<int>(1, 1), Vector2<int>(1, 0)
     };
 
-    for (unsigned int i = 1; i < m_workImage->getHeight() - 1; i += 2)
+    for (unsigned int i = 1; i < m_imageMap->getHeight() - 1; i += 2)
     {
-        for (unsigned int j = 1; j < m_workImage->getWidth() - 1; j += 2)
+        for (unsigned int j = 1; j < m_imageMap->getWidth() - 1; j += 2)
         {
-            pixel = m_workImage->getPixel(i, j);
+            value = m_imageMap->getValueAt(i, j);
 
-            if (pixel->r > DetectionParams::selectionTreshold || pixel->b > DetectionParams::selectionTreshold || pixel->g > DetectionParams::selectionTreshold)
+            if (value > DetectionParams::selectionTreshold)
             {
                 Vector2<int> index(j, i);
                 lines[0] = findCorrectLine(vecs1, index);
@@ -146,8 +146,8 @@ bool StraightObjectDetector::storeBestLine(Line** lines)
 {
     for (int i = 0; i < 8; i++)
     {
-        if (lines[i]->computeLength() < DetectionParams::minLineLengthTreshold
-                || lines[i]->computeLength() > DetectionParams::maxLineLengthTreshold)
+        if (lines[i]->computeLength() <= DetectionParams::minLineLengthTreshold
+                || lines[i]->computeLength() >= DetectionParams::maxLineLengthTreshold)
         {
             SAFE_DELETE(lines[i]);
         }
@@ -166,8 +166,8 @@ bool StraightObjectDetector::storeBestLine(Line** lines)
         }
 
         best->computeProperties();
-        if (best->straightnessFactor < DetectionParams::maxStraightnessTreshold
-                && best->straightnessFactor > DetectionParams::minStraightnessTreshold)
+        if (best->straightnessFactor <= DetectionParams::maxStraightnessTreshold
+                && best->straightnessFactor >= DetectionParams::minStraightnessTreshold)
         {
             writeLineInImage(best, 255, 255, 0);
             m_lines.push_back(best);
@@ -175,7 +175,7 @@ bool StraightObjectDetector::storeBestLine(Line** lines)
         }
         else
         {
-            std::cout << "FAIL factor = " << best->straightnessFactor << " len = " << best->length << std::endl;
+            //std::cout << "FAIL factor = " << best->straightnessFactor << " len = " << best->length << std::endl;
             SAFE_DELETE(best);
             return false;
         }
@@ -188,23 +188,24 @@ bool StraightObjectDetector::storeBestLine(Line** lines)
 
 Line* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector2<int> pos)
 {
-    Pixel<float>* pixel = NULL;
-    Line* line = new Line();
+    unsigned int value;    
     unsigned int countOfFails = 0;
 
+    Line* line = new Line();
+    
     line->points.push_back(Vector2<int>(pos));    
 
     while (pos.y > 2 && pos.x > 2 && pos.y < (int) m_workImage->getHeight() - 2 && pos.x < (int) m_workImage->getWidth() - 2)
     {
         pos += vecs[countOfFails];        
 
-        pixel = m_workImage->getPixel(pos.y, pos.x);
+        value = m_imageMap->getValueAt(pos.y, pos.x);
 
-        if (pixel->r > DetectionParams::selectionTreshold || pixel->b > DetectionParams::selectionTreshold || pixel->g > DetectionParams::selectionTreshold)
+        if (value > DetectionParams::selectionTreshold)
         {
             countOfFails = 0;
 
-            line->points.push_back(pos);            
+            line->points.push_back(pos);                        
         }
         else
         {
@@ -303,6 +304,8 @@ Line* StraightObjectDetector::findLineWithDirection(Line* input, float angle)
         delta = input->directionDegrees - testedDirection + angle;
 
         delta = delta < 0 ? -delta : delta;
+        
+        //std::cout << "testDirection = " << testedDirection << " input = " << input->directionDegrees << std::endl;
 
         if (delta < minDelta)
         {

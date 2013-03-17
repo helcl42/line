@@ -20,6 +20,8 @@ public:
     
 public:
     double getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg);
+    
+    std::vector<float> getCameraAngles(const sensor_msgs::Image::ConstPtr& msg);
 
 private:    
     double getCameraHeight(float distLow, float distHigh);

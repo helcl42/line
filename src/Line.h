@@ -64,6 +64,12 @@ public: //should be private
     double computeDirection();
     
     double computeLength();        
+    
+    unsigned int getCountOfPoints() const;
+    
+    Vector2<int> getBegin();
+    
+    Vector2<int> getEnd();
 };
 
 

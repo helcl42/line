@@ -19,12 +19,13 @@ TriangleDetector::~TriangleDetector()
     SAFE_DELETE(m_bestTriangle);
 }
 
-StraightDetectedObject* TriangleDetector::findObject()
+LineDescribableObject* TriangleDetector::findObject()
 {
     m_edgeFilter->setImage(m_workImage);
     m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
     m_imageFilter->setImage(m_workImage);
     m_imageFilter->gaussianBlur();
+    m_imageMap->setImage(m_workImage);
     traverseImage();
     return findBestTriangle();
 }
@@ -39,7 +40,7 @@ void TriangleDetector::invalidate()
     m_bestTriangle->invalidate();
 }
 
-StraightDetectedObject* TriangleDetector::findBestTriangle()
+LineDescribableObject* TriangleDetector::findBestTriangle()
 {
     sortLinesByLength();
 

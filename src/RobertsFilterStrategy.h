@@ -26,7 +26,7 @@ public:
        
     virtual ~RobertsFilterStrategy() {}
          
-    void applyFilter(unsigned int threshold);    
+    ImageMap<unsigned int>* applyFilter(unsigned int threshold);    
     
 private:    
     void robertsAlgorithm();
@@ -72,11 +72,12 @@ void RobertsFilterStrategy<T>::robertsAlgorithm()
 }
 
 template <class T>
-void RobertsFilterStrategy<T>::applyFilter(unsigned int threshold)
+ImageMap<unsigned int>* RobertsFilterStrategy<T>::applyFilter(unsigned int threshold)
 {
     robertsAlgorithm();
     this->resolveThreshold(threshold);
     SAFE_DELETE_ARRAY(buffer);
+    return m_imageMap;
 }
 
 #endif	/* ROBERTSFILTERSTRATEGY_H */

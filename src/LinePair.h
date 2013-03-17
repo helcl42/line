@@ -8,14 +8,14 @@
 #ifndef BESTLINE_H
 #define	BESTLINE_H
 
-#include "StraightDetectedObject.h"
+#include "LineDescribableObject.h"
 
 
-class LinePair : public StraightDetectedObject
+class LinePair : public LineDescribableObject
 {
 public:
     LinePair() 
-    : StraightDetectedObject(2) {}
+    : LineDescribableObject(2) {}
     
     virtual ~LinePair() {}            
     

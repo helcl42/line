@@ -319,6 +319,36 @@ src/CameraService.s:
 .PHONY : src/CameraService.s
 
 # target to build an object file
+src/Circle.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Circle.o
+.PHONY : src/Circle.o
+
+# target to preprocess a source file
+src/Circle.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Circle.i
+.PHONY : src/Circle.i
+
+# target to generate assembly for a file
+src/Circle.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Circle.s
+.PHONY : src/Circle.s
+
+# target to build an object file
+src/CircleDetector.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CircleDetector.o
+.PHONY : src/CircleDetector.o
+
+# target to preprocess a source file
+src/CircleDetector.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CircleDetector.i
+.PHONY : src/CircleDetector.i
+
+# target to generate assembly for a file
+src/CircleDetector.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CircleDetector.s
+.PHONY : src/CircleDetector.s
+
+# target to build an object file
 src/DetectionParams.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectionParams.o
 .PHONY : src/DetectionParams.o
@@ -392,6 +422,21 @@ src/Line.i:
 src/Line.s:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Line.s
 .PHONY : src/Line.s
+
+# target to build an object file
+src/LineDescribableObject.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDescribableObject.o
+.PHONY : src/LineDescribableObject.o
+
+# target to preprocess a source file
+src/LineDescribableObject.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDescribableObject.i
+.PHONY : src/LineDescribableObject.i
+
+# target to generate assembly for a file
+src/LineDescribableObject.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDescribableObject.s
+.PHONY : src/LineDescribableObject.s
 
 # target to build an object file
 src/LineDetector.o:
@@ -484,21 +529,6 @@ src/RectangleDetector.s:
 .PHONY : src/RectangleDetector.s
 
 # target to build an object file
-src/StraightDetectedObject.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/StraightDetectedObject.o
-.PHONY : src/StraightDetectedObject.o
-
-# target to preprocess a source file
-src/StraightDetectedObject.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/StraightDetectedObject.i
-.PHONY : src/StraightDetectedObject.i
-
-# target to generate assembly for a file
-src/StraightDetectedObject.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/StraightDetectedObject.s
-.PHONY : src/StraightDetectedObject.s
-
-# target to build an object file
 src/StraightObjectDetector.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/StraightObjectDetector.o
 .PHONY : src/StraightObjectDetector.o
@@ -585,6 +615,12 @@ help:
 	@echo "... src/CameraService.o"
 	@echo "... src/CameraService.i"
 	@echo "... src/CameraService.s"
+	@echo "... src/Circle.o"
+	@echo "... src/Circle.i"
+	@echo "... src/Circle.s"
+	@echo "... src/CircleDetector.o"
+	@echo "... src/CircleDetector.i"
+	@echo "... src/CircleDetector.s"
 	@echo "... src/DetectionParams.o"
 	@echo "... src/DetectionParams.i"
 	@echo "... src/DetectionParams.s"
@@ -600,6 +636,9 @@ help:
 	@echo "... src/Line.o"
 	@echo "... src/Line.i"
 	@echo "... src/Line.s"
+	@echo "... src/LineDescribableObject.o"
+	@echo "... src/LineDescribableObject.i"
+	@echo "... src/LineDescribableObject.s"
 	@echo "... src/LineDetector.o"
 	@echo "... src/LineDetector.i"
 	@echo "... src/LineDetector.s"
@@ -618,9 +657,6 @@ help:
 	@echo "... src/RectangleDetector.o"
 	@echo "... src/RectangleDetector.i"
 	@echo "... src/RectangleDetector.s"
-	@echo "... src/StraightDetectedObject.o"
-	@echo "... src/StraightDetectedObject.i"
-	@echo "... src/StraightDetectedObject.s"
 	@echo "... src/StraightObjectDetector.o"
 	@echo "... src/StraightObjectDetector.i"
 	@echo "... src/StraightObjectDetector.s"

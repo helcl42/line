@@ -26,12 +26,12 @@ public:
 public:    
     void invalidate();    
     
-    StraightDetectedObject* findObject();
+    LineDescribableObject* findObject();
     
     void initDetectionParams(unsigned int shrink = 1);
     
 protected:            
-    StraightDetectedObject* findBestLine();   
+    LineDescribableObject* findBestLine();   
     
     bool colorMatch(unsigned int failCount = 0);
 };

@@ -2,7 +2,7 @@
 #include "SobelFilterStrategy.h"
 
 ObjectDetector::ObjectDetector(DetectionColorItem* settings)
-: m_workImage(NULL), m_colorImage(NULL), m_settings(settings)
+: m_workImage(NULL), m_colorImage(NULL), m_settings(settings), m_imageMap(NULL)
 {
     m_imageFilter = new ImageFilter<float>();
     m_edgeFilter = new SobelFilterStrategy<float>();
@@ -10,19 +10,22 @@ ObjectDetector::ObjectDetector(DetectionColorItem* settings)
     {
         setBaseColor();
     }
+    m_imageMap = new ImageMap<unsigned int>();
 }
 
 ObjectDetector::ObjectDetector(Image<float>* image, Image<float>* colorImage)
-: m_workImage(image), m_colorImage(colorImage), m_settings(NULL)
+: m_workImage(image), m_colorImage(colorImage), m_settings(NULL), m_imageMap(NULL)
 {
     m_imageFilter = new ImageFilter<float>();
     m_edgeFilter = new SobelFilterStrategy<float>();
+    m_imageMap = new ImageMap<unsigned int>(image);
 }
 
 ObjectDetector::~ObjectDetector()
 {
     SAFE_DELETE(m_edgeFilter);
     SAFE_DELETE(m_imageFilter);
+    SAFE_DELETE(m_imageMap);
 }
 
 void ObjectDetector::setBaseColor()

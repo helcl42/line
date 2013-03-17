@@ -29,6 +29,8 @@ private:
         
     double m_cameraY;
     
+    std::vector<float> m_cameraGroundAngles;
+    
     ros::NodeHandle m_handler;        
     
     ros::NodeHandle m_handlerDepth;

@@ -19,14 +19,15 @@ LineDetector::~LineDetector()
     SAFE_DELETE(m_bestLine);
 }
 
-StraightDetectedObject* LineDetector::findObject()
+LineDescribableObject* LineDetector::findObject()
 {
     //repaintSimilarColorPlaces();
     m_edgeFilter->setImage(m_workImage);
     m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
     m_imageFilter->setImage(m_workImage);
-    m_imageFilter->gaussianBlur();
-    traverseImage();
+    m_imageFilter->gaussianBlur();    
+    m_imageMap->setImage(m_workImage);
+    traverseImage();        
     return findBestLine();
 }
 
@@ -40,7 +41,7 @@ void LineDetector::invalidate()
     m_bestLine->invalidate();
 }
 
-StraightDetectedObject* LineDetector::findBestLine()
+LineDescribableObject* LineDetector::findBestLine()
 {    
     sortLinesByLength();
 
@@ -61,12 +62,7 @@ StraightDetectedObject* LineDetector::findBestLine()
                 writeLineInImage(m_bestLine->getAt(0), 255, 0, 0);
                 writeLineInImage(m_bestLine->getAt(1), 0, 0, 255); 
                 break;
-            }
-            else
-            {
-                m_bestLine->invalidate();
-                //std::cout << "color fail!" << std::endl;
-            }
+            }           
         }
     }
     return m_bestLine;
@@ -108,7 +104,9 @@ void LineDetector::initDetectionParams(unsigned int shrink)
 {
     unsigned int settingsParam = 480;
      
-    DetectionParams::directionDeltaDegrees = 10;
+    DetectionParams::selectionTreshold = 120;
+    
+    DetectionParams::directionDeltaDegrees = 8;
     
     DetectionParams::minLineLengthTreshold = settingsParam / (shrink * 2);
     

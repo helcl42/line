@@ -81,6 +81,10 @@
         <in>CameraService.cpp</in>
         <in>CameraService.h</in>
         <in>CannyFilterStategy.h</in>
+        <in>Circle.cpp</in>
+        <in>Circle.h</in>
+        <in>CircleDetector.cpp</in>
+        <in>CircleDetector.h</in>
         <in>DetectionParams.cpp</in>
         <in>DetectionParams.h</in>
         <in>DetectionSettings.cpp</in>
@@ -92,6 +96,7 @@
         <in>IPixel.h</in>
         <in>Image.h</in>
         <in>ImageFilter.h</in>
+        <in>ImageMap.h</in>
         <in>ImageService.cpp</in>
         <in>ImageService.h</in>
         <in>KirshFilterStrategy.h</in>
