@@ -499,34 +499,34 @@ src/ObjectDetector.s:
 .PHONY : src/ObjectDetector.s
 
 # target to build an object file
-src/Rectangle.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Rectangle.o
-.PHONY : src/Rectangle.o
+src/Square.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Square.o
+.PHONY : src/Square.o
 
 # target to preprocess a source file
-src/Rectangle.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Rectangle.i
-.PHONY : src/Rectangle.i
+src/Square.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Square.i
+.PHONY : src/Square.i
 
 # target to generate assembly for a file
-src/Rectangle.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Rectangle.s
-.PHONY : src/Rectangle.s
+src/Square.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Square.s
+.PHONY : src/Square.s
 
 # target to build an object file
-src/RectangleDetector.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RectangleDetector.o
-.PHONY : src/RectangleDetector.o
+src/SquareDetector.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SquareDetector.o
+.PHONY : src/SquareDetector.o
 
 # target to preprocess a source file
-src/RectangleDetector.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RectangleDetector.i
-.PHONY : src/RectangleDetector.i
+src/SquareDetector.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SquareDetector.i
+.PHONY : src/SquareDetector.i
 
 # target to generate assembly for a file
-src/RectangleDetector.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RectangleDetector.s
-.PHONY : src/RectangleDetector.s
+src/SquareDetector.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SquareDetector.s
+.PHONY : src/SquareDetector.s
 
 # target to build an object file
 src/StraightObjectDetector.o:
@@ -651,12 +651,12 @@ help:
 	@echo "... src/ObjectDetector.o"
 	@echo "... src/ObjectDetector.i"
 	@echo "... src/ObjectDetector.s"
-	@echo "... src/Rectangle.o"
-	@echo "... src/Rectangle.i"
-	@echo "... src/Rectangle.s"
-	@echo "... src/RectangleDetector.o"
-	@echo "... src/RectangleDetector.i"
-	@echo "... src/RectangleDetector.s"
+	@echo "... src/Square.o"
+	@echo "... src/Square.i"
+	@echo "... src/Square.s"
+	@echo "... src/SquareDetector.o"
+	@echo "... src/SquareDetector.i"
+	@echo "... src/SquareDetector.s"
 	@echo "... src/StraightObjectDetector.o"
 	@echo "... src/StraightObjectDetector.i"
 	@echo "... src/StraightObjectDetector.s"

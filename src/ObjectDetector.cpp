@@ -112,3 +112,23 @@ void ObjectDetector::repaintSimilarColorPlaces(int interval)
         }
     }
 }
+
+void ObjectDetector::writeLineInImage(Line* line, int r, int g, int b)
+{
+    Vector2<int> linePoint;
+
+    if (line == NULL) return;
+
+    for (unsigned int i = 0; i < line->points.size(); i++)
+    {
+        linePoint = line->points[i];
+        if (i < 15)
+        {
+            m_workImage->setPixelValue(linePoint.y, linePoint.x, 0, 255, 255);
+        }
+        else
+        {
+            m_workImage->setPixelValue(linePoint.y, linePoint.x, r, g, b);
+        }
+    }
+}

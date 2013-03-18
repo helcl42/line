@@ -145,8 +145,8 @@ CMakeFiles/line.dir/src/DetectorTopic.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
- /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
- /home/lubos/fuerte_workspace/sandbox/line/src/RectangleDetector.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Square.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Triangle.h
@@ -231,8 +231,8 @@ CMakeFiles/line.dir/src/ImageService.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
- /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
- /home/lubos/fuerte_workspace/sandbox/line/src/RectangleDetector.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Square.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Triangle.h
@@ -419,8 +419,8 @@ CMakeFiles/line.dir/src/Main.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
- /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
- /home/lubos/fuerte_workspace/sandbox/line/src/RectangleDetector.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Square.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Timer.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Triangle.h
@@ -491,6 +491,7 @@ CMakeFiles/line.dir/src/ObjectDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/Image.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ImageMap.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
  /home/lubos/fuerte_workspace/sandbox/line/src/ObjectDetector.cpp
  /home/lubos/fuerte_workspace/sandbox/line/src/ObjectDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
@@ -499,6 +500,7 @@ CMakeFiles/line.dir/src/ObjectDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
  /home/lubos/fuerte_workspace/sandbox/line/src/SobelFilterStrategy.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
  /opt/ros/fuerte/include/XmlRpcDecl.h
  /opt/ros/fuerte/include/XmlRpcValue.h
  /opt/ros/fuerte/include/ros/advertise_options.h
@@ -555,16 +557,16 @@ CMakeFiles/line.dir/src/ObjectDetector.o
  /opt/ros/fuerte/include/rosconsole/macros_generated.h
  /opt/ros/fuerte/include/sensor_msgs/Image.h
  /opt/ros/fuerte/include/std_msgs/Header.h
-CMakeFiles/line.dir/src/Rectangle.o
+CMakeFiles/line.dir/src/Square.o
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/IDetectedObject.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Line.h
  /home/lubos/fuerte_workspace/sandbox/line/src/LineDescribableObject.h
- /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.cpp
- /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Square.cpp
+ /home/lubos/fuerte_workspace/sandbox/line/src/Square.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
-CMakeFiles/line.dir/src/RectangleDetector.o
+CMakeFiles/line.dir/src/SquareDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionParams.h
  /home/lubos/fuerte_workspace/sandbox/line/src/DetectionSettings.h
  /home/lubos/fuerte_workspace/sandbox/line/src/EdgeFilterStrategy.h
@@ -580,10 +582,9 @@ CMakeFiles/line.dir/src/RectangleDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
- /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.h
- /home/lubos/fuerte_workspace/sandbox/line/src/RectangleDetector.cpp
- /home/lubos/fuerte_workspace/sandbox/line/src/RectangleDetector.h
- /home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Square.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.cpp
+ /home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Utils.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Vector2.h
  /opt/ros/fuerte/include/XmlRpcDecl.h

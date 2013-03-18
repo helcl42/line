@@ -70,7 +70,8 @@ std::vector<float> CameraService::getCameraAngles(const sensor_msgs::Image::Cons
         {
             y = 1.9 * y;
             std::cout << "ANGLE: " << y << std::endl;
-            if(y > 90) y = 90;
+            if(y < 0) y = -y;
+            if(y > 90) y = 90;            
             angles.push_back(y);
         }
         else

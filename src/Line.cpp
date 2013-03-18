@@ -126,6 +126,11 @@ void Line::deletePoints()
     points.clear();
 }
 
+unsigned int Line::getSize() const
+{
+    return points.size();
+}
+
 bool Line::isInline(Line* input)
 {
     double q = points.front().y - points.front().x * direction;

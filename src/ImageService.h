@@ -16,9 +16,9 @@
 #include "Timer.h"
 #include "DetectionSettings.h"
 #include "LineDetector.h"
-#include "RectangleDetector.h"
 #include "TriangleDetector.h"
 #include "CircleDetector.h"
+#include "SquareDetector.h"
 
 class ImageService
 {
@@ -40,13 +40,13 @@ private:
     bool m_lookUpLines;
     
     
-    LineDetector* m_lineDetector;
-    
-    RectangleDetector* m_rectangleDetector;   
+    LineDetector* m_lineDetector;      
     
     TriangleDetector* m_triangleDetector;
     
     CircleDetector * m_circleDetector;
+    
+    SquareDetector* m_squareDetector;
     
 public:
     ImageService(DetectionSettings* settings);    

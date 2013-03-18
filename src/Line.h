@@ -50,6 +50,8 @@ public:
     
     void deletePoints();
     
+    unsigned int getSize() const;
+    
     friend std::ostream& operator<< (std::ostream& out, const Line& line);     
     
 public:    

@@ -62,7 +62,10 @@ public:
 
     void shrinkImage(unsigned int times);
     
+    //temp
     void writeCircle(int x0, int y0, int radius, double angle);
+    //temp
+    void writeSquare(int x0, int y0, int height, int width, double angle, double rotateAngle);
 
     inline Pixel<T>* getPixel(unsigned int x, unsigned int y) const;
 
@@ -197,6 +200,29 @@ void Image<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int
                 m_imageMatrix[i][j] = pixel;
             }
             index += 3 * img->width * (m_shrinkRatio - 1) + corrector;
+        }
+    }
+}
+
+template <class T>
+void Image<T>::writeSquare(int x0, int y0, int height, int width, double angle, double rotateAngle)
+{
+    //height = height * sin(angle * M_PI / 180);
+    for(int i = y0; i < y0 + height; i++)
+    {
+        for(int j = x0; j < x0 + width; j++)
+        {            
+            if(i == y0 || i == y0 + height - 1) 
+            {
+                setPixelValue((j * sin(rotateAngle * M_PI / 180) + i * cos(rotateAngle * M_PI / 180)) * sin(angle * M_PI / 180), j * cos(rotateAngle * M_PI / 180) - i * sin(rotateAngle * M_PI / 180), 0, 0, 255);
+            }
+            else 
+            {
+                if(j == x0 || j == x0 + width - 1)
+                {
+                    setPixelValue((j * sin(rotateAngle * M_PI / 180) + i * cos(rotateAngle * M_PI / 180)) * sin(angle * M_PI / 180), j * cos(rotateAngle * M_PI / 180) - i * sin(rotateAngle * M_PI / 180), 0, 0, 255);                              
+                }                
+            }
         }
     }
 }

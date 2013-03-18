@@ -214,33 +214,33 @@ CMakeFiles/line.dir/src/Circle.o.provides: CMakeFiles/line.dir/src/Circle.o.requ
 
 CMakeFiles/line.dir/src/Circle.o.provides.build: CMakeFiles/line.dir/src/Circle.o
 
-CMakeFiles/line.dir/src/Rectangle.o: CMakeFiles/line.dir/flags.make
-CMakeFiles/line.dir/src/Rectangle.o: ../src/Rectangle.cpp
-CMakeFiles/line.dir/src/Rectangle.o: ../manifest.xml
-CMakeFiles/line.dir/src/Rectangle.o: /opt/ros/fuerte/share/std_msgs/manifest.xml
-CMakeFiles/line.dir/src/Rectangle.o: /opt/ros/fuerte/share/roslang/manifest.xml
-CMakeFiles/line.dir/src/Rectangle.o: /opt/ros/fuerte/share/rospy/manifest.xml
-CMakeFiles/line.dir/src/Rectangle.o: /opt/ros/fuerte/share/roscpp/manifest.xml
+CMakeFiles/line.dir/src/Square.o: CMakeFiles/line.dir/flags.make
+CMakeFiles/line.dir/src/Square.o: ../src/Square.cpp
+CMakeFiles/line.dir/src/Square.o: ../manifest.xml
+CMakeFiles/line.dir/src/Square.o: /opt/ros/fuerte/share/std_msgs/manifest.xml
+CMakeFiles/line.dir/src/Square.o: /opt/ros/fuerte/share/roslang/manifest.xml
+CMakeFiles/line.dir/src/Square.o: /opt/ros/fuerte/share/rospy/manifest.xml
+CMakeFiles/line.dir/src/Square.o: /opt/ros/fuerte/share/roscpp/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles $(CMAKE_PROGRESS_7)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/Rectangle.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/Rectangle.o -c /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/Square.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/Square.o -c /home/lubos/fuerte_workspace/sandbox/line/src/Square.cpp
 
-CMakeFiles/line.dir/src/Rectangle.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/Rectangle.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.cpp > CMakeFiles/line.dir/src/Rectangle.i
+CMakeFiles/line.dir/src/Square.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/Square.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/Square.cpp > CMakeFiles/line.dir/src/Square.i
 
-CMakeFiles/line.dir/src/Rectangle.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/Rectangle.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/Rectangle.cpp -o CMakeFiles/line.dir/src/Rectangle.s
+CMakeFiles/line.dir/src/Square.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/Square.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/Square.cpp -o CMakeFiles/line.dir/src/Square.s
 
-CMakeFiles/line.dir/src/Rectangle.o.requires:
-.PHONY : CMakeFiles/line.dir/src/Rectangle.o.requires
+CMakeFiles/line.dir/src/Square.o.requires:
+.PHONY : CMakeFiles/line.dir/src/Square.o.requires
 
-CMakeFiles/line.dir/src/Rectangle.o.provides: CMakeFiles/line.dir/src/Rectangle.o.requires
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Rectangle.o.provides.build
-.PHONY : CMakeFiles/line.dir/src/Rectangle.o.provides
+CMakeFiles/line.dir/src/Square.o.provides: CMakeFiles/line.dir/src/Square.o.requires
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Square.o.provides.build
+.PHONY : CMakeFiles/line.dir/src/Square.o.provides
 
-CMakeFiles/line.dir/src/Rectangle.o.provides.build: CMakeFiles/line.dir/src/Rectangle.o
+CMakeFiles/line.dir/src/Square.o.provides.build: CMakeFiles/line.dir/src/Square.o
 
 CMakeFiles/line.dir/src/Triangle.o: CMakeFiles/line.dir/flags.make
 CMakeFiles/line.dir/src/Triangle.o: ../src/Triangle.cpp
@@ -466,33 +466,33 @@ CMakeFiles/line.dir/src/CircleDetector.o.provides: CMakeFiles/line.dir/src/Circl
 
 CMakeFiles/line.dir/src/CircleDetector.o.provides.build: CMakeFiles/line.dir/src/CircleDetector.o
 
-CMakeFiles/line.dir/src/RectangleDetector.o: CMakeFiles/line.dir/flags.make
-CMakeFiles/line.dir/src/RectangleDetector.o: ../src/RectangleDetector.cpp
-CMakeFiles/line.dir/src/RectangleDetector.o: ../manifest.xml
-CMakeFiles/line.dir/src/RectangleDetector.o: /opt/ros/fuerte/share/std_msgs/manifest.xml
-CMakeFiles/line.dir/src/RectangleDetector.o: /opt/ros/fuerte/share/roslang/manifest.xml
-CMakeFiles/line.dir/src/RectangleDetector.o: /opt/ros/fuerte/share/rospy/manifest.xml
-CMakeFiles/line.dir/src/RectangleDetector.o: /opt/ros/fuerte/share/roscpp/manifest.xml
+CMakeFiles/line.dir/src/SquareDetector.o: CMakeFiles/line.dir/flags.make
+CMakeFiles/line.dir/src/SquareDetector.o: ../src/SquareDetector.cpp
+CMakeFiles/line.dir/src/SquareDetector.o: ../manifest.xml
+CMakeFiles/line.dir/src/SquareDetector.o: /opt/ros/fuerte/share/std_msgs/manifest.xml
+CMakeFiles/line.dir/src/SquareDetector.o: /opt/ros/fuerte/share/roslang/manifest.xml
+CMakeFiles/line.dir/src/SquareDetector.o: /opt/ros/fuerte/share/rospy/manifest.xml
+CMakeFiles/line.dir/src/SquareDetector.o: /opt/ros/fuerte/share/roscpp/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/lubos/fuerte_workspace/sandbox/line/build/CMakeFiles $(CMAKE_PROGRESS_16)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/RectangleDetector.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/RectangleDetector.o -c /home/lubos/fuerte_workspace/sandbox/line/src/RectangleDetector.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/line.dir/src/SquareDetector.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/line.dir/src/SquareDetector.o -c /home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.cpp
 
-CMakeFiles/line.dir/src/RectangleDetector.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/RectangleDetector.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/RectangleDetector.cpp > CMakeFiles/line.dir/src/RectangleDetector.i
+CMakeFiles/line.dir/src/SquareDetector.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/line.dir/src/SquareDetector.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.cpp > CMakeFiles/line.dir/src/SquareDetector.i
 
-CMakeFiles/line.dir/src/RectangleDetector.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/RectangleDetector.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/RectangleDetector.cpp -o CMakeFiles/line.dir/src/RectangleDetector.s
+CMakeFiles/line.dir/src/SquareDetector.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/line.dir/src/SquareDetector.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.cpp -o CMakeFiles/line.dir/src/SquareDetector.s
 
-CMakeFiles/line.dir/src/RectangleDetector.o.requires:
-.PHONY : CMakeFiles/line.dir/src/RectangleDetector.o.requires
+CMakeFiles/line.dir/src/SquareDetector.o.requires:
+.PHONY : CMakeFiles/line.dir/src/SquareDetector.o.requires
 
-CMakeFiles/line.dir/src/RectangleDetector.o.provides: CMakeFiles/line.dir/src/RectangleDetector.o.requires
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/RectangleDetector.o.provides.build
-.PHONY : CMakeFiles/line.dir/src/RectangleDetector.o.provides
+CMakeFiles/line.dir/src/SquareDetector.o.provides: CMakeFiles/line.dir/src/SquareDetector.o.requires
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SquareDetector.o.provides.build
+.PHONY : CMakeFiles/line.dir/src/SquareDetector.o.provides
 
-CMakeFiles/line.dir/src/RectangleDetector.o.provides.build: CMakeFiles/line.dir/src/RectangleDetector.o
+CMakeFiles/line.dir/src/SquareDetector.o.provides.build: CMakeFiles/line.dir/src/SquareDetector.o
 
 CMakeFiles/line.dir/src/TriangleDetector.o: CMakeFiles/line.dir/flags.make
 CMakeFiles/line.dir/src/TriangleDetector.o: ../src/TriangleDetector.cpp
@@ -586,7 +586,7 @@ line_OBJECTS = \
 "CMakeFiles/line.dir/src/Line.o" \
 "CMakeFiles/line.dir/src/LinePair.o" \
 "CMakeFiles/line.dir/src/Circle.o" \
-"CMakeFiles/line.dir/src/Rectangle.o" \
+"CMakeFiles/line.dir/src/Square.o" \
 "CMakeFiles/line.dir/src/Triangle.o" \
 "CMakeFiles/line.dir/src/DetectionParams.o" \
 "CMakeFiles/line.dir/src/LineDescribableObject.o" \
@@ -595,7 +595,7 @@ line_OBJECTS = \
 "CMakeFiles/line.dir/src/ObjectDetector.o" \
 "CMakeFiles/line.dir/src/LineDetector.o" \
 "CMakeFiles/line.dir/src/CircleDetector.o" \
-"CMakeFiles/line.dir/src/RectangleDetector.o" \
+"CMakeFiles/line.dir/src/SquareDetector.o" \
 "CMakeFiles/line.dir/src/TriangleDetector.o" \
 "CMakeFiles/line.dir/src/StraightObjectDetector.o" \
 "CMakeFiles/line.dir/src/DetectorTopic.o"
@@ -609,7 +609,7 @@ line_EXTERNAL_OBJECTS =
 ../bin/line: CMakeFiles/line.dir/src/Line.o
 ../bin/line: CMakeFiles/line.dir/src/LinePair.o
 ../bin/line: CMakeFiles/line.dir/src/Circle.o
-../bin/line: CMakeFiles/line.dir/src/Rectangle.o
+../bin/line: CMakeFiles/line.dir/src/Square.o
 ../bin/line: CMakeFiles/line.dir/src/Triangle.o
 ../bin/line: CMakeFiles/line.dir/src/DetectionParams.o
 ../bin/line: CMakeFiles/line.dir/src/LineDescribableObject.o
@@ -618,7 +618,7 @@ line_EXTERNAL_OBJECTS =
 ../bin/line: CMakeFiles/line.dir/src/ObjectDetector.o
 ../bin/line: CMakeFiles/line.dir/src/LineDetector.o
 ../bin/line: CMakeFiles/line.dir/src/CircleDetector.o
-../bin/line: CMakeFiles/line.dir/src/RectangleDetector.o
+../bin/line: CMakeFiles/line.dir/src/SquareDetector.o
 ../bin/line: CMakeFiles/line.dir/src/TriangleDetector.o
 ../bin/line: CMakeFiles/line.dir/src/StraightObjectDetector.o
 ../bin/line: CMakeFiles/line.dir/src/DetectorTopic.o
@@ -637,7 +637,7 @@ CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/Timer.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/Line.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/LinePair.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/Circle.o.requires
-CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/Rectangle.o.requires
+CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/Square.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/Triangle.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/DetectionParams.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/LineDescribableObject.o.requires
@@ -646,7 +646,7 @@ CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/CameraService.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/ObjectDetector.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/LineDetector.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/CircleDetector.o.requires
-CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/RectangleDetector.o.requires
+CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/SquareDetector.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/TriangleDetector.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/StraightObjectDetector.o.requires
 CMakeFiles/line.dir/requires: CMakeFiles/line.dir/src/DetectorTopic.o.requires

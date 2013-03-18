@@ -39,26 +39,6 @@ void CircleDetector::invalidate()
     m_tempLine->deletePoints();
 }
 
-void CircleDetector::writeLineInImage(Line* line, int r, int g, int b)
-{
-    Vector2<int> linePoint;
-
-    if (line == NULL) return;
-
-    for (unsigned int i = 0; i < line->points.size(); i++)
-    {
-        linePoint = line->points[i];
-        if (i < 15)
-        {
-            m_workImage->setPixelValue(linePoint.y, linePoint.x, 0, 255, 255);
-        }
-        else
-        {
-            m_workImage->setPixelValue(linePoint.y, linePoint.x, r, g, b);
-        }
-    }
-}
-
 void CircleDetector::setAngles(std::vector<float> angles)
 {
     m_angles = angles;
@@ -67,7 +47,7 @@ void CircleDetector::setAngles(std::vector<float> angles)
 void CircleDetector::generateEllipses(unsigned int size)
 {
     Line* ellipse = NULL;
-    unsigned int imagePart = m_imageMap->getHeight() / 4;
+    //unsigned int imagePart = m_imageMap->getHeight() / 4;
     unsigned int x = size;
 
     std::vector<float>::reverse_iterator ri;

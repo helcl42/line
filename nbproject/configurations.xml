@@ -102,6 +102,8 @@
         <in>KirshFilterStrategy.h</in>
         <in>Line.cpp</in>
         <in>Line.h</in>
+        <in>LineDescribableObject.cpp</in>
+        <in>LineDescribableObject.h</in>
         <in>LineDetector.cpp</in>
         <in>LineDetector.h</in>
         <in>LinePair.cpp</in>
@@ -120,8 +122,10 @@
         <in>RectangleDetector.h</in>
         <in>RobertsFilterStrategy.h</in>
         <in>SobelFilterStrategy.h</in>
-        <in>StraightDetectedObject.cpp</in>
-        <in>StraightDetectedObject.h</in>
+        <in>Square.cpp</in>
+        <in>Square.h</in>
+        <in>SquareDetector.cpp</in>
+        <in>SquareDetector.h</in>
         <in>StraightObjectDetector.cpp</in>
         <in>StraightObjectDetector.h</in>
         <in>Timer.cpp</in>

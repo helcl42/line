@@ -11,6 +11,7 @@
 #include "Pixel.h"
 #include "DetectionSettings.h"
 #include "ImageFilter.h"
+#include "Line.h"
 #include "EdgeFilterStrategy.h"
 
 class ObjectDetector
@@ -49,14 +50,17 @@ public:
 
     void setImages(Image<float>* image, Image<float>* colorImage);    
     
+protected:        
+    void repaintSimilarColorPlaces(int interval = DetectionParams::colorTolerance);           
+        
+    void writeLineInImage(Line* line, int r, int g, int b);    
+    
 public:    
     virtual void invalidate() = 0;    
         
-    virtual void initDetectionParams(unsigned int shrink = 1) = 0;
+    virtual void initDetectionParams(unsigned int shrink = 1) = 0;    
     
-protected:        
-    void repaintSimilarColorPlaces(int interval = DetectionParams::colorTolerance);   
-    
+protected:    
     virtual bool colorMatch(unsigned int failCount = 0) = 0;
 };
 

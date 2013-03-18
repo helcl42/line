@@ -1,22 +1,21 @@
 #include "ImageService.h"
-#include "Line.h"
 
 ImageService::ImageService(DetectionSettings* settings)
 : m_shrink(2), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
 {
     m_image = new Image<float>();
     m_colorImage = new Image<float>();
-    m_lineDetector = new LineDetector(settings->getItem(0));
-    m_rectangleDetector = new RectangleDetector(settings->getItem(0));
+    m_lineDetector = new LineDetector(settings->getItem(0));    
     m_triangleDetector = new TriangleDetector(settings->getItem(0));
     m_circleDetector = new CircleDetector(settings->getItem(0));
+    m_squareDetector = new SquareDetector(settings->getItem(0));
 }
 
 ImageService::~ImageService()
 {
+    SAFE_DELETE(m_squareDetector);
     SAFE_DELETE(m_circleDetector);
-    SAFE_DELETE(m_triangleDetector);
-    SAFE_DELETE(m_rectangleDetector);
+    SAFE_DELETE(m_triangleDetector);    
     SAFE_DELETE(m_lineDetector);
     SAFE_DELETE(m_colorImage);
     SAFE_DELETE(m_image);
@@ -33,26 +32,27 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-    if (m_lookUpLines)
-    {
-        m_lineDetector->invalidate();
-        m_lineDetector->initDetectionParams(m_shrink);
-        m_lineDetector->setImages(m_image, m_colorImage);
-        object = m_lineDetector->findObject();
-    }
-    else
-    {
-        m_circleDetector->invalidate();
-        m_circleDetector->initDetectionParams(m_shrink);
-        m_circleDetector->setImages(m_image, m_colorImage);
-        m_circleDetector->setAngles(cameraGroundAngles);
-        object = m_circleDetector->findObject();
-    }
+    //    if (m_lookUpLines)
+    //    {
+    //        m_lineDetector->invalidate();
+    //        m_lineDetector->initDetectionParams(m_shrink);
+    //        m_lineDetector->setImages(m_image, m_colorImage);
+    //        object = m_lineDetector->findObject();
+    //    }
+    //    else
+    //    {
+    //        m_circleDetector->invalidate();
+    //        m_circleDetector->initDetectionParams(m_shrink);
+    //        m_circleDetector->setImages(m_image, m_colorImage);
+    //        m_circleDetector->setAngles(cameraGroundAngles);
+    //        object = m_circleDetector->findObject();
+    //    }
 
-    //        m_rectangleDetector->invalidate();
-    //        m_rectangleDetector->initDetectionParams();
-    //        m_rectangleDetector->setImages(m_image, m_colorImage);
-    //        object = m_rectangleDetector->findObject();
+    m_squareDetector->invalidate();
+    m_squareDetector->initDetectionParams(m_shrink);
+    m_squareDetector->setImages(m_image, m_colorImage);
+    m_squareDetector->setAngles(cameraGroundAngles);
+    object = m_squareDetector->findObject();
 
     //        m_triangleDetector->invalidate();
     //        m_triangleDetector->initDetectionParams(m_shrink);
@@ -82,7 +82,8 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
 
     for (unsigned int j = 0, k = 22; j < cameraGroundAngles.size(); j++, k += 22)
     {
-        m_image->writeCircle(k + 22, 22, 20, cameraGroundAngles[j]);
+        //m_image->writeCircle(k + 22, 22, 20, cameraGroundAngles[j]);
+        m_image->writeSquare(k + 22, 22, 20, 20, cameraGroundAngles[j], 20);
     }
 
     writeImageToMessage(img);

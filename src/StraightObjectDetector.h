@@ -31,8 +31,6 @@ protected:
     Line* getLongestLine();
 
     Line* getStraightestLine();
-
-    void writeLineInImage(Line* line, int r, int g, int b);
     
     Line* findLineWithDirection(Line* input, float angle = 0);
 

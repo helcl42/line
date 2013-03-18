@@ -49,9 +49,7 @@ protected:
     
     bool findEllipseInImagePart(unsigned int imagePart, unsigned int ellipseSize);
     
-    bool innerEllipseFind(Line* line, unsigned int y, unsigned int x);
-    
-    void writeLineInImage(Line* line, int r, int g, int b);    
+    bool innerEllipseFind(Line* line, unsigned int y, unsigned int x);    
 };
 
 #endif	/* CIRCLEDETECTOR_H */
