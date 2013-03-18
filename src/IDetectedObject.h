@@ -17,7 +17,9 @@ public:
     
     virtual void setLocked(unsigned int a) = 0;
     
-    virtual void invalidate() = 0;    
+    virtual void invalidate() = 0;
+
+    virtual Vector2<int>* getObjectPoint() = 0;
 };
 
 #endif	/* DETECTEDOBJECT_H */

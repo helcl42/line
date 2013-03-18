@@ -18,6 +18,8 @@ public:
     
     virtual ~Rectangle() {}
     
+    Vector2<int>* getObjectPoint();
+    
     friend std::ostream& operator<<(std::ostream& out, const Rectangle& linePair);
 };
 

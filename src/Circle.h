@@ -21,6 +21,8 @@ public:
     
     void clearPoints();
     
+    Vector2<int>* getObjectPoint();
+    
     friend std::ostream& operator<<(std::ostream& out, const Circle& circle);
 };
 

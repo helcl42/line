@@ -62,7 +62,11 @@ LineDescribableObject* LineDetector::findBestLine()
                 writeLineInImage(m_bestLine->getAt(0), 255, 0, 0);
                 writeLineInImage(m_bestLine->getAt(1), 0, 0, 255); 
                 break;
-            }           
+            }      
+            else 
+            {
+                m_bestLine->invalidate();
+            }
         }
     }
     return m_bestLine;

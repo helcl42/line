@@ -33,7 +33,6 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-
     if (m_lookUpLines)
     {
         m_lineDetector->invalidate();
@@ -69,7 +68,8 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
 
         if (objectPoint != NULL) SAFE_DELETE(objectPoint);
 
-        objectPoint = getObjectPoint(object);
+        objectPoint = object->getObjectPoint();
+        std::cout << "POINT: " << *objectPoint << std::endl;
         if (objectPoint != NULL)
         {
             writePointToMessage(img, objectPoint);
@@ -127,24 +127,6 @@ void ImageService::tryChangeSettings()
 
         m_lineDetector->setColorSettings(m_settings->getItem(m_settingsIndex));
     }
-}
-
-Vector2<int>* ImageService::getObjectPoint(LineDescribableObject* line)
-{
-    Line* l1 = line->getAt(0);
-    Line* l2 = line->getAt(1);
-    unsigned int halfLength;
-
-    if (l1->points.size() < l2->points.size())
-    {
-        halfLength = l1->points.size() / 2;
-    }
-    else
-    {
-        halfLength = l2->points.size() / 2;
-    }
-
-    return Vector2<int>::getPointBetween(l1->points[halfLength], l2->points[halfLength]);
 }
 
 void ImageService::writePointToMessage(const sensor_msgs::Image::ConstPtr& img, Vector2<int>* point, unsigned int size)

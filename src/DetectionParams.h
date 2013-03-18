@@ -14,6 +14,8 @@ struct DetectionParams
         
     static const unsigned int colorTreshold;
     
+    static float maxPercentageError;
+    
     static float selectionTreshold;
     
     static float directionDeltaDegrees;

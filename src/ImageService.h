@@ -63,9 +63,7 @@ public:
     
     void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width = 1);        
     
-private:
-    Vector2<int>* getObjectPoint(LineDescribableObject* line);
-    
+private:        
     void tryChangeSettings();        
 };
 

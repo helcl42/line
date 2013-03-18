@@ -17,7 +17,9 @@ public:
     LinePair() 
     : LineDescribableObject(2) {}
     
-    virtual ~LinePair() {}            
+    virtual ~LinePair() {}    
+    
+    Vector2<int>* getObjectPoint();
     
     friend std::ostream& operator<<(std::ostream& out, const LinePair& linePair);
 };

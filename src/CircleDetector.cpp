@@ -73,8 +73,7 @@ void CircleDetector::generateEllipses(unsigned int size)
     std::vector<float>::reverse_iterator ri;
     for (ri = m_angles.rbegin(); ri != m_angles.rend(); ++ri)
     {
-        ellipse = generateEllipse(x, size, size, *ri);
-        //writeLineInImage(ellipse, 0, 0, 255);
+        ellipse = generateEllipse(x, size, size, *ri);        
         m_ellipses.push_back(ellipse);
         //x += (imagePart - size);
     }
@@ -140,8 +139,7 @@ Circle* CircleDetector::findObject()
 bool CircleDetector::innerEllipseFind(Line* ellipse, unsigned int y, unsigned int x)
 {
     unsigned int failCount = 0;
-    double percentFail;
-    //Line line;
+    double percentFail;    
 
     for (unsigned int k = 0; k < ellipse->points.size(); k++)
     {
@@ -149,13 +147,11 @@ bool CircleDetector::innerEllipseFind(Line* ellipse, unsigned int y, unsigned in
         if (m_imageMap->getValueAt(point.y + y, point.x + x) < DetectionParams::selectionTreshold)
         {
             failCount++;
-        }
-        //line.points.push_back(Vector2<int>(point.x + x, point.y + y));
-    }
-    //writeLineInImage(&line, 0, 255, 0);
+        }        
+    }    
     percentFail = (double) failCount / (double) ellipse->points.size();
 
-    if (percentFail < 0.05)
+    if (percentFail < DetectionParams::maxPercentageError)
     {
         std::cout << "failCount = " << failCount << " size = " << ellipse->points.size() << " fail = " << percentFail << "%" << std::endl;        
         m_tempLine->deletePoints();        
@@ -206,6 +202,10 @@ Circle* CircleDetector::findBestCircle()
                     writeLineInImage(*m_bestCircle->getLines(), 255, 0, 0);
                     break;
                 }
+                else
+                {
+                    m_bestCircle->invalidate();
+                }
             }
         }
         invalidate();
@@ -218,7 +218,7 @@ bool CircleDetector::colorMatch(unsigned int failCount)
 {
     Vector2<int>* ret;
     Pixel<float>* pixel;
-    Line* line = *m_bestCircle->getLines();
+    Line* line = m_bestCircle->getAt(0);
         
     for (unsigned int i = 0; i < 4; i += 2)
     {
@@ -238,5 +238,7 @@ bool CircleDetector::colorMatch(unsigned int failCount)
 void CircleDetector::initDetectionParams(unsigned int shrink)
 {
     DetectionParams::selectionTreshold = 30;
+    
+    DetectionParams::maxPercentageError = 0.05;
 }
 

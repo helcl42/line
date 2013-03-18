@@ -10,6 +10,8 @@ const unsigned int DetectionParams::colorTolerance = 50;
 
 const unsigned int DetectionParams::colorTreshold = 85;
 
+float DetectionParams::maxPercentageError = 0.05;
+
 //const unsigned int DetectionParams::selectionTreshold = 20;
 float DetectionParams::selectionTreshold = 120;
 //shrink 1
