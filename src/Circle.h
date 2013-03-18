@@ -17,11 +17,9 @@ public:
     Circle() 
     : LineDescribableObject(1) {}
     
-    virtual ~Circle() {}
-        
-    void addPoint(Vector2<int> point);
-        
-    void setLine(Line* line);
+    virtual ~Circle() {}            
+    
+    void clearPoints();
     
     friend std::ostream& operator<<(std::ostream& out, const Circle& circle);
 };

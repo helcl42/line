@@ -1,20 +1,15 @@
 #include "Circle.h"
 
-void Circle::addPoint(Vector2<int> point)
+void Circle::clearPoints()
 {
-    if (m_lines[0] != NULL)
+    if(m_lines != NULL)
     {
-        m_lines[0]->points.push_back(point);
+        m_lines[0]->points.clear();
     }
     else
     {
         throw std::runtime_error("Circle == NULL");
     }
-}
-
-void Circle::setLine(Line* line)
-{
-    m_lines[0] = line;
 }
 
 std::ostream& operator<<(std::ostream& out, const Circle& circle)

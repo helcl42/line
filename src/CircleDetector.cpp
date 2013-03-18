@@ -36,7 +36,7 @@ void CircleDetector::invalidate()
     }
     m_ellipses.clear();
     m_bestCircle->invalidate();
-    m_tempLine->points.clear();
+    m_tempLine->deletePoints();
 }
 
 void CircleDetector::writeLineInImage(Line* line, int r, int g, int b)
@@ -76,7 +76,7 @@ void CircleDetector::generateEllipses(unsigned int size)
         ellipse = generateEllipse(x, size, size, *ri);
         //writeLineInImage(ellipse, 0, 0, 255);
         m_ellipses.push_back(ellipse);
-        x += (imagePart - size);
+        //x += (imagePart - size);
     }
 }
 
@@ -128,7 +128,7 @@ Line* CircleDetector::generateEllipse(int x0, int y0, int radius, float angle)
 
 Circle* CircleDetector::findObject()
 {
-    //gitrepaintSimilarColorPlaces();
+    //repaintSimilarColorPlaces();
     m_edgeFilter->setImage(m_workImage);
     m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
     m_imageFilter->setImage(m_workImage);
@@ -155,17 +155,16 @@ bool CircleDetector::innerEllipseFind(Line* ellipse, unsigned int y, unsigned in
     //writeLineInImage(&line, 0, 255, 0);
     percentFail = (double) failCount / (double) ellipse->points.size();
 
-    if (percentFail < 0.02)
+    if (percentFail < 0.05)
     {
-        std::cout << "failCount = " << failCount << " size = " << ellipse->points.size() << " % = " << percentFail << std::endl;
-        m_bestCircle->invalidate();
-
+        std::cout << "failCount = " << failCount << " size = " << ellipse->points.size() << " fail = " << percentFail << "%" << std::endl;        
+        m_tempLine->deletePoints();        
         for (unsigned int k = 0; k < ellipse->points.size(); k++)
         {
-            Vector2<int> point = ellipse->points[k];
-            m_bestCircle->setLine(m_tempLine);
-            m_bestCircle->addPoint(Vector2<int>(point.x + x, point.y + y));
+            Vector2<int> point = ellipse->points[k];            
+            m_tempLine->points.push_back(Vector2<int>(point.x + x, point.y + y));
         }
+        m_bestCircle->setAt(m_tempLine, 0);
         return true;
     }
     return false;
@@ -174,7 +173,7 @@ bool CircleDetector::innerEllipseFind(Line* ellipse, unsigned int y, unsigned in
 bool CircleDetector::findEllipseInImagePart(unsigned int imagePart, unsigned int ellipseSize)
 {
     Line* ellipse = m_ellipses[imagePart];
-    unsigned int baseHeight = m_imageMap->getHeight() / 4;
+    unsigned int baseHeight = m_imageMap->getHeight() / 2;
     //unsigned int ellipseHeight = ellipseSize * sin(m_angles[imagePart] * M_PI / 180);   
 
     for (unsigned int i = 0; i < baseHeight; i += 1)
@@ -198,8 +197,7 @@ Circle* CircleDetector::findBestCircle()
     {
         generateEllipses(ellipseSize);
         for (unsigned int i = 0; i < m_ellipses.size(); i++)
-        {
-            m_bestCircle->invalidate();
+        {            
             if (findEllipseInImagePart(i, ellipseSize))
             {
                 if (colorMatch())
@@ -211,7 +209,7 @@ Circle* CircleDetector::findBestCircle()
             }
         }
         invalidate();
-        ellipseSize -= 2;
+        ellipseSize -= 1;
     }
     return m_bestCircle;
 }

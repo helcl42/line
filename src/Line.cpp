@@ -121,6 +121,11 @@ Line* Line::getMaxLengthLine(Line** lines)
     return longest;
 }
 
+void Line::deletePoints()
+{
+    points.clear();
+}
+
 bool Line::isInline(Line* input)
 {
     double q = points.front().y - points.front().x * direction;

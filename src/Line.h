@@ -48,6 +48,8 @@ public:
     
     void computeProperties();                
     
+    void deletePoints();
+    
     friend std::ostream& operator<< (std::ostream& out, const Line& line);     
     
 public:    

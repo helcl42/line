@@ -15,22 +15,15 @@ ImageService::ImageService(DetectionSettings* settings)
 ImageService::~ImageService()
 {
     SAFE_DELETE(m_circleDetector);
-    SAFE_DELETE(m_triangleDetector);    
+    SAFE_DELETE(m_triangleDetector);
     SAFE_DELETE(m_rectangleDetector);
     SAFE_DELETE(m_lineDetector);
     SAFE_DELETE(m_colorImage);
     SAFE_DELETE(m_image);
 }
 
-int counter = 0;
-
 Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std::vector<float> cameraGroundAngles)
 {
-    counter++;
-    if(counter > 10)
-    {
-        ros::shutdown();
-    }
     unsigned long timeElapsed;
     Vector2<int>* objectPoint = NULL;
     LineDescribableObject* object = NULL;
@@ -56,12 +49,12 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
         m_circleDetector->setAngles(cameraGroundAngles);
         object = m_circleDetector->findObject();
     }
-    
+
     //        m_rectangleDetector->invalidate();
     //        m_rectangleDetector->initDetectionParams();
     //        m_rectangleDetector->setImages(m_image, m_colorImage);
     //        object = m_rectangleDetector->findObject();
-    
+
     //        m_triangleDetector->invalidate();
     //        m_triangleDetector->initDetectionParams(m_shrink);
     //        m_triangleDetector->setImages(m_image, m_colorImage);
@@ -74,8 +67,8 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
 
         writeLinesToMessage(img, object->getLines(), object->getLineCount());
 
-        if(objectPoint != NULL) SAFE_DELETE(objectPoint);
-        
+        if (objectPoint != NULL) SAFE_DELETE(objectPoint);
+
         objectPoint = getObjectPoint(object);
         if (objectPoint != NULL)
         {
