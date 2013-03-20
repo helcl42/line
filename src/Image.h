@@ -16,6 +16,7 @@
 #include "PixelRGB.h"
 #include "PixelLUV.h"
 #include "PixelXYZ.h"
+#include "Line.h"
 
 template <class T> class Image;
 template <class T> std::ostream& operator<<(std::ostream& out, const Image<T>& img);
@@ -65,7 +66,7 @@ public:
     //temp
     void writeCircle(int x0, int y0, int radius, double angle);
     //temp
-    void writeSquare(int x0, int y0, int height, int width, double angle, double rotateAngle);
+    void writeSquare(int x0, int y0, int height, int width, double angle, double rotateAngle, double anotherAngle);
 
     inline Pixel<T>* getPixel(unsigned int x, unsigned int y) const;
 
@@ -205,26 +206,56 @@ void Image<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int
 }
 
 template <class T>
-void Image<T>::writeSquare(int x0, int y0, int height, int width, double angle, double rotateAngle)
+void Image<T>::writeSquare(int x0, int y0, int height, int width, double angle, double rotateAngle, double anotherAngle)
 {
+    Line* square = new Line();
     //height = height * sin(angle * M_PI / 180);
-    for(int i = y0; i < y0 + height; i++)
+//    for(int i = y0; i < y0 + height; i++)
+//    {
+//        for(int j = x0; j < x0 + width; j++)
+//        {            
+//            if(i == y0 || i == y0 + height - 1) 
+//            {
+//                setPixelValue((j * sin(rotateAngle * M_PI / 180) + i * cos(rotateAngle * M_PI / 180)) * sin(angle * M_PI / 180), j * cos(rotateAngle * M_PI / 180) - i * sin(rotateAngle * M_PI / 180) * cos(anotherAngle * M_PI / 180), 0, 0, 255);
+//            }
+//            else 
+//            {
+//                if(j == x0 || j == x0 + width - 1)
+//                {
+//                    setPixelValue((j * sin(rotateAngle * M_PI / 180) + i * cos(rotateAngle * M_PI / 180)) * sin(angle * M_PI / 180), j * cos(rotateAngle * M_PI / 180) - i * sin(rotateAngle * M_PI / 180) * cos(anotherAngle * M_PI / 180), 0, 0, 255);
+//                }                
+//            }
+//        }
+//    }
+        
+    double sinAngle = sin(rotateAngle * M_PI / 180);
+    double cosAngle = cos(rotateAngle * M_PI / 180);   
+    int halfSize = height;
+    
+    for (int i = y0 - halfSize; i < y0 + halfSize; i++)
     {
-        for(int j = x0; j < x0 + width; j++)
-        {            
-            if(i == y0 || i == y0 + height - 1) 
-            {
-                setPixelValue((j * sin(rotateAngle * M_PI / 180) + i * cos(rotateAngle * M_PI / 180)) * sin(angle * M_PI / 180), j * cos(rotateAngle * M_PI / 180) - i * sin(rotateAngle * M_PI / 180), 0, 0, 255);
+        for (int j = x0 - halfSize; j < x0 + halfSize; j++)
+        {
+            if (i == y0 - halfSize || i == y0 + halfSize - 1)
+            {                              
+                square->points.push_back(Vector2<int>(((j - x0) * cosAngle - (i - y0) * sinAngle) * sin(angle * M_PI / 180), ((j - x0) * sinAngle + (i - y0) * cosAngle)));                                
             }
-            else 
+            else
             {
-                if(j == x0 || j == x0 + width - 1)
-                {
-                    setPixelValue((j * sin(rotateAngle * M_PI / 180) + i * cos(rotateAngle * M_PI / 180)) * sin(angle * M_PI / 180), j * cos(rotateAngle * M_PI / 180) - i * sin(rotateAngle * M_PI / 180), 0, 0, 255);                              
-                }                
+                if (j == x0 - halfSize || j == x0 + halfSize - 1)
+                {                    
+                    square->points.push_back(Vector2<int>(((j - x0) * cosAngle - (i - y0) * sinAngle) * sin(angle * M_PI / 180), ((j - x0) * sinAngle + (i - y0) * cosAngle)));                 
+                }
             }
         }
     }
+    
+    for(int i = 0; i < square->getSize(); i++)
+    {        
+        square->points[i] = Vector2<int>(square->points[i].x + x0 + halfSize, square->points[i].y + y0 + halfSize);
+        setPixelValue(square->points[i].y, square->points[i].x, 0, 0, 255);
+    }  
+    SAFE_DELETE(square);    
 }
 
 template <class T>

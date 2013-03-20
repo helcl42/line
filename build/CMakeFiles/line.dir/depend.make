@@ -746,6 +746,8 @@ CMakeFiles/line.dir/src/TriangleDetector.o: ../src/Pixel.h
 CMakeFiles/line.dir/src/TriangleDetector.o: ../src/PixelLUV.h
 CMakeFiles/line.dir/src/TriangleDetector.o: ../src/PixelRGB.h
 CMakeFiles/line.dir/src/TriangleDetector.o: ../src/PixelXYZ.h
+CMakeFiles/line.dir/src/TriangleDetector.o: ../src/Square.h
+CMakeFiles/line.dir/src/TriangleDetector.o: ../src/SquareDetector.h
 CMakeFiles/line.dir/src/TriangleDetector.o: ../src/StraightObjectDetector.h
 CMakeFiles/line.dir/src/TriangleDetector.o: ../src/Triangle.h
 CMakeFiles/line.dir/src/TriangleDetector.o: ../src/TriangleDetector.cpp

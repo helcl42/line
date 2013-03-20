@@ -48,42 +48,42 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     //        object = m_circleDetector->findObject();
     //    }
 
-    m_squareDetector->invalidate();
-    m_squareDetector->initDetectionParams(m_shrink);
-    m_squareDetector->setImages(m_image, m_colorImage);
-    m_squareDetector->setAngles(cameraGroundAngles);
-    object = m_squareDetector->findObject();
+//    m_squareDetector->invalidate();
+//    m_squareDetector->initDetectionParams(m_shrink);
+//    m_squareDetector->setImages(m_image, m_colorImage);
+//    m_squareDetector->setAngles(cameraGroundAngles);
+//    object = m_squareDetector->findObject();
 
     //        m_triangleDetector->invalidate();
     //        m_triangleDetector->initDetectionParams(m_shrink);
     //        m_triangleDetector->setImages(m_image, m_colorImage);
     //        object = m_triangleDetector->findObject();
 
-    if (object->isValid())
-    {
-        std::cout << "OBJECT!!! " << std::endl;
-        m_changeColorTimer.stop();
+//    if (object->isValid())
+//    {
+//        std::cout << "OBJECT!!! " << std::endl;
+//        m_changeColorTimer.stop();
+//
+//        writeLinesToMessage(img, object->getLines(), object->getLineCount());
+//
+//        if (objectPoint != NULL) SAFE_DELETE(objectPoint);
+//
+//        objectPoint = object->getObjectPoint();
+//        std::cout << "POINT: " << *objectPoint << std::endl;
+//        if (objectPoint != NULL)
+//        {
+//            writePointToMessage(img, objectPoint);
+//        }
+//    }
+//    else
+//    {
+//        tryChangeSettings();
+//    }
 
-        writeLinesToMessage(img, object->getLines(), object->getLineCount());
-
-        if (objectPoint != NULL) SAFE_DELETE(objectPoint);
-
-        objectPoint = object->getObjectPoint();
-        std::cout << "POINT: " << *objectPoint << std::endl;
-        if (objectPoint != NULL)
-        {
-            writePointToMessage(img, objectPoint);
-        }
-    }
-    else
-    {
-        tryChangeSettings();
-    }
-
-    for (unsigned int j = 0, k = 22; j < cameraGroundAngles.size(); j++, k += 22)
+    for (unsigned int j = 0, k = 400; j < cameraGroundAngles.size(); j++, k += 27)
     {
         //m_image->writeCircle(k + 22, 22, 20, cameraGroundAngles[j]);
-        m_image->writeSquare(k + 22, 22, 20, 20, cameraGroundAngles[j], 20);
+        m_image->writeSquare(k + 48, 22, 25, 25, cameraGroundAngles[j], 20, 0);
     }
 
     writeImageToMessage(img);

@@ -8,7 +8,6 @@
 #ifndef SQUARE_H
 #define	SQUARE_H
 
-#include <stdexcept>
 #include "LineDescribableObject.h"
 
 class Square : public LineDescribableObject

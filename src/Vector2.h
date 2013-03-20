@@ -56,6 +56,8 @@ public:
     
     static Vector2<Type>* getPointBetween(Vector2<Type> p1, Vector2<Type> p2);
     
+    static Vector2<Type>* getPointBetween(Vector2<Type>* p1, Vector2<Type>* p2);
+    
     Vector2* set(Type x, Type y);    
 
     Vector2* set(Vector2* other);    
@@ -80,6 +82,8 @@ public:
 
     Vector2* rotate(Type angle);    
 
+    double distance(Vector2* other);
+    
     double distance(Vector2& other);    
 
     double distance(Type x, Type y);    
@@ -219,6 +223,26 @@ Vector2<Type>* Vector2<Type>::getPointBetween(Vector2<Type> p1, Vector2<Type> p2
 }
 
 template<class Type>
+Vector2<Type>* Vector2<Type>::getPointBetween(Vector2<Type>* p1, Vector2<Type>* p2)
+{
+    double halfDist;
+    double angle;   
+
+    halfDist = p2->distance(p1) / 2;
+    
+    p2->x -= p1->x;
+    p2->y -= p1->y;
+    
+    angle = p2->angleRadians();
+
+    Vector2<Type> p(halfDist * cos(angle), halfDist * sin(angle));
+    p.x += p1->x;
+    p.y += p1->y;
+    
+    return new Vector2<Type>(p);
+}
+
+template<class Type>
 Vector2<Type>* Vector2<Type>::set(Type x, Type y)
 {
     this->x = x;
@@ -335,6 +359,14 @@ double Vector2<Type>::distance(Vector2<Type>& other)
 {
     Type distX = x - other.x;
     Type distY = y - other.y;
+    return (double)sqrt(distX * distX + distY * distY);
+}
+
+template<class Type>
+double Vector2<Type>::distance(Vector2<Type>* other)
+{
+    Type distX = x - other->x;
+    Type distY = y - other->y;
     return (double)sqrt(distX * distX + distY * distY);
 }
 

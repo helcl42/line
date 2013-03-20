@@ -87,6 +87,8 @@ PixelLUV.h
 /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
 PixelXYZ.h
 /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
+Line.h
+/home/lubos/fuerte_workspace/sandbox/line/src/Line.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/ImageFilter.h
 Image.h
@@ -201,10 +203,12 @@ Pixel.h
 /home/lubos/fuerte_workspace/sandbox/line/src/Pixel.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/Square.h
-stdexcept
--
 LineDescribableObject.h
 /home/lubos/fuerte_workspace/sandbox/line/src/LineDescribableObject.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.cpp
+SquareDetector.h
+/home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.h
 Square.h
@@ -233,6 +237,12 @@ sstream
 /home/lubos/fuerte_workspace/sandbox/line/src/Triangle.h
 LineDescribableObject.h
 /home/lubos/fuerte_workspace/sandbox/line/src/LineDescribableObject.h
+
+/home/lubos/fuerte_workspace/sandbox/line/src/TriangleDetector.cpp
+TriangleDetector.h
+/home/lubos/fuerte_workspace/sandbox/line/src/TriangleDetector.h
+SquareDetector.h
+/home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.h
 
 /home/lubos/fuerte_workspace/sandbox/line/src/TriangleDetector.h
 Triangle.h

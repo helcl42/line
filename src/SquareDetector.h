@@ -51,6 +51,8 @@ protected:
     bool findSquareInImagePart(unsigned int imagePart, unsigned int ellipseSize);
     
     bool innerSquareFind(Square* line, unsigned int y, unsigned int x);    
+    
+    bool rawSquareFind(Square* square, unsigned int y, unsigned int x);
 };
 
 #endif	/* SQUAREDETECTOR_H */

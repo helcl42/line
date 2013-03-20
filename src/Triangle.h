@@ -10,18 +10,24 @@
 
 #include "LineDescribableObject.h"
 
-
 class Triangle : public LineDescribableObject
-{ 
+{    
 public:
-    Triangle()
-     : LineDescribableObject(2) {}
-
-    virtual ~Triangle() {}    
+    Triangle();
+    
+    virtual ~Triangle();
+    
+    void rotateByAngle(double angle);
+    
+    void projectByAngle(double angle);
+    
+    void clearPoints();
+    
+    void addPoint(Vector2<int> point);
     
     Vector2<int>* getObjectPoint();
     
-    friend std::ostream& operator<<(std::ostream& out, const Triangle& linePair);
+    friend std::ostream& operator<<(std::ostream& out, const Triangle& circle);
 };
 
 #endif	/* TRIANGLE_H */

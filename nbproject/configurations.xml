@@ -116,10 +116,6 @@
         <in>PixelRGB.h</in>
         <in>PixelXYZ.h</in>
         <in>PrewittFilterStrategy.h</in>
-        <in>Rectangle.cpp</in>
-        <in>Rectangle.h</in>
-        <in>RectangleDetector.cpp</in>
-        <in>RectangleDetector.h</in>
         <in>RobertsFilterStrategy.h</in>
         <in>SobelFilterStrategy.h</in>
         <in>Square.cpp</in>

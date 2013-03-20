@@ -747,6 +747,8 @@ CMakeFiles/line.dir/src/TriangleDetector.o
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelLUV.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelRGB.h
  /home/lubos/fuerte_workspace/sandbox/line/src/PixelXYZ.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/Square.h
+ /home/lubos/fuerte_workspace/sandbox/line/src/SquareDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/StraightObjectDetector.h
  /home/lubos/fuerte_workspace/sandbox/line/src/Triangle.h
  /home/lubos/fuerte_workspace/sandbox/line/src/TriangleDetector.cpp

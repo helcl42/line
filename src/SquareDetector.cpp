@@ -118,6 +118,25 @@ Square* SquareDetector::findObject()
     return findBestSquare();
 }
 
+bool SquareDetector::rawSquareFind(Square* square, unsigned int y, unsigned int x)
+{    
+    unsigned int ratio = 8, failCount = 0;
+    double percentFail;    
+    Line* squareLine = square->getAt(0);
+    unsigned int lineSize = squareLine->getSize() / ratio;
+    
+    for (unsigned int k = 0; k < lineSize; k++)
+    {
+        Vector2<int> point = squareLine->points[k];
+        if (m_imageMap->getValueAt(point.y + y, point.x + x) < DetectionParams::selectionTreshold) failCount++;        
+    }    
+    
+    percentFail = (double) failCount / (double) lineSize;
+    
+    if(percentFail < 0.01) return true;        
+    return false;
+}
+
 bool SquareDetector::innerSquareFind(Square* square, unsigned int y, unsigned int x)
 {
     Line* squareLine = square->getAt(0);
@@ -126,6 +145,9 @@ bool SquareDetector::innerSquareFind(Square* square, unsigned int y, unsigned in
     double percentFail;
     //Line line;
 
+    //raw check must pass first
+    if(!rawSquareFind(square, y, x)) return false;
+    
     for (unsigned int k = 0; k < lineSize; k++)
     {
         Vector2<int> point = squareLine->points[k];
@@ -219,7 +241,7 @@ bool SquareDetector::colorMatch(unsigned int failCount)
     Line* line = m_bestSquare->getAt(0);  
     unsigned int lenFourth = line->getSize() / 4;
         
-    for (unsigned int i = 0; i < 4; i += lenFourth)
+    for (unsigned int i = 0; i < 2; i++)
     {
         ret = Vector2<int>::getPointBetween(line->points[i * lenFourth], line->points[(i + 2) * lenFourth]);
 

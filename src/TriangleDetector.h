@@ -12,11 +12,16 @@
 #include "Triangle.h"
 #include "StraightObjectDetector.h"
 
-
-class TriangleDetector : public StraightObjectDetector
+class TriangleDetector : public ObjectDetector
 {
-private:
+protected:            
+    std::vector<float> m_angles;
+    
+    std::vector<Triangle*> m_triangles;
+    
     Triangle* m_bestTriangle;
+    
+    Line* m_tempLine;
 
 public:
     TriangleDetector(DetectionColorItem* settings = NULL);
@@ -25,19 +30,30 @@ public:
 
     virtual ~TriangleDetector();
 
-public:    
+public:
+    Triangle* findObject();
+
     void invalidate();
-    
-    LineDescribableObject* findObject();
-    
+
     void initDetectionParams(unsigned int shrink = 1);
+        
+    void setAngles(std::vector<float> angles);
 
 protected:
-    LineDescribableObject* findBestTriangle();    
-    
-    bool colorMatch(unsigned int failCount = 0);
-};
+    Triangle* findBestTriangle();
 
+    bool colorMatch(unsigned int failCount = 0);
+    
+    Triangle* generateTriangle(int x0, int y0, int size, float angle);
+    
+    void generateTriangles(unsigned int triangleSize);
+    
+    bool findTriangleInImagePart(unsigned int imagePart, unsigned int ellipseSize);
+    
+    bool innerTriangleFind(Triangle* line, unsigned int y, unsigned int x);    
+    
+    bool rawTriangleFind(Triangle* square, unsigned int y, unsigned int x);
+};
 
 #endif	/* TRIANGLEDETECTOR_H */
 
