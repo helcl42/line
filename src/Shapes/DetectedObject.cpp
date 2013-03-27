@@ -167,6 +167,14 @@ unsigned int DetectedObject::getCountOfPolygons() const
     return 1;
 }
 
+void  DetectedObject::invalidate()
+{
+    if(m_polygon != NULL)
+    {
+        SAFE_DELETE(m_polygon);
+    }
+}
+
 void DetectedObject::computeBounds()
 {
     int minX = m_polygon->getBegin().x;

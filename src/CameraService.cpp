@@ -4,7 +4,7 @@ double CameraService::getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg
 {
     float lowMidDistance;
     float lowMidDistancePlusHalf;
-    double height;
+    double height = 0;
     double temp;
 
     int countOfOks = 0;

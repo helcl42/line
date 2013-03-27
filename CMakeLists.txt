@@ -31,6 +31,10 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
+rosbuild_add_executable(line src/DetectorTopic.cpp)
+
+set(ROS_COMPILE_FLAGS "-Wno-extra -Wno-unused-variable -Wno-sign-compare")
+
 rosbuild_add_library(line src/Utils/Timer.cpp)
 
 rosbuild_add_library(line src/Shapes/DetectedObject.cpp)
@@ -63,5 +67,6 @@ rosbuild_add_library(line src/ObjectDetector.cpp)
 rosbuild_add_library(line src/LineDetector.cpp)
 rosbuild_add_library(line src/SvgObjectDetector.cpp)
 rosbuild_add_library(line src/StraightObjectDetector.cpp)
-rosbuild_add_executable(line src/DetectorTopic.cpp)
+
+
 

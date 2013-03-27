@@ -27,7 +27,6 @@ protected:
     Pixel<int>* m_color;
 
 public:
-
     DetectedObject();
 
     DetectedObject(Line* polygon);
@@ -66,6 +65,8 @@ public:
     void cleanUp();
     
     bool isValid();
+    
+    void invalidate();
 
 protected:
     void computeBounds();

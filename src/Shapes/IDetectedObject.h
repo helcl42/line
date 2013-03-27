@@ -17,6 +17,8 @@ public:
     
     virtual bool isValid() = 0;
     
+    virtual void invalidate() = 0;
+    
     virtual Line** getPolygons() = 0;
     
     virtual unsigned int getCountOfPolygons() const = 0;

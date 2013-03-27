@@ -26,6 +26,7 @@ SvgObjectDetector::~SvgObjectDetector()
 
 void SvgObjectDetector::invalidate()
 {    
+    m_bestMatch->invalidate();
     m_tempLine->deletePoints();
 }
 

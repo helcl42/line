@@ -43,7 +43,7 @@ public:
         return c;
     }
 
-    Line* generate()
+    void generate()
     {        
         cleanUp();
         

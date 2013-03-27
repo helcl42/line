@@ -30,7 +30,19 @@
             <df name="src">
               <df name="Shapes">
               </df>
+              <df name="SvgExtractor">
+              </df>
+              <df name="SvgParser">
+                <df name="AST">
+                  <df name="Arguments">
+                  </df>
+                  <df name="Commands">
+                  </df>
+                </df>
+              </df>
               <df name="Utils">
+              </df>
+              <df name="XMLParser">
               </df>
             </df>
             <in>CXX.includecache</in>
@@ -135,27 +147,15 @@
           <in>CMakeCXXCompiler.cmake</in>
           <in>CMakeDetermineCompilerABI_C.bin</in>
           <in>CMakeDetermineCompilerABI_CXX.bin</in>
-          <in>CMakeDirectoryInformation.cmake</in>
           <in>CMakeOutput.log</in>
-          <in>CMakeRuleHashes.txt</in>
           <in>CMakeSystem.cmake</in>
-          <in>Makefile.cmake</in>
-          <in>Makefile2</in>
-          <in>TargetDirectories.txt</in>
-          <in>cmake.check_cache</in>
-          <in>progress.marks</in>
         </df>
-        <in>CMakeCache.txt</in>
-        <in>Makefile</in>
-        <in>cmake_install.cmake</in>
       </df>
       <df name="include">
         <df name="line">
         </df>
       </df>
       <df name="input">
-      </df>
-      <df name="lib">
       </df>
       <df name="src">
         <df name="EdgeFilters">
@@ -244,6 +244,7 @@
               <in>HorizontalLineToCommand.h</in>
               <in>LineToCommand.cpp</in>
               <in>LineToCommand.h</in>
+              <in>MoveToCommand.cpp</in>
               <in>MoveToCommand.h</in>
               <in>QuadraticBezierCurveToCommand.h</in>
               <in>SmoothCurveToCommand.h</in>
@@ -292,8 +293,6 @@
         <in>Main.cpp</in>
         <in>ObjectDetector.cpp</in>
         <in>ObjectDetector.h</in>
-        <in>Square.cpp</in>
-        <in>Square.h</in>
         <in>StraightObjectDetector.cpp</in>
         <in>StraightObjectDetector.h</in>
         <in>SvgObjectDetector.cpp</in>
