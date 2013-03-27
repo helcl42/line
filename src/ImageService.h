@@ -13,12 +13,10 @@
 
 #include "Line.h"
 #include "Image.h"
-#include "Timer.h"
+#include "Utils/Timer.h"
 #include "DetectionSettings.h"
+#include "SvgObjectDetector.h"
 #include "LineDetector.h"
-#include "TriangleDetector.h"
-#include "CircleDetector.h"
-#include "SquareDetector.h"
 
 class ImageService
 {
@@ -38,18 +36,13 @@ private:
     unsigned int m_settingsIndex;
         
     bool m_lookUpLines;
+        
+    LineDetector* m_lineDetector;          
     
-    
-    LineDetector* m_lineDetector;      
-    
-    TriangleDetector* m_triangleDetector;
-    
-    CircleDetector * m_circleDetector;
-    
-    SquareDetector* m_squareDetector;
+    SvgObjectDetector* m_objectDetector;
     
 public:
-    ImageService(DetectionSettings* settings);    
+    ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings);    
     
     ~ImageService();      
     

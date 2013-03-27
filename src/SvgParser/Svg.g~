@@ -1,0 +1,183 @@
+
+grammar Svg;
+options { backtrack=true; memoize=true;}
+
+@lexer::includes
+{
+	#include "SvgTraits.hpp"
+}
+
+@parser::includes
+{
+	#include "SvgLexer.hpp"
+}
+
+coordinatePair
+    : coordinate COMMA_WSP? coordinate
+    ;
+
+coordinate
+    : number
+    ;
+
+COMMA_WSP
+    : ( WS+|WS*','WS*)
+    ;
+    
+fragment
+INT
+    : '0'..'9'+ ;
+
+fragment
+FLOAT
+    : ('0'..'9')+ '.' ('0'..'9')* EXPONENT?
+    | '.' ('0'..'9')+ EXPONENT?
+    | ('0'..'9')+ EXPONENT
+    ;
+
+fragment
+WS  : ' '  | '\t' | '\r' | '\n'  ;
+
+fragment
+EXPONENT
+    : ('e'|'E') SIGN? ('0'..'9')+ ;   
+
+SIGN:
+    '+' | '-'
+    ;
+
+comma:
+    ','
+    ;
+
+flag:
+    '0' | '1'
+    ;
+
+number:
+    SIGN? INT
+    | SIGN? FLOAT
+    ;
+
+nonnegativeNumber:
+    INT
+    | FLOAT
+    ;
+
+ellipticalArcArgument:
+    nonnegativeNumber COMMA_WSP? nonnegativeNumber COMMA_WSP? 
+        number COMMA_WSP flag COMMA_WSP? flag COMMA_WSP? coordinatePair
+        ;
+
+ellipticalArcArgumentSequence:
+    ellipticalArcArgument (COMMA_WSP? ellipticalArcArgument)*
+    ;
+
+ellipticalArc:
+    ( 'A' | 'a' ) WS* ellipticalArcArgumentSequence
+    ;
+
+smoothQuadraticBezierCurvetoArgumentSequence:
+    coordinatePair (COMMA_WSP? coordinatePair)*
+    ;
+
+smoothQuadraticBezierCurveto:
+    ( 'T' | 't' ) WS* smoothQuadraticBezierCurvetoArgumentSequence
+    ;
+
+quadraticBezierCurvetoArgument:
+    coordinatePair COMMA_WSP? coordinatePair
+    ;
+
+quadraticBezierCurvetoArgumentSequence:
+    quadraticBezierCurvetoArgument (COMMA_WSP? quadraticBezierCurvetoArgument)*    
+    ;
+
+quadraticBezierCurveto:
+    ( 'Q' | 'q' ) WS* quadraticBezierCurvetoArgumentSequence
+    ;
+
+smoothCurvetoArgument:
+    coordinatePair COMMA_WSP? coordinatePair
+    ;
+
+smoothCurvetoArgumentSequence:
+    smoothCurvetoArgument (COMMA_WSP? smoothCurvetoArgument)*
+    ;
+
+smoothCurveto:
+    ( 'S' | 's' ) WS* smoothCurvetoArgumentSequence
+    ;
+
+curvetoArgument:
+    coordinatePair COMMA_WSP? coordinatePair COMMA_WSP? coordinatePair
+    ;
+
+curvetoArgumentSequence:
+    curvetoArgument (COMMA_WSP? curvetoArgument)*
+    ;
+
+curveto:
+    ( 'C' | 'c' ) WS* curvetoArgumentSequence
+    ;
+
+verticalLinetoArgumentSequence:
+    coordinate (COMMA_WSP? coordinate)*
+    ;
+
+verticalLineto:
+    ( 'V' | 'v' ) WS* verticalLinetoArgumentSequence
+    ;
+
+horizontalLinetoArgumentSequence:	
+    coordinate (COMMA_WSP? coordinate)*
+    ;
+
+horizontalLineto:
+    ( 'H' | 'h' ) WS* horizontalLinetoArgumentSequence
+    ;
+
+linetoArgumentSequence
+    : coordinatePair (COMMA_WSP? coordinatePair)*
+    ;
+
+lineto:
+    ( 'L' | 'l' ) WS* linetoArgumentSequence
+    ;
+
+closepath:
+    ('Z' | 'z')
+    ;
+
+movetoArgumentSequence:
+    coordinatePair ((COMMA_WSP? linetoArgumentSequence))?
+    ;
+
+moveto:
+    ( 'M' | 'm' ) WS* movetoArgumentSequence
+    ;
+
+drawtoCommand:
+    closepath
+    | lineto
+    | horizontalLineto
+    | verticalLineto
+    | curveto
+    | smoothCurveto
+    | quadraticBezierCurveto
+    | smoothQuadraticBezierCurveto
+    | ellipticalArc
+    ;
+
+drawtoCommands:    
+    drawtoCommand (WS* drawtoCommand)*
+    ;
+
+movetoDrawtoCommandGroup:
+    moveto WS* drawtoCommands?
+    ;
+
+svgPath:
+    movetoDrawtoCommandGroup (WS* movetoDrawtoCommandGroup)*
+    ;
+

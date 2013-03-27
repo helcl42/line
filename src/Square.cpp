@@ -1,7 +1,7 @@
 #include "Square.h"
 
 Square::Square()
-: LineDescribableObject(1)
+: LinePair()
 {
     m_lines[0] = new Line();
 }

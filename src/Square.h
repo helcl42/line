@@ -8,9 +8,9 @@
 #ifndef SQUARE_H
 #define	SQUARE_H
 
-#include "LineDescribableObject.h"
+#include "Shapes/LinePair.h"
 
-class Square : public LineDescribableObject
+class Square : public LinePair
 {    
 public:
     Square();

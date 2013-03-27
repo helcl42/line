@@ -1,9 +1,9 @@
 #include "DetectorTopic.h"
 
-DetectorTopic::DetectorTopic(DetectionSettings* settings)
-: m_objectPoint(NULL), m_shrink(0), m_cameraY(0)
+DetectorTopic::DetectorTopic(std::vector<DetectedObject*>& shapes, DetectionSettings* settings)
+: m_objectPoint(NULL), m_shrink(1), m_cameraY(0)
 {
-    m_imageService = new ImageService(settings);
+    m_imageService = new ImageService(shapes, settings);
 }
 
 DetectorTopic::~DetectorTopic()

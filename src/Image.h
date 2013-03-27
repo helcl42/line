@@ -13,9 +13,9 @@
 #include "ros/ros.h"
 #include <sensor_msgs/Image.h>
 
-#include "PixelRGB.h"
-#include "PixelLUV.h"
-#include "PixelXYZ.h"
+#include "Pixel/PixelRGB.h"
+#include "Pixel/PixelLUV.h"
+#include "Pixel/PixelLUV.h"
 #include "Line.h"
 
 template <class T> class Image;

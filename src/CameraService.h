@@ -9,7 +9,7 @@
 #define	CAMERASERVICE_H
 
 #include <sensor_msgs/Image.h>
-#include "Utils.h"
+#include "Utils/Utils.h"
 
 class CameraService
 {

@@ -68,7 +68,7 @@ std::vector<float> CameraService::getCameraAngles(const sensor_msgs::Image::Cons
         y = atan(x1 / y1) * 180 / M_PI;
         if(!isnan(y))
         {
-            y = 1.9 * y;
+            //y = 1.9 * y;
             std::cout << "ANGLE: " << y << std::endl;
             if(y < 0) y = -y;
             if(y > 90) y = 90;            

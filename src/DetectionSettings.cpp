@@ -4,7 +4,7 @@
 DetectionSettings::DetectionSettings(int argc, char** argv)
 : colorIndex(0)
 {                
-    for (int i = 1; i < argc; i++)
+    for (int i = 2; i < argc; i++)
     {
         DetectionColorItem* item = new DetectionColorItem();
 

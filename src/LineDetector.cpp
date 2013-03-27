@@ -19,7 +19,7 @@ LineDetector::~LineDetector()
     SAFE_DELETE(m_bestLine);
 }
 
-LineDescribableObject* LineDetector::findObject()
+LinePair* LineDetector::findObject()
 {
     //repaintSimilarColorPlaces();
     m_edgeFilter->setImage(m_workImage);
@@ -41,12 +41,12 @@ void LineDetector::invalidate()
     m_bestLine->invalidate();
 }
 
-LineDescribableObject* LineDetector::findBestLine()
+LinePair* LineDetector::findBestLine()
 {    
     sortLinesByLength();
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
-    {        
+    {                
         m_bestLine->invalidate();
         lockAllLines(false);
         m_bestLine->setAt(m_lines[i], 0);

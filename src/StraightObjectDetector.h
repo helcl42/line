@@ -10,7 +10,7 @@
 
 #include "Line.h"
 #include "ObjectDetector.h"
-#include "LineDescribableObject.h"
+#include "Shapes/LinePair.h"
 
 class StraightObjectDetector : public ObjectDetector
 {
@@ -25,7 +25,7 @@ public:
     virtual ~StraightObjectDetector();
     
 public:
-    virtual LineDescribableObject* findObject() = 0;    
+    virtual LinePair* findObject() = 0;    
     
 protected:
     Line* getLongestLine();

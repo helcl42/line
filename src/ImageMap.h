@@ -8,7 +8,7 @@
 #ifndef IMAGEMAP_H
 #define	IMAGEMAP_H
 
-#include "Utils.h"
+#include "Utils/Utils.h"
 #include "Image.h"
 
 

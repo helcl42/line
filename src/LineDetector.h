@@ -8,7 +8,7 @@
 #ifndef LINEDETECTOR_H
 #define	LINEDETECTOR_H
 
-#include "LinePair.h"
+#include "Shapes/LinePair.h"
 #include "StraightObjectDetector.h"
 
 class LineDetector : public StraightObjectDetector
@@ -26,12 +26,12 @@ public:
 public:    
     void invalidate();    
     
-    LineDescribableObject* findObject();
+    LinePair* findObject();
     
     void initDetectionParams(unsigned int shrink = 1);
     
 protected:            
-    LineDescribableObject* findBestLine();   
+    LinePair* findBestLine();   
     
     bool colorMatch(unsigned int failCount = 0);
 };

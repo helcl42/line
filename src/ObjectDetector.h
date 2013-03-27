@@ -8,11 +8,11 @@
 #ifndef OBJECTDETECTOR_H
 #define	OBJECTDETECTOR_H
 
-#include "Pixel.h"
+#include "Pixel/Pixel.h"
 #include "DetectionSettings.h"
-#include "ImageFilter.h"
+#include "ImageFilters/ImageFilter.h"
 #include "Line.h"
-#include "EdgeFilterStrategy.h"
+#include "EdgeFilters/EdgeFilterStrategy.h"
 
 class ObjectDetector
 {

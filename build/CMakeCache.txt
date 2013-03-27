@@ -46,7 +46,7 @@ CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
 CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 
 //Flags used by the compiler during Release with Debug Info builds.
-CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O3 -g
+CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g
 
 //C compiler.
 CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc
@@ -200,9 +200,6 @@ line_LIB_DEPENDS:STATIC=general;roscpp;general;rostime;general;rosconsole;genera
 //Value Computed by CMake
 line_SOURCE_DIR:STATIC=/home/lubos/fuerte_workspace/sandbox/line
 
-//Dependencies for the target
-rawImage_LIB_DEPENDS:STATIC=general;roscpp;general;rostime;general;rosconsole;general;roscpp_serialization;general;xmlrpcpp;
-
 
 ########################
 # INTERNAL cache entries
@@ -335,7 +332,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/usr/bin/python][v2.7.3()]
 //ADVANCED property for variable: PYTHON_EXECUTABLE
 PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 _rosbuild_EXPORTS:INTERNAL=
-_rosbuild_cached_flag_time:INTERNAL=1361440869.38
+_rosbuild_cached_flag_time:INTERNAL=1364349772.38
 _roslang_LANGS:INTERNAL=roslisp;rospy;roscpp
 _rospack_deps_manifests_invoke_result:INTERNAL=/opt/ros/fuerte/share/std_msgs/manifest.xml;/opt/ros/fuerte/share/roslang/manifest.xml;/opt/ros/fuerte/share/rospy/manifest.xml;/opt/ros/fuerte/share/roscpp/manifest.xml
 _rospack_msgsrv_gen_invoke_result:INTERNAL=

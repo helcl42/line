@@ -1,21 +1,17 @@
 #include "ImageService.h"
 
-ImageService::ImageService(DetectionSettings* settings)
+ImageService::ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings)
 : m_shrink(2), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
 {
     m_image = new Image<float>();
     m_colorImage = new Image<float>();
-    m_lineDetector = new LineDetector(settings->getItem(0));    
-    m_triangleDetector = new TriangleDetector(settings->getItem(0));
-    m_circleDetector = new CircleDetector(settings->getItem(0));
-    m_squareDetector = new SquareDetector(settings->getItem(0));
+    m_lineDetector = new LineDetector(settings->getItem(0));      
+    m_objectDetector = new SvgObjectDetector(shapes, settings->getItem(0));
 }
 
 ImageService::~ImageService()
-{
-    SAFE_DELETE(m_squareDetector);
-    SAFE_DELETE(m_circleDetector);
-    SAFE_DELETE(m_triangleDetector);    
+{    
+    SAFE_DELETE(m_objectDetector);
     SAFE_DELETE(m_lineDetector);
     SAFE_DELETE(m_colorImage);
     SAFE_DELETE(m_image);
@@ -25,66 +21,50 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
 {
     unsigned long timeElapsed;
     Vector2<int>* objectPoint = NULL;
-    LineDescribableObject* object = NULL;
+    IDetectedObject* object = NULL;
 
     m_shrinkTimer.start();
 
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-    //    if (m_lookUpLines)
-    //    {
-    //        m_lineDetector->invalidate();
-    //        m_lineDetector->initDetectionParams(m_shrink);
-    //        m_lineDetector->setImages(m_image, m_colorImage);
-    //        object = m_lineDetector->findObject();
-    //    }
-    //    else
-    //    {
-    //        m_circleDetector->invalidate();
-    //        m_circleDetector->initDetectionParams(m_shrink);
-    //        m_circleDetector->setImages(m_image, m_colorImage);
-    //        m_circleDetector->setAngles(cameraGroundAngles);
-    //        object = m_circleDetector->findObject();
-    //    }
+//    m_lineDetector->invalidate();
+//    m_lineDetector->initDetectionParams(m_shrink);
+//    m_lineDetector->setImages(m_image, m_colorImage);
+//    object = m_lineDetector->findObject();    
 
-//    m_squareDetector->invalidate();
-//    m_squareDetector->initDetectionParams(m_shrink);
-//    m_squareDetector->setImages(m_image, m_colorImage);
-//    m_squareDetector->setAngles(cameraGroundAngles);
-//    object = m_squareDetector->findObject();
+    m_objectDetector->invalidate();
+    m_objectDetector->initDetectionParams(m_shrink);
+    m_objectDetector->setImages(m_image, m_colorImage);
+    m_objectDetector->setAngles(cameraGroundAngles);
+    object = m_objectDetector->findObject();   
 
-    //        m_triangleDetector->invalidate();
-    //        m_triangleDetector->initDetectionParams(m_shrink);
-    //        m_triangleDetector->setImages(m_image, m_colorImage);
-    //        object = m_triangleDetector->findObject();
-
-//    if (object->isValid())
-//    {
-//        std::cout << "OBJECT!!! " << std::endl;
-//        m_changeColorTimer.stop();
-//
-//        writeLinesToMessage(img, object->getLines(), object->getLineCount());
-//
-//        if (objectPoint != NULL) SAFE_DELETE(objectPoint);
-//
-//        objectPoint = object->getObjectPoint();
-//        std::cout << "POINT: " << *objectPoint << std::endl;
-//        if (objectPoint != NULL)
-//        {
-//            writePointToMessage(img, objectPoint);
-//        }
-//    }
-//    else
-//    {
-//        tryChangeSettings();
-//    }
-
-    for (unsigned int j = 0, k = 400; j < cameraGroundAngles.size(); j++, k += 27)
+    if (object->isValid())
     {
-        //m_image->writeCircle(k + 22, 22, 20, cameraGroundAngles[j]);
-        m_image->writeSquare(k + 48, 22, 25, 25, cameraGroundAngles[j], 20, 0);
+        std::cout << "OBJECT!!! " << std::endl;
+        m_changeColorTimer.stop();
+
+        writeLinesToMessage(img, object->getPolygons(), object->getCountOfPolygons());
+
+        if (objectPoint != NULL) SAFE_DELETE(objectPoint);
+
+        objectPoint = object->getObjectPoint();
+        std::cout << "POINT: " << *objectPoint << std::endl;
+        if (objectPoint != NULL)
+        {
+            writePointToMessage(img, objectPoint);
+        }
     }
+    else
+    {
+        tryChangeSettings();
+    }
+
+//    for (unsigned int j = 0, k = 400; j < cameraGroundAngles.size(); j++, k += 27)
+//    {
+//        //m_image->writeCircle(k + 22, 22, 20, cameraGroundAngles[j]);
+//        m_image->writeSquare(k + 48, 22, 25, 25, cameraGroundAngles[j], 20, 0);
+//    }
 
     writeImageToMessage(img);
 
@@ -95,7 +75,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
 
     if (timeElapsed > 450000)
     {
-        if (m_shrink < 5) m_shrink++;
+        if (m_shrink < 4) m_shrink++;
     }
     else if (timeElapsed < 150000)
     {

@@ -7,6 +7,10 @@
       <df name="build">
         <df name="CMakeFiles">
           <df name="clean-test-results.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="CMakeTmp">
             <df name="CMakeFiles">
@@ -16,57 +20,134 @@
           </df>
           <df name="CompilerIdC">
             <in>CMakeCCompilerId.c</in>
+            <in>a.out</in>
           </df>
           <df name="CompilerIdCXX">
             <in>CMakeCXXCompilerId.cpp</in>
+            <in>a.out</in>
           </df>
           <df name="line.dir">
             <df name="src">
-              <df name="strategy">
+              <df name="Shapes">
+              </df>
+              <df name="Utils">
               </df>
             </df>
-          </df>
-          <df name="listener.dir">
-            <df name="src">
-            </df>
-          </df>
-          <df name="rawImage.dir">
-            <df name="src">
-            </df>
+            <in>CXX.includecache</in>
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>depend.internal</in>
+            <in>depend.make</in>
+            <in>flags.make</in>
+            <in>link.txt</in>
+            <in>progress.make</in>
           </df>
           <df name="ROSBUILD_genmsg_cpp.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="ROSBUILD_genmsg_lisp.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="ROSBUILD_gensrv_cpp.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="ROSBUILD_gensrv_lisp.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="rosbuild_precompile.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>depend.internal</in>
+            <in>depend.make</in>
+            <in>progress.make</in>
           </df>
           <df name="rosbuild_premsgsrvgen.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="rospack_genmsg.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="rospack_genmsg_libexe.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>depend.internal</in>
+            <in>depend.make</in>
+            <in>progress.make</in>
           </df>
           <df name="rospack_gensrv.dir">
-          </df>
-          <df name="talker.dir">
-            <df name="src">
-            </df>
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="test-future.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="test-results-run.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="test-results.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="test.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
           <df name="tests.dir">
+            <in>DependInfo.cmake</in>
+            <in>build.make</in>
+            <in>cmake_clean.cmake</in>
+            <in>progress.make</in>
           </df>
+          <in>CMakeCCompiler.cmake</in>
+          <in>CMakeCXXCompiler.cmake</in>
+          <in>CMakeDetermineCompilerABI_C.bin</in>
+          <in>CMakeDetermineCompilerABI_CXX.bin</in>
+          <in>CMakeDirectoryInformation.cmake</in>
+          <in>CMakeOutput.log</in>
+          <in>CMakeRuleHashes.txt</in>
+          <in>CMakeSystem.cmake</in>
+          <in>Makefile.cmake</in>
+          <in>Makefile2</in>
+          <in>TargetDirectories.txt</in>
+          <in>cmake.check_cache</in>
+          <in>progress.marks</in>
         </df>
+        <in>CMakeCache.txt</in>
+        <in>Makefile</in>
+        <in>cmake_install.cmake</in>
       </df>
       <df name="include">
         <df name="line">
@@ -77,60 +158,146 @@
       <df name="lib">
       </df>
       <df name="src">
+        <df name="EdgeFilters">
+          <in>CannyFilterStategy.h</in>
+          <in>EdgeFilterStrategy.h</in>
+          <in>KirshFilterStrategy.h</in>
+          <in>PrewittFilterStrategy.h</in>
+          <in>RobertsFilterStrategy.h</in>
+          <in>SobelFilterStrategy.h</in>
+        </df>
+        <df name="ImageFilters">
+          <in>ImageFilter.h</in>
+        </df>
+        <df name="Pixel">
+          <in>IPixel.h</in>
+          <in>Pixel.h</in>
+          <in>PixelLUV.h</in>
+          <in>PixelRGB.h</in>
+          <in>PixelXYZ.h</in>
+        </df>
+        <df name="Shapes">
+          <in>Circle.h</in>
+          <in>DetectedObject.cpp</in>
+          <in>DetectedObject.h</in>
+          <in>Ellipse.h</in>
+          <in>GeneralObject.h</in>
+          <in>IDetectedObject.h</in>
+          <in>LinePair.cpp</in>
+          <in>LinePair.h</in>
+          <in>Rectangle.h</in>
+        </df>
+        <df name="SvgExtractor">
+          <in>SvgExtractor.cpp</in>
+          <in>SvgExtractor.h</in>
+        </df>
+        <df name="SvgParser">
+          <df name="antlr3">
+            <df name="include">
+              <in>antlr3.hpp</in>
+              <in>antlr3baserecognizer.hpp</in>
+              <in>antlr3bitset.hpp</in>
+              <in>antlr3collections.hpp</in>
+              <in>antlr3commontoken.hpp</in>
+              <in>antlr3commontree.hpp</in>
+              <in>antlr3commontreeadaptor.hpp</in>
+              <in>antlr3commontreenodestream.hpp</in>
+              <in>antlr3convertutf.hpp</in>
+              <in>antlr3cyclicdfa.hpp</in>
+              <in>antlr3debugeventlistener.hpp</in>
+              <in>antlr3defs.hpp</in>
+              <in>antlr3errors.hpp</in>
+              <in>antlr3exception.hpp</in>
+              <in>antlr3filestream.hpp</in>
+              <in>antlr3input.hpp</in>
+              <in>antlr3interfaces.hpp</in>
+              <in>antlr3intstream.hpp</in>
+              <in>antlr3lexer.hpp</in>
+              <in>antlr3memory.hpp</in>
+              <in>antlr3parser.hpp</in>
+              <in>antlr3recognizersharedstate.hpp</in>
+              <in>antlr3rewritestreams.hpp</in>
+              <in>antlr3tokenstream.hpp</in>
+              <in>antlr3traits.hpp</in>
+              <in>antlr3treeparser.hpp</in>
+            </df>
+          </df>
+          <df name="AST">
+            <df name="Arguments">
+              <in>Argument.cpp</in>
+              <in>Argument.h</in>
+              <in>ArgumentType.h</in>
+              <in>Coordinate.cpp</in>
+              <in>Coordinate.h</in>
+              <in>CoordinatePair.cpp</in>
+              <in>CoordinatePair.h</in>
+              <in>Flag.h</in>
+            </df>
+            <df name="Commands">
+              <in>CloseCommand.cpp</in>
+              <in>CloseCommand.h</in>
+              <in>Command.cpp</in>
+              <in>Command.h</in>
+              <in>CurveToCommand.cpp</in>
+              <in>CurveToCommand.h</in>
+              <in>EllipticArCommand.h</in>
+              <in>HorizontalLineToCommand.h</in>
+              <in>LineToCommand.cpp</in>
+              <in>LineToCommand.h</in>
+              <in>MoveToCommand.h</in>
+              <in>QuadraticBezierCurveToCommand.h</in>
+              <in>SmoothCurveToCommand.h</in>
+              <in>SmoothQuadraticBezerCurveToCommand.h</in>
+              <in>VerticalLineToCommand.h</in>
+            </df>
+            <in>MovetoDrawtoCommandGroup.h</in>
+            <in>Node.cpp</in>
+            <in>Node.h</in>
+            <in>PositionFactory.cpp</in>
+            <in>PositionFactory.h</in>
+            <in>SvgPath.h</in>
+          </df>
+          <in>SvgLexer.cpp</in>
+          <in>SvgLexer.hpp</in>
+          <in>SvgParser.cpp</in>
+          <in>SvgParser.hpp</in>
+          <in>SvgTraits.hpp</in>
+        </df>
+        <df name="Utils">
+          <in>Timer.cpp</in>
+          <in>Timer.h</in>
+          <in>Utils.h</in>
+        </df>
+        <df name="XMLParser">
+          <in>XmlParser.cpp</in>
+          <in>XmlParser.h</in>
+        </df>
         <in>BmpFileIO.h</in>
         <in>CameraService.cpp</in>
         <in>CameraService.h</in>
-        <in>CannyFilterStategy.h</in>
-        <in>Circle.cpp</in>
-        <in>Circle.h</in>
-        <in>CircleDetector.cpp</in>
-        <in>CircleDetector.h</in>
         <in>DetectionParams.cpp</in>
         <in>DetectionParams.h</in>
         <in>DetectionSettings.cpp</in>
         <in>DetectionSettings.h</in>
         <in>DetectorTopic.cpp</in>
         <in>DetectorTopic.h</in>
-        <in>EdgeFilterStrategy.h</in>
-        <in>IDetectedObject.h</in>
-        <in>IPixel.h</in>
         <in>Image.h</in>
-        <in>ImageFilter.h</in>
         <in>ImageMap.h</in>
         <in>ImageService.cpp</in>
         <in>ImageService.h</in>
-        <in>KirshFilterStrategy.h</in>
         <in>Line.cpp</in>
         <in>Line.h</in>
-        <in>LineDescribableObject.cpp</in>
-        <in>LineDescribableObject.h</in>
         <in>LineDetector.cpp</in>
         <in>LineDetector.h</in>
-        <in>LinePair.cpp</in>
-        <in>LinePair.h</in>
         <in>Main.cpp</in>
         <in>ObjectDetector.cpp</in>
         <in>ObjectDetector.h</in>
-        <in>Pixel.h</in>
-        <in>PixelLUV.h</in>
-        <in>PixelRGB.h</in>
-        <in>PixelXYZ.h</in>
-        <in>PrewittFilterStrategy.h</in>
-        <in>RobertsFilterStrategy.h</in>
-        <in>SobelFilterStrategy.h</in>
         <in>Square.cpp</in>
         <in>Square.h</in>
-        <in>SquareDetector.cpp</in>
-        <in>SquareDetector.h</in>
         <in>StraightObjectDetector.cpp</in>
         <in>StraightObjectDetector.h</in>
-        <in>Timer.cpp</in>
-        <in>Timer.h</in>
-        <in>Triangle.cpp</in>
-        <in>Triangle.h</in>
-        <in>TriangleDetector.cpp</in>
-        <in>TriangleDetector.h</in>
-        <in>Utils.h</in>
+        <in>SvgObjectDetector.cpp</in>
+        <in>SvgObjectDetector.h</in>
         <in>Vector2.h</in>
       </df>
     </df>
@@ -174,20 +341,6 @@
           </ccTool>
         </makeTool>
       </makefileType>
-      <item path="build/CMakeFiles/CompilerIdC/CMakeCCompilerId.c"
-            ex="true"
-            tool="0"
-            flavor2="0">
-      </item>
-      <item path="build/CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp"
-            ex="true"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="src/Pixel.h" ex="true" tool="3" flavor2="0">
-      </item>
-      <item path="src/Utils.h" ex="true" tool="3" flavor2="0">
-      </item>
     </conf>
   </confs>
 </configurationDescriptor>

@@ -10,6 +10,7 @@
 
 
 #include <vector>
+#include <stdexcept>
 #include <cstdlib>
 #include "Vector2.h"
 
@@ -32,7 +33,9 @@ public:
     Line() 
     : locked(false), straightnessFactor(0), direction(0), directionDegrees(0), length(0) {}
     
-    Line(const Line& input);     
+    Line(const Line& input, unsigned int skip = 1);     
+    
+    Line(Line* input, unsigned int skip = 1);
     
     virtual ~Line() {}    
             
@@ -42,13 +45,23 @@ public:
     
     bool isTooNarrow();    
     
-    bool addPoint(Vector2<int> pt);
+    void addPoint(Vector2<int> pt);
+    
+    void addPoint(int x, int y);
     
     double getDistanceTo(Vector2<int>& point);
     
     void computeProperties();                
     
     void deletePoints();
+    
+    Vector2<int>* getPointPtr(unsigned int index);
+    
+    Vector2<int> getPoint(unsigned int index);
+    
+    void setPoint(Vector2<int> point, unsigned int index);
+    
+    void setPoint(int x, int y, unsigned int index);
     
     unsigned int getSize() const;
     

@@ -1,12 +1,23 @@
 #include "Line.h"
 #include "DetectionParams.h"
 
-Line::Line(const Line& input)
+Line::Line(const Line& input, unsigned int skip)
 {
     std::vector<Vector2<int> >::const_iterator ii;
-    for (ii = input.points.begin(); ii != input.points.end(); ++ii)
+    for (ii = input.points.begin(); ii != input.points.end(); ii += skip)
     {
         points.push_back(*ii);
+    }
+    computeProperties();
+}
+
+Line::Line(Line* input, unsigned int skip)
+{    
+    if(skip < 0) skip = 1;
+    
+    for (unsigned int i = 0; i < input->getSize(); i += skip)
+    {
+        points.push_back(input->getPoint(i));
     }
     computeProperties();
 }
@@ -131,6 +142,64 @@ unsigned int Line::getSize() const
     return points.size();
 }
 
+void Line::addPoint(Vector2<int> point)
+{
+    points.push_back(point);
+}
+
+void Line::addPoint(int x, int y)
+{
+    points.push_back(Vector2<int>(x, y));
+}
+
+void Line::setPoint(Vector2<int> point, unsigned int index)
+{
+    if (index >= 0 && index < points.size())
+    {
+        points[index] = point;
+    }
+    else
+    {
+        throw std::runtime_error("Line:setPoint -> invalid index");
+    }
+}
+
+void Line::setPoint(int x, int y, unsigned int index)
+{
+    if (index >= 0 && index < points.size())
+    {
+        points[index] = Vector2<int>(x, y);
+    }
+    else
+    {
+        throw std::runtime_error("Line:setPoint -> invalid index");
+    }
+}
+
+Vector2<int> Line::getPoint(unsigned int index)
+{
+    if(index >= 0 && index < points.size())
+    {
+      return points[index];
+    }
+    else
+    {
+        throw std::runtime_error("Line:getPoint -> invalid index");
+    }
+}
+
+Vector2<int>* Line::getPointPtr(unsigned int index)
+{
+    if(index >= 0 && index < points.size())
+    {
+      return &points[index];
+    }
+    else
+    {
+        throw std::runtime_error("Line:getPointPtr -> invalid index");
+    }
+}
+
 bool Line::isInline(Line* input)
 {
     double q = points.front().y - points.front().x * direction;
@@ -197,21 +266,6 @@ bool Line::isTooNarrow()
         return true;
     }
     return false;
-}
-
-bool Line::addPoint(Vector2<int> pt)
-{
-    std::vector<Vector2<int> >::reverse_iterator ri;
-    for (ri = points.rbegin(); ri != points.rend(); ++ri)
-    {
-        if (pt == (*ri))
-        {
-            return false;
-        }
-    }
-
-    points.push_back(pt);
-    return true;
 }
 
 double Line::getDistanceTo(Vector2<int>& point)

@@ -319,36 +319,6 @@ src/CameraService.s:
 .PHONY : src/CameraService.s
 
 # target to build an object file
-src/Circle.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Circle.o
-.PHONY : src/Circle.o
-
-# target to preprocess a source file
-src/Circle.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Circle.i
-.PHONY : src/Circle.i
-
-# target to generate assembly for a file
-src/Circle.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Circle.s
-.PHONY : src/Circle.s
-
-# target to build an object file
-src/CircleDetector.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CircleDetector.o
-.PHONY : src/CircleDetector.o
-
-# target to preprocess a source file
-src/CircleDetector.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CircleDetector.i
-.PHONY : src/CircleDetector.i
-
-# target to generate assembly for a file
-src/CircleDetector.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/CircleDetector.s
-.PHONY : src/CircleDetector.s
-
-# target to build an object file
 src/DetectionParams.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/DetectionParams.o
 .PHONY : src/DetectionParams.o
@@ -424,21 +394,6 @@ src/Line.s:
 .PHONY : src/Line.s
 
 # target to build an object file
-src/LineDescribableObject.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDescribableObject.o
-.PHONY : src/LineDescribableObject.o
-
-# target to preprocess a source file
-src/LineDescribableObject.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDescribableObject.i
-.PHONY : src/LineDescribableObject.i
-
-# target to generate assembly for a file
-src/LineDescribableObject.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDescribableObject.s
-.PHONY : src/LineDescribableObject.s
-
-# target to build an object file
 src/LineDetector.o:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.o
 .PHONY : src/LineDetector.o
@@ -452,21 +407,6 @@ src/LineDetector.i:
 src/LineDetector.s:
 	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LineDetector.s
 .PHONY : src/LineDetector.s
-
-# target to build an object file
-src/LinePair.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LinePair.o
-.PHONY : src/LinePair.o
-
-# target to preprocess a source file
-src/LinePair.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LinePair.i
-.PHONY : src/LinePair.i
-
-# target to generate assembly for a file
-src/LinePair.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/LinePair.s
-.PHONY : src/LinePair.s
 
 # target to build an object file
 src/Main.o:
@@ -499,34 +439,34 @@ src/ObjectDetector.s:
 .PHONY : src/ObjectDetector.s
 
 # target to build an object file
-src/Square.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Square.o
-.PHONY : src/Square.o
+src/Shapes/DetectedObject.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Shapes/DetectedObject.o
+.PHONY : src/Shapes/DetectedObject.o
 
 # target to preprocess a source file
-src/Square.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Square.i
-.PHONY : src/Square.i
+src/Shapes/DetectedObject.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Shapes/DetectedObject.i
+.PHONY : src/Shapes/DetectedObject.i
 
 # target to generate assembly for a file
-src/Square.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Square.s
-.PHONY : src/Square.s
+src/Shapes/DetectedObject.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Shapes/DetectedObject.s
+.PHONY : src/Shapes/DetectedObject.s
 
 # target to build an object file
-src/SquareDetector.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SquareDetector.o
-.PHONY : src/SquareDetector.o
+src/Shapes/LinePair.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Shapes/LinePair.o
+.PHONY : src/Shapes/LinePair.o
 
 # target to preprocess a source file
-src/SquareDetector.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SquareDetector.i
-.PHONY : src/SquareDetector.i
+src/Shapes/LinePair.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Shapes/LinePair.i
+.PHONY : src/Shapes/LinePair.i
 
 # target to generate assembly for a file
-src/SquareDetector.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SquareDetector.s
-.PHONY : src/SquareDetector.s
+src/Shapes/LinePair.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Shapes/LinePair.s
+.PHONY : src/Shapes/LinePair.s
 
 # target to build an object file
 src/StraightObjectDetector.o:
@@ -544,49 +484,244 @@ src/StraightObjectDetector.s:
 .PHONY : src/StraightObjectDetector.s
 
 # target to build an object file
-src/Timer.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Timer.o
-.PHONY : src/Timer.o
+src/SvgExtractor/SvgExtractor.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgExtractor/SvgExtractor.o
+.PHONY : src/SvgExtractor/SvgExtractor.o
 
 # target to preprocess a source file
-src/Timer.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Timer.i
-.PHONY : src/Timer.i
+src/SvgExtractor/SvgExtractor.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgExtractor/SvgExtractor.i
+.PHONY : src/SvgExtractor/SvgExtractor.i
 
 # target to generate assembly for a file
-src/Timer.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Timer.s
-.PHONY : src/Timer.s
+src/SvgExtractor/SvgExtractor.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgExtractor/SvgExtractor.s
+.PHONY : src/SvgExtractor/SvgExtractor.s
 
 # target to build an object file
-src/Triangle.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Triangle.o
-.PHONY : src/Triangle.o
+src/SvgObjectDetector.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgObjectDetector.o
+.PHONY : src/SvgObjectDetector.o
 
 # target to preprocess a source file
-src/Triangle.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Triangle.i
-.PHONY : src/Triangle.i
+src/SvgObjectDetector.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgObjectDetector.i
+.PHONY : src/SvgObjectDetector.i
 
 # target to generate assembly for a file
-src/Triangle.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Triangle.s
-.PHONY : src/Triangle.s
+src/SvgObjectDetector.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgObjectDetector.s
+.PHONY : src/SvgObjectDetector.s
 
 # target to build an object file
-src/TriangleDetector.o:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/TriangleDetector.o
-.PHONY : src/TriangleDetector.o
+src/SvgParser/AST/Arguments/Argument.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Arguments/Argument.o
+.PHONY : src/SvgParser/AST/Arguments/Argument.o
 
 # target to preprocess a source file
-src/TriangleDetector.i:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/TriangleDetector.i
-.PHONY : src/TriangleDetector.i
+src/SvgParser/AST/Arguments/Argument.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Arguments/Argument.i
+.PHONY : src/SvgParser/AST/Arguments/Argument.i
 
 # target to generate assembly for a file
-src/TriangleDetector.s:
-	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/TriangleDetector.s
-.PHONY : src/TriangleDetector.s
+src/SvgParser/AST/Arguments/Argument.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Arguments/Argument.s
+.PHONY : src/SvgParser/AST/Arguments/Argument.s
+
+# target to build an object file
+src/SvgParser/AST/Arguments/Coordinate.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Arguments/Coordinate.o
+.PHONY : src/SvgParser/AST/Arguments/Coordinate.o
+
+# target to preprocess a source file
+src/SvgParser/AST/Arguments/Coordinate.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Arguments/Coordinate.i
+.PHONY : src/SvgParser/AST/Arguments/Coordinate.i
+
+# target to generate assembly for a file
+src/SvgParser/AST/Arguments/Coordinate.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Arguments/Coordinate.s
+.PHONY : src/SvgParser/AST/Arguments/Coordinate.s
+
+# target to build an object file
+src/SvgParser/AST/Arguments/CoordinatePair.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Arguments/CoordinatePair.o
+.PHONY : src/SvgParser/AST/Arguments/CoordinatePair.o
+
+# target to preprocess a source file
+src/SvgParser/AST/Arguments/CoordinatePair.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Arguments/CoordinatePair.i
+.PHONY : src/SvgParser/AST/Arguments/CoordinatePair.i
+
+# target to generate assembly for a file
+src/SvgParser/AST/Arguments/CoordinatePair.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Arguments/CoordinatePair.s
+.PHONY : src/SvgParser/AST/Arguments/CoordinatePair.s
+
+# target to build an object file
+src/SvgParser/AST/Commands/CloseCommand.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/CloseCommand.o
+.PHONY : src/SvgParser/AST/Commands/CloseCommand.o
+
+# target to preprocess a source file
+src/SvgParser/AST/Commands/CloseCommand.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/CloseCommand.i
+.PHONY : src/SvgParser/AST/Commands/CloseCommand.i
+
+# target to generate assembly for a file
+src/SvgParser/AST/Commands/CloseCommand.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/CloseCommand.s
+.PHONY : src/SvgParser/AST/Commands/CloseCommand.s
+
+# target to build an object file
+src/SvgParser/AST/Commands/Command.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/Command.o
+.PHONY : src/SvgParser/AST/Commands/Command.o
+
+# target to preprocess a source file
+src/SvgParser/AST/Commands/Command.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/Command.i
+.PHONY : src/SvgParser/AST/Commands/Command.i
+
+# target to generate assembly for a file
+src/SvgParser/AST/Commands/Command.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/Command.s
+.PHONY : src/SvgParser/AST/Commands/Command.s
+
+# target to build an object file
+src/SvgParser/AST/Commands/CurveToCommand.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/CurveToCommand.o
+.PHONY : src/SvgParser/AST/Commands/CurveToCommand.o
+
+# target to preprocess a source file
+src/SvgParser/AST/Commands/CurveToCommand.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/CurveToCommand.i
+.PHONY : src/SvgParser/AST/Commands/CurveToCommand.i
+
+# target to generate assembly for a file
+src/SvgParser/AST/Commands/CurveToCommand.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/CurveToCommand.s
+.PHONY : src/SvgParser/AST/Commands/CurveToCommand.s
+
+# target to build an object file
+src/SvgParser/AST/Commands/LineToCommand.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/LineToCommand.o
+.PHONY : src/SvgParser/AST/Commands/LineToCommand.o
+
+# target to preprocess a source file
+src/SvgParser/AST/Commands/LineToCommand.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/LineToCommand.i
+.PHONY : src/SvgParser/AST/Commands/LineToCommand.i
+
+# target to generate assembly for a file
+src/SvgParser/AST/Commands/LineToCommand.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/LineToCommand.s
+.PHONY : src/SvgParser/AST/Commands/LineToCommand.s
+
+# target to build an object file
+src/SvgParser/AST/Commands/MoveToCommand.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/MoveToCommand.o
+.PHONY : src/SvgParser/AST/Commands/MoveToCommand.o
+
+# target to preprocess a source file
+src/SvgParser/AST/Commands/MoveToCommand.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/MoveToCommand.i
+.PHONY : src/SvgParser/AST/Commands/MoveToCommand.i
+
+# target to generate assembly for a file
+src/SvgParser/AST/Commands/MoveToCommand.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Commands/MoveToCommand.s
+.PHONY : src/SvgParser/AST/Commands/MoveToCommand.s
+
+# target to build an object file
+src/SvgParser/AST/Node.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Node.o
+.PHONY : src/SvgParser/AST/Node.o
+
+# target to preprocess a source file
+src/SvgParser/AST/Node.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Node.i
+.PHONY : src/SvgParser/AST/Node.i
+
+# target to generate assembly for a file
+src/SvgParser/AST/Node.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/Node.s
+.PHONY : src/SvgParser/AST/Node.s
+
+# target to build an object file
+src/SvgParser/AST/PositionFactory.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/PositionFactory.o
+.PHONY : src/SvgParser/AST/PositionFactory.o
+
+# target to preprocess a source file
+src/SvgParser/AST/PositionFactory.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/PositionFactory.i
+.PHONY : src/SvgParser/AST/PositionFactory.i
+
+# target to generate assembly for a file
+src/SvgParser/AST/PositionFactory.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/AST/PositionFactory.s
+.PHONY : src/SvgParser/AST/PositionFactory.s
+
+# target to build an object file
+src/SvgParser/SvgLexer.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/SvgLexer.o
+.PHONY : src/SvgParser/SvgLexer.o
+
+# target to preprocess a source file
+src/SvgParser/SvgLexer.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/SvgLexer.i
+.PHONY : src/SvgParser/SvgLexer.i
+
+# target to generate assembly for a file
+src/SvgParser/SvgLexer.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/SvgLexer.s
+.PHONY : src/SvgParser/SvgLexer.s
+
+# target to build an object file
+src/SvgParser/SvgParser.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/SvgParser.o
+.PHONY : src/SvgParser/SvgParser.o
+
+# target to preprocess a source file
+src/SvgParser/SvgParser.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/SvgParser.i
+.PHONY : src/SvgParser/SvgParser.i
+
+# target to generate assembly for a file
+src/SvgParser/SvgParser.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/SvgParser/SvgParser.s
+.PHONY : src/SvgParser/SvgParser.s
+
+# target to build an object file
+src/Utils/Timer.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Utils/Timer.o
+.PHONY : src/Utils/Timer.o
+
+# target to preprocess a source file
+src/Utils/Timer.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Utils/Timer.i
+.PHONY : src/Utils/Timer.i
+
+# target to generate assembly for a file
+src/Utils/Timer.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/Utils/Timer.s
+.PHONY : src/Utils/Timer.s
+
+# target to build an object file
+src/XMLParser/XmlParser.o:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/XMLParser/XmlParser.o
+.PHONY : src/XMLParser/XmlParser.o
+
+# target to preprocess a source file
+src/XMLParser/XmlParser.i:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/XMLParser/XmlParser.i
+.PHONY : src/XMLParser/XmlParser.i
+
+# target to generate assembly for a file
+src/XMLParser/XmlParser.s:
+	$(MAKE) -f CMakeFiles/line.dir/build.make CMakeFiles/line.dir/src/XMLParser/XmlParser.s
+.PHONY : src/XMLParser/XmlParser.s
 
 # Help Target
 help:
@@ -615,12 +750,6 @@ help:
 	@echo "... src/CameraService.o"
 	@echo "... src/CameraService.i"
 	@echo "... src/CameraService.s"
-	@echo "... src/Circle.o"
-	@echo "... src/Circle.i"
-	@echo "... src/Circle.s"
-	@echo "... src/CircleDetector.o"
-	@echo "... src/CircleDetector.i"
-	@echo "... src/CircleDetector.s"
 	@echo "... src/DetectionParams.o"
 	@echo "... src/DetectionParams.i"
 	@echo "... src/DetectionParams.s"
@@ -636,39 +765,72 @@ help:
 	@echo "... src/Line.o"
 	@echo "... src/Line.i"
 	@echo "... src/Line.s"
-	@echo "... src/LineDescribableObject.o"
-	@echo "... src/LineDescribableObject.i"
-	@echo "... src/LineDescribableObject.s"
 	@echo "... src/LineDetector.o"
 	@echo "... src/LineDetector.i"
 	@echo "... src/LineDetector.s"
-	@echo "... src/LinePair.o"
-	@echo "... src/LinePair.i"
-	@echo "... src/LinePair.s"
 	@echo "... src/Main.o"
 	@echo "... src/Main.i"
 	@echo "... src/Main.s"
 	@echo "... src/ObjectDetector.o"
 	@echo "... src/ObjectDetector.i"
 	@echo "... src/ObjectDetector.s"
-	@echo "... src/Square.o"
-	@echo "... src/Square.i"
-	@echo "... src/Square.s"
-	@echo "... src/SquareDetector.o"
-	@echo "... src/SquareDetector.i"
-	@echo "... src/SquareDetector.s"
+	@echo "... src/Shapes/DetectedObject.o"
+	@echo "... src/Shapes/DetectedObject.i"
+	@echo "... src/Shapes/DetectedObject.s"
+	@echo "... src/Shapes/LinePair.o"
+	@echo "... src/Shapes/LinePair.i"
+	@echo "... src/Shapes/LinePair.s"
 	@echo "... src/StraightObjectDetector.o"
 	@echo "... src/StraightObjectDetector.i"
 	@echo "... src/StraightObjectDetector.s"
-	@echo "... src/Timer.o"
-	@echo "... src/Timer.i"
-	@echo "... src/Timer.s"
-	@echo "... src/Triangle.o"
-	@echo "... src/Triangle.i"
-	@echo "... src/Triangle.s"
-	@echo "... src/TriangleDetector.o"
-	@echo "... src/TriangleDetector.i"
-	@echo "... src/TriangleDetector.s"
+	@echo "... src/SvgExtractor/SvgExtractor.o"
+	@echo "... src/SvgExtractor/SvgExtractor.i"
+	@echo "... src/SvgExtractor/SvgExtractor.s"
+	@echo "... src/SvgObjectDetector.o"
+	@echo "... src/SvgObjectDetector.i"
+	@echo "... src/SvgObjectDetector.s"
+	@echo "... src/SvgParser/AST/Arguments/Argument.o"
+	@echo "... src/SvgParser/AST/Arguments/Argument.i"
+	@echo "... src/SvgParser/AST/Arguments/Argument.s"
+	@echo "... src/SvgParser/AST/Arguments/Coordinate.o"
+	@echo "... src/SvgParser/AST/Arguments/Coordinate.i"
+	@echo "... src/SvgParser/AST/Arguments/Coordinate.s"
+	@echo "... src/SvgParser/AST/Arguments/CoordinatePair.o"
+	@echo "... src/SvgParser/AST/Arguments/CoordinatePair.i"
+	@echo "... src/SvgParser/AST/Arguments/CoordinatePair.s"
+	@echo "... src/SvgParser/AST/Commands/CloseCommand.o"
+	@echo "... src/SvgParser/AST/Commands/CloseCommand.i"
+	@echo "... src/SvgParser/AST/Commands/CloseCommand.s"
+	@echo "... src/SvgParser/AST/Commands/Command.o"
+	@echo "... src/SvgParser/AST/Commands/Command.i"
+	@echo "... src/SvgParser/AST/Commands/Command.s"
+	@echo "... src/SvgParser/AST/Commands/CurveToCommand.o"
+	@echo "... src/SvgParser/AST/Commands/CurveToCommand.i"
+	@echo "... src/SvgParser/AST/Commands/CurveToCommand.s"
+	@echo "... src/SvgParser/AST/Commands/LineToCommand.o"
+	@echo "... src/SvgParser/AST/Commands/LineToCommand.i"
+	@echo "... src/SvgParser/AST/Commands/LineToCommand.s"
+	@echo "... src/SvgParser/AST/Commands/MoveToCommand.o"
+	@echo "... src/SvgParser/AST/Commands/MoveToCommand.i"
+	@echo "... src/SvgParser/AST/Commands/MoveToCommand.s"
+	@echo "... src/SvgParser/AST/Node.o"
+	@echo "... src/SvgParser/AST/Node.i"
+	@echo "... src/SvgParser/AST/Node.s"
+	@echo "... src/SvgParser/AST/PositionFactory.o"
+	@echo "... src/SvgParser/AST/PositionFactory.i"
+	@echo "... src/SvgParser/AST/PositionFactory.s"
+	@echo "... src/SvgParser/SvgLexer.o"
+	@echo "... src/SvgParser/SvgLexer.i"
+	@echo "... src/SvgParser/SvgLexer.s"
+	@echo "... src/SvgParser/SvgParser.o"
+	@echo "... src/SvgParser/SvgParser.i"
+	@echo "... src/SvgParser/SvgParser.s"
+	@echo "... src/Utils/Timer.o"
+	@echo "... src/Utils/Timer.i"
+	@echo "... src/Utils/Timer.s"
+	@echo "... src/XMLParser/XmlParser.o"
+	@echo "... src/XMLParser/XmlParser.i"
+	@echo "... src/XMLParser/XmlParser.s"
 .PHONY : help
 
 

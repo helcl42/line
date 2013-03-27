@@ -10,8 +10,8 @@
 
 #include <vector>
 #include <cstdlib>
-#include "Pixel.h"
-#include "Utils.h"
+#include "Pixel/Pixel.h"
+#include "Utils/Utils.h"
 
 
 class DetectionColorItem 

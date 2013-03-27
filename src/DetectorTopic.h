@@ -13,8 +13,8 @@
 #include <cstdio>
 #include <ctime>
 
-#include "Utils.h"
-#include "Timer.h"
+#include "Utils/Utils.h"
+#include "Utils/Timer.h"
 #include "DetectionSettings.h"
 #include "Image.h"
 #include "ImageService.h"
@@ -48,7 +48,7 @@ private:
     CameraService m_cameraService;
             
 public:
-    DetectorTopic(DetectionSettings* settings);
+    DetectorTopic(std::vector<DetectedObject*>& shapes, DetectionSettings* settings);
     
     ~DetectorTopic();
     
