@@ -147,15 +147,27 @@
           <in>CMakeCXXCompiler.cmake</in>
           <in>CMakeDetermineCompilerABI_C.bin</in>
           <in>CMakeDetermineCompilerABI_CXX.bin</in>
+          <in>CMakeDirectoryInformation.cmake</in>
           <in>CMakeOutput.log</in>
+          <in>CMakeRuleHashes.txt</in>
           <in>CMakeSystem.cmake</in>
+          <in>Makefile.cmake</in>
+          <in>Makefile2</in>
+          <in>TargetDirectories.txt</in>
+          <in>cmake.check_cache</in>
+          <in>progress.marks</in>
         </df>
+        <in>CMakeCache.txt</in>
+        <in>Makefile</in>
+        <in>cmake_install.cmake</in>
       </df>
       <df name="include">
         <df name="line">
         </df>
       </df>
       <df name="input">
+      </df>
+      <df name="lib">
       </df>
       <df name="src">
         <df name="EdgeFilters">

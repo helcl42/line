@@ -75,7 +75,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
 
     if (timeElapsed > 450000)
     {
-        if (m_shrink < 4) m_shrink++;
+        if (m_shrink < 6) m_shrink++;
     }
     else if (timeElapsed < 150000)
     {

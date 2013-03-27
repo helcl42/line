@@ -53,8 +53,8 @@ DetectedObject* SvgObjectDetector::findObject()
     //repaintSimilarColorPlaces();
     m_edgeFilter->setImage(m_workImage);
     m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
-    m_imageFilter->setImage(m_workImage);
-    m_imageFilter->gaussianBlur();
+    //m_imageFilter->setImage(m_workImage);
+    //m_imageFilter->gaussianBlur();
     m_imageMap->setImage(m_workImage);
     return findBestShape();
 }
@@ -80,22 +80,28 @@ bool SvgObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsi
 
 bool SvgObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
 {
-    Line* squareLine = shape->getPolygon();
-    unsigned int lineSize = squareLine->getSize();
+    Line* shapeLine = shape->getPolygon();
+    unsigned int lineSize = shapeLine->getSize();
     unsigned int failCount = 0;
     double percentFail;
+    Vector2<int>* point;
     Line line;
     
     if(!rawShapeFind(shape, y, x)) return false;
     
     for (unsigned int k = 0; k < lineSize; k++)
     {
-        Vector2<int> point = squareLine->points[k];
-        if (m_imageMap->getValueAt(point.y + y, point.x + x) < DetectionParams::selectionTreshold)
+        point = shapeLine->getPointPtr(k);
+        if (m_imageMap->getValueAt(point->y + y, point->x + x) < DetectionParams::selectionTreshold)
         {
             failCount++;
         }
-        line.points.push_back(Vector2<int>(point.x + x, point.y + y));
+        
+        if(failCount > 10)
+        {            
+            return false;
+        }
+        line.points.push_back(Vector2<int>(point->x + x, point->y + y));
     }
     writeLineInImage(&line, 0, 255, 0);    
     
@@ -103,13 +109,12 @@ bool SvgObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, un
     percentFail = (double) failCount / (double) lineSize;
 
     if (percentFail < DetectionParams::maxPercentageError)
-    {
-        Vector2<int>* point = NULL;
+    {        
         std::cout << "failCount = " << failCount << " size = " << lineSize << " fail = " << percentFail << "%" << std::endl;
         m_tempLine->deletePoints();
         for (unsigned int k = 0; k < lineSize; k++)
         {
-            point = squareLine->getPointPtr(k);
+            point = shapeLine->getPointPtr(k);
             m_tempLine->setPoint(point->x + x, point->y + y, k);
         }        
         invalidate();
@@ -130,9 +135,9 @@ bool SvgObjectDetector::findShapeInImagePart(DetectedObject* shape)
     {
         shape->viewByAngle(*anglesIterator);
 
-        for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 4)
+        for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 7)
         {
-            for (unsigned int j = 0; j < baseWidth - offsetX; j += 4)
+            for (unsigned int j = 0; j < baseWidth - offsetX; j += 7)
             {
                 if (innerShapeFind(shape, i, j))
                 {
@@ -160,8 +165,8 @@ DetectedObject* SvgObjectDetector::findBestShape()
 //                if (colorMatch())
 //                {
 //                    //std::cout << *m_bestMatch << std::endl;                    
-//                    //writeLineInImage(m_bestMatch->getPolygon(), 255, 0, 0);
-//                    break;
+                    writeLineInImage(m_bestMatch->getPolygon(), 255, 0, 0);
+                    break;
 //                }                
             }
         }

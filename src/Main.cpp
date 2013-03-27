@@ -2,7 +2,6 @@
 #include "DetectionSettings.h"
 #include "SvgExtractor/SvgExtractor.h"
 
-
 /**
  * 
  * Params
@@ -21,25 +20,25 @@
 int main(int argc, char** argv)
 {
     ros::init(argc, argv, "line");
-    
-    if(argc < 3)
+
+    if (argc < 3)
     {
-        std::cout << "Spatne zadane parametry: rosrun line line shapeFile.svg lineColor1 lineColor2 ..." << std::endl;       
+        std::cout << "Spatne zadane parametry: rosrun line line shapeFile.svg lineColor1 lineColor2 ..." << std::endl;
         return 1;
     }
-    
+
     SvgExtractor svgExtractor(argv[1]);
-    
-   std::vector<DetectedObject*> shapes = svgExtractor.extractSvgObjects();
-    
+
+    std::vector<DetectedObject*> shapes = svgExtractor.extractSvgObjects();
+
     DetectionSettings* settings = new DetectionSettings(argc, argv);
     std::cout << *settings << std::endl;
-    
-    ROS_INFO("Line started");               
-    
+
+    ROS_INFO("Line started");
+
     DetectorTopic detector(shapes, settings);
     detector.run();
-    
+
     ros::spin();
     ROS_INFO("Line finished");
     SAFE_DELETE(settings);

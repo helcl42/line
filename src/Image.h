@@ -62,11 +62,6 @@ public:
     void cleanUp();
 
     void shrinkImage(unsigned int times);
-    
-    //temp
-    void writeCircle(int x0, int y0, int radius, double angle);
-    //temp
-    void writeSquare(int x0, int y0, int height, int width, double angle, double rotateAngle, double anotherAngle);
 
     inline Pixel<T>* getPixel(unsigned int x, unsigned int y) const;
 
@@ -77,8 +72,6 @@ public:
     inline void setPixelValue(unsigned int y, unsigned int x, Pixel<T>* pixel);
 
     inline void setPixelValue(unsigned int y, unsigned int x, T r, T g, T b);
-
-    //inline void writeToMessage(const sensor_msgs::Image::ConstPtr& img);        
 
     friend std::ostream& operator<<<T>(std::ostream& out, const Image<T>& img);
 };
@@ -133,29 +126,6 @@ void Image<T>::cleanUp()
     m_width = 0;
 }
 
-//template <class T>
-//void BmpImage<T>::writeToMessage(const sensor_msgs::Image::ConstPtr& img)
-//{
-//    if (img->width > 0 && img->height > 0)
-//    {        
-//        Pixel<T>* pixel = NULL;
-//        unsigned char* temp;
-//        for (int i = 0, index = 0; i < m_height; i++)
-//        {            
-//            for (int j = 0; j < m_width; j++, index += 3)
-//            {
-//                pixel = m_imageMatrix[i][j];
-//                temp = (unsigned char*) &img->data[index];
-//                *temp = (unsigned char) pixel->b;
-//                temp = (unsigned char*) &img->data[index + 1];
-//                *temp = (unsigned char) pixel->g;
-//                temp = (unsigned char*) &img->data[index + 2];
-//                *temp = (unsigned char) pixel->r;
-//            }            
-//            index = i * img->width * 3;
-//        }
-//    }
-//}
 
 template <class T>
 void Image<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int shrink)
@@ -185,7 +155,7 @@ void Image<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int
             }
         }       
 
-        corrector = (img->width % m_shrinkRatio) * m_shrinkRatio;
+        corrector = (img->width % m_shrinkRatio) * 3;                
         
         std::vector<unsigned char> data = img->data;
 
@@ -202,102 +172,6 @@ void Image<T>::setInstance(const sensor_msgs::Image::ConstPtr& img, unsigned int
             }
             index += 3 * img->width * (m_shrinkRatio - 1) + corrector;
         }
-    }
-}
-
-template <class T>
-void Image<T>::writeSquare(int x0, int y0, int height, int width, double angle, double rotateAngle, double anotherAngle)
-{
-    Line* square = new Line();
-    //height = height * sin(angle * M_PI / 180);
-//    for(int i = y0; i < y0 + height; i++)
-//    {
-//        for(int j = x0; j < x0 + width; j++)
-//        {            
-//            if(i == y0 || i == y0 + height - 1) 
-//            {
-//                setPixelValue((j * sin(rotateAngle * M_PI / 180) + i * cos(rotateAngle * M_PI / 180)) * sin(angle * M_PI / 180), j * cos(rotateAngle * M_PI / 180) - i * sin(rotateAngle * M_PI / 180) * cos(anotherAngle * M_PI / 180), 0, 0, 255);
-//            }
-//            else 
-//            {
-//                if(j == x0 || j == x0 + width - 1)
-//                {
-//                    setPixelValue((j * sin(rotateAngle * M_PI / 180) + i * cos(rotateAngle * M_PI / 180)) * sin(angle * M_PI / 180), j * cos(rotateAngle * M_PI / 180) - i * sin(rotateAngle * M_PI / 180) * cos(anotherAngle * M_PI / 180), 0, 0, 255);
-//                }                
-//            }
-//        }
-//    }
-        
-    double sinAngle = sin(rotateAngle * M_PI / 180);
-    double cosAngle = cos(rotateAngle * M_PI / 180);   
-    int halfSize = height;
-    
-    for (int i = y0 - halfSize; i < y0 + halfSize; i++)
-    {
-        for (int j = x0 - halfSize; j < x0 + halfSize; j++)
-        {
-            if (i == y0 - halfSize || i == y0 + halfSize - 1)
-            {                              
-                square->points.push_back(Vector2<int>(((j - x0) * cosAngle - (i - y0) * sinAngle) * sin(angle * M_PI / 180), ((j - x0) * sinAngle + (i - y0) * cosAngle)));                                
-            }
-            else
-            {
-                if (j == x0 - halfSize || j == x0 + halfSize - 1)
-                {                    
-                    square->points.push_back(Vector2<int>(((j - x0) * cosAngle - (i - y0) * sinAngle) * sin(angle * M_PI / 180), ((j - x0) * sinAngle + (i - y0) * cosAngle)));                 
-                }
-            }
-        }
-    }
-    
-    for(int i = 0; i < square->getSize(); i++)
-    {        
-        square->points[i] = Vector2<int>(square->points[i].x + x0 + halfSize, square->points[i].y + y0 + halfSize);
-        setPixelValue(square->points[i].y, square->points[i].x, 0, 0, 255);
-    }  
-    SAFE_DELETE(square);    
-}
-
-template <class T>
-void Image<T>::writeCircle(int x0, int y0, int radius, double angle)
-{
-    int f = 1 - radius;
-    int ddFx = 1;
-    int ddFy = -2 * radius;// * cos(angle * M_PI / 180);
-    int x = 0;
-    int y = radius; // * cos(angle * M_PI / 180);
-    float ellipse = sin(angle * M_PI / 180);
- 
-    setPixelValue(y0 + radius * ellipse, x0, 0, 0, 255);
-    setPixelValue(y0 - radius * ellipse, x0, 0, 0, 255);
-    setPixelValue(y0, x0 + radius, 0, 0, 255);
-    setPixelValue(y0, x0 - radius, 0, 0, 255);
- 
-    while(x < y)
-    {
-        // ddF_x == 2 * x + 1;
-        // ddF_y == -2 * y;
-        // f == x*x + y*y - radius*radius + 2*x - y + 1;
-        if(f >= 0) 
-        {
-            y--;
-            ddFy += 2;
-            f += ddFy;
-        }
-        
-        x++;
-        ddFx += 2;
-        f += ddFx;    
-        
-        setPixelValue(y0 + y * ellipse, x0 + x, 0, 0, 255);
-        setPixelValue(y0 + y * ellipse, x0 - x, 0, 0, 255);
-        setPixelValue(y0 - y * ellipse, x0 + x, 0, 0, 255);
-        setPixelValue(y0 - y * ellipse, x0 - x, 0, 0, 255);
-        
-        setPixelValue(y0 + x * ellipse, x0 + y, 0, 0, 255);
-        setPixelValue(y0 + x * ellipse, x0 - y, 0, 0, 255);
-        setPixelValue(y0 - x * ellipse, x0 + y, 0, 0, 255);
-        setPixelValue(y0 - x * ellipse, x0 - y, 0, 0, 255);
     }
 }
 
@@ -381,6 +255,7 @@ Pixel<T>* Image<T>::getPixel(unsigned int y, unsigned int x) const
     }
     else
     {
+        std::cout << "Y = " << y << " X = " << x << " height = " << m_height << " width = " << m_width << std::endl;
         throw std::runtime_error("Image:getPixel ->Index out of bounds.");
     }
     return ret;

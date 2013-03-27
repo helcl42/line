@@ -31,9 +31,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-rosbuild_add_executable(line src/DetectorTopic.cpp)
-
-set(ROS_COMPILE_FLAGS "-Wno-extra -Wno-unused-variable -Wno-sign-compare")
+set(ROS_COMPILE_FLAGS "-O3 -Wno-extra -Wno-unused-variable -Wno-sign-compare -Wno-unused-function")
 
 rosbuild_add_library(line src/Utils/Timer.cpp)
 
@@ -57,7 +55,7 @@ rosbuild_add_library(line src/SvgExtractor/SvgExtractor.cpp)
 
 rosbuild_add_library(line src/XMLParser/XmlParser.cpp)
 
-rosbuild_add_library(line src/Main.cpp)
+rosbuild_add_library(line src/DetectorTopic.cpp)
 rosbuild_add_library(line src/DetectionSettings.cpp)
 rosbuild_add_library(line src/Line.cpp)
 rosbuild_add_library(line src/DetectionParams.cpp)
@@ -67,6 +65,8 @@ rosbuild_add_library(line src/ObjectDetector.cpp)
 rosbuild_add_library(line src/LineDetector.cpp)
 rosbuild_add_library(line src/SvgObjectDetector.cpp)
 rosbuild_add_library(line src/StraightObjectDetector.cpp)
+
+rosbuild_add_executable(line src/Main.cpp)
 
 
 

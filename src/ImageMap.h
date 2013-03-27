@@ -104,7 +104,7 @@ void ImageMap<T>::setImage(Image<float>* image)
     {
         allocateMap(image);
     }    
-    else if(m_height != image->getHeight() || m_width != image->getWidth())
+    else if(m_height < image->getHeight() || m_width < image->getWidth())
     {                
         cleanUp();        
         allocateMap(image);
@@ -128,7 +128,7 @@ void ImageMap<T>::allocateMap(Image<float>* image)
 
 template <class T>
 void ImageMap<T>::initImageMap(Image<float>* image)
-{
+{        
     Pixel<float>* pixel;
     for(unsigned int i = 0; i < m_height; i++)
     {
