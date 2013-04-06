@@ -21,9 +21,7 @@ protected:
     
     std::vector<DetectedObject*> m_detectedShapes;
     
-    DetectedObject* m_bestMatch;
-    
-    Line* m_tempLine;
+    DetectedObject* m_bestMatch;    
 
 public:
     SvgObjectDetector(std::vector<DetectedObject*>& shapes, DetectionColorItem* settings = NULL);
@@ -43,6 +41,8 @@ public:
 
 protected:
     DetectedObject* findBestShape();
+    
+    void cleanUp();
 
     bool colorMatch(unsigned int failCount = 0);
     

@@ -31,9 +31,23 @@ public:
             -1, 0, 1
         };
 
+        float kerYXMatrix[] = {
+             0,  1, 1,
+            -1,  0, 2,
+            -2, -1, 0
+        };
+        
+        float kerXYMatrix[] = {
+            -2, -1, 0,
+            -1,  0, 1,
+             0,  1, 2
+        };
+        
         std::vector<Kernel<T>* > kernels;
         kernels.push_back(new NonSeparableKernel<T>(3, 3, kerXMatrix));
         kernels.push_back(new NonSeparableKernel<T>(3, 3, kerYMatrix));
+//        kernels.push_back(new NonSeparableKernel<T>(3, 3, kerYXMatrix));
+//        kernels.push_back(new NonSeparableKernel<T>(3, 3, kerXYMatrix));
 
         FFTImageFilterBatchItem<T>* edgeFilter = new FFTImageFilterBatchItem<T>(kernels);
 
