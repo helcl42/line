@@ -126,9 +126,9 @@ bool SvgObjectDetector::findShapeInImagePart(DetectedObject* shape)
     {
         shape->viewByAngle(*anglesIterator);                
 
-        for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 2)
+        for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 5)
         {
-            for (unsigned int j = 0; j < baseWidth - offsetX - 1; j += 2)
+            for (unsigned int j = 0; j < baseWidth - offsetX - 1; j += 5)
             {
                 if (innerShapeFind(shape, i, j))
                 {
