@@ -108,8 +108,7 @@ bool SvgObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, un
             point = shapeLine->getPointPtr(k);
             m_bestMatch->addPoint(point->x + x, point->y + y);
         }                        
-        
-        //invalidate();
+                
         return true;
     }
     return false;
@@ -127,9 +126,9 @@ bool SvgObjectDetector::findShapeInImagePart(DetectedObject* shape)
     {
         shape->viewByAngle(*anglesIterator);                
 
-        for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 5)
+        for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 2)
         {
-            for (unsigned int j = 0; j < baseWidth - offsetX - 1; j += 5)
+            for (unsigned int j = 0; j < baseWidth - offsetX - 1; j += 2)
             {
                 if (innerShapeFind(shape, i, j))
                 {
