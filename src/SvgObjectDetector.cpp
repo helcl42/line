@@ -195,7 +195,7 @@ bool SvgObjectDetector::colorMatch(unsigned int failCount)
 
 void SvgObjectDetector::initDetectionParams(unsigned int shrink)
 {
-    DetectionParams::selectionTreshold = 130;
+    DetectionParams::selectionTreshold = 30;
 
     DetectionParams::maxPercentageError = 0.1;
 }
