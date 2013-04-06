@@ -21,10 +21,11 @@ public:
     
     Vector2<int>* getObjectPoint()
     {
-        unsigned int sizeQuad = m_polygon->getSize() / 4;
+        unsigned int sizeQuad = m_polygon->getSize() / 4 - 1;
+                
+        Vector2<int>* a = Vector2<int>::getPointBetween(m_polygon->getPointPtr(0), m_polygon->getPointPtr(sizeQuad * 2));
+        Vector2<int>* b = Vector2<int>::getPointBetween(m_polygon->getPointPtr(sizeQuad), m_polygon->getPointPtr(sizeQuad * 3));
         
-        Vector2<int>* a = Vector2<int>::getPointBetween(m_polygon->getPoint(0), m_polygon->getPoint(sizeQuad * 2));
-        Vector2<int>* b = Vector2<int>::getPointBetween(m_polygon->getPoint(sizeQuad), m_polygon->getPoint(sizeQuad * 3));
         return Vector2<int>::getPointBetween(a, b);
     }        
 };

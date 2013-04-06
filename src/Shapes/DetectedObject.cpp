@@ -38,7 +38,7 @@ Vector2<int>* DetectedObject::getHigherBoundingPoint()
 }
 
 void DetectedObject::rescale(float ratio)
-{
+{        
     for (unsigned int i = 0; i < m_polygon->getSize(); i++)
     {
         Vector2<int> point = m_polygon->getPoint(i);
@@ -51,36 +51,40 @@ void DetectedObject::rescale(float ratio)
 void DetectedObject::rescaleToSize(float size)
 {
     computeBounds();
-    
+
     unsigned int width = getWidth();
     unsigned int height = getHeight();
-    unsigned int max;
-    
-    if(width > height)
+    unsigned int max;    
+
+    if (width > height)
     {
         max = width;
     }
     else
     {
         max = height;
-    }        
+    }   
     
-    rescale(size / max);
+    rescale(size / max);    
 }
 
 void DetectedObject::translateToOrigin()
 {
     Vector2<int> translation;
+    Vector2<int>* point;
 
-    translation.x = m_boundingPointLower.x < 0 ? m_boundingPointLower.x : -m_boundingPointLower.x;
-        translation.y = m_boundingPointLower.y < 0 ? m_boundingPointLower.y : -m_boundingPointLower.y;
+    translation.x = m_boundingPointLower.x < 0 ? -m_boundingPointLower.x : -m_boundingPointLower.x;
+    translation.y = m_boundingPointLower.y < 0 ? m_boundingPointLower.y : -m_boundingPointLower.y;    
+    
+    if(m_boundingPointLower.x == 0) translation.x = 0;
+    if(m_boundingPointLower.y == 0) translation.y = 0;
 
     for (unsigned int i = 0; i < m_polygon->getSize(); i++)
     {
-        Vector2<int>* point = m_polygon->getPointPtr(i);
+        point = m_polygon->getPointPtr(i);        
         m_polygon->setPoint(point->x + translation.x, point->y + translation.y, i);
     }
-
+    
     computeBounds();
 }
 
@@ -89,16 +93,16 @@ void DetectedObject::rotateByAngle(float angle)
     double sinAngle = sin(angle * M_PI / 180);
     double cosAngle = cos(angle * M_PI / 180);
 
-    Vector2<int>* tempVec;
-
+    Vector2<int>* tempVec;    
+    
     for (int i = 0; i < m_polygon->getSize(); i++)
     {
         tempVec = m_polygon->getPointPtr(i);
-        m_polygon->setPoint(tempVec->x * cosAngle - tempVec->y * sinAngle, tempVec->x * sinAngle + tempVec->y * cosAngle, i);
+        m_polygon->setPoint(tempVec->x * cosAngle - tempVec->y * sinAngle, tempVec->x * sinAngle + tempVec->y * cosAngle, i);              
     }
-
-    computeBounds();
-    translateToOrigin();
+    
+    computeBounds();    
+    translateToOrigin();    
 }
 
 void DetectedObject::viewByAngle(float angle)
@@ -110,7 +114,7 @@ void DetectedObject::viewByAngle(float angle)
     {
         tempVec = m_polygon->getPointPtr(i);
         m_polygon->setPoint(tempVec->x, tempVec->y * sinAngle, i);
-    }    
+    }
     computeBounds();
     translateToOrigin();
 }
@@ -135,7 +139,7 @@ unsigned int DetectedObject::getHeight() const
 
 bool DetectedObject::isValid()
 {
-    if(m_polygon != NULL)
+    if (m_polygon != NULL)
     {
         return true;
     }
@@ -164,14 +168,19 @@ Line** DetectedObject::getPolygons()
     return &m_polygon;
 }
 
+void DetectedObject::addPoint(int x, int y)
+{
+    m_polygon->addPoint(x, y);
+}
+
 unsigned int DetectedObject::getCountOfPolygons() const
 {
     return 1;
 }
 
-void  DetectedObject::invalidate()
+void DetectedObject::invalidate()
 {
-    if(m_polygon != NULL)
+    if (m_polygon != NULL)
     {
         SAFE_DELETE(m_polygon);
     }

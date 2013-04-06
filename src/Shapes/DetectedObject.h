@@ -64,6 +64,8 @@ public:
 
     void cleanUp();
     
+    void addPoint(int x, int y);
+    
     bool isValid();
     
     void invalidate();

@@ -78,7 +78,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     {
         if (m_shrink < 6) m_shrink++;
     }
-    else if (timeElapsed < 100000)
+    else if (timeElapsed < 70000)
     {
         if (m_shrink > 2) m_shrink--;
     }
@@ -149,16 +149,15 @@ void ImageService::writePointToMessage(const sensor_msgs::Image::ConstPtr& img, 
 void ImageService::writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width)
 {
     Line* oneLine = NULL;
-
+    
     if (img->width > 0 && img->height > 0)
     {
         for (unsigned int i = 0; i < count; i++)
         {
             oneLine = line[i];
-            for (unsigned int j = 0; j < oneLine->points.size(); j++)
-            {
-                Vector2<int> point = oneLine->points[j];
-                writePointToMessage(img, &point, width);
+            for (unsigned int j = 0; j < oneLine->getSize(); j++)
+            {                
+                writePointToMessage(img, oneLine->getPointPtr(j), width);
             }
         }
     }

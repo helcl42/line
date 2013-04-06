@@ -47,13 +47,13 @@ public:
 
         };
 
-        Kernel<T>* gaussianKernel = new NonSeparableKernel<T>(5, 5, gaussKer);
+        //Kernel<T>* gaussianKernel = new NonSeparableKernel<T>(5, 5, gaussKer);
 
-        FFTImageFilterBatchItem<T>* gaussFIlter = new FFTImageFilterBatchItem<T>(gaussianKernel);
+        //FFTImageFilterBatchItem<T>* gaussFIlter = new FFTImageFilterBatchItem<T>(gaussianKernel);
 
         FFTImageFilterBatch<T>* imageFilterBatch = new FFTImageFilterBatch<T>();
         imageFilterBatch->addItem(edgeFilter);
-        imageFilterBatch->addItem(gaussFIlter);        
+        //imageFilterBatch->addItem(gaussFIlter);        
         
         return imageFilterBatch;
     }
