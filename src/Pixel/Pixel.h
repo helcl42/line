@@ -55,6 +55,8 @@ public:
 
     static double colourDifference(Pixel<T>* rgb1, Pixel<T>* rgb2);
     
+    static double colorDistance(Pixel<T>* p1, Pixel<T>* p2);
+    
     static std::string getColorPartString(int index);
     
     static void repairNanValues(Pixel<T>* px);
@@ -102,7 +104,7 @@ double Pixel<T>::colourDifference(Pixel<T>* rgb1, Pixel<T>* rgb2)
     luv1 = rgb1->convertToLUV();
     luv2 = rgb2->convertToLUV();
 
-    diff = sqrt(
+    diff = std::sqrt(
             (luv1->r - luv2->r) * (luv1->r - luv2->r) +
             (luv1->g - luv2->g) * (luv1->g - luv2->g) +
             (luv1->b - luv2->b) * (luv1->b - luv2->b));
@@ -111,6 +113,15 @@ double Pixel<T>::colourDifference(Pixel<T>* rgb1, Pixel<T>* rgb2)
     SAFE_DELETE(luv2);
 
     return diff;
+}
+
+template <class T>
+double Pixel<T>::colorDistance(Pixel<T>* p1, Pixel<T>* p2)
+{
+    return std::sqrt(
+            (p1->r - p2->r) * (p1->r - p2->r) +
+            (p1->g - p2->g) * (p1->g - p2->g) +
+            (p1->b - p2->b) * (p1->b - p2->b));
 }
 
 template <class T>

@@ -20,7 +20,7 @@ protected:
 public:
     StraightObjectDetector(DetectionColorItem* settings = NULL);
 
-    StraightObjectDetector(Image<float>* image, Image<float>* colorImage);
+    StraightObjectDetector(ImageMap<float>* image, Image<float>* colorImage);
 
     virtual ~StraightObjectDetector();
     

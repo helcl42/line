@@ -10,14 +10,14 @@
 
 #include "Pixel/Pixel.h"
 #include "DetectionSettings.h"
-#include "ImageFilters/ImageFilter.h"
 #include "Line.h"
-#include "EdgeFilters/EdgeFilterStrategy.h"
+#include "Image/ImageMap.h"
+#include "ImageFilters/Frequency/FFTImageFilterBatch.h"
 
 class ObjectDetector
 {
 protected:
-    Image<float>* m_workImage;
+    ImageMap<float>* m_workImage;
 
     Image<float>* m_colorImage;
 
@@ -25,17 +25,12 @@ protected:
 
     PixelRGB<float> m_baseColor;
 
-    ImageFilter<float>* m_imageFilter;
-
-    EdgeFilterStrategy<float>* m_edgeFilter;
-    
-    ImageMap<unsigned int>* m_imageMap;
-    
+    FFTImageFilterBatch<float>* m_imageFilterBatch;    
 
 public:       
     ObjectDetector(DetectionColorItem* settings = NULL);
     
-    ObjectDetector(Image<float>* image, Image<float>* colorImage);
+    ObjectDetector(ImageMap<float>* image, Image<float>* colorImage);
 
     virtual ~ObjectDetector();
     
@@ -48,12 +43,12 @@ public:
 
     DetectionColorItem* getColorSettings() const;
 
-    void setImages(Image<float>* image, Image<float>* colorImage);    
+    void setInstance(ImageMap<float>* image, Image<float>* colorImage);    
     
 protected:        
     void repaintSimilarColorPlaces(int interval = DetectionParams::colorTolerance);           
         
-    void writeLineInImage(Line* line, int r, int g, int b);    
+    void writeLineInImageMap(Line* line, unsigned int val);
     
 public:    
     virtual void invalidate() = 0;    

@@ -11,7 +11,7 @@
 #include "../../Vector2.h"
 #include "Arguments/CoordinatePair.h"
 
-class PositionFactory
+class PositionManager
 {
 private:
     static std::vector<Vector2<float> > m_basePoints;

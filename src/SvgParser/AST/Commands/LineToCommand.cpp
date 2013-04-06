@@ -1,7 +1,7 @@
 #include "LineToCommand.h"
 #include "../../../Vector2.h"
 #include "../Arguments/CoordinatePair.h"
-#include "../PositionFactory.h"
+#include "../PositionManager.h"
 
 /**
      width = x2 - x1;
@@ -13,7 +13,7 @@
  */
 void LineToCommand::draw(Line* polygon)
 {
-    Vector2<float> startPoint = PositionFactory::getLastPosition();
+    Vector2<float> startPoint = PositionManager::getLastPosition();
 
     Coordinate* coordX = dynamic_cast<CoordinatePair*> (m_args[0])->GetNumberX();
     Coordinate* coordY = dynamic_cast<CoordinatePair*> (m_args[0])->GetNumberY();   
@@ -53,7 +53,7 @@ void LineToCommand::draw(Line* polygon)
                 polygon->addPoint(x, y);
             }
         }
-        PositionFactory::addPosition(endPoint);
+        PositionManager::addPosition(endPoint);
     }
     else
     {
@@ -65,7 +65,7 @@ void LineToCommand::draw(Line* polygon)
                 x = startPoint.x;
                 y = startPoint.y + i;
                 polygon->addPoint(x, y);
-                PositionFactory::addPosition(endPoint);
+                PositionManager::addPosition(endPoint);
             }
         }
         else
@@ -75,7 +75,7 @@ void LineToCommand::draw(Line* polygon)
                 x = startPoint.x;
                 y = endPoint.y - i;
                 polygon->addPoint(x, y);
-                PositionFactory::addPosition(endPoint);
+                PositionManager::addPosition(endPoint);
             }
         }
     }

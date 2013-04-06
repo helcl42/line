@@ -7,10 +7,6 @@
       <df name="build">
         <df name="CMakeFiles">
           <df name="clean-test-results.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="CMakeTmp">
             <df name="CMakeFiles">
@@ -20,11 +16,9 @@
           </df>
           <df name="CompilerIdC">
             <in>CMakeCCompilerId.c</in>
-            <in>a.out</in>
           </df>
           <df name="CompilerIdCXX">
             <in>CMakeCXXCompilerId.cpp</in>
-            <in>a.out</in>
           </df>
           <df name="line.dir">
             <df name="src">
@@ -45,121 +39,36 @@
               <df name="XMLParser">
               </df>
             </df>
-            <in>CXX.includecache</in>
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>depend.internal</in>
-            <in>depend.make</in>
-            <in>flags.make</in>
-            <in>link.txt</in>
-            <in>progress.make</in>
           </df>
           <df name="ROSBUILD_genmsg_cpp.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="ROSBUILD_genmsg_lisp.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="ROSBUILD_gensrv_cpp.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="ROSBUILD_gensrv_lisp.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="rosbuild_precompile.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>depend.internal</in>
-            <in>depend.make</in>
-            <in>progress.make</in>
           </df>
           <df name="rosbuild_premsgsrvgen.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="rospack_genmsg.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="rospack_genmsg_libexe.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>depend.internal</in>
-            <in>depend.make</in>
-            <in>progress.make</in>
           </df>
           <df name="rospack_gensrv.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="test-future.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="test-results-run.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="test-results.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="test.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
           <df name="tests.dir">
-            <in>DependInfo.cmake</in>
-            <in>build.make</in>
-            <in>cmake_clean.cmake</in>
-            <in>progress.make</in>
           </df>
-          <in>CMakeCCompiler.cmake</in>
-          <in>CMakeCXXCompiler.cmake</in>
-          <in>CMakeDetermineCompilerABI_C.bin</in>
-          <in>CMakeDetermineCompilerABI_CXX.bin</in>
-          <in>CMakeDirectoryInformation.cmake</in>
-          <in>CMakeOutput.log</in>
-          <in>CMakeRuleHashes.txt</in>
-          <in>CMakeSystem.cmake</in>
-          <in>Makefile.cmake</in>
-          <in>Makefile2</in>
-          <in>TargetDirectories.txt</in>
-          <in>cmake.check_cache</in>
-          <in>progress.marks</in>
         </df>
-        <in>CMakeCache.txt</in>
-        <in>Makefile</in>
-        <in>cmake_install.cmake</in>
       </df>
       <df name="include">
         <df name="line">
@@ -170,16 +79,39 @@
       <df name="lib">
       </df>
       <df name="src">
-        <df name="EdgeFilters">
-          <in>CannyFilterStategy.h</in>
-          <in>EdgeFilterStrategy.h</in>
-          <in>KirshFilterStrategy.h</in>
-          <in>PrewittFilterStrategy.h</in>
-          <in>RobertsFilterStrategy.h</in>
-          <in>SobelFilterStrategy.h</in>
+        <df name="Image">
+          <in>BMPFileIO.h</in>
+          <in>Image.h</in>
+          <in>ImageMap.h</in>
         </df>
         <df name="ImageFilters">
-          <in>ImageFilter.h</in>
+          <df name="Frequency">
+            <in>AbstractFFTImageFilter.h</in>
+            <in>FFTImageFIlter.h</in>
+            <in>FFTImageFilterBatch.h</in>
+            <in>FFTImageFilterBatchItem.h</in>
+          </df>
+          <df name="Kernel">
+            <in>Kernel.h</in>
+            <in>NonSeparableKernel.h</in>
+            <in>SeparableKernel.h</in>
+          </df>
+          <df name="Spatial">
+            <df name="Edge">
+              <in>CannyFilterStrategy.h</in>
+              <in>EdgeFilterStrategy.h</in>
+              <in>KirchFilterStrategy.h</in>
+              <in>PrewittFilterStrategy.h</in>
+              <in>RobertsFIlterStrategy.h</in>
+              <in>SobelFilterStrategy.h</in>
+            </df>
+            <in>ImageFilter.h</in>
+          </df>
+          <in>Complex.h</in>
+          <in>FFTransformer.h</in>
+          <in>GaussianFactory.h</in>
+          <in>IImageFilter.h</in>
+          <in>ImageFilterFactory.h</in>
         </df>
         <df name="Pixel">
           <in>IPixel.h</in>
@@ -266,8 +198,8 @@
             <in>MovetoDrawtoCommandGroup.h</in>
             <in>Node.cpp</in>
             <in>Node.h</in>
-            <in>PositionFactory.cpp</in>
-            <in>PositionFactory.h</in>
+            <in>PositionManager.cpp</in>
+            <in>PositionManager.h</in>
             <in>SvgPath.h</in>
           </df>
           <in>SvgLexer.cpp</in>
@@ -275,6 +207,9 @@
           <in>SvgParser.cpp</in>
           <in>SvgParser.hpp</in>
           <in>SvgTraits.hpp</in>
+        </df>
+        <df name="ThreadPool">
+          <in>Thread.h</in>
         </df>
         <df name="Utils">
           <in>Timer.cpp</in>
@@ -285,7 +220,6 @@
           <in>XmlParser.cpp</in>
           <in>XmlParser.h</in>
         </df>
-        <in>BmpFileIO.h</in>
         <in>CameraService.cpp</in>
         <in>CameraService.h</in>
         <in>DetectionParams.cpp</in>
@@ -294,8 +228,6 @@
         <in>DetectionSettings.h</in>
         <in>DetectorTopic.cpp</in>
         <in>DetectorTopic.h</in>
-        <in>Image.h</in>
-        <in>ImageMap.h</in>
         <in>ImageService.cpp</in>
         <in>ImageService.h</in>
         <in>Line.cpp</in>

@@ -1,31 +1,26 @@
 #include "ObjectDetector.h"
-#include "EdgeFilters/SobelFilterStrategy.h"
+#include "ImageFilters/ImageFilterFactory.h"
 
 ObjectDetector::ObjectDetector(DetectionColorItem* settings)
 : m_workImage(NULL), m_colorImage(NULL), m_settings(settings)
-{
-    m_imageFilter = new ImageFilter<float>();
-    m_edgeFilter = new SobelFilterStrategy<float>();
+{    
     if (m_settings != NULL)
     {
         setBaseColor();
     }
-    m_imageMap = new ImageMap<unsigned int>();
+    m_imageFilterBatch = ImageFilterFactory<float>::createBatch();
+    
 }
 
-ObjectDetector::ObjectDetector(Image<float>* image, Image<float>* colorImage)
+ObjectDetector::ObjectDetector(ImageMap<float>* image, Image<float>* colorImage)
 : m_workImage(image), m_colorImage(colorImage), m_settings(NULL)
-{
-    m_imageFilter = new ImageFilter<float>();
-    m_edgeFilter = new SobelFilterStrategy<float>();
-    m_imageMap = new ImageMap<unsigned int>(image);
+{    
+    m_imageFilterBatch = ImageFilterFactory<float>::createBatch();
 }
 
 ObjectDetector::~ObjectDetector()
-{
-    SAFE_DELETE(m_edgeFilter);
-    SAFE_DELETE(m_imageFilter);
-    SAFE_DELETE(m_imageMap);
+{    
+    SAFE_DELETE(m_imageFilterBatch);
 }
 
 void ObjectDetector::setBaseColor()
@@ -73,7 +68,7 @@ DetectionColorItem* ObjectDetector::getColorSettings() const
     return m_settings;
 }
 
-void ObjectDetector::setImages(Image<float>* image, Image<float>* colorImage)
+void ObjectDetector::setInstance(ImageMap<float>* image, Image<float>* colorImage)
 {
     m_workImage = image;
     m_colorImage = colorImage;
@@ -84,7 +79,8 @@ void ObjectDetector::repaintSimilarColorPlaces(int interval)
     PixelRGB<float> pixelMinus;
     PixelRGB<float> pixelPlus;
     Pixel<float>* pixel = NULL;
-
+    float value;
+    
     for (int i = 0; i < 3; i++)
     {
         pixelMinus[i] = m_settings->color[i] > interval ? m_settings->color[i] - interval : 0;
@@ -95,25 +91,23 @@ void ObjectDetector::repaintSimilarColorPlaces(int interval)
     {
         for (unsigned int j = 0; j < m_workImage->getWidth(); ++j)
         {
-            pixel = m_workImage->getPixel(i, j);
+            pixel = m_colorImage->getPixel(i, j);
 
             if (pixel->isInInterval(&pixelMinus, &pixelPlus))
             {
-                pixel->r = m_baseColor.r;
-                pixel->g = m_baseColor.g;
-                pixel->b = m_baseColor.b;
+                value = 255;
             }
             else
             {
-                pixel->r = 0;
-                pixel->g = 0;
-                pixel->b = 0;
+                value = 0;
             }
+            
+            m_workImage->setValueAt(i, j, value);
         }
     }
 }
 
-void ObjectDetector::writeLineInImage(Line* line, int r, int g, int b)
+void ObjectDetector::writeLineInImageMap(Line* line, unsigned int val)
 {
     Vector2<int> linePoint;
 
@@ -121,14 +115,7 @@ void ObjectDetector::writeLineInImage(Line* line, int r, int g, int b)
 
     for (unsigned int i = 0; i < line->points.size(); i++)
     {
-        linePoint = line->points[i];
-        if (i < 15)
-        {
-            m_workImage->setPixelValue(linePoint.y, linePoint.x, 0, 255, 255);
-        }
-        else
-        {
-            m_workImage->setPixelValue(linePoint.y, linePoint.x, r, g, b);
-        }
+        linePoint = line->points[i];        
+        m_workImage->setValueAt(linePoint.y, linePoint.x, val);                    
     }
 }

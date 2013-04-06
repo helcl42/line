@@ -12,11 +12,12 @@
 #include <sensor_msgs/Image.h>
 
 #include "Line.h"
-#include "Image.h"
+#include "Image/Image.h"
 #include "Utils/Timer.h"
 #include "DetectionSettings.h"
 #include "SvgObjectDetector.h"
 #include "LineDetector.h"
+#include "Image/ImageMap.h"
 
 class ImageService
 {
@@ -27,7 +28,7 @@ private:
     
     Timer m_changeColorTimer;
     
-    Image<float>* m_image;
+    ImageMap<float>* m_image;
     
     Image<float>* m_colorImage;
     
@@ -51,6 +52,8 @@ public:
     unsigned int getShrink() const;
     
     void writePointToMessage(const sensor_msgs::Image::ConstPtr& img, Vector2<int>* point, unsigned int size = 3);
+    
+    void writeImageMapToMessage(const sensor_msgs::Image::ConstPtr& img);        
     
     void writeImageToMessage(const sensor_msgs::Image::ConstPtr& img);        
     

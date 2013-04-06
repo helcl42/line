@@ -19,7 +19,7 @@ private:
 public:
     LineDetector(DetectionColorItem* settings = NULL);
 
-    LineDetector(Image<float>* image, Image<float>* colorImage);
+    LineDetector(ImageMap<float>* image, Image<float>* colorImage);
 
     virtual ~LineDetector();
 

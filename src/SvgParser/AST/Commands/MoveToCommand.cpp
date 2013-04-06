@@ -13,16 +13,16 @@ void MoveToCommand::draw(Line* polygon)
 {
     if (m_relative)
     {
-        Vector2<float> prevBase = PositionFactory::getLastBasePointPosition();
+        Vector2<float> prevBase = PositionManager::getLastBasePointPosition();
         Coordinate* coordX = m_startPoint->GetNumberX();
         Coordinate* coordY = m_startPoint->GetNumberY();
 
-        PositionFactory::addBasePoint(prevBase.x + coordX->getValue(), prevBase.y + coordY->getValue());
+        PositionManager::addBasePoint(prevBase.x + coordX->getValue(), prevBase.y + coordY->getValue());
         std::cout << "RELATIVE base" << std::endl;
     }
     else
     {
-        PositionFactory::addBasePoint(m_startPoint);
+        PositionManager::addBasePoint(m_startPoint);
     }
 }
 

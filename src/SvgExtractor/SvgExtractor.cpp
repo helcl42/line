@@ -68,6 +68,7 @@ void SvgExtractor::extractEllipse(XMLNode node)
     float height = std::atof(node.getAttribute("ry"));
     Ellipse* ellipse = new Ellipse(width, height);
     ellipse->generate();
+    ellipse->translateToOrigin();
     m_objectsToDetect.push_back(ellipse);
 }
 
@@ -77,6 +78,7 @@ void SvgExtractor::extractCircle(XMLNode node)
 
     Circle* circ = new Circle(radius);
     circ->generate();    
+    circ->translateToOrigin();
     m_objectsToDetect.push_back(circ);
 }
 
@@ -88,6 +90,7 @@ void SvgExtractor::extractRectangle(XMLNode node)
 
     Rectangle* rect = new Rectangle(width, height);
     rect->generate();    
+    rect->translateToOrigin();
     m_objectsToDetect.push_back(rect);
 }
 
@@ -113,6 +116,7 @@ void SvgExtractor::extractPath(XMLNode node)
     }
 
     GeneralObject* object = new GeneralObject(line);
+    object->translateToOrigin();
     //object->setColor(200, 399, 399);    
     m_objectsToDetect.push_back(object);
     SAFE_DELETE(root);

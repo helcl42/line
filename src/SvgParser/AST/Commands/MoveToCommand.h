@@ -9,7 +9,7 @@
 #define	MOVETOCOMMAND_H
 
 #include "Command.h"
-#include "../PositionFactory.h"
+#include "../PositionManager.h"
 
 class MoveToCommand : public Command
 {

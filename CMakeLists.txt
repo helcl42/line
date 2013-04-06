@@ -47,7 +47,7 @@ rosbuild_add_library(line src/SvgParser/AST/Commands/CurveToCommand.cpp)
 rosbuild_add_library(line src/SvgParser/AST/Commands/LineToCommand.cpp)
 rosbuild_add_library(line src/SvgParser/AST/Commands/MoveToCommand.cpp)
 rosbuild_add_library(line src/SvgParser/AST/Node.cpp)
-rosbuild_add_library(line src/SvgParser/AST/PositionFactory.cpp)
+rosbuild_add_library(line src/SvgParser/AST/PositionManager.cpp)
 rosbuild_add_library(line src/SvgParser/SvgLexer.cpp)
 rosbuild_add_library(line src/SvgParser/SvgParser.cpp)
 

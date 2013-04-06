@@ -16,7 +16,7 @@
 #include "Utils/Utils.h"
 #include "Utils/Timer.h"
 #include "DetectionSettings.h"
-#include "Image.h"
+#include "Image/Image.h"
 #include "ImageService.h"
 #include "CameraService.h"
 

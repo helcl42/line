@@ -5,7 +5,7 @@ StraightObjectDetector::StraightObjectDetector(DetectionColorItem* settings)
 {
 }
 
-StraightObjectDetector::StraightObjectDetector(Image<float>* image, Image<float>* colorImage)
+StraightObjectDetector::StraightObjectDetector(ImageMap<float>* image, Image<float>* colorImage)
 : ObjectDetector(image, colorImage)
 {
 }
@@ -97,11 +97,11 @@ void StraightObjectDetector::traverseImage()
         Vector2<int>(1, 1), Vector2<int>(1, 0)
     };
 
-    for (unsigned int i = 1; i < m_imageMap->getHeight() - 1; i += 2)
+    for (unsigned int i = 1; i < m_workImage->getHeight() - 1; i += 2)
     {
-        for (unsigned int j = 1; j < m_imageMap->getWidth() - 1; j += 2)
+        for (unsigned int j = 1; j < m_workImage->getWidth() - 1; j += 2)
         {
-            value = m_imageMap->getValueAt(i, j);
+            value = m_workImage->getValueAt(i, j);
 
             if (value > DetectionParams::selectionTreshold)
             {
@@ -149,7 +149,7 @@ bool StraightObjectDetector::storeBestLine(Line** lines)
         if (best->straightnessFactor <= DetectionParams::maxStraightnessTreshold
                 && best->straightnessFactor >= DetectionParams::minStraightnessTreshold)
         {
-            writeLineInImage(best, 255, 255, 0);
+            writeLineInImageMap(best, 255);
             m_lines.push_back(best);
             return true;
         }
@@ -179,7 +179,7 @@ Line* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector2<int> p
     {
         pos += vecs[countOfFails];        
 
-        value = m_imageMap->getValueAt(pos.y, pos.x);
+        value = m_workImage->getValueAt(pos.y, pos.x);
 
         if (value > DetectionParams::selectionTreshold)
         {

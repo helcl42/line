@@ -50,21 +50,24 @@ public:
         double sinAngle = sin(angle * M_PI / 180);
         double cosAngle = cos(angle * M_PI / 180);                
         
-        cleanUp();
+        unsigned int w = m_width;
+        unsigned int h = m_height;
         
-        for (int i = 0; i < m_height; i++)
+        cleanUp();                       
+        
+        for (int i = 0; i < h; i++)
         {
-            for (int j = 0; j < m_width; j++)
+            for (int j = 0; j < w; j++)
             {
-                if (i == 0 || i == m_height - 1 || j == 0 || j == m_width - 1)
-                {                    
+                if (i == 0 || i == h - 1 || j == 0 || j == w - 1)
+                {                                        
                     m_polygon->addPoint(Vector2<int>(j * cosAngle - i * sinAngle, j * sinAngle + i * cosAngle));
                 }               
             }
         }      
         
         translateToOrigin();
-    }        
+    }           
 
     float getHeight() const
     {

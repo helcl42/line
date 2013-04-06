@@ -35,26 +35,25 @@
 class Utils
 {
 public:
-        
     static int convertStringToHexInt(std::string str)
     {
         int value = 0;
-        int base;        
+        int base;
         char c;
 
-        for(int i = str.length() - 1, j = 0; i >= 0; i--, j++)
-        {                        
+        for (int i = str.length() - 1, j = 0; i >= 0; i--, j++)
+        {
             base = pow(16, j);
             c = str[i];
 
-            if(c >= '0' && c <= '9')
+            if (c >= '0' && c <= '9')
             {
-                int temp = atoi(&c);                
+                int temp = atoi(&c);
                 value += base * temp;
             }
-            else if((c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'))
+            else if ((c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'))
             {
-                switch(c)
+                switch (c)
                 {
                     case 'A':
                     case 'a':
@@ -79,11 +78,37 @@ public:
                     case 'F':
                     case 'f':
                         value += base * 15;
-                        break;                   
+                        break;
                 }
             }
         }
         return value;
+    }
+
+    static double logBy(double n, unsigned int base)
+    {
+        // log(n)/log(2) is log2.  
+        return std::log(n) / std::log(base);
+    }
+
+    template <class T>
+    static T normalize(T val)
+    {
+        if (val < 0.0f)
+            val = 0.0f;
+        if (val > 255)
+            val = 255;
+        return val;
+    }
+
+    template <class T>
+    static T colorThreshold(T val, float threshold)
+    {
+        if (val < threshold)
+            val = 0.0f;
+        if (val > threshold)
+            val = 255;
+        return val;
     }
 };
 

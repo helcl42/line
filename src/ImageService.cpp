@@ -1,9 +1,9 @@
 #include "ImageService.h"
 
 ImageService::ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings)
-: m_shrink(2), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
+: m_shrink(5), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
 {
-    m_image = new Image<float>();
+    m_image = new ImageMap<float>();
     m_colorImage = new Image<float>();
     m_lineDetector = new LineDetector(settings->getItem(0));      
     m_objectDetector = new SvgObjectDetector(shapes, settings->getItem(0));
@@ -19,6 +19,7 @@ ImageService::~ImageService()
 
 Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std::vector<float> cameraGroundAngles)
 {
+    std::cout << "-----------------------------------" << std::endl;
     unsigned long timeElapsed;
     Vector2<int>* objectPoint = NULL;
     IDetectedObject* object = NULL;
@@ -30,12 +31,12 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
 
 //    m_lineDetector->invalidate();
 //    m_lineDetector->initDetectionParams(m_shrink);
-//    m_lineDetector->setImages(m_image, m_colorImage);
+//    m_lineDetector->setInstance(m_image, m_colorImage);
 //    object = m_lineDetector->findObject();    
 
     m_objectDetector->invalidate();
     m_objectDetector->initDetectionParams(m_shrink);
-    m_objectDetector->setImages(m_image, m_colorImage);
+    m_objectDetector->setInstance(m_image, m_colorImage);
     m_objectDetector->setAngles(cameraGroundAngles);
     object = m_objectDetector->findObject();   
 
@@ -66,20 +67,20 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
 //        m_image->writeSquare(k + 48, 22, 25, 25, cameraGroundAngles[j], 20, 0);
 //    }
 
-    writeImageToMessage(img);
+    writeImageMapToMessage(img);
 
     m_shrinkTimer.stop();
 
     timeElapsed = m_shrinkTimer.getElapsedTimeInMicroSec();
     std::cout << "Elapsed " << timeElapsed << "ms " << m_shrinkTimer.getFPS() << " FPS" << std::endl;
 
-    if (timeElapsed > 450000)
+    if (timeElapsed > 350000)
     {
         if (m_shrink < 6) m_shrink++;
     }
-    else if (timeElapsed < 150000)
+    else if (timeElapsed < 100000)
     {
-        if (m_shrink > 1) m_shrink--;
+        if (m_shrink > 2) m_shrink--;
     }
 
     std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
@@ -163,11 +164,37 @@ void ImageService::writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, 
     }
 }
 
-void ImageService::writeImageToMessage(const sensor_msgs::Image::ConstPtr& img)
+//void ImageService::writeImageToMessage(const sensor_msgs::Image::ConstPtr& img)
+//{
+//    if (img->width > 0 && img->height > 0)
+//    {
+//        Pixel<float>* pixel = NULL;
+//        unsigned char* temp;
+//        unsigned long size = img->height * img->width * 3;
+//
+//        for (unsigned int i = 0, index = img->width * 3; i < m_image->getHeight(); i++)
+//        {
+//            for (unsigned int j = 0; j < m_image->getWidth(); j++, index -= 3)
+//            {
+//                pixel = m_image->getPixel(i, j);
+//                temp = (unsigned char*) &img->data[index + 2];
+//                *temp = (unsigned char) pixel->b;
+//                temp = (unsigned char*) &img->data[index + 1];
+//                *temp = (unsigned char) pixel->g;
+//                temp = (unsigned char*) &img->data[index];
+//                *temp = (unsigned char) pixel->r;
+//            }
+//
+//            index = size - (i + 1) * img->width * 3 + img->width * 3;
+//        }
+//    }
+//}
+
+void ImageService::writeImageMapToMessage(const sensor_msgs::Image::ConstPtr& img)
 {
     if (img->width > 0 && img->height > 0)
     {
-        Pixel<float>* pixel = NULL;
+        unsigned char value;
         unsigned char* temp;
         unsigned long size = img->height * img->width * 3;
 
@@ -175,13 +202,13 @@ void ImageService::writeImageToMessage(const sensor_msgs::Image::ConstPtr& img)
         {
             for (unsigned int j = 0; j < m_image->getWidth(); j++, index -= 3)
             {
-                pixel = m_image->getPixel(i, j);
+                value = (unsigned char)m_image->getValueAt(i, j);
                 temp = (unsigned char*) &img->data[index + 2];
-                *temp = (unsigned char) pixel->b;
+                *temp = (unsigned char) value;
                 temp = (unsigned char*) &img->data[index + 1];
-                *temp = (unsigned char) pixel->g;
+                *temp = (unsigned char) value;
                 temp = (unsigned char*) &img->data[index];
-                *temp = (unsigned char) pixel->r;
+                *temp = (unsigned char) value;
             }
 
             index = size - (i + 1) * img->width * 3 + img->width * 3;

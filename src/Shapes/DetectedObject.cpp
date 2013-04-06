@@ -72,8 +72,8 @@ void DetectedObject::translateToOrigin()
 {
     Vector2<int> translation;
 
-    translation.x = m_boundingPointLower.x < 0 ? -m_boundingPointLower.x : m_boundingPointLower.x;
-    translation.y = m_boundingPointLower.y < 0 ? m_boundingPointLower.y : -m_boundingPointLower.y;
+    translation.x = m_boundingPointLower.x < 0 ? m_boundingPointLower.x : -m_boundingPointLower.x;
+        translation.y = m_boundingPointLower.y < 0 ? m_boundingPointLower.y : -m_boundingPointLower.y;
 
     for (unsigned int i = 0; i < m_polygon->getSize(); i++)
     {
@@ -110,7 +110,9 @@ void DetectedObject::viewByAngle(float angle)
     {
         tempVec = m_polygon->getPointPtr(i);
         m_polygon->setPoint(tempVec->x, tempVec->y * sinAngle, i);
-    }
+    }    
+    computeBounds();
+    translateToOrigin();
 }
 
 Vector2<int> DetectedObject::getOrigin() const

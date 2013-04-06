@@ -1,7 +1,7 @@
 #include "CurveToCommand.h"
 #include "../../../Vector2.h"
 #include "../Arguments/CoordinatePair.h"
-#include "../PositionFactory.h"
+#include "../PositionManager.h"
 
 void CurveToCommand::draw(Line* polygon)
 {
@@ -9,7 +9,7 @@ void CurveToCommand::draw(Line* polygon)
 
     for (int i = 0; i < m_args.size(); i += 3)
     {
-        Vector2<float> startPoint = PositionFactory::getLastPosition();
+        Vector2<float> startPoint = PositionManager::getLastPosition();
         std::vector<Vector2<float> > tempLine;
         tempLine.push_back(Vector2<float>(startPoint.x, startPoint.y));
 
@@ -40,7 +40,7 @@ void CurveToCommand::draw(Line* polygon)
             polygon->addPoint(bezierResult[i].x, bezierResult[i].y);
         }
                 
-        PositionFactory::addPosition(tempLine.back());        
+        PositionManager::addPosition(tempLine.back());        
     }
 }
 

@@ -28,7 +28,7 @@ protected:
 public:
     SvgObjectDetector(std::vector<DetectedObject*>& shapes, DetectionColorItem* settings = NULL);
 
-    SvgObjectDetector(std::vector<DetectedObject*>& shapes, Image<float>* image, Image<float>* colorImage);
+    SvgObjectDetector(std::vector<DetectedObject*>& shapes, ImageMap<float>* image, Image<float>* colorImage);
 
     virtual ~SvgObjectDetector();
 

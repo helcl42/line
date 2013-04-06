@@ -7,7 +7,7 @@ LineDetector::LineDetector(DetectionColorItem* settings)
     m_bestLine = new LinePair();
 }
 
-LineDetector::LineDetector(Image<float>* image, Image<float>* colorImage)
+LineDetector::LineDetector(ImageMap<float>* image, Image<float>* colorImage)
 : StraightObjectDetector(image, colorImage)
 {    
     this->initDetectionParams();
@@ -22,11 +22,8 @@ LineDetector::~LineDetector()
 LinePair* LineDetector::findObject()
 {
     //repaintSimilarColorPlaces();
-    m_edgeFilter->setImage(m_workImage);
-    m_edgeFilter->applyFilter(DetectionParams::colorTreshold);
-    m_imageFilter->setImage(m_workImage);
-    m_imageFilter->gaussianBlur();    
-    m_imageMap->setImage(m_workImage);
+    m_imageFilterBatch->setInstance(m_workImage);
+    m_imageFilterBatch->applyFilter();        
     traverseImage();        
     return findBestLine();
 }
@@ -59,8 +56,8 @@ LinePair* LineDetector::findBestLine()
             if (colorMatch() && m_bestLine->hasLengthInInterval())
             {                
                 //std::cout << *m_bestLine << std::endl;                
-                writeLineInImage(m_bestLine->getAt(0), 255, 0, 0);
-                writeLineInImage(m_bestLine->getAt(1), 0, 0, 255); 
+                writeLineInImageMap(m_bestLine->getAt(0), 255);
+                writeLineInImageMap(m_bestLine->getAt(1), 255); 
                 break;
             }      
             else 
@@ -90,6 +87,7 @@ bool LineDetector::colorMatch(unsigned int failCount)
         pixel = m_colorImage->getPixel(ret->y, ret->x);
 
         if (!pixel->hasSimilarColor(&m_settings->color, DetectionParams::colorTolerance))
+        //if(Pixel<float>::colorDistance(&m_baseColor, pixel) > DetectionParams::colorTolerance)
         {
             count++;
         }

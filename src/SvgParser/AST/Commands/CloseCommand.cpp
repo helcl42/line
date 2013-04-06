@@ -1,10 +1,10 @@
 #include "CloseCommand.h"
 #include "../Arguments/CoordinatePair.h"
-#include "../PositionFactory.h"
+#include "../PositionManager.h"
 
 void CloseCommand::draw(Line* polygon)
 {
-    Vector2<float> startPoint = PositionFactory::getLastBasePointPosition();
+    Vector2<float> startPoint = PositionManager::getLastBasePointPosition();
     Vector2<float> endPoint(polygon->getEnd().x, polygon->getEnd().y);
     float width, ratio, x, y;
 
