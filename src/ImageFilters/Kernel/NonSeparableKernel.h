@@ -41,20 +41,14 @@ public:
         float res = 0;
         unsigned int size = this->m_height * this->m_width;
         m_values = new T[size];
-        
-        
+
         for (unsigned int i = 0; i < size; i++)
         {
             m_values[i] = values[i];
-//            if(std::abs(values[i]) > max)
-//            {
-//                max = values[i];
-//            }
             res += std::abs(values[i]);
-            //m_sum = max;
         }
-        
-        m_sum = res >= size ? res : 1;        
+
+        m_sum = res >= size ? res : 1;
         normalize();
     }
 
@@ -103,12 +97,12 @@ public:
         out << "{" << std::endl;
         for (unsigned int i = 0; i < ker.m_height; i++)
         {
-            out << "\t{";
+            out << "\t";
             for (unsigned int j = 0; j < ker.m_width; j++)
             {
-                out << " " << ker.m_values[i * ker.m_width + j];
+                out << ker.m_values[i * ker.m_width + j] << ", ";
             }
-            out << "}\n";
+            out << "\n";
         }
         out << "}";
         return out;

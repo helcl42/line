@@ -7,7 +7,7 @@ SvgObjectDetector::SvgObjectDetector(std::vector<DetectedObject*>& shapes, Detec
 : ObjectDetector(settings), m_shapes(shapes), m_shrink(1)
 {
     this->initDetectionParams();
-    m_bestMatch = new GeneralObject();    
+    m_bestMatch = new GeneralObject();
 }
 
 SvgObjectDetector::SvgObjectDetector(std::vector<DetectedObject*>& shapes, ImageMap<float>* image, Image<float>* colorImage)
@@ -20,22 +20,22 @@ SvgObjectDetector::SvgObjectDetector(std::vector<DetectedObject*>& shapes, Image
 SvgObjectDetector::~SvgObjectDetector()
 {
     m_shapes.clear();
-    SAFE_DELETE(m_bestMatch);   
+    SAFE_DELETE(m_bestMatch);
 }
 
 void SvgObjectDetector::invalidate()
 {
-    m_bestMatch->invalidate();    
+    m_bestMatch->invalidate();
 }
 
 void SvgObjectDetector::setAngles(std::vector<float> angles)
 {
     m_angles = angles;
-        
-//    for(unsigned int i = 0; i < m_angles.size(); i++)
-//    {
-//        m_angles.push_back(-m_angles[i]);
-//    }    
+
+    //    for(unsigned int i = 0; i < m_angles.size(); i++)
+    //    {
+    //        m_angles.push_back(-m_angles[i]);
+    //    }    
 }
 
 void SvgObjectDetector::setShrink(unsigned int shrink)
@@ -46,12 +46,12 @@ void SvgObjectDetector::setShrink(unsigned int shrink)
 void SvgObjectDetector::cleanUp()
 {
     std::vector<DetectedObject*>::iterator ii;
-    for(ii = m_detectedShapes.begin(); ii != m_detectedShapes.end(); ++ii)
+    for (ii = m_detectedShapes.begin(); ii != m_detectedShapes.end(); ++ii)
     {
         SAFE_DELETE(*ii);
     }
     m_detectedShapes.clear();
-    
+
     m_bestMatch->invalidate();
 }
 
@@ -60,11 +60,19 @@ void SvgObjectDetector::generateShapes(unsigned int shapeIndex, unsigned int siz
     DetectedObject* tempShapePtr;
     DetectedObject* shape = m_shapes[shapeIndex];
 
-    for (int rotateAngle = -90; rotateAngle <= 90; rotateAngle += 5)
+    for (int rotateAngle = -90; rotateAngle < 90; rotateAngle += 4)
     {
-        tempShapePtr = new GeneralObject(new Line(shape->getPolygon()));
-        tempShapePtr->rescaleToSize(size);
-        tempShapePtr->rotateByAngle(rotateAngle);
+        tempShapePtr = new GeneralObject(new Line(shape->getPolygon()));        
+
+        if (rotateAngle > 0)
+        {
+            tempShapePtr->createBatch(size, rotateAngle, true);
+        }
+        else
+        {
+            tempShapePtr->createBatch(size, rotateAngle, false);
+        }       
+
         m_detectedShapes.push_back(tempShapePtr);
     }
 }
@@ -81,7 +89,7 @@ DetectedObject* SvgObjectDetector::findObject()
 
 bool SvgObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
 {
-    unsigned int ratio = 12, failCount = 0;
+    unsigned int ratio = 16, failCount = 0;
     double percentFail;
     Line* squareLine = shape->getPolygon();
     unsigned int lineSize = squareLine->getSize() / ratio;
@@ -94,7 +102,7 @@ bool SvgObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsi
 
     percentFail = (double) failCount / (double) lineSize;
 
-    if (percentFail < 0.01) return true;
+    if (percentFail < 0.05) return true;
     return false;
 }
 
@@ -104,26 +112,20 @@ bool SvgObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, un
     unsigned int lineSize = shapeLine->getSize();
     unsigned int failCount = 0;
     double percentFail;
-    Vector2<int>* point;
-//    Line line;
+    Vector2<int>* point;    
 
     if (!rawShapeFind(shape, y, x)) return false;
 
     for (unsigned int k = 0; k < lineSize; k++)
     {
         point = shapeLine->getPointPtr(k);
-        if (m_workImage->getValueAt(point->y + y, point->x + x) < DetectionParams::selectionTreshold) failCount++;
-        //line.points.push_back(Vector2<int>(point->x + x, point->y + y));
+        if (m_workImage->getValueAt(point->y + y, point->x + x) < DetectionParams::selectionTreshold) failCount++;    
     }
-
-    //writeLineInImageMap(&line, 255);    
-        
+    
     percentFail = (double) failCount / (double) lineSize;
 
     if (percentFail < DetectionParams::maxPercentageError)
-    {
-        //writeLineInImageMap(&line, 255);
-
+    {        
         std::cout << "failCount = " << failCount << " size = " << lineSize << " fail = " << percentFail << "%" << std::endl;
         m_bestMatch->cleanUp();
         for (unsigned int k = 0; k < lineSize; k++)
@@ -147,21 +149,18 @@ bool SvgObjectDetector::findShapeInImagePart(DetectedObject* shape)
 
     std::vector<float>::reverse_iterator anglesIterator;
     for (anglesIterator = m_angles.rbegin(); anglesIterator != m_angles.rend(); ++anglesIterator)
-    {
-        //angle = ((*anglesIterator) * 1.9) > 90 ? 90 : (*anglesIterator) * 1.9;
-        //std::cout << "Angle = " << *anglesIterator << std::endl;
-        
-        shape->viewByAngle(*anglesIterator);
+    {        
+        shape->viewByAngle(*anglesIterator);        
 
-        for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 5)
+        for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 3)
         {
-            for (unsigned int j = 0; j < baseWidth - offsetX - 1; j += 5)
+            for (unsigned int j = 0; j < baseWidth - offsetX - 1; j += 3)
             {
                 if (innerShapeFind(shape, i, j))
                 {
                     return true;
-                }                                
-            }                     
+                }
+            }
         }
     }
     return false;
@@ -173,11 +172,11 @@ DetectedObject* SvgObjectDetector::findBestShape()
     unsigned int shapeSize = m_workImage->getHeight() / 3 - 1;
 
     while (shapeSize > m_workImage->getHeight() / 5)
-    {        
+    {
         cleanUp();
-        
+
         generateShapes(shapeIndex, shapeSize);
-        
+
         for (unsigned int i = 0; i < m_detectedShapes.size(); i++)
         {
             if (findShapeInImagePart(m_detectedShapes[i]))
@@ -185,7 +184,7 @@ DetectedObject* SvgObjectDetector::findBestShape()
                 //                if (colorMatch())
                 //                {
                 std::cout << "GOT IT!!!!" << std::endl;
-                writeLineInImageMap(m_bestMatch->getPolygon(), 255);
+                //writeLineInImageMap(m_bestMatch->getPolygon(), 255);
                 ImageService::getInstance()->writeLL(m_bestMatch->getPolygon());
                 //return m_bestMatch;
                 //                }                
@@ -193,9 +192,9 @@ DetectedObject* SvgObjectDetector::findBestShape()
         }        
         invalidate();
 
-        shapeSize -= 4;
+        shapeSize -= 5;
     }
-    invalidate();
+    invalidate();   
     return m_bestMatch;
 }
 
@@ -223,8 +222,8 @@ bool SvgObjectDetector::colorMatch(unsigned int failCount)
 
 void SvgObjectDetector::initDetectionParams(unsigned int shrink)
 {
-    DetectionParams::selectionTreshold = 28;
+    DetectionParams::selectionTreshold = 35;
 
-    DetectionParams::maxPercentageError = 0.1;
+    DetectionParams::maxPercentageError = 0.05;
 }
 

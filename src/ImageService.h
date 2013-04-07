@@ -66,7 +66,7 @@ public:
     static ImageService* getInstance() { return thiss; }
     
     void writeLL(Line* line) {
-        writeLinesToMessage(static_cast<const sensor_msgs::Image::ConstPtr&>(imgPtr), &line, 1, 3);
+        writeLinesToMessage(static_cast<const sensor_msgs::Image::ConstPtr&>(imgPtr), &line, 1, 1);
     }
     
 private:        

@@ -24,10 +24,11 @@ public:
         
         for(unsigned int i = 0; i <= width; i++)
         {
-            coeff = std::pow(M_E, -(i * i) / 2 * sigma * sigma) / std::sqrt(2 * M_PI * sigma);
-            res[width + i] = coeff;
-            res[width - i] = coeff;
-        }
+            coeff = std::pow(M_E, (i * i) / 2 * sigma * sigma) / std::sqrt(2 * M_PI * sigma);
+            res[width + 1 + i] = coeff;
+            res[width + 1 - i] = coeff;
+        }        
+        
         NonSeparableKernel<T>* ret = new NonSeparableKernel<T>(width, width, res);
         SAFE_DELETE(res);
         return ret;

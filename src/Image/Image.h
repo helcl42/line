@@ -93,6 +93,12 @@ Image<T>::Image(unsigned int w, unsigned int h, unsigned int shrink)
     for (unsigned int i = 0; i < m_height; ++i)
     {
         m_imageMatrix[i] = new Pixel<T>* [m_width];
+        
+        //temp!!!
+        for(unsigned int j = 0; j < m_width; j++)
+        {
+            m_imageMatrix[i][j] = new PixelRGB<T>(255, 255, 255);
+        }
     }
 }
 

@@ -3,7 +3,7 @@
 ImageService* ImageService::thiss = NULL;
 
 ImageService::ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings)
-: m_shrink(2), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
+: m_shrink(4), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
 {
     m_image = new ImageMap<float>();
     m_colorImage = new Image<float>();
@@ -32,15 +32,17 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     ImageService::thiss = this;
         
     cameraGroundAngles.clear();
-    cameraGroundAngles.push_back(90);
-//    cameraGroundAngles.push_back(5);
-//    cameraGroundAngles.push_back(10);
-//    cameraGroundAngles.push_back(15);        
-//    cameraGroundAngles.push_back(-5);
-//    cameraGroundAngles.push_back(-10);
-//    cameraGroundAngles.push_back(-15);    
-    
-    //cameraGroundAngles.push_back(50);    
+    cameraGroundAngles.push_back(90);    
+    cameraGroundAngles.push_back(85);
+    cameraGroundAngles.push_back(-85);
+    cameraGroundAngles.push_back(80);
+    cameraGroundAngles.push_back(-80);
+    cameraGroundAngles.push_back(70);
+    cameraGroundAngles.push_back(-70);
+    cameraGroundAngles.push_back(60);
+    cameraGroundAngles.push_back(-60);
+    cameraGroundAngles.push_back(50);
+    cameraGroundAngles.push_back(-50);    
 
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
@@ -234,3 +236,4 @@ unsigned int ImageService::getShrink() const
 {
     return m_shrink;
 }
+

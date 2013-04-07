@@ -35,6 +35,8 @@
                 </df>
                 <df name="XMLParser">
                 </df>
+                <df name="XmlParser">
+                </df>
               </df>
               <df name="SvgParser">
                 <df name="AST">
@@ -215,9 +217,7 @@
             <in>SvgParser.hpp</in>
             <in>SvgTraits.hpp</in>
           </df>
-          <df name="XMLParser">
-          </df>
-          <df name="XMLParser">
+          <df name="XmlParser">
             <in>XmlParser.cpp</in>
             <in>XmlParser.h</in>
           </df>

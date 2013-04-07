@@ -40,15 +40,17 @@ public:
 
     Vector2<int>* getHigherBoundingPoint();
 
-    void rescale(float ratio);
+    void rescale(float ratio, bool shift = true);
     
-    void rescaleToSize(float height);
+    void rescaleToSize(float height, bool shift = true);
+    
+    void createBatch(float size, float angle, bool direction);
 
     void translateToOrigin();
 
-    void rotateByAngle(float angle);
+    void rotateByAngle(float angle, bool direction, bool shift = true);
 
-    void viewByAngle(float angle);
+    void viewByAngle(float angle, bool shift = true);
 
     Vector2<int> getOrigin() const;
 

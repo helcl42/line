@@ -37,24 +37,34 @@ Vector2<int>* DetectedObject::getHigherBoundingPoint()
     return &m_boundingPointHigher;
 }
 
-void DetectedObject::rescale(float ratio)
-{        
+void DetectedObject::createBatch(float size, float angle, bool direction)
+{
+    rescaleToSize(size, false);
+    rotateByAngle(angle, direction, true);
+}
+
+void DetectedObject::rescale(float ratio, bool shift)
+{
     for (unsigned int i = 0; i < m_polygon->getSize(); i++)
     {
         Vector2<int> point = m_polygon->getPoint(i);
         m_polygon->setPoint(point.x * ratio, point.y * ratio, i);
     }
-    computeBounds();
-    translateToOrigin();
+
+    if (shift)
+    {
+        computeBounds();
+        translateToOrigin();
+    }
 }
 
-void DetectedObject::rescaleToSize(float size)
+void DetectedObject::rescaleToSize(float size, bool shift)
 {
     computeBounds();
 
     unsigned int width = getWidth();
     unsigned int height = getHeight();
-    unsigned int max;    
+    unsigned int max;
 
     if (width > height)
     {
@@ -63,9 +73,9 @@ void DetectedObject::rescaleToSize(float size)
     else
     {
         max = height;
-    }   
-    
-    rescale(size / max);    
+    }
+
+    rescale(size / max, shift);
 }
 
 void DetectedObject::translateToOrigin()
@@ -74,38 +84,48 @@ void DetectedObject::translateToOrigin()
     Vector2<int>* point;
 
     translation.x = m_boundingPointLower.x < 0 ? -m_boundingPointLower.x : -m_boundingPointLower.x;
-    translation.y = m_boundingPointLower.y < 0 ? -m_boundingPointLower.y : -m_boundingPointLower.y;    
-    
-    if(m_boundingPointLower.x == 0) translation.x = 0;
-    if(m_boundingPointLower.y == 0) translation.y = 0;
+    translation.y = m_boundingPointLower.y < 0 ? -m_boundingPointLower.y : -m_boundingPointLower.y;
+
+    if (m_boundingPointLower.x == 0) translation.x = 0;
+    if (m_boundingPointLower.y == 0) translation.y = 0;
 
     for (unsigned int i = 0; i < m_polygon->getSize(); i++)
     {
-        point = m_polygon->getPointPtr(i);        
+        point = m_polygon->getPointPtr(i);
         m_polygon->setPoint(point->x + translation.x, point->y + translation.y, i);
     }
-    
+
     computeBounds();
 }
 
-void DetectedObject::rotateByAngle(float angle)
+void DetectedObject::rotateByAngle(float angle, bool direction, bool shift)
 {
     double sinAngle = sin(angle * M_PI / 180);
     double cosAngle = cos(angle * M_PI / 180);
 
-    Vector2<int>* tempVec;    
-    
+    Vector2<int>* tempVec;
+
     for (int i = 0; i < m_polygon->getSize(); i++)
     {
         tempVec = m_polygon->getPointPtr(i);
-        m_polygon->setPoint(tempVec->x * cosAngle - tempVec->y * sinAngle, tempVec->x * sinAngle + tempVec->y * cosAngle, i);              
+        if (direction)
+        {
+            m_polygon->setPoint(tempVec->x * cosAngle - tempVec->y * sinAngle, tempVec->x * sinAngle + tempVec->y * cosAngle, i);
+        }
+        else
+        {
+            m_polygon->setPoint(tempVec->x * sinAngle - tempVec->y * cosAngle, tempVec->x * cosAngle + tempVec->y * sinAngle, i);
+        }
     }
-    
-    computeBounds();    
-    translateToOrigin();    
+
+    if (shift)
+    {
+        computeBounds();
+        translateToOrigin();
+    }
 }
 
-void DetectedObject::viewByAngle(float angle)
+void DetectedObject::viewByAngle(float angle, bool shift)
 {
     Vector2<int>* tempVec;
     double sinAngle = sin(angle * M_PI / 180);
@@ -115,8 +135,12 @@ void DetectedObject::viewByAngle(float angle)
         tempVec = m_polygon->getPointPtr(i);
         m_polygon->setPoint(tempVec->x, tempVec->y * sinAngle, i);
     }
-    computeBounds();
-    translateToOrigin();
+
+    if (shift)
+    {
+        computeBounds();
+        translateToOrigin();
+    }
 }
 
 Vector2<int> DetectedObject::getOrigin() const
