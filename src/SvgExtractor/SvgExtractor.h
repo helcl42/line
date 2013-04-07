@@ -9,7 +9,7 @@
 #define	SVGEXTRACTOR_H
 
 #include "../Utils/Utils.h"
-#include "XMLParser/XmlParser.h"
+#include "XmlParser/XmlParser.h"
 
 #include "../Shapes/DetectedObject.h"
 
