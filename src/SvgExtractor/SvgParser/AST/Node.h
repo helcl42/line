@@ -9,8 +9,8 @@
 #define	NODE_H
 
 #include <cstdlib>
-#include "../../Line.h"
-#include "../../Utils/Utils.h"
+#include "../../../Line.h"
+#include "../../../Utils/Utils.h"
 
 class Node
 {

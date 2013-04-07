@@ -74,7 +74,7 @@ void DetectedObject::translateToOrigin()
     Vector2<int>* point;
 
     translation.x = m_boundingPointLower.x < 0 ? -m_boundingPointLower.x : -m_boundingPointLower.x;
-    translation.y = m_boundingPointLower.y < 0 ? m_boundingPointLower.y : -m_boundingPointLower.y;    
+    translation.y = m_boundingPointLower.y < 0 ? -m_boundingPointLower.y : -m_boundingPointLower.y;    
     
     if(m_boundingPointLower.x == 0) translation.x = 0;
     if(m_boundingPointLower.y == 0) translation.y = 0;

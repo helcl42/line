@@ -8,7 +8,7 @@
 #ifndef POSITIONFACTORY_H
 #define	POSITIONFACTORY_H
 
-#include "../../Vector2.h"
+#include "../../../Vector2.h"
 #include "Arguments/CoordinatePair.h"
 
 class PositionManager

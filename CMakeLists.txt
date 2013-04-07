@@ -11,7 +11,7 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 
 rosbuild_init()
 
-include_directories(src/SvgParser/antlr3/include)
+include_directories(src/SvgExtractor/SvgParser/antlr3/include)
 
 #set the default path for built executables to the "bin" directory
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
@@ -38,22 +38,23 @@ rosbuild_add_library(line src/Utils/Timer.cpp)
 rosbuild_add_library(line src/Shapes/DetectedObject.cpp)
 rosbuild_add_library(line src/Shapes/LinePair.cpp)
 
-rosbuild_add_library(line src/SvgParser/AST/Arguments/Argument.cpp)
-rosbuild_add_library(line src/SvgParser/AST/Arguments/Coordinate.cpp)
-rosbuild_add_library(line src/SvgParser/AST/Arguments/CoordinatePair.cpp)
-rosbuild_add_library(line src/SvgParser/AST/Commands/Command.cpp)
-rosbuild_add_library(line src/SvgParser/AST/Commands/CloseCommand.cpp)
-rosbuild_add_library(line src/SvgParser/AST/Commands/CurveToCommand.cpp)
-rosbuild_add_library(line src/SvgParser/AST/Commands/LineToCommand.cpp)
-rosbuild_add_library(line src/SvgParser/AST/Commands/MoveToCommand.cpp)
-rosbuild_add_library(line src/SvgParser/AST/Node.cpp)
-rosbuild_add_library(line src/SvgParser/AST/PositionManager.cpp)
-rosbuild_add_library(line src/SvgParser/SvgLexer.cpp)
-rosbuild_add_library(line src/SvgParser/SvgParser.cpp)
+rosbuild_add_library(line src/SvgExtractor/SvgParser/AST/Arguments/Argument.cpp)
+rosbuild_add_library(line src/SvgExtractor/SvgParser/AST/Arguments/Coordinate.cpp)
+rosbuild_add_library(line src/SvgExtractor/SvgParser/AST/Arguments/CoordinatePair.cpp)
+rosbuild_add_library(line src/SvgExtractor/SvgParser/AST/Commands/Command.cpp)
+rosbuild_add_library(line src/SvgExtractor/SvgParser/AST/Commands/CloseCommand.cpp)
+rosbuild_add_library(line src/SvgExtractor/SvgParser/AST/Commands/CurveToCommand.cpp)
+rosbuild_add_library(line src/SvgExtractor/SvgParser/AST/Commands/LineToCommand.cpp)
+rosbuild_add_library(line src/SvgExtractor/SvgParser/AST/Commands/MoveToCommand.cpp)
+rosbuild_add_library(line src/SvgExtractor/SvgParser/AST/Node.cpp)
+rosbuild_add_library(line src/SvgExtractor/SvgParser/AST/PositionManager.cpp)
+
+rosbuild_add_library(line src/SvgExtractor/SvgParser/SvgLexer.cpp)
+rosbuild_add_library(line src/SvgExtractor/SvgParser/SvgParser.cpp)
 
 rosbuild_add_library(line src/SvgExtractor/SvgExtractor.cpp)
 
-rosbuild_add_library(line src/XMLParser/XmlParser.cpp)
+rosbuild_add_library(line src/SvgExtractor/XMLParser/XmlParser.cpp)
 
 rosbuild_add_library(line src/DetectorTopic.cpp)
 rosbuild_add_library(line src/DetectionSettings.cpp)

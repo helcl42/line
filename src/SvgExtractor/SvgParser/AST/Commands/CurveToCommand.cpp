@@ -1,5 +1,5 @@
 #include "CurveToCommand.h"
-#include "../../../Vector2.h"
+#include "../../../../Vector2.h"
 #include "../Arguments/CoordinatePair.h"
 #include "../PositionManager.h"
 

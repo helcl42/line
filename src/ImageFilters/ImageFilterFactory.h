@@ -46,8 +46,8 @@ public:
         std::vector<Kernel<T>* > kernels;
         kernels.push_back(new NonSeparableKernel<T>(3, 3, kerXMatrix));
         kernels.push_back(new NonSeparableKernel<T>(3, 3, kerYMatrix));
-//        kernels.push_back(new NonSeparableKernel<T>(3, 3, kerYXMatrix));
-//        kernels.push_back(new NonSeparableKernel<T>(3, 3, kerXYMatrix));
+        kernels.push_back(new NonSeparableKernel<T>(3, 3, kerYXMatrix));
+        kernels.push_back(new NonSeparableKernel<T>(3, 3, kerXYMatrix));
 
         FFTImageFilterBatchItem<T>* edgeFilter = new FFTImageFilterBatchItem<T>(kernels);
 

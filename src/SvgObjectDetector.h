@@ -21,7 +21,9 @@ protected:
     
     std::vector<DetectedObject*> m_detectedShapes;
     
-    DetectedObject* m_bestMatch;    
+    DetectedObject* m_bestMatch;
+
+    unsigned int m_shrink;
 
 public:
     SvgObjectDetector(std::vector<DetectedObject*>& shapes, DetectionColorItem* settings = NULL);
@@ -41,6 +43,8 @@ public:
 
 protected:
     DetectedObject* findBestShape();
+    
+    void setShrink(unsigned int shrink);
     
     void cleanUp();
 

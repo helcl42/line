@@ -19,6 +19,7 @@ class Vector2
 {
 public:    
     Type x;
+    
     Type y;
 
 public:

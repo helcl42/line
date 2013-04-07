@@ -132,81 +132,112 @@
           <in>Rectangle.h</in>
         </df>
         <df name="SvgExtractor">
+          <df name="hhmmm">
+          </df>
+          <df name="SvgParser">
+            <df name="antlr3">
+              <df name="include">
+                <in>antlr3.hpp</in>
+                <in>antlr3.inl</in>
+                <in>antlr3baserecognizer.hpp</in>
+                <in>antlr3baserecognizer.inl</in>
+                <in>antlr3bitset.hpp</in>
+                <in>antlr3bitset.inl</in>
+                <in>antlr3collections.hpp</in>
+                <in>antlr3collections.inl</in>
+                <in>antlr3commontoken.hpp</in>
+                <in>antlr3commontoken.inl</in>
+                <in>antlr3commontree.hpp</in>
+                <in>antlr3commontree.inl</in>
+                <in>antlr3commontreeadaptor.hpp</in>
+                <in>antlr3commontreeadaptor.inl</in>
+                <in>antlr3commontreenodestream.hpp</in>
+                <in>antlr3commontreenodestream.inl</in>
+                <in>antlr3convertutf.hpp</in>
+                <in>antlr3cyclicdfa.hpp</in>
+                <in>antlr3cyclicdfa.inl</in>
+                <in>antlr3debugeventlistener.hpp</in>
+                <in>antlr3defs.hpp</in>
+                <in>antlr3errors.hpp</in>
+                <in>antlr3exception.hpp</in>
+                <in>antlr3exception.inl</in>
+                <in>antlr3filestream.hpp</in>
+                <in>antlr3filestream.inl</in>
+                <in>antlr3input.hpp</in>
+                <in>antlr3input.inl</in>
+                <in>antlr3interfaces.hpp</in>
+                <in>antlr3intstream.hpp</in>
+                <in>antlr3intstream.inl</in>
+                <in>antlr3lexer.hpp</in>
+                <in>antlr3lexer.inl</in>
+                <in>antlr3memory.hpp</in>
+                <in>antlr3parser.hpp</in>
+                <in>antlr3parser.inl</in>
+                <in>antlr3recognizersharedstate.hpp</in>
+                <in>antlr3recognizersharedstate.inl</in>
+                <in>antlr3rewritestreams.hpp</in>
+                <in>antlr3rewritestreams.inl</in>
+                <in>antlr3tokenstream.hpp</in>
+                <in>antlr3tokenstream.inl</in>
+                <in>antlr3traits.hpp</in>
+                <in>antlr3treeparser.hpp</in>
+                <in>antlr3treeparser.inl</in>
+              </df>
+            </df>
+            <df name="AST">
+              <df name="Arguments">
+                <in>Argument.cpp</in>
+                <in>Argument.h</in>
+                <in>ArgumentType.h</in>
+                <in>Coordinate.cpp</in>
+                <in>Coordinate.h</in>
+                <in>CoordinatePair.cpp</in>
+                <in>CoordinatePair.h</in>
+                <in>Flag.h</in>
+              </df>
+              <df name="Commands">
+                <in>CloseCommand.cpp</in>
+                <in>CloseCommand.h</in>
+                <in>Command.cpp</in>
+                <in>Command.h</in>
+                <in>CurveToCommand.cpp</in>
+                <in>CurveToCommand.h</in>
+                <in>EllipticArCommand.h</in>
+                <in>HorizontalLineToCommand.h</in>
+                <in>LineToCommand.cpp</in>
+                <in>LineToCommand.h</in>
+                <in>MoveToCommand.cpp</in>
+                <in>MoveToCommand.h</in>
+                <in>QuadraticBezierCurveToCommand.h</in>
+                <in>SmoothCurveToCommand.h</in>
+                <in>SmoothQuadraticBezerCurveToCommand.h</in>
+                <in>VerticalLineToCommand.h</in>
+              </df>
+              <in>MovetoDrawtoCommandGroup.h</in>
+              <in>Node.cpp</in>
+              <in>Node.h</in>
+              <in>PositionManager.cpp</in>
+              <in>PositionManager.h</in>
+              <in>SvgPath.h</in>
+            </df>
+            <in>Svg.g</in>
+            <in>Svg.tokens</in>
+            <in>SvgLexer.cpp</in>
+            <in>SvgLexer.hpp</in>
+            <in>SvgParser.cpp</in>
+            <in>SvgParser.hpp</in>
+            <in>SvgTraits.hpp</in>
+          </df>
+          <df name="XMLParser">
+          </df>
+          <df name="XMLParser">
+          </df>
+          <df name="XMLParser">
+            <in>XmlParser.cpp</in>
+            <in>XmlParser.h</in>
+          </df>
           <in>SvgExtractor.cpp</in>
           <in>SvgExtractor.h</in>
-        </df>
-        <df name="SvgParser">
-          <df name="antlr3">
-            <df name="include">
-              <in>antlr3.hpp</in>
-              <in>antlr3baserecognizer.hpp</in>
-              <in>antlr3bitset.hpp</in>
-              <in>antlr3collections.hpp</in>
-              <in>antlr3commontoken.hpp</in>
-              <in>antlr3commontree.hpp</in>
-              <in>antlr3commontreeadaptor.hpp</in>
-              <in>antlr3commontreenodestream.hpp</in>
-              <in>antlr3convertutf.hpp</in>
-              <in>antlr3cyclicdfa.hpp</in>
-              <in>antlr3debugeventlistener.hpp</in>
-              <in>antlr3defs.hpp</in>
-              <in>antlr3errors.hpp</in>
-              <in>antlr3exception.hpp</in>
-              <in>antlr3filestream.hpp</in>
-              <in>antlr3input.hpp</in>
-              <in>antlr3interfaces.hpp</in>
-              <in>antlr3intstream.hpp</in>
-              <in>antlr3lexer.hpp</in>
-              <in>antlr3memory.hpp</in>
-              <in>antlr3parser.hpp</in>
-              <in>antlr3recognizersharedstate.hpp</in>
-              <in>antlr3rewritestreams.hpp</in>
-              <in>antlr3tokenstream.hpp</in>
-              <in>antlr3traits.hpp</in>
-              <in>antlr3treeparser.hpp</in>
-            </df>
-          </df>
-          <df name="AST">
-            <df name="Arguments">
-              <in>Argument.cpp</in>
-              <in>Argument.h</in>
-              <in>ArgumentType.h</in>
-              <in>Coordinate.cpp</in>
-              <in>Coordinate.h</in>
-              <in>CoordinatePair.cpp</in>
-              <in>CoordinatePair.h</in>
-              <in>Flag.h</in>
-            </df>
-            <df name="Commands">
-              <in>CloseCommand.cpp</in>
-              <in>CloseCommand.h</in>
-              <in>Command.cpp</in>
-              <in>Command.h</in>
-              <in>CurveToCommand.cpp</in>
-              <in>CurveToCommand.h</in>
-              <in>EllipticArCommand.h</in>
-              <in>HorizontalLineToCommand.h</in>
-              <in>LineToCommand.cpp</in>
-              <in>LineToCommand.h</in>
-              <in>MoveToCommand.cpp</in>
-              <in>MoveToCommand.h</in>
-              <in>QuadraticBezierCurveToCommand.h</in>
-              <in>SmoothCurveToCommand.h</in>
-              <in>SmoothQuadraticBezerCurveToCommand.h</in>
-              <in>VerticalLineToCommand.h</in>
-            </df>
-            <in>MovetoDrawtoCommandGroup.h</in>
-            <in>Node.cpp</in>
-            <in>Node.h</in>
-            <in>PositionManager.cpp</in>
-            <in>PositionManager.h</in>
-            <in>SvgPath.h</in>
-          </df>
-          <in>SvgLexer.cpp</in>
-          <in>SvgLexer.hpp</in>
-          <in>SvgParser.cpp</in>
-          <in>SvgParser.hpp</in>
-          <in>SvgTraits.hpp</in>
         </df>
         <df name="ThreadPool">
           <in>Thread.h</in>
@@ -215,10 +246,6 @@
           <in>Timer.cpp</in>
           <in>Timer.h</in>
           <in>Utils.h</in>
-        </df>
-        <df name="XMLParser">
-          <in>XmlParser.cpp</in>
-          <in>XmlParser.h</in>
         </df>
         <in>CameraService.cpp</in>
         <in>CameraService.h</in>

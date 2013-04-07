@@ -1,7 +1,9 @@
 #include "ImageService.h"
 
+ImageService* ImageService::thiss = NULL;
+
 ImageService::ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings)
-: m_shrink(5), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
+: m_shrink(2), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
 {
     m_image = new ImageMap<float>();
     m_colorImage = new Image<float>();
@@ -25,6 +27,20 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     IDetectedObject* object = NULL;
 
     m_shrinkTimer.start();
+    
+    imgPtr = img;  
+    ImageService::thiss = this;
+        
+    cameraGroundAngles.clear();
+    cameraGroundAngles.push_back(90);
+//    cameraGroundAngles.push_back(5);
+//    cameraGroundAngles.push_back(10);
+//    cameraGroundAngles.push_back(15);        
+//    cameraGroundAngles.push_back(-5);
+//    cameraGroundAngles.push_back(-10);
+//    cameraGroundAngles.push_back(-15);    
+    
+    //cameraGroundAngles.push_back(50);    
 
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
@@ -41,8 +57,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     object = m_objectDetector->findObject();   
 
     if (object->isValid())
-    {
-        std::cout << "OBJECT!!! " << std::endl;
+    {        
         m_changeColorTimer.stop();
 
         writeLinesToMessage(img, object->getPolygons(), object->getCountOfPolygons());
@@ -74,16 +89,16 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     timeElapsed = m_shrinkTimer.getElapsedTimeInMicroSec();
     std::cout << "Elapsed " << timeElapsed << "ms " << m_shrinkTimer.getFPS() << " FPS" << std::endl;
 
-    if (timeElapsed > 350000)
-    {
-        if (m_shrink < 6) m_shrink++;
-    }
-    else if (timeElapsed < 70000)
-    {
-        if (m_shrink > 2) m_shrink--;
-    }
-
-    std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
+//    if (timeElapsed > 350000)
+//    {
+//        if (m_shrink < 6) m_shrink++;
+//    }
+//    else if (timeElapsed < 70000)
+//    {
+//        if (m_shrink > 2) m_shrink--;
+//    }
+//
+//    std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
 
     return objectPoint;
 }
@@ -137,7 +152,7 @@ void ImageService::writePointToMessage(const sensor_msgs::Image::ConstPtr& img, 
             index = imageSize - (j + 1) * img->width * 3 * m_shrink + (m_image->getWidth() - i) * m_shrink * 3;
 
             temp = (unsigned char*) &img->data[index];
-            *temp = (unsigned char) 255;
+            *temp = (unsigned char) 0;
             temp = (unsigned char*) &img->data[index + 1];
             *temp = (unsigned char) 255;
             temp = (unsigned char*) &img->data[index + 2];

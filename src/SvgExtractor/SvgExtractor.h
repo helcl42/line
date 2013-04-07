@@ -9,12 +9,12 @@
 #define	SVGEXTRACTOR_H
 
 #include "../Utils/Utils.h"
-#include "../XMLParser/XmlParser.h"
+#include "XMLParser/XmlParser.h"
 
 #include "../Shapes/DetectedObject.h"
 
-#include "../SvgParser/SvgLexer.hpp"
-#include "../SvgParser/SvgParser.hpp"
+#include "SvgParser/SvgLexer.hpp"
+#include "SvgParser/SvgParser.hpp"
 
 class SvgExtractor
 {
