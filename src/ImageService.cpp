@@ -3,7 +3,7 @@
 ImageService* ImageService::thiss = NULL;
 
 ImageService::ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings)
-: m_shrink(4), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
+: m_shrink(5), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
 {
     m_image = new ImageMap<float>();
     m_colorImage = new Image<float>();
@@ -91,16 +91,16 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     timeElapsed = m_shrinkTimer.getElapsedTimeInMicroSec();
     std::cout << "Elapsed " << timeElapsed << "ms " << m_shrinkTimer.getFPS() << " FPS" << std::endl;
 
-//    if (timeElapsed > 350000)
-//    {
-//        if (m_shrink < 6) m_shrink++;
-//    }
-//    else if (timeElapsed < 70000)
-//    {
-//        if (m_shrink > 2) m_shrink--;
-//    }
-//
-//    std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
+    if (timeElapsed > 350000)
+    {
+        if (m_shrink < 4) m_shrink++;
+    }
+    else if (timeElapsed < 70000)
+    {
+        if (m_shrink > 2) m_shrink--;
+    }
+
+    std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
 
     return objectPoint;
 }

@@ -97,7 +97,7 @@ public:
 
         FFTImageFilterBatch<T>* imageFilterBatch = new FFTImageFilterBatch<T>();
         imageFilterBatch->addItem(edgeFilter);
-        imageFilterBatch->addItem(gaussFIlter);        
+        //imageFilterBatch->addItem(gaussFIlter);        
         
         return imageFilterBatch;
     }

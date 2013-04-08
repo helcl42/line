@@ -186,7 +186,7 @@ DetectedObject* SvgObjectDetector::findBestShape()
                 std::cout << "GOT IT!!!!" << std::endl;
                 //writeLineInImageMap(m_bestMatch->getPolygon(), 255);
                 ImageService::getInstance()->writeLL(m_bestMatch->getPolygon());
-                //return m_bestMatch;
+                return m_bestMatch;
                 //                }                
             }
         }        
