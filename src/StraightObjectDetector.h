@@ -9,10 +9,10 @@
 #define	STRAIGHTSHAPEOBJECTDETECTOR_H
 
 #include "Line.h"
-#include "ObjectDetector.h"
+#include "AbstractDetector.h"
 #include "Shapes/LinePair.h"
 
-class StraightObjectDetector : public ObjectDetector
+class StraightObjectDetector : public AbstractDetector
 {
 protected:    
     std::vector<Line*> m_lines;

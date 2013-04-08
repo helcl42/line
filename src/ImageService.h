@@ -15,9 +15,12 @@
 #include "Image/Image.h"
 #include "Utils/Timer.h"
 #include "DetectionSettings.h"
-#include "SvgObjectDetector.h"
+#include "ObjectDetector.h"
 #include "LineDetector.h"
 #include "Image/ImageMap.h"
+#include "ObjectDetectorParallel.h"
+
+#define NUMBER_OF_INSTANCES 4
 
 class ImageService
 {
@@ -40,7 +43,9 @@ private:
         
     LineDetector* m_lineDetector;          
     
-    SvgObjectDetector* m_objectDetector;
+    //SvgObjectDetector* m_objectDetector;
+    
+    ObjectDetectorParallel* m_objectDetector;
     
     sensor_msgs::Image::ConstPtr imgPtr;
     

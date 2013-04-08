@@ -33,22 +33,10 @@
                     </df>
                   </df>
                 </df>
-                <df name="XMLParser">
-                </df>
                 <df name="XmlParser">
                 </df>
               </df>
-              <df name="SvgParser">
-                <df name="AST">
-                  <df name="Arguments">
-                  </df>
-                  <df name="Commands">
-                  </df>
-                </df>
-              </df>
               <df name="Utils">
-              </df>
-              <df name="XMLParser">
               </df>
             </df>
           </df>
@@ -247,6 +235,7 @@
         <in>LineDetector.cpp</in>
         <in>LineDetector.h</in>
         <in>Main.cpp</in>
+        <in>MoveService.h</in>
         <in>ObjectDetector.cpp</in>
         <in>ObjectDetector.h</in>
         <in>StraightObjectDetector.cpp</in>

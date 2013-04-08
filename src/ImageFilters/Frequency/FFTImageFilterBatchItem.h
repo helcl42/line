@@ -110,7 +110,7 @@ public:
         typename std::vector<Complex<T>**>::iterator ii;
 
         for (ii = m_kernelStates.begin(); ii != m_kernelStates.end(); ++ii)
-        {
+        {            
             m_fft->convolve(input, *ii);
             tempResults.push_back(*ii);
         }
@@ -130,6 +130,7 @@ public:
                 }
             }
         }
+        
         return tempResults.back();        
     }
 

@@ -1,63 +1,48 @@
 /* 
- * File:   ObjectDetector.h
+ * File:   SquareDetector.h
  * Author: lubos
  *
- * Created on March 6, 2013, 2:33 AM
+ * Created on March 18, 2013, 4:00 AM
  */
 
-#ifndef OBJECTDETECTOR_H
-#define	OBJECTDETECTOR_H
+#ifndef SVGOBJECTDETECTOR_H
+#define	SVGOBJECTDETECTOR_H
 
-#include "Pixel/Pixel.h"
-#include "DetectionSettings.h"
-#include "Line.h"
-#include "Image/ImageMap.h"
-#include "ImageFilters/Frequency/FFTImageFilterBatch.h"
+#include "Shapes/DetectedObject.h"
+#include "ObjectDetectorThread.h"
+#include "AbstractObjectDetector.h"
 
-class ObjectDetector
+
+class SvgObjectDetector : public AbstractObjectDetector
 {
-protected:
-    ImageMap<float>* m_workImage;
-
-    Image<float>* m_colorImage;
-
-    DetectionColorItem* m_settings;
-
-    PixelRGB<float> m_baseColor;
-
-    FFTImageFilterBatch<float>* m_imageFilterBatch;    
-
-public:       
-    ObjectDetector(DetectionColorItem* settings = NULL);
-    
-    ObjectDetector(ImageMap<float>* image, Image<float>* colorImage);
-
-    virtual ~ObjectDetector();
-    
+protected:                
 public:
-    void setBaseColor();
+    SvgObjectDetector(std::vector<DetectedObject*>& shapes, DetectionColorItem* settings = NULL);
 
-    PixelRGB<float> getBaseColor() const;
+    SvgObjectDetector(std::vector<DetectedObject*>& shapes, ImageMap<float>* image, Image<float>* colorImage);
 
-    void setColorSettings(DetectionColorItem* settings);
+    virtual ~SvgObjectDetector();
 
-    DetectionColorItem* getColorSettings() const;
+public:
+    DetectedObject* findObject();
 
-    void setInstance(ImageMap<float>* image, Image<float>* colorImage);    
+    void invalidate();
+
+    void initDetectionParams(unsigned int shrink = 1);            
+
+protected:
+    DetectedObject* findBestShape();
     
-protected:        
-    void repaintSimilarColorPlaces(int interval = DetectionParams::colorTolerance);           
-        
-    void writeLineInImageMap(Line* line, unsigned int val);
+    void cleanUp();   
     
-public:    
-    virtual void invalidate() = 0;    
-        
-    virtual void initDetectionParams(unsigned int shrink = 1) = 0;    
+    void generateShapes(DetectedObject* object, unsigned int size);        
     
-protected:    
-    virtual bool colorMatch(unsigned int failCount = 0) = 0;
+    bool findShapeInImage(DetectedObject* object);
+    
+    bool innerShapeFind(DetectedObject* object, unsigned int y, unsigned int x);    
+    
+    bool rawShapeFind(DetectedObject* object, unsigned int y, unsigned int x);
 };
 
-#endif	/* OBJECTDETECTOR_H */
+#endif	/* SQUAREDETECTOR_H */
 

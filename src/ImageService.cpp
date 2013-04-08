@@ -1,4 +1,5 @@
 #include "ImageService.h"
+#include "ObjectDetectorParallel.h"
 
 ImageService* ImageService::thiss = NULL;
 
@@ -8,7 +9,8 @@ ImageService::ImageService(std::vector<DetectedObject*>& shapes, DetectionSettin
     m_image = new ImageMap<float>();
     m_colorImage = new Image<float>();
     m_lineDetector = new LineDetector(settings->getItem(0));      
-    m_objectDetector = new SvgObjectDetector(shapes, settings->getItem(0));
+    //m_objectDetector = new SvgObjectDetector(shapes, settings->getItem(0));
+    m_objectDetector = new ObjectDetectorParallel(NUMBER_OF_INSTANCES, shapes, settings->getItem(0));
 }
 
 ImageService::~ImageService()
@@ -54,6 +56,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
 
     m_objectDetector->invalidate();
     m_objectDetector->initDetectionParams(m_shrink);
+    m_objectDetector->setShrink(m_shrink);
     m_objectDetector->setInstance(m_image, m_colorImage);
     m_objectDetector->setAngles(cameraGroundAngles);
     object = m_objectDetector->findObject();   

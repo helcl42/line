@@ -1,10 +1,12 @@
 #include "LineDetector.h"
+#include "ImageFilters/ImageFilterFactory.h"
 
 LineDetector::LineDetector(DetectionColorItem* settings)
 : StraightObjectDetector(settings)
 {    
     this->initDetectionParams();    
     m_bestLine = new LinePair();
+    this->m_imageFilterBatch = ImageFilterFactory<float>::createLineBatch();
 }
 
 LineDetector::LineDetector(ImageMap<float>* image, Image<float>* colorImage)
@@ -12,6 +14,7 @@ LineDetector::LineDetector(ImageMap<float>* image, Image<float>* colorImage)
 {    
     this->initDetectionParams();
     m_bestLine = new LinePair();
+    this->m_imageFilterBatch = ImageFilterFactory<float>::createLineBatch();
 }
 
 LineDetector::~LineDetector()

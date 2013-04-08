@@ -1,121 +1,190 @@
 #include "ObjectDetector.h"
+#include "Shapes/GeneralObject.h"
+#include "Utils/Timer.h"
+#include "ImageService.h"
 #include "ImageFilters/ImageFilterFactory.h"
 
-ObjectDetector::ObjectDetector(DetectionColorItem* settings)
-: m_workImage(NULL), m_colorImage(NULL), m_settings(settings)
-{    
-    if (m_settings != NULL)
-    {
-        setBaseColor();
-    }
-    m_imageFilterBatch = ImageFilterFactory<float>::createBatch();
-    
-}
-
-ObjectDetector::ObjectDetector(ImageMap<float>* image, Image<float>* colorImage)
-: m_workImage(image), m_colorImage(colorImage), m_settings(NULL)
-{    
-    m_imageFilterBatch = ImageFilterFactory<float>::createBatch();
-}
-
-ObjectDetector::~ObjectDetector()
-{    
-    SAFE_DELETE(m_imageFilterBatch);
-}
-
-void ObjectDetector::setBaseColor()
+SvgObjectDetector::SvgObjectDetector(std::vector<DetectedObject*>& shapes, DetectionColorItem* settings)
+: AbstractObjectDetector(shapes, settings)
 {
-    float maxValue = 0;
-    int maxIndex = 0;
-    float temp;
+    this->initDetectionParams();        
+}
 
-    for (int i = 0; i < 3; i++)
+SvgObjectDetector::SvgObjectDetector(std::vector<DetectedObject*>& shapes, ImageMap<float>* image, Image<float>* colorImage)
+: AbstractObjectDetector(shapes, image, colorImage)
+{
+    this->initDetectionParams();    
+}
+
+SvgObjectDetector::~SvgObjectDetector()
+{
+    m_shapes.clear();
+    SAFE_DELETE(m_bestMatch);
+}
+
+void SvgObjectDetector::invalidate()
+{
+    m_bestMatch->invalidate();
+}
+
+void SvgObjectDetector::cleanUp()
+{
+    std::vector<DetectedObject*>::iterator ii;
+    for (ii = m_detectedShapes.begin(); ii != m_detectedShapes.end(); ++ii)
     {
-        temp = m_settings->color[i];
-        if (temp > maxValue)
-        {
-            maxValue = temp;
-            maxIndex = i;
-        }
+        SAFE_DELETE(*ii);
     }
+    m_detectedShapes.clear();
 
-    for (int i = 0; i < 3; i++)
+    m_bestMatch->invalidate();
+}
+
+void SvgObjectDetector::generateShapes(DetectedObject* shape, unsigned int size)
+{
+    DetectedObject* tempShapePtr;    
+
+    for (int rotateAngle = -90; rotateAngle < 90; rotateAngle += 4)
     {
-        if (i == maxIndex)
+        tempShapePtr = new GeneralObject(new Line(shape->getPolygon()));
+
+        if (rotateAngle > 0)
         {
-            m_baseColor[i] = 255;
+            tempShapePtr->createBatch(size, rotateAngle, true);
         }
         else
         {
-            m_baseColor[i] = 0;
+            tempShapePtr->createBatch(size, rotateAngle, false);
         }
+
+        m_detectedShapes.push_back(tempShapePtr);
     }
 }
 
-PixelRGB<float> ObjectDetector::getBaseColor() const
+DetectedObject* SvgObjectDetector::findObject()
 {
-    return m_baseColor;
+    cleanUp();
+    //repaintSimilarColorPlaces();        
+    m_imageFilterBatch->setInstance(m_workImage);
+    m_imageFilterBatch->applyFilter();
+    //m_workImage->resolveThreshold(150);
+
+    return findBestShape();
 }
 
-void ObjectDetector::setColorSettings(DetectionColorItem* settings)
+bool SvgObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
 {
-    m_settings = settings;
-    setBaseColor();
-}
+    unsigned int ratio = 12, failCount = 0;
+    double percentFail;
+    Line* squareLine = shape->getPolygon();
+    unsigned int lineSize = squareLine->getSize() / ratio;
 
-DetectionColorItem* ObjectDetector::getColorSettings() const
-{
-    return m_settings;
-}
-
-void ObjectDetector::setInstance(ImageMap<float>* image, Image<float>* colorImage)
-{
-    m_workImage = image;
-    m_colorImage = colorImage;
-}
-
-void ObjectDetector::repaintSimilarColorPlaces(int interval)
-{
-    PixelRGB<float> pixelMinus;
-    PixelRGB<float> pixelPlus;
-    Pixel<float>* pixel = NULL;
-    float value;
-    
-    for (int i = 0; i < 3; i++)
+    for (unsigned int k = 0; k < lineSize; k += ratio)
     {
-        pixelMinus[i] = m_settings->color[i] > interval ? m_settings->color[i] - interval : 0;
-        pixelPlus[i] = m_settings->color[i] + interval < 255 ? m_settings->color[i] + interval : 255;
+        Vector2<int> point = squareLine->points[k];
+        if (m_workImage->getValueAt(point.y + y, point.x + x) < DetectionParams::selectionTreshold) failCount++;
     }
 
-    for (unsigned int i = 0; i < m_workImage->getHeight(); ++i)
+    percentFail = (double) failCount / (double) lineSize;
+
+    if (percentFail < 0.05) return true;
+    return false;
+}
+
+bool SvgObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
+{
+    Line* shapeLine = shape->getPolygon();
+    unsigned int lineSize = shapeLine->getSize();
+    unsigned int failCount = 0;
+    double percentFail;
+    Vector2<int>* point;
+
+    if (!rawShapeFind(shape, y, x)) return false;
+
+    for (unsigned int k = 0; k < lineSize; k++)
     {
-        for (unsigned int j = 0; j < m_workImage->getWidth(); ++j)
+        point = shapeLine->getPointPtr(k);
+        if (m_workImage->getValueAt(point->y + y, point->x + x) < DetectionParams::selectionTreshold) failCount++;
+    }
+
+    percentFail = (double) failCount / (double) lineSize;
+
+    if (percentFail < DetectionParams::maxPercentageError)
+    {
+        std::cout << "failCount = " << failCount << " size = " << lineSize << " fail = " << percentFail << "%" << std::endl;
+        m_bestMatch->cleanUp();
+        for (unsigned int k = 0; k < lineSize; k++)
         {
-            pixel = m_colorImage->getPixel(i, j);
+            point = shapeLine->getPointPtr(k);
+            m_bestMatch->addPoint(point->x + x, point->y + y);
+        }
 
-            if (pixel->isInInterval(&pixelMinus, &pixelPlus))
+        return true;
+    }
+    return false;
+}
+
+bool SvgObjectDetector::findShapeInImage(DetectedObject* shape)
+{
+    unsigned int baseHeight = m_workImage->getHeight();
+    unsigned int baseWidth = m_workImage->getWidth();
+    unsigned int offsetX = shape->getWidth();
+    unsigned int offsetY = shape->getHeight();    
+
+    std::vector<float>::reverse_iterator anglesIterator;
+    for (anglesIterator = m_angles.rbegin(); anglesIterator != m_angles.rend(); ++anglesIterator)
+    {
+        shape->viewByAngle(*anglesIterator);
+
+        for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 3)
+        {
+            for (unsigned int j = 0; j < baseWidth - offsetX - 1; j += 3)
             {
-                value = 255;
+                if (innerShapeFind(shape, i, j))
+                {
+                    return true;
+                }
             }
-            else
-            {
-                value = 0;
-            }
-            
-            m_workImage->setValueAt(i, j, value);
         }
     }
+    return false;
 }
 
-void ObjectDetector::writeLineInImageMap(Line* line, unsigned int val)
+DetectedObject* SvgObjectDetector::findBestShape()
 {
-    Vector2<int> linePoint;
+    unsigned int shapeIndex = 0;
+    unsigned int shapeSize = m_workImage->getHeight() / 3 - 1;
 
-    if (line == NULL) return;
-
-    for (unsigned int i = 0; i < line->points.size(); i++)
+    while (shapeSize > m_workImage->getHeight() / 5)
     {
-        linePoint = line->points[i];        
-        m_workImage->setValueAt(linePoint.y, linePoint.x, val);                    
+        cleanUp();
+
+        generateShapes(m_detectedShapes[shapeIndex], shapeSize);
+
+        for (unsigned int i = 0; i < m_detectedShapes.size(); i++)
+        {
+            if (findShapeInImage(m_detectedShapes[i]))
+            {
+                //                if (colorMatch())
+                //                {
+                std::cout << "GOT IT!!!!" << std::endl;
+                //writeLineInImageMap(m_bestMatch->getPolygon(), 255);
+                ImageService::getInstance()->writeLL(m_bestMatch->getPolygon());
+                return m_bestMatch;
+                //                }                
+            }
+        }
+        invalidate();
+
+        shapeSize -= 5;
     }
+    invalidate();
+    return m_bestMatch;
 }
+
+void SvgObjectDetector::initDetectionParams(unsigned int shrink)
+{
+    DetectionParams::selectionTreshold = 35;
+
+    DetectionParams::maxPercentageError = 0.05;
+}
+

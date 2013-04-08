@@ -1,12 +1,12 @@
 #include "StraightObjectDetector.h"
 
 StraightObjectDetector::StraightObjectDetector(DetectionColorItem* settings)
-: ObjectDetector(settings)
+: AbstractDetector(settings)
 {
 }
 
 StraightObjectDetector::StraightObjectDetector(ImageMap<float>* image, Image<float>* colorImage)
-: ObjectDetector(image, colorImage)
+: AbstractDetector(image, colorImage)
 {
 }
 
