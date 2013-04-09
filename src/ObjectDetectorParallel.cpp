@@ -58,7 +58,7 @@ void ObjectDetectorParallel::generateShapes(DetectedObject* shape, unsigned int 
     {
         for (unsigned int viewAngle = 0; viewAngle < m_angles.size(); viewAngle++)
         {
-            tempShapePtr = new GeneralObject(new Line<int>(shape->getPolygon()));
+            tempShapePtr = new GeneralObject(new Polygon<int>(shape->getPolygon()));
 
             if (rotateAngle > 0)
             {

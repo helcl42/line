@@ -45,7 +45,7 @@ void ObjectDetector::generateShapes(DetectedObject* shape, unsigned int size)
 
     for (int rotateAngle = -90; rotateAngle < 90; rotateAngle += 4)
     {
-        tempShapePtr = new GeneralObject(new Line<int>(shape->getPolygon()));
+        tempShapePtr = new GeneralObject(new Polygon<int>(shape->getPolygon()));
 
         if (rotateAngle > 0)
         {
@@ -74,7 +74,7 @@ DetectedObject* ObjectDetector::findObject()
 bool ObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x, unsigned int ratio, unsigned int base)
 {
     double percentFail;
-    Line<int>* squareLine = shape->getPolygon();
+    Polygon<int>* squareLine = shape->getPolygon();
     unsigned int lineSize = squareLine->getSize();
     unsigned int failCount = 0;
 
@@ -92,7 +92,7 @@ bool ObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsigne
 
 bool ObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
 {
-    Line<int>* shapeLine = shape->getPolygon();
+    Polygon<int>* shapeLine = shape->getPolygon();
     unsigned int lineSize = shapeLine->getSize();    
     Vector2<int>* point;    
     unsigned int i = 16, j = 16, iteration = 0;

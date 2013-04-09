@@ -10,7 +10,7 @@
 
 #include "Pixel/Pixel.h"
 #include "DetectionSettings.h"
-#include "Line.h"
+#include "Polygon.h"
 #include "Image/ImageMap.h"
 #include "ImageFilters/Frequency/FFTImageFilterBatch.h"
 #include "Shapes/ShapesCache.h"
@@ -49,7 +49,7 @@ public:
 protected:        
     void repaintSimilarColorPlaces(int interval = DetectionParams::colorTolerance);           
         
-    void writeLineInImageMap(Line<int>* line, unsigned int val);
+    void writeLineInImageMap(Polygon<int>* line, unsigned int val);
     
 public:    
     virtual void invalidate() = 0;    

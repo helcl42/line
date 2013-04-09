@@ -8,14 +8,14 @@
 #ifndef STRAIGHTSHAPEOBJECTDETECTOR_H
 #define	STRAIGHTSHAPEOBJECTDETECTOR_H
 
-#include "Line.h"
+#include "Polygon.h"
 #include "AbstractDetector.h"
 #include "Shapes/LinePair.h"
 
 class StraightObjectDetector : public AbstractDetector
 {
 protected:    
-    std::vector<Line<int>*> m_lines;
+    std::vector<Polygon<int>*> m_lines;
 
 public:
     StraightObjectDetector(DetectionColorItem* settings = NULL);
@@ -28,21 +28,21 @@ public:
     virtual LinePair* findObject() = 0;    
     
 protected:
-    Line<int>* getLongestLine();
+    Polygon<int>* getLongestLine();
 
-    Line<int>* getStraightestLine();
+    Polygon<int>* getStraightestLine();
     
-    Line<int>* findLineWithDirection(Line<int>* input, float angle = 0);
+    Polygon<int>* findLineWithDirection(Polygon<int>* input, float angle = 0);
 
     void lockAllLines(bool val);
     
-    void lockSimilarLines(Line<int>* line, unsigned int crossCount = 0);
+    void lockSimilarLines(Polygon<int>* line, unsigned int crossCount = 0);
 
     void traverseImage();
 
-    inline bool storeBestLine(Line<int>** lines);
+    inline bool storeBestLine(Polygon<int>** lines);
 
-    Line<int>* findCorrectLine(Vector2<int>* vecs, Vector2<int> pos);
+    Polygon<int>* findCorrectLine(Vector2<int>* vecs, Vector2<int> pos);
 
     void sortLinesByStraightness(bool reverse = false);
 

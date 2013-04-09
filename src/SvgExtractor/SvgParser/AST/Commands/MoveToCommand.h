@@ -23,7 +23,7 @@ public:
 
 public:
 
-    void draw(Line<int>* polygon);
+    void draw(Polygon<int>* polygon);
 
     void print();
     

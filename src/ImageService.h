@@ -11,7 +11,7 @@
 #include <vector>
 #include <sensor_msgs/Image.h>
 
-#include "Line.h"
+#include "Polygon.h"
 #include "Image/Image.h"
 #include "Utils/Timer.h"
 #include "DetectionSettings.h"
@@ -66,13 +66,13 @@ public:
     
     void writeImageToMessage(const sensor_msgs::Image::ConstPtr& img);        
     
-    void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line<int>** line, unsigned int count, unsigned int width = 1);        
+    void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Polygon<int>** line, unsigned int count, unsigned int width = 1);        
     
     //temp
     static ImageService* getInstance() { return thiss; }
     
     //temp
-    void writeLL(Line<int>* line) {
+    void writeLL(Polygon<int>* line) {
         writeLinesToMessage(static_cast<const sensor_msgs::Image::ConstPtr&>(imgPtr), &line, 1, 1);
     }
     

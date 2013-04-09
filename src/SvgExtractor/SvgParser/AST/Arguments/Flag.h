@@ -31,7 +31,7 @@ public:
         this->m_value = value;
     }    
     
-    void draw(Line<int>* polygon)
+    void draw(Polygon<int>* polygon)
     {
     }
     

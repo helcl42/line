@@ -12,13 +12,13 @@
 #include "../Utils/Utils.h"
 #include "../Pixel/Pixel.h"
 #include "../Vector2.h"
-#include "../Line.h"
+#include "../Polygon.h"
 #include "IDetectedObject.h"
 
 class DetectedObject : public IDetectedObject
 {
 protected:
-    Line<int>* m_polygon;
+    Polygon<int>* m_polygon;
 
     Vector2<int> m_boundingPointLower;
 
@@ -29,12 +29,12 @@ protected:
 public:
     DetectedObject();
 
-    DetectedObject(Line<int>* polygon);
+    DetectedObject(Polygon<int>* polygon);
 
     virtual ~DetectedObject();
 
 public:
-    void setPolygon(Line<int>* line);
+    void setPolygon(Polygon<int>* line);
 
     Vector2<int>* getLowerBoundingPoint();
 
@@ -60,9 +60,9 @@ public:
     
     unsigned int getCountOfPolygons() const;
     
-    Line<int>** getPolygons();
+    Polygon<int>** getPolygons();
     
-    Line<int>* getPolygon();
+    Polygon<int>* getPolygon();
 
     void cleanUp();
     

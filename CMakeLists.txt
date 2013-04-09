@@ -58,7 +58,6 @@ rosbuild_add_library(line src/SvgExtractor/XmlParser/XmlParser.cpp)
 
 rosbuild_add_library(line src/DetectorTopic.cpp)
 rosbuild_add_library(line src/DetectionSettings.cpp)
-rosbuild_add_library(line src/Line.cpp)
 rosbuild_add_library(line src/DetectionParams.cpp)
 rosbuild_add_library(line src/ImageService.cpp)
 rosbuild_add_library(line src/CameraService.cpp)

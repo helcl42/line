@@ -53,7 +53,7 @@ public:
         this->m_moveTo = moveTo;
     }
     
-    void draw(Line<int>* polygon)
+    void draw(Polygon<int>* polygon)
     {
         m_moveTo->draw(polygon);
         

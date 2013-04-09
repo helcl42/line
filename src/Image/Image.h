@@ -16,7 +16,7 @@
 #include "../Pixel/PixelRGB.h"
 #include "../Pixel/PixelLUV.h"
 #include "../Pixel/PixelLUV.h"
-#include "../Line.h"
+#include "../Polygon.h"
 
 template <class T> class Image;
 template <class T> std::ostream& operator<<(std::ostream& out, const Image<T>& img);

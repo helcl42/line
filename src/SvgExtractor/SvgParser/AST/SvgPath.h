@@ -39,7 +39,7 @@ public:
         return m_movetoDrawtoCommandGroups;
     }
 
-    void draw(Line<int>* polygon)
+    void draw(Polygon<int>* polygon)
     {
         std::cout << "------------ DRAW ------------" << std::endl;
         

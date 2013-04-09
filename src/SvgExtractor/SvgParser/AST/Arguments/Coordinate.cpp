@@ -10,7 +10,7 @@ void Coordinate::setValue(float value)
     this->m_value = value;
 }
 
-void Coordinate::draw(Line<int>* polygon)
+void Coordinate::draw(Polygon<int>* polygon)
 {
 }
 

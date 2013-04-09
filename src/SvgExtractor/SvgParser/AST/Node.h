@@ -9,7 +9,7 @@
 #define	NODE_H
 
 #include <cstdlib>
-#include "../../../Line.h"
+#include "../../../Polygon.h"
 #include "../../../Utils/Utils.h"
 
 class Node
@@ -23,7 +23,7 @@ public:
     virtual ~Node() {}
     
 public:         
-    virtual void draw(Line<int>* polygon) = 0;
+    virtual void draw(Polygon<int>* polygon) = 0;
     
     virtual void print() = 0;    
 };

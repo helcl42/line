@@ -8,7 +8,7 @@
 #ifndef IDETECTEDOBJECT_H
 #define	IDETECTEDOBJECT_H
 
-#include "../Line.h"
+#include "../Polygon.h"
 
 class IDetectedObject
 {
@@ -19,7 +19,7 @@ public:
     
     virtual void invalidate() = 0;
     
-    virtual Line<int>** getPolygons() = 0;
+    virtual Polygon<int>** getPolygons() = 0;
     
     virtual unsigned int getCountOfPolygons() const = 0;
 };

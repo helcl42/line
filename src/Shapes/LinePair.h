@@ -8,7 +8,7 @@
 #ifndef LINEPAIR_H
 #define	LINEPAIR_H
 
-#include "../Line.h"
+#include "../Polygon.h"
 #include "../Utils/Utils.h"
 #include "IDetectedObject.h"
 #include "../DetectionParams.h"
@@ -16,7 +16,7 @@
 class LinePair : public IDetectedObject
 {
 protected:
-    Line<int>** m_lines;
+    Polygon<int>** m_lines;
     
     unsigned int m_lineCount;
     
@@ -32,11 +32,11 @@ public:
     
     void invalidate();
     
-    void setAt(Line<int>* line, unsigned int index);
+    void setAt(Polygon<int>* line, unsigned int index);
     
-    Line<int>* getAt(unsigned int index) const;
+    Polygon<int>* getAt(unsigned int index) const;
     
-    Line<int>** getPolygons();        
+    Polygon<int>** getPolygons();        
     
     bool hasLengthInInterval(float divider = 10);
     

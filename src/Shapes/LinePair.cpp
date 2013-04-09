@@ -3,7 +3,7 @@
 LinePair::LinePair()
 {
     m_lineCount = 2;
-    m_lines = new Line<int>*[2];
+    m_lines = new Polygon<int>*[2];
 }
 
 LinePair::~LinePair()
@@ -19,7 +19,7 @@ void LinePair::setLocked()
     }
 }
 
-Line<int>** LinePair::getPolygons()
+Polygon<int>** LinePair::getPolygons()
 {
     return m_lines;
 }
@@ -29,7 +29,7 @@ unsigned int LinePair::getCountOfPolygons() const
     return m_lineCount;
 }
 
-Line<int>* LinePair::getAt(unsigned int index) const
+Polygon<int>* LinePair::getAt(unsigned int index) const
 {
     if (index >= 0 && index < m_lineCount)
     {
@@ -41,7 +41,7 @@ Line<int>* LinePair::getAt(unsigned int index) const
     }
 }
 
-void LinePair::setAt(Line<int>* line, unsigned int index)
+void LinePair::setAt(Polygon<int>* line, unsigned int index)
 {
     if (index >= 0 && index < m_lineCount)
     {
@@ -89,8 +89,8 @@ bool LinePair::hasLengthInInterval(float divider)
 
 Vector2<int>* LinePair::getObjectPoint()
 {
-    Line<int>* l1 = getAt(0);
-    Line<int>* l2 = getAt(1);
+    Polygon<int>* l1 = getAt(0);
+    Polygon<int>* l2 = getAt(1);
     unsigned int halfLength;
 
     if (l1->points.size() < l2->points.size())
@@ -108,7 +108,7 @@ Vector2<int>* LinePair::getObjectPoint()
 
 std::ostream& operator<<(std::ostream& out, LinePair& linePair)
 {
-    Line<int>** lines = linePair.getPolygons();
+    Polygon<int>** lines = linePair.getPolygons();
     out << "<-- LinePair -->" << std::endl;
     
     for(unsigned int i = 0; i < linePair.getCountOfPolygons(); i++)

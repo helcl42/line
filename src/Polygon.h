@@ -15,11 +15,11 @@
 #include "Vector2.h"
 #include "DetectionParams.h"
 
-template <class T> class Line;
-template <class T> std::ostream& operator<< (std::ostream& out, const Line<T>& line);
+template <class T> class Polygon;
+template <class T> std::ostream& operator<< (std::ostream& out, const Polygon<T>& line);
 
 template <class T>
-class Line
+class Polygon
 {
 public:
     std::vector<Vector2<T> > points;    
@@ -35,18 +35,18 @@ public:
     double length;
     
 public:
-    Line() 
+    Polygon() 
     : locked(false), straightnessFactor(0), direction(0), directionDegrees(0), length(0) {}
     
-    Line(const Line<T>& input, unsigned int skip = 1);     
+    Polygon(const Polygon<T>& input, unsigned int skip = 1);     
     
-    Line(Line<T>* input, unsigned int skip = 1);
+    Polygon(Polygon<T>* input, unsigned int skip = 1);
     
-    virtual ~Line() {}    
+    virtual ~Polygon() {}    
             
-    bool isClose(Line<T>* input, unsigned int crossCount = 0); 
+    bool isClose(Polygon<T>* input, unsigned int crossCount = 0); 
     
-    bool isInline(Line<T>* input);
+    bool isInline(Polygon<T>* input);
     
     bool isTooNarrow();    
     
@@ -70,12 +70,12 @@ public:
     
     unsigned int getSize() const;
     
-    friend std::ostream& operator<<<T> (std::ostream& out, const Line<T>& line);     
+    friend std::ostream& operator<<<T> (std::ostream& out, const Polygon<T>& line);     
     
 public:    
-    static Line<T>* getMaxLengthLine(Line<T>** lines);    
+    static Polygon<T>* getMaxLengthLine(Polygon<T>** lines);    
     
-    static Line<T>* getStraightesstLine(Line<T>** lines);   
+    static Polygon<T>* getStraightesstLine(Polygon<T>** lines);   
             
     
 public: //should be private
@@ -95,7 +95,7 @@ public: //should be private
 };
 
 template <class T>
-Line<T>::Line(const Line<T>& input, unsigned int skip)
+Polygon<T>::Polygon(const Polygon<T>& input, unsigned int skip)
 {
     typename std::vector<Vector2<T> >::const_iterator ii;
     for (ii = input.points.begin(); ii != input.points.end(); ii += skip)
@@ -106,7 +106,7 @@ Line<T>::Line(const Line<T>& input, unsigned int skip)
 }
 
 template <class T>
-Line<T>::Line(Line* input, unsigned int skip)
+Polygon<T>::Polygon(Polygon* input, unsigned int skip)
 {    
     if(skip < 0) skip = 1;
     
@@ -118,7 +118,7 @@ Line<T>::Line(Line* input, unsigned int skip)
 }
 
 template <class T>
-void Line<T>::computeProperties()
+void Polygon<T>::computeProperties()
 {
     length = computeLength();
     direction = computeDirection();
@@ -127,7 +127,7 @@ void Line<T>::computeProperties()
 }
 
 template <class T>
-double Line<T>::computeDirection()
+double Polygon<T>::computeDirection()
 {
     Vector2<T> tempBeginPoint = points.front();
     Vector2<T> tempEndPoint = points.back();
@@ -136,7 +136,7 @@ double Line<T>::computeDirection()
 }
 
 template <class T>
-double Line<T>::computeDirectionInDegrees()
+double Polygon<T>::computeDirectionInDegrees()
 {
     Vector2<T> tempBeginPoint = points[DetectionParams::noCheckLineBorder];
     Vector2<T> tempEndPoint = points[points.size() - DetectionParams::noCheckLineBorder];
@@ -145,7 +145,7 @@ double Line<T>::computeDirectionInDegrees()
 }
 
 template <class T>
-double Line<T>::computeLength()
+double Polygon<T>::computeLength()
 {
     double length = 0.0;
 
@@ -158,7 +158,7 @@ double Line<T>::computeLength()
 }
 
 template <class T>
-double Line<T>::computeStraightnessFactor()
+double Polygon<T>::computeStraightnessFactor()
 {
     double maxDistance = 0;
     double distance = 0;
@@ -189,11 +189,11 @@ double Line<T>::computeStraightnessFactor()
 }
 
 template <class T>
-Line<T>* Line<T>::getStraightesstLine(Line<T>** lines)
+Polygon<T>* Polygon<T>::getStraightesstLine(Polygon<T>** lines)
 {
     double minDistance = 100000.0;
     double distance = 0;
-    Line<T>* straightest = NULL;
+    Polygon<T>* straightest = NULL;
 
     for (unsigned int i = 0; i < 8; i++)
     {
@@ -212,11 +212,11 @@ Line<T>* Line<T>::getStraightesstLine(Line<T>** lines)
 }
 
 template <class T>
-Line<T>* Line<T>::getMaxLengthLine(Line<T>** lines)
+Polygon<T>* Polygon<T>::getMaxLengthLine(Polygon<T>** lines)
 {
     double maxLength = 0;
     double tempLength;
-    Line<T>* longest = NULL;
+    Polygon<T>* longest = NULL;
 
     for (unsigned int i = 0; i < 8; i++)
     {
@@ -235,31 +235,31 @@ Line<T>* Line<T>::getMaxLengthLine(Line<T>** lines)
 }
 
 template <class T>
-void Line<T>::deletePoints()
+void Polygon<T>::deletePoints()
 {
     points.clear();
 }
 
 template <class T>
-unsigned int Line<T>::getSize() const
+unsigned int Polygon<T>::getSize() const
 {
     return points.size();
 }
 
 template <class T>
-void Line<T>::addPoint(Vector2<T> point)
+void Polygon<T>::addPoint(Vector2<T> point)
 {
     points.push_back(point);
 }
 
 template <class T>
-void Line<T>::addPoint(T x, T y)
+void Polygon<T>::addPoint(T x, T y)
 {
     points.push_back(Vector2<T>(x, y));
 }
 
 template <class T>
-void Line<T>::setPoint(Vector2<T> point, unsigned int index)
+void Polygon<T>::setPoint(Vector2<T> point, unsigned int index)
 {
     if (index >= 0 && index < points.size())
     {
@@ -272,7 +272,7 @@ void Line<T>::setPoint(Vector2<T> point, unsigned int index)
 }
 
 template <class T>
-void Line<T>::setPoint(T x, T y, unsigned int index)
+void Polygon<T>::setPoint(T x, T y, unsigned int index)
 {
     if (index >= 0 && index < points.size())
     {
@@ -285,7 +285,7 @@ void Line<T>::setPoint(T x, T y, unsigned int index)
 }
 
 template <class T>
-Vector2<T> Line<T>::getPoint(unsigned int index)
+Vector2<T> Polygon<T>::getPoint(unsigned int index)
 {
     if(index >= 0 && index < points.size())
     {
@@ -298,7 +298,7 @@ Vector2<T> Line<T>::getPoint(unsigned int index)
 }
 
 template <class T>
-Vector2<T>* Line<T>::getPointPtr(unsigned int index)
+Vector2<T>* Polygon<T>::getPointPtr(unsigned int index)
 {
     if(index >= 0 && index < points.size())
     {
@@ -311,7 +311,7 @@ Vector2<T>* Line<T>::getPointPtr(unsigned int index)
 }
 
 template <class T>
-bool Line<T>::isInline(Line<T>* input)
+bool Polygon<T>::isInline(Polygon<T>* input)
 {
     double q = points.front().y - points.front().x * direction;
     unsigned int testedIndex;
@@ -342,7 +342,7 @@ bool Line<T>::isInline(Line<T>* input)
 }
 
 template <class T>
-bool Line<T>::isClose(Line<T>* input, unsigned int crossCount)
+bool Polygon<T>::isClose(Polygon<T>* input, unsigned int crossCount)
 {
     double distance = 0;
     unsigned int foundCrosses = 0;
@@ -366,13 +366,13 @@ bool Line<T>::isClose(Line<T>* input, unsigned int crossCount)
 }
 
 template <class T>
-unsigned int Line<T>::getCountOfPoints() const
+unsigned int Polygon<T>::getCountOfPoints() const
 {
     return points.size();
 }
 
 template <class T>
-bool Line<T>::isTooNarrow()
+bool Polygon<T>::isTooNarrow()
 {
     float h = pow(2, 0.5) * length / 5.5;
     if(straightnessFactor >= h)
@@ -383,7 +383,7 @@ bool Line<T>::isTooNarrow()
 }
 
 template <class T>
-double Line<T>::getDistanceTo(Vector2<T>& point)
+double Polygon<T>::getDistanceTo(Vector2<T>& point)
 {
     Vector2<float> n(-(points.back().y - points.front().y), (points.back().x - points.front().x));
     int c = -(n.x * points.front().x) - (n.y * points.front().y);
@@ -392,19 +392,19 @@ double Line<T>::getDistanceTo(Vector2<T>& point)
 }
 
 template <class T>
-Vector2<T> Line<T>::getBegin()
+Vector2<T> Polygon<T>::getBegin()
 {
     return points.front();
 }
 
 template <class T>
-Vector2<T> Line<T>::getEnd()
+Vector2<T> Polygon<T>::getEnd()
 {
     return points.back();
 }
 
 template <class T>
-std::ostream& operator<<(std::ostream& out, const Line<T>& line)
+std::ostream& operator<<(std::ostream& out, const Polygon<T>& line)
 {
     out << "Line len = " << line.length << " Straightness = " << line.straightnessFactor << std::endl;
 

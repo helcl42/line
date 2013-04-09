@@ -19,9 +19,9 @@ StraightObjectDetector::~StraightObjectDetector()
     m_lines.clear();
 }
 
-void StraightObjectDetector::lockSimilarLines(Line<int>* input, unsigned int crossCount)
+void StraightObjectDetector::lockSimilarLines(Polygon<int>* input, unsigned int crossCount)
 {
-    Line<int>* temp = NULL;
+    Polygon<int>* temp = NULL;
 
     if (input == NULL) return;
 
@@ -47,7 +47,7 @@ void StraightObjectDetector::lockAllLines(bool val)
 void StraightObjectDetector::traverseImage()
 {
     unsigned int value;
-    Line<int>* lines[8];
+    Polygon<int>* lines[8];
 
     Vector2<int> vecs1[] = {
         Vector2<int>(0, 1),
@@ -122,7 +122,7 @@ void StraightObjectDetector::traverseImage()
     }
 }
 
-bool StraightObjectDetector::storeBestLine(Line<int>** lines)
+bool StraightObjectDetector::storeBestLine(Polygon<int>** lines)
 {
     for (int i = 0; i < 8; i++)
     {
@@ -133,7 +133,7 @@ bool StraightObjectDetector::storeBestLine(Line<int>** lines)
         }
     }
 
-    Line<int>* best = Line<int>::getMaxLengthLine(lines);
+    Polygon<int>* best = Polygon<int>::getMaxLengthLine(lines);
     //Line* best = Line::getStraightesstLine(lines);
     if (best != NULL)
     {
@@ -166,12 +166,12 @@ bool StraightObjectDetector::storeBestLine(Line<int>** lines)
     }
 }
 
-Line<int>* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector2<int> pos)
+Polygon<int>* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector2<int> pos)
 {
     unsigned int value;    
     unsigned int countOfFails = 0;
 
-    Line<int>* line = new Line<int>();
+    Polygon<int>* line = new Polygon<int>();
     
     line->points.push_back(Vector2<int>(pos));    
 
@@ -204,7 +204,7 @@ Line<int>* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector2<i
 
 void StraightObjectDetector::sortLinesByLength(bool reverse)
 {
-    Line<int>* temp = NULL;
+    Polygon<int>* temp = NULL;
     int j;
 
     for (unsigned int i = 1; i < m_lines.size(); i++)
@@ -234,7 +234,7 @@ void StraightObjectDetector::sortLinesByLength(bool reverse)
 
 void StraightObjectDetector::sortLinesByStraightness(bool reverse)
 {
-    Line<int>* temp = NULL;
+    Polygon<int>* temp = NULL;
     int j;
 
     for (unsigned int i = 1; i < m_lines.size(); i++)
@@ -266,14 +266,14 @@ void StraightObjectDetector::sortLinesByStraightness(bool reverse)
  * @param input
  * @return Line*
  */
-Line<int>* StraightObjectDetector::findLineWithDirection(Line<int>* input, float angle)
+Polygon<int>* StraightObjectDetector::findLineWithDirection(Polygon<int>* input, float angle)
 {
     if (input == NULL || m_lines.size() == 0) return NULL;
 
     double minDelta = 10000.0;
     double delta;
     double testedDirection;
-    Line<int>* bestLine = NULL;
+    Polygon<int>* bestLine = NULL;
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {
@@ -300,9 +300,9 @@ Line<int>* StraightObjectDetector::findLineWithDirection(Line<int>* input, float
     return bestLine;
 }
 
-Line<int>* StraightObjectDetector::getLongestLine()
+Polygon<int>* StraightObjectDetector::getLongestLine()
 {
-    Line<int>* longest = NULL;
+    Polygon<int>* longest = NULL;
     double maxLineSize = 0;
     double tempSize = 0;
 
@@ -326,9 +326,9 @@ Line<int>* StraightObjectDetector::getLongestLine()
     return longest;
 }
 
-Line<int>* StraightObjectDetector::getStraightestLine()
+Polygon<int>* StraightObjectDetector::getStraightestLine()
 {
-    Line<int>* straightest = NULL;
+    Polygon<int>* straightest = NULL;
     float minStraightFactor = 100000;
     float tempStraightnessFactor = 0;
 
