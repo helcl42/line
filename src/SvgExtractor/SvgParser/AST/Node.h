@@ -23,7 +23,7 @@ public:
     virtual ~Node() {}
     
 public:         
-    virtual void draw(Line* polygon) = 0;
+    virtual void draw(Line<int>* polygon) = 0;
     
     virtual void print() = 0;    
 };

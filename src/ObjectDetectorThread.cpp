@@ -27,7 +27,7 @@ void ObjectDetectorThread::cleanUp()
 inline bool ObjectDetectorThread::rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x, unsigned int ratio, unsigned int base)
 {
     double percentFail;
-    Line* squareLine = shape->getPolygon();
+    Line<int>* squareLine = shape->getPolygon();
     unsigned int lineSize = squareLine->getSize();
     unsigned int failCount = 0;    
 
@@ -45,7 +45,7 @@ inline bool ObjectDetectorThread::rawShapeFind(DetectedObject* shape, unsigned i
 
 bool ObjectDetectorThread::innerShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
 {
-    Line* shapeLine = shape->getPolygon();
+    Line<int>* shapeLine = shape->getPolygon();
     unsigned int lineSize = shapeLine->getSize();    
     Vector2<int>* point;    
     unsigned int i = 64, j = 64, iteration = 0;

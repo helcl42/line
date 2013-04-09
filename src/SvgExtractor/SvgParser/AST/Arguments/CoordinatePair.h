@@ -37,7 +37,7 @@ public:
 
     void SetNumberY(Coordinate* numberY);
     
-    void draw(Line* polygon);
+    void draw(Line<int>* polygon);
     
     void print();
 };

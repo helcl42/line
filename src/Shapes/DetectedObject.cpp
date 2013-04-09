@@ -6,7 +6,7 @@ DetectedObject::DetectedObject()
     m_color = new PixelRGB<int>();
 }
 
-DetectedObject::DetectedObject(Line* polygon)
+DetectedObject::DetectedObject(Line<int>* polygon)
 : m_polygon(polygon)
 {
     computeBounds();
@@ -20,7 +20,7 @@ DetectedObject::~DetectedObject()
     SAFE_DELETE(m_color)
 }
 
-void DetectedObject::setPolygon(Line* line)
+void DetectedObject::setPolygon(Line<int>* line)
 {
     m_polygon = line;
     computeBounds();
@@ -178,16 +178,16 @@ void DetectedObject::cleanUp()
     }
     else
     {
-        m_polygon = new Line();
+        m_polygon = new Line<int>();
     }
 }
 
-Line* DetectedObject::getPolygon()
+Line<int>* DetectedObject::getPolygon()
 {
     return m_polygon;
 }
 
-Line** DetectedObject::getPolygons()
+Line<int>** DetectedObject::getPolygons()
 {
     return &m_polygon;
 }

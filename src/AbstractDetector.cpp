@@ -104,7 +104,7 @@ void AbstractDetector::repaintSimilarColorPlaces(int interval)
     }
 }
 
-void AbstractDetector::writeLineInImageMap(Line* line, unsigned int val)
+void AbstractDetector::writeLineInImageMap(Line<int>* line, unsigned int val)
 {
     Vector2<int> linePoint;
 

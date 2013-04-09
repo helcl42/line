@@ -18,7 +18,7 @@
 class DetectedObject : public IDetectedObject
 {
 protected:
-    Line* m_polygon;
+    Line<int>* m_polygon;
 
     Vector2<int> m_boundingPointLower;
 
@@ -29,12 +29,12 @@ protected:
 public:
     DetectedObject();
 
-    DetectedObject(Line* polygon);
+    DetectedObject(Line<int>* polygon);
 
     virtual ~DetectedObject();
 
 public:
-    void setPolygon(Line* line);
+    void setPolygon(Line<int>* line);
 
     Vector2<int>* getLowerBoundingPoint();
 
@@ -60,9 +60,9 @@ public:
     
     unsigned int getCountOfPolygons() const;
     
-    Line** getPolygons();
+    Line<int>** getPolygons();
     
-    Line* getPolygon();
+    Line<int>* getPolygon();
 
     void cleanUp();
     

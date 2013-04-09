@@ -16,7 +16,7 @@
 class LinePair : public IDetectedObject
 {
 protected:
-    Line** m_lines;
+    Line<int>** m_lines;
     
     unsigned int m_lineCount;
     
@@ -32,11 +32,11 @@ public:
     
     void invalidate();
     
-    void setAt(Line* line, unsigned int index);
+    void setAt(Line<int>* line, unsigned int index);
     
-    Line* getAt(unsigned int index) const;
+    Line<int>* getAt(unsigned int index) const;
     
-    Line** getPolygons();        
+    Line<int>** getPolygons();        
     
     bool hasLengthInInterval(float divider = 10);
     

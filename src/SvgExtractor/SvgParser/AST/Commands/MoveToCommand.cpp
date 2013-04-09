@@ -9,7 +9,7 @@ MoveToCommand::~MoveToCommand()
 {
 }
 
-void MoveToCommand::draw(Line* polygon)
+void MoveToCommand::draw(Line<int>* polygon)
 {
     if (m_relative)
     {

@@ -11,7 +11,7 @@
          points.add(new Point(x,y));
      }     
  */
-void LineToCommand::draw(Line* polygon)
+void LineToCommand::draw(Line<int>* polygon)
 {
     Vector2<float> startPoint = PositionManager::getLastPosition();
 

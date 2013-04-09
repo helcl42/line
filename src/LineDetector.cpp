@@ -77,8 +77,8 @@ bool LineDetector::colorMatch(unsigned int failCount)
     Pixel<float>* pixel = NULL;
     Vector2<int>* ret = NULL;
     
-    Line* l1 = m_bestLine->getAt(0);
-    Line* l2 = m_bestLine->getAt(1);
+    Line<int>* l1 = m_bestLine->getAt(0);
+    Line<int>* l2 = m_bestLine->getAt(1);
     
     unsigned int count = 0;
     unsigned int len = l1->points.size() < l2->points.size() ? l1->points.size() : l2->points.size();

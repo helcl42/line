@@ -23,7 +23,7 @@ public:
     Rectangle()
     : m_width(0), m_height(0) {}
 
-    Rectangle(Line* polygon, float width, float height)
+    Rectangle(Line<int>* polygon, float width, float height)
     : DetectedObject(polygon), m_width(width), m_height(height) {}
 
     Rectangle(float width, float height)

@@ -16,7 +16,7 @@ class GeneralObject : public DetectedObject
 public:
     GeneralObject() {}
     
-    GeneralObject(Line* polygon) 
+    GeneralObject(Line<int>* polygon) 
         : DetectedObject(polygon) {}
     
     Vector2<int>* getObjectPoint()

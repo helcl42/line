@@ -20,7 +20,7 @@ void CoordinatePair::SetNumberY(Coordinate* numberY)
     this->m_numberY = numberY;
 }
 
-void CoordinatePair::draw(Line* polygon)
+void CoordinatePair::draw(Line<int>* polygon)
 {
 }
 

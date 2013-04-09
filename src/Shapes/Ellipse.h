@@ -24,7 +24,7 @@ public:
     {
     }
 
-    Ellipse(Line* polygon, float width, float height)
+    Ellipse(Line<int>* polygon, float width, float height)
     : DetectedObject(polygon), m_width(width), m_height(height)
     {
     }

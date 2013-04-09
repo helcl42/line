@@ -49,7 +49,7 @@ public:
 protected:        
     void repaintSimilarColorPlaces(int interval = DetectionParams::colorTolerance);           
         
-    void writeLineInImageMap(Line* line, unsigned int val);
+    void writeLineInImageMap(Line<int>* line, unsigned int val);
     
 public:    
     virtual void invalidate() = 0;    

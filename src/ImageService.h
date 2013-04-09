@@ -66,11 +66,13 @@ public:
     
     void writeImageToMessage(const sensor_msgs::Image::ConstPtr& img);        
     
-    void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width = 1);        
+    void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line<int>** line, unsigned int count, unsigned int width = 1);        
     
+    //temp
     static ImageService* getInstance() { return thiss; }
     
-    void writeLL(Line* line) {
+    //temp
+    void writeLL(Line<int>* line) {
         writeLinesToMessage(static_cast<const sensor_msgs::Image::ConstPtr&>(imgPtr), &line, 1, 1);
     }
     

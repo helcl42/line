@@ -19,7 +19,7 @@ public:
     
     virtual void invalidate() = 0;
     
-    virtual Line** getPolygons() = 0;
+    virtual Line<int>** getPolygons() = 0;
     
     virtual unsigned int getCountOfPolygons() const = 0;
 };

@@ -104,7 +104,7 @@ void SvgExtractor::extractPath(XMLNode node)
     SvgParser::StreamType tokenStream(ANTLR_SIZE_HINT, pathLexer.get_tokSource());
     SvgParser pathParser(&tokenStream, pathLexer);
 
-    Line* line = new Line();
+    Line<int>* line = new Line<int>();
     Node* root = pathParser.svgPath();
     if (root != NULL)
     {

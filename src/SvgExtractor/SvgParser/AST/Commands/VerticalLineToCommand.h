@@ -21,7 +21,7 @@ public:
     virtual ~VerticalLineToCommand() {}
     
 public:    
-    void draw(Line* polygon)
+    void draw(Line<int>* polygon)
     {
     }        
     

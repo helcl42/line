@@ -20,7 +20,7 @@ public:
     virtual ~SmoothQuadraticBezierCurveToCommand() {}
     
 public:    
-    void draw(Line* polygon)
+    void draw(Line<int>* polygon)
     {
     }
     

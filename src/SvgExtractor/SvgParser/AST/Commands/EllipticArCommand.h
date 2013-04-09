@@ -20,7 +20,7 @@ public:
     virtual ~EllipticArcCommand() {}
     
 public:    
-    void draw(Line* polygon)
+    void draw(Line<int>* polygon)
     {
     }
     

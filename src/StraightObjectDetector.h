@@ -15,7 +15,7 @@
 class StraightObjectDetector : public AbstractDetector
 {
 protected:    
-    std::vector<Line*> m_lines;
+    std::vector<Line<int>*> m_lines;
 
 public:
     StraightObjectDetector(DetectionColorItem* settings = NULL);
@@ -28,21 +28,21 @@ public:
     virtual LinePair* findObject() = 0;    
     
 protected:
-    Line* getLongestLine();
+    Line<int>* getLongestLine();
 
-    Line* getStraightestLine();
+    Line<int>* getStraightestLine();
     
-    Line* findLineWithDirection(Line* input, float angle = 0);
+    Line<int>* findLineWithDirection(Line<int>* input, float angle = 0);
 
     void lockAllLines(bool val);
     
-    void lockSimilarLines(Line* line, unsigned int crossCount = 0);
+    void lockSimilarLines(Line<int>* line, unsigned int crossCount = 0);
 
     void traverseImage();
 
-    inline bool storeBestLine(Line** lines);
+    inline bool storeBestLine(Line<int>** lines);
 
-    Line* findCorrectLine(Vector2<int>* vecs, Vector2<int> pos);
+    Line<int>* findCorrectLine(Vector2<int>* vecs, Vector2<int> pos);
 
     void sortLinesByStraightness(bool reverse = false);
 

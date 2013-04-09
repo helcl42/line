@@ -160,9 +160,9 @@ void ImageService::writePointToMessage(const sensor_msgs::Image::ConstPtr& img, 
     }
 }
 
-void ImageService::writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line** line, unsigned int count, unsigned int width)
+void ImageService::writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Line<int>** line, unsigned int count, unsigned int width)
 {
-    Line* oneLine = NULL;
+    Line<int>* oneLine = NULL;
     
     if (img->width > 0 && img->height > 0)
     {

@@ -26,7 +26,7 @@ public:
 
     void setValue(float value);    
     
-    void draw(Line* polygon);
+    void draw(Line<int>* polygon);
     
     void print();     
 };

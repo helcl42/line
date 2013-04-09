@@ -18,7 +18,7 @@ public:
     virtual ~LineToCommand() {}
 
 public:
-    void draw(Line* polygon);
+    void draw(Line<int>* polygon);
 
     void print();    
 };

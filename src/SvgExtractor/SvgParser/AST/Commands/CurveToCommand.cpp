@@ -3,7 +3,7 @@
 #include "../Arguments/CoordinatePair.h"
 #include "../PositionManager.h"
 
-void CurveToCommand::draw(Line* polygon)
+void CurveToCommand::draw(Line<int>* polygon)
 {
     CoordinatePair* tempCoords;
 

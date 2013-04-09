@@ -32,7 +32,7 @@ bool AbstractObjectDetector::colorMatch(unsigned int failCount)
 {
     Vector2<int>* ret;
     Pixel<float>* pixel;
-    Line* line = m_bestMatch->getPolygon();
+    Line<int>* line = m_bestMatch->getPolygon();
     unsigned int lenFourth = line->getSize() / 4;
 
     for (unsigned int i = 0; i < 2; i++)

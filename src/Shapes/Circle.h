@@ -21,7 +21,7 @@ public:
     Circle()
     : m_radius(0) {}
 
-    Circle(Line* polygon, float radius)
+    Circle(Line<int>* polygon, float radius)
     : DetectedObject(polygon), m_radius(radius) {}
 
     Circle(float radius)
