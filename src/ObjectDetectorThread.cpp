@@ -26,7 +26,7 @@ void ObjectDetectorThread::cleanUp()
 
 bool ObjectDetectorThread::rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
 {
-    unsigned int ratio = 12, failCount = 0;
+    unsigned int ratio = 14, failCount = 0;
     double percentFail;
     Line* squareLine = shape->getPolygon();
     unsigned int lineSize = squareLine->getSize() / ratio;

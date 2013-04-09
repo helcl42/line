@@ -73,8 +73,7 @@ public:
     }
 
     void setInstance(ImageMap<float>* image, FFTransformer<T>* fftInstance)
-    {
-        //std::cout << "-----------------> item start <--------------" << std::endl;
+    {        
         ImageMap<T>* imageMap = NULL;
         unsigned int size;
         unsigned int originalHeight = image->getHeight();
@@ -116,7 +115,7 @@ public:
         }
 
         if (tempResults.size() > 1)
-        {
+        {            
             for (unsigned int i = 0; i < tempResults.size() - 1; i++)
             {
                 m_fft->add(tempResults[i + 1], tempResults[i]);

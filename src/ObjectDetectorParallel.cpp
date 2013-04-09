@@ -80,7 +80,7 @@ void ObjectDetectorParallel::generateShapes(DetectedObject* shape, unsigned int 
 void ObjectDetectorParallel::generate(unsigned int shapeIndex)
 {
     DetectedObject* shape = m_shapes[shapeIndex];
-    unsigned int shapeSize = m_workImage->getHeight() / 3 - 1;
+    unsigned int shapeSize = m_workImage->getHeight() / 2 - 1;
 
     while (shapeSize > m_workImage->getHeight() / 5)
     {
@@ -100,6 +100,7 @@ DetectedObject* ObjectDetectorParallel::findObject()
 
     m_imageFilterBatch->setInstance(m_workImage);
     m_imageFilterBatch->applyFilter();
+    //m_workImage->resolveThreshold(20);
 
     cleanUp();
     
@@ -175,7 +176,18 @@ DetectedObject* ObjectDetectorParallel::findBestShape()
 
 void ObjectDetectorParallel::initDetectionParams(unsigned int shrink)
 {
-    DetectionParams::selectionTreshold = 35;
+    //big gauss kernel
+//    DetectionParams::selectionTreshold = 25;
+//
+//    DetectionParams::maxPercentageError = 0.05;
+    
+    //small kernel
+//    DetectionParams::selectionTreshold = 35;
+//
+//    DetectionParams::maxPercentageError = 0.1;        
+    
+    //big sobel
+    DetectionParams::selectionTreshold = 10;
 
-    DetectionParams::maxPercentageError = 0.05;
+    DetectionParams::maxPercentageError = 0.02;
 }

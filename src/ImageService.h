@@ -20,7 +20,7 @@
 #include "Image/ImageMap.h"
 #include "ObjectDetectorParallel.h"
 
-#define NUMBER_OF_INSTANCES 4
+const unsigned int NUMBER_OF_INSTANCES = 4;
 
 class ImageService
 {
