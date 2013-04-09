@@ -4,30 +4,30 @@
 #include "ImageService.h"
 #include "ImageFilters/ImageFilterFactory.h"
 
-SvgObjectDetector::SvgObjectDetector(std::vector<DetectedObject*>& shapes, DetectionColorItem* settings)
+ObjectDetector::ObjectDetector(std::vector<DetectedObject*>& shapes, DetectionColorItem* settings)
 : AbstractObjectDetector(shapes, settings)
 {
     this->initDetectionParams();        
 }
 
-SvgObjectDetector::SvgObjectDetector(std::vector<DetectedObject*>& shapes, ImageMap<float>* image, Image<float>* colorImage)
+ObjectDetector::ObjectDetector(std::vector<DetectedObject*>& shapes, ImageMap<float>* image, Image<float>* colorImage)
 : AbstractObjectDetector(shapes, image, colorImage)
 {
     this->initDetectionParams();    
 }
 
-SvgObjectDetector::~SvgObjectDetector()
+ObjectDetector::~ObjectDetector()
 {
     m_shapes.clear();
     SAFE_DELETE(m_bestMatch);
 }
 
-void SvgObjectDetector::invalidate()
+void ObjectDetector::invalidate()
 {
     m_bestMatch->invalidate();
 }
 
-void SvgObjectDetector::cleanUp()
+void ObjectDetector::cleanUp()
 {
     std::vector<DetectedObject*>::iterator ii;
     for (ii = m_detectedShapes.begin(); ii != m_detectedShapes.end(); ++ii)
@@ -39,7 +39,7 @@ void SvgObjectDetector::cleanUp()
     m_bestMatch->invalidate();
 }
 
-void SvgObjectDetector::generateShapes(DetectedObject* shape, unsigned int size)
+void ObjectDetector::generateShapes(DetectedObject* shape, unsigned int size)
 {
     DetectedObject* tempShapePtr;    
 
@@ -60,7 +60,7 @@ void SvgObjectDetector::generateShapes(DetectedObject* shape, unsigned int size)
     }
 }
 
-DetectedObject* SvgObjectDetector::findObject()
+DetectedObject* ObjectDetector::findObject()
 {
     cleanUp();
     //repaintSimilarColorPlaces();        
@@ -71,7 +71,7 @@ DetectedObject* SvgObjectDetector::findObject()
     return findBestShape();
 }
 
-bool SvgObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x, unsigned int ratio, unsigned int base)
+bool ObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x, unsigned int ratio, unsigned int base)
 {
     double percentFail;
     Line<int>* squareLine = shape->getPolygon();
@@ -90,7 +90,7 @@ bool SvgObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsi
     return false;
 }
 
-bool SvgObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
+bool ObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
 {
     Line<int>* shapeLine = shape->getPolygon();
     unsigned int lineSize = shapeLine->getSize();    
@@ -120,7 +120,7 @@ bool SvgObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, un
     return false;
 }
 
-bool SvgObjectDetector::findShapeInImage(DetectedObject* shape)
+bool ObjectDetector::findShapeInImage(DetectedObject* shape)
 {
     unsigned int baseHeight = m_workImage->getHeight();
     unsigned int baseWidth = m_workImage->getWidth();
@@ -146,7 +146,7 @@ bool SvgObjectDetector::findShapeInImage(DetectedObject* shape)
     return false;
 }
 
-DetectedObject* SvgObjectDetector::findBestShape()
+DetectedObject* ObjectDetector::findBestShape()
 {
     unsigned int shapeIndex = 0;
     unsigned int shapeSize = m_workImage->getHeight() / 3 - 1;
@@ -178,7 +178,7 @@ DetectedObject* SvgObjectDetector::findBestShape()
     return m_bestMatch;
 }
 
-void SvgObjectDetector::initDetectionParams(unsigned int shrink)
+void ObjectDetector::initDetectionParams(unsigned int shrink)
 {
     DetectionParams::selectionTreshold = 10;
 

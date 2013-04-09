@@ -5,23 +5,23 @@
  * Created on March 18, 2013, 4:00 AM
  */
 
-#ifndef SVGOBJECTDETECTOR_H
-#define	SVGOBJECTDETECTOR_H
+#ifndef OBJECTDETECTOR_H
+#define	OBJECTDETECTOR_H
 
 #include "Shapes/DetectedObject.h"
 #include "ObjectDetectorThread.h"
 #include "AbstractObjectDetector.h"
 
 
-class SvgObjectDetector : public AbstractObjectDetector
+class ObjectDetector : public AbstractObjectDetector
 {
 protected:                
 public:
-    SvgObjectDetector(std::vector<DetectedObject*>& shapes, DetectionColorItem* settings = NULL);
+    ObjectDetector(std::vector<DetectedObject*>& shapes, DetectionColorItem* settings = NULL);
 
-    SvgObjectDetector(std::vector<DetectedObject*>& shapes, ImageMap<float>* image, Image<float>* colorImage);
+    ObjectDetector(std::vector<DetectedObject*>& shapes, ImageMap<float>* image, Image<float>* colorImage);
 
-    virtual ~SvgObjectDetector();
+    virtual ~ObjectDetector();
 
 public:
     DetectedObject* findObject();
