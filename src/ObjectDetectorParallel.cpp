@@ -148,12 +148,13 @@ DetectedObject* ObjectDetectorParallel::findBestShape()
 
     for (unsigned int i = 0; i < m_workers.size(); i++)
     {
-        m_workers[i]->RunThread();
+        m_workers[i]->runThread();
     }
 
     for (unsigned int i = 0; i < m_workers.size(); i++)
     {
-        m_workers[i]->WaitForThreadToExit();
+        //std::cout << "JOIN " << i << std::endl;
+        m_workers[i]->waitForThreadToExit();
     }
 
     for (unsigned int i = 0; i < m_workers.size(); i++)

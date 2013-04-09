@@ -2,68 +2,66 @@
 #include "Shapes/GeneralObject.h"
 
 ObjectDetectorThread::ObjectDetectorThread()
-: m_found(false), m_workImage(NULL) 
+: m_found(false), m_workImage(NULL)
 {
     m_foundObject = new GeneralObject();
 }
 
 ObjectDetectorThread::ObjectDetectorThread(std::vector<DetectedObject*>& objects)
-: m_objects(objects), m_found(false), m_workImage(NULL) 
+: m_objects(objects), m_found(false), m_workImage(NULL)
 {
     m_foundObject = new GeneralObject();
 }
 
-ObjectDetectorThread::~ObjectDetectorThread() 
+ObjectDetectorThread::~ObjectDetectorThread()
 {
 }
 
 void ObjectDetectorThread::cleanUp()
-{    
+{
     m_found = false;
     m_objects.clear();
     m_foundObject->invalidate();
 }
 
-bool ObjectDetectorThread::rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
+inline bool ObjectDetectorThread::rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x, unsigned int ratio, unsigned int base)
 {
-    unsigned int ratio = 14, failCount = 0;
     double percentFail;
     Line* squareLine = shape->getPolygon();
-    unsigned int lineSize = squareLine->getSize() / ratio;
+    unsigned int lineSize = squareLine->getSize();
+    unsigned int failCount = 0;    
 
-    for (unsigned int k = 0; k < lineSize; k += ratio)
+    for (unsigned int k = base; k < lineSize; k += ratio)
     {
         Vector2<int> point = squareLine->points[k];
         if (m_workImage->getValueAt(point.y + y, point.x + x) < DetectionParams::selectionTreshold) failCount++;
     }
 
-    percentFail = (double) failCount / (double) lineSize;
+    percentFail = (double) failCount / (double) lineSize / (double)ratio;
 
-    if (percentFail < 0.05) return true;
+    if (percentFail < DetectionParams::maxPercentageError) return true;
     return false;
 }
 
 bool ObjectDetectorThread::innerShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
 {
     Line* shapeLine = shape->getPolygon();
-    unsigned int lineSize = shapeLine->getSize();
-    unsigned int failCount = 0;
-    double percentFail;
-    Vector2<int>* point;
+    unsigned int lineSize = shapeLine->getSize();    
+    Vector2<int>* point;    
+    unsigned int i = 64, j = 64, iteration = 0;
 
-    if (!rawShapeFind(shape, y, x)) return false;
+    while (rawShapeFind(shape, y, x, i, j))
+    {       
+        if (iteration != 0) i >>= 1;
+        j = i >> 1;
 
-    for (unsigned int k = 0; k < lineSize; k++)
-    {
-        point = shapeLine->getPointPtr(k);
-        if (m_workImage->getValueAt(point->y + y, point->x + x) < DetectionParams::selectionTreshold) failCount++;
+        if(i == 0) break;
+        
+        iteration++;
     }
 
-    percentFail = (double) failCount / (double) lineSize;
-
-    if (percentFail < DetectionParams::maxPercentageError)
-    {
-        std::cout << "failCount = " << failCount << " size = " << lineSize << " fail = " << percentFail << "%" << std::endl;
+    if (i <= 1)
+    {        
         m_foundObject->cleanUp();
         for (unsigned int k = 0; k < lineSize; k++)
         {
@@ -83,9 +81,9 @@ bool ObjectDetectorThread::findShapeInImage(DetectedObject* shape)
     unsigned int offsetX = shape->getWidth();
     unsigned int offsetY = shape->getHeight();
 
-    for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 3)
+    for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 4)
     {
-        for (unsigned int j = 0; j < baseWidth - offsetX - 1; j += 3)
+        for (unsigned int j = 0; j < baseWidth - offsetX - 1; j += 4)
         {
             if (innerShapeFind(shape, i, j))
             {
@@ -100,18 +98,18 @@ bool ObjectDetectorThread::findShapeInImage(DetectedObject* shape)
 void ObjectDetectorThread::setInstance(ImageMap<float>* image, std::vector<DetectedObject*> objects)
 {
     cleanUp();
-    
+
     m_workImage = image;
-    m_objects = objects;    
+    m_objects = objects;
 }
 
-void ObjectDetectorThread::ThreadProcedure()
-{            
+void ObjectDetectorThread::threadProcedure()
+{        
     for (unsigned int i = 0; i < m_objects.size(); i++)
     {
         if (findShapeInImage(m_objects[i]))
         {
-            std::cout << "GOT IT!!!!" << std::endl;            
+            std::cout << "GOT IT!!!!" << std::endl;
             break;
         }
     }

@@ -34,7 +34,7 @@ public:
 public:
     void setInstance(ImageMap<float>* image, std::vector<DetectedObject*> objects);
 
-    void ThreadProcedure();
+    void threadProcedure();
 
     void cleanUp();
 
@@ -47,7 +47,7 @@ protected:
 
     bool innerShapeFind(DetectedObject* object, unsigned int y, unsigned int x);
 
-    bool rawShapeFind(DetectedObject* object, unsigned int y, unsigned int x);
+    inline bool rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x, unsigned int ratio, unsigned int base);
 };
 
 #endif	/* OBJECTDETECTORTHREAD_H */

@@ -59,8 +59,8 @@ LinePair* LineDetector::findBestLine()
             if (colorMatch() && m_bestLine->hasLengthInInterval())
             {                
                 //std::cout << *m_bestLine << std::endl;                
-                writeLineInImageMap(m_bestLine->getAt(0), 255);
-                writeLineInImageMap(m_bestLine->getAt(1), 255); 
+                //writeLineInImageMap(m_bestLine->getAt(0), 255);
+                //writeLineInImageMap(m_bestLine->getAt(1), 255); 
                 break;
             }      
             else 
@@ -107,11 +107,11 @@ bool LineDetector::colorMatch(unsigned int failCount)
 
 void LineDetector::initDetectionParams(unsigned int shrink)
 {
-    unsigned int settingsParam = 480;
-     
-    DetectionParams::selectionTreshold = 120;
+    unsigned int settingsParam = 480;         
     
-    DetectionParams::directionDeltaDegrees = 8;
+    DetectionParams::selectionTreshold = 8;
+    
+    DetectionParams::directionDeltaDegrees = 4;
     
     DetectionParams::minLineLengthTreshold = settingsParam / (shrink * 2);
     

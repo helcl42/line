@@ -71,53 +71,50 @@ DetectedObject* SvgObjectDetector::findObject()
     return findBestShape();
 }
 
-bool SvgObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
+bool SvgObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x, unsigned int ratio, unsigned int base)
 {
-    unsigned int ratio = 12, failCount = 0;
     double percentFail;
     Line* squareLine = shape->getPolygon();
-    unsigned int lineSize = squareLine->getSize() / ratio;
+    unsigned int lineSize = squareLine->getSize();
+    unsigned int failCount = 0;
 
-    for (unsigned int k = 0; k < lineSize; k += ratio)
+    for (unsigned int k = base; k < lineSize; k += ratio)
     {
         Vector2<int> point = squareLine->points[k];
         if (m_workImage->getValueAt(point.y + y, point.x + x) < DetectionParams::selectionTreshold) failCount++;
     }
 
-    percentFail = (double) failCount / (double) lineSize;
+    percentFail = (double) failCount / (double) lineSize / ratio;
 
-    if (percentFail < 0.05) return true;
+    if (percentFail < DetectionParams::maxPercentageError) return true;
     return false;
 }
 
 bool SvgObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, unsigned int x)
 {
     Line* shapeLine = shape->getPolygon();
-    unsigned int lineSize = shapeLine->getSize();
-    unsigned int failCount = 0;
-    double percentFail;
-    Vector2<int>* point;
+    unsigned int lineSize = shapeLine->getSize();    
+    Vector2<int>* point;    
+    unsigned int i = 16, j = 16, iteration = 0;
 
-    if (!rawShapeFind(shape, y, x)) return false;
-
-    for (unsigned int k = 0; k < lineSize; k++)
+    while (rawShapeFind(shape, y, x, i, j))
     {
-        point = shapeLine->getPointPtr(k);
-        if (m_workImage->getValueAt(point->y + y, point->x + x) < DetectionParams::selectionTreshold) failCount++;
+        if (iteration != 0) i >>= 1;
+        j = i >> 1;
+
+        if(i == 0) break;
+        
+        iteration++;
     }
 
-    percentFail = (double) failCount / (double) lineSize;
-
-    if (percentFail < DetectionParams::maxPercentageError)
-    {
-        std::cout << "failCount = " << failCount << " size = " << lineSize << " fail = " << percentFail << "%" << std::endl;
+    if (i <= 1)
+    {        
         m_bestMatch->cleanUp();
         for (unsigned int k = 0; k < lineSize; k++)
         {
             point = shapeLine->getPointPtr(k);
             m_bestMatch->addPoint(point->x + x, point->y + y);
-        }
-
+        }        
         return true;
     }
     return false;
@@ -153,12 +150,12 @@ DetectedObject* SvgObjectDetector::findBestShape()
 {
     unsigned int shapeIndex = 0;
     unsigned int shapeSize = m_workImage->getHeight() / 3 - 1;
-
+    
     while (shapeSize > m_workImage->getHeight() / 5)
     {
         cleanUp();
 
-        generateShapes(m_detectedShapes[shapeIndex], shapeSize);
+        generateShapes(m_shapes[shapeIndex], shapeSize);
 
         for (unsigned int i = 0; i < m_detectedShapes.size(); i++)
         {
@@ -183,8 +180,8 @@ DetectedObject* SvgObjectDetector::findBestShape()
 
 void SvgObjectDetector::initDetectionParams(unsigned int shrink)
 {
-    DetectionParams::selectionTreshold = 35;
+    DetectionParams::selectionTreshold = 10;
 
-    DetectionParams::maxPercentageError = 0.05;
+    DetectionParams::maxPercentageError = 0.01;
 }
 

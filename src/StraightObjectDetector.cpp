@@ -149,7 +149,7 @@ bool StraightObjectDetector::storeBestLine(Line** lines)
         if (best->straightnessFactor <= DetectionParams::maxStraightnessTreshold
                 && best->straightnessFactor >= DetectionParams::minStraightnessTreshold)
         {
-            writeLineInImageMap(best, 255);
+            //writeLineInImageMap(best, 255);
             m_lines.push_back(best);
             return true;
         }

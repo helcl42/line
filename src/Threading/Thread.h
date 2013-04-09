@@ -18,9 +18,9 @@
 class Thread
 {
 private:
-    static void* ThreadProcedure(void* This)
+    static void* threadProcedure(void* This)
     {
-        ((Thread *) This)->ThreadProcedure();
+        ((Thread *) This)->threadProcedure();
         return NULL;
     }
 
@@ -29,7 +29,7 @@ private:
     bool m_bRunning;
 
 protected:
-    virtual void ThreadProcedure() = 0;
+    virtual void threadProcedure() = 0;
 
 public:
     Thread() {}
@@ -37,15 +37,15 @@ public:
     virtual ~Thread() {}
 
     // Returns true if the thread was successfully started
-    bool RunThread()
+    bool runThread()
     {
         pthread_attr_init(&m_attr);
         pthread_attr_setdetachstate(&m_attr, PTHREAD_CREATE_JOINABLE);
-        return (pthread_create(&m_thread, &m_attr, ThreadProcedure, this) == 0);
+        return (pthread_create(&m_thread, &m_attr, threadProcedure, this) == 0);
     }
 
     // waits until threadProcedure is finished, true == success_join
-    bool WaitForThreadToExit()
+    bool waitForThreadToExit()
     {
         int rcCount;
         rcCount = pthread_join(m_thread, NULL);
@@ -68,9 +68,9 @@ class ThreadGroup
 {
 private:
 
-    static void* ThreadProcedure(void* This)
+    static void* threadProcedure(void* This)
     {
-        ((ThreadGroup *) This)->ThreadProcedure();
+        ((ThreadGroup *) This)->threadProcedure();
         return NULL;
     }
 
@@ -79,7 +79,7 @@ private:
     pthread_attr_t m_attr;
 
 protected:
-    virtual void ThreadProcedure() = 0;
+    virtual void threadProcedure() = 0;
 
 public:
     ThreadGroup(int count)
@@ -97,7 +97,7 @@ public:
     }
 
     // Returns true if the threads were successfully started
-    bool RunThreads()
+    bool runThreads()
     {
         int rcCount = 0;
         pthread_attr_init(&m_attr);
@@ -105,7 +105,7 @@ public:
 
         for (int i = 0; i < m_iSize; i++)
         {
-            rcCount = pthread_create(&m_threads[i], &m_attr, ThreadProcedure, this);
+            rcCount = pthread_create(&m_threads[i], &m_attr, threadProcedure, this);
             if (rcCount)
             {
                 std::cout << "create_error" << std::endl;
@@ -117,7 +117,7 @@ public:
 
     // waits until threadProcedures are finished, true == success_join of all threads
 
-    bool WaitForThreadToExit()
+    bool waitForThreadsToExit()
     {
         int rcCount = 0;
         for (int i = 0; i < m_iSize; i++)

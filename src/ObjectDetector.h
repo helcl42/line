@@ -41,7 +41,7 @@ protected:
     
     bool innerShapeFind(DetectedObject* object, unsigned int y, unsigned int x);    
     
-    bool rawShapeFind(DetectedObject* object, unsigned int y, unsigned int x);
+    bool rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x, unsigned int ratio, unsigned int base);
 };
 
 #endif	/* SQUAREDETECTOR_H */

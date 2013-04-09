@@ -4,7 +4,7 @@
 ImageService* ImageService::thiss = NULL;
 
 ImageService::ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings)
-: m_shrink(5), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
+: m_shrink(3), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
 {
     m_image = new ImageMap<float>();
     m_colorImage = new Image<float>();
@@ -81,12 +81,6 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
         tryChangeSettings();
     }
 
-//    for (unsigned int j = 0, k = 400; j < cameraGroundAngles.size(); j++, k += 27)
-//    {
-//        //m_image->writeCircle(k + 22, 22, 20, cameraGroundAngles[j]);
-//        m_image->writeSquare(k + 48, 22, 25, 25, cameraGroundAngles[j], 20, 0);
-//    }
-
     writeImageMapToMessage(img);
 
     m_shrinkTimer.stop();
@@ -94,14 +88,14 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     timeElapsed = m_shrinkTimer.getElapsedTimeInMicroSec();
     std::cout << "Elapsed " << timeElapsed << "ms " << m_shrinkTimer.getFPS() << " FPS" << std::endl;
 
-    if (timeElapsed > 350000)
-    {
-        if (m_shrink < 4) m_shrink++;
-    }
-    else if (timeElapsed < 70000)
-    {
-        if (m_shrink > 2) m_shrink--;
-    }
+//    if (timeElapsed > 350000)
+//    {
+//        if (m_shrink < 4) m_shrink++;
+//    }
+//    else if (timeElapsed < 70000)
+//    {
+//        if (m_shrink > 2) m_shrink--;
+//    }
 
     std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
 
