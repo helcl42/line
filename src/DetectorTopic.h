@@ -19,6 +19,7 @@
 #include "Image/Image.h"
 #include "ImageService.h"
 #include "CameraService.h"
+#include "MoveService.h"
 
 class DetectorTopic
 {
@@ -46,6 +47,8 @@ private:
     ImageService* m_imageService;                
     
     CameraService m_cameraService;
+    
+    MoveService m_moveService;
             
 public:
     DetectorTopic(std::vector<DetectedObject*>& shapes, DetectionSettings* settings);

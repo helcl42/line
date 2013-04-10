@@ -19,17 +19,31 @@ typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseCl
 class MoveService
 {
 private:
-    Vector2<float>* m_previousGoal;
+    Vector2<float> m_previousGoal;
 
+    bool m_initialized;
+    
 public:
 
-    MoveService(Vector2<float>* goal)
-    : m_previousGoal(goal) {}
+    MoveService()
+    : m_initialized(false) {}
 
     ~MoveService() {}
 
-    bool moveTo(float x, float y)
+    bool moveTo(Vector2<float>* nextGoal)
     {
+        if(m_initialized)
+        {
+            if(!checkSteep(nextGoal)) 
+                return false;
+        }
+        else
+        {
+            m_previousGoal.x = nextGoal->x;
+            m_previousGoal.y = nextGoal->y;
+            m_initialized = true;
+        }
+                
         MoveBaseClient ac("move_base", true);
         
 //        while (!ac.waitForServer(ros::Duration(5.0)))
@@ -43,20 +57,22 @@ public:
         goal.target_pose.header.frame_id = "base_link";
         goal.target_pose.header.stamp = ros::Time::now();
 
-        goal.target_pose.pose.position.x = x;
-        goal.target_pose.pose.orientation.w = y;
+        goal.target_pose.pose.position.x = nextGoal->x;
+        goal.target_pose.pose.orientation.w = nextGoal->y;
        
         ac.sendGoal(goal);
 
         ac.waitForResult();
 
-        if (ac.getState() != actionlib::SimpleClientGoalState::SUCCEEDED) return false;
+        if (ac.getState() != actionlib::SimpleClientGoalState::SUCCEEDED) 
+            return false;
         return true;            
     }
     
-    bool checkSteep()
+    bool checkSteep(Vector2<float>* nextGoal)
     {
-        
+        //TODO        
+        return true;
     }
 };
 

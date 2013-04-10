@@ -67,13 +67,14 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
 
         writeLinesToMessage(img, object->getPolygons(), object->getCountOfPolygons());
 
-        if (objectPoint != NULL) SAFE_DELETE(objectPoint);
+        SAFE_DELETE(objectPoint);
 
         objectPoint = object->getObjectPoint();
-        std::cout << "POINT: " << *objectPoint << std::endl;
+        
         if (objectPoint != NULL)
         {
-            writePointToMessage(img, objectPoint);
+            std::cout << "POINT: " << *objectPoint << std::endl;
+            writePointToMessage(img, objectPoint);            
         }
     }
     else
