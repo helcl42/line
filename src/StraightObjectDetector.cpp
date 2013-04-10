@@ -31,7 +31,7 @@ void StraightObjectDetector::lockSimilarLines(Polygon<int>* input, unsigned int 
 
         if (temp->isClose(input, crossCount) || temp->isInline(input))
         {
-            temp->locked = true;
+            temp->setLocked(true);
         }
     }
 }
@@ -40,7 +40,7 @@ void StraightObjectDetector::lockAllLines(bool val)
 {    
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {
-        m_lines[i]->locked = val;
+        m_lines[i]->setLocked(val);
     }
 }
 
@@ -146,10 +146,9 @@ bool StraightObjectDetector::storeBestLine(Polygon<int>** lines)
         }
 
         best->computeProperties();
-        if (best->straightnessFactor <= DetectionParams::maxStraightnessTreshold
-                && best->straightnessFactor >= DetectionParams::minStraightnessTreshold)
-        {
-            //writeLineInImageMap(best, 255);
+        if (best->getStraightnessFactor() <= DetectionParams::maxStraightnessTreshold
+                && best->getStraightnessFactor() >= DetectionParams::minStraightnessTreshold)
+        {            
             m_lines.push_back(best);
             return true;
         }
@@ -173,7 +172,7 @@ Polygon<int>* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector
 
     Polygon<int>* line = new Polygon<int>();
     
-    line->points.push_back(Vector2<int>(pos));    
+    line->addPoint(Vector2<int>(pos));
 
     while (pos.y > 2 && pos.x > 2 && pos.y < (int) m_workImage->getHeight() - 2 && pos.x < (int) m_workImage->getWidth() - 2)
     {
@@ -185,7 +184,7 @@ Polygon<int>* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector
         {
             countOfFails = 0;
 
-            line->points.push_back(pos);                        
+            line->addPoint(pos);                        
         }
         else
         {
@@ -214,14 +213,14 @@ void StraightObjectDetector::sortLinesByLength(bool reverse)
         {
             if (reverse)
             {
-                if (m_lines[j]->length > temp->length)
+                if (m_lines[j]->getLength() > temp->getLength())
                 {
                     break;
                 }
             }
             else
             {
-                if (m_lines[j]->length < temp->length)
+                if (m_lines[j]->getLength() < temp->getLength())
                 {
                     break;
                 }
@@ -244,14 +243,14 @@ void StraightObjectDetector::sortLinesByStraightness(bool reverse)
         {
             if (reverse)
             {
-                if (m_lines[j]->straightnessFactor > temp->straightnessFactor)
+                if (m_lines[j]->getStraightnessFactor() > temp->getStraightnessFactor())
                 {
                     break;
                 }
             }
             else
             {
-                if (m_lines[j]->straightnessFactor < temp->straightnessFactor)
+                if (m_lines[j]->getStraightnessFactor() < temp->getStraightnessFactor())
                 {
                     break;
                 }
@@ -277,11 +276,11 @@ Polygon<int>* StraightObjectDetector::findLineWithDirection(Polygon<int>* input,
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {
-        if (m_lines[i]->locked) continue;
+        if (m_lines[i]->isLocked()) continue;
 
-        testedDirection = m_lines[i]->directionDegrees;
+        testedDirection = m_lines[i]->getDirectionDegrees();
 
-        delta = input->directionDegrees - testedDirection + angle;
+        delta = input->getDirectionDegrees() - testedDirection + angle;
 
         delta = delta < 0 ? -delta : delta;
         
@@ -310,9 +309,9 @@ Polygon<int>* StraightObjectDetector::getLongestLine()
     {
         for (unsigned int i = 0; i < m_lines.size(); i++)
         {
-            if (!m_lines[i]->locked)
+            if (!m_lines[i]->isLocked())
             {
-                tempSize = m_lines[i]->length;
+                tempSize = m_lines[i]->getLength();
 
                 if (tempSize > maxLineSize)
                 {
@@ -321,7 +320,7 @@ Polygon<int>* StraightObjectDetector::getLongestLine()
                 }
             }
         }
-        longest->locked = true;
+        longest->setLocked(true);
     }
     return longest;
 }
@@ -336,9 +335,9 @@ Polygon<int>* StraightObjectDetector::getStraightestLine()
     {
         for (unsigned int i = 0; i < m_lines.size(); i++)
         {
-            if (!m_lines[i]->locked)
+            if (!m_lines[i]->isLocked())
             {
-                tempStraightnessFactor = m_lines[i]->straightnessFactor;
+                tempStraightnessFactor = m_lines[i]->getStraightnessFactor();
 
                 if (tempStraightnessFactor < minStraightFactor)
                 {
@@ -347,7 +346,7 @@ Polygon<int>* StraightObjectDetector::getStraightestLine()
                 }
             }
         }
-        straightest->locked = true;
+        straightest->setLocked(true);
     }
     return straightest;
 }

@@ -37,7 +37,7 @@ bool AbstractObjectDetector::colorMatch(unsigned int failCount)
 
     for (unsigned int i = 0; i < 2; i++)
     {
-        ret = Vector2<int>::getPointBetween(line->points[i * lenFourth], line->points[(i + 2) * lenFourth]);
+        ret = Vector2<int>::getPointBetween(line->getPoint(i * lenFourth), line->getPoint((i + 2) * lenFourth));
 
         pixel = m_colorImage->getPixel(ret->y, ret->x);
 

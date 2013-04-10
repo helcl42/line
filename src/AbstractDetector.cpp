@@ -106,13 +106,13 @@ void AbstractDetector::repaintSimilarColorPlaces(int interval)
 
 void AbstractDetector::writeLineInImageMap(Polygon<int>* line, unsigned int val)
 {
-    Vector2<int> linePoint;
+    Vector2<int>* linePointPtr;
 
     if (line == NULL) return;
 
-    for (unsigned int i = 0; i < line->points.size(); i++)
+    for (unsigned int i = 0; i < line->getSize(); i++)
     {
-        linePoint = line->points[i];        
-        m_workImage->setValueAt(linePoint.y, linePoint.x, val);                    
+        linePointPtr = line->getPointPtr(i);
+        m_workImage->setValueAt(linePointPtr->y, linePointPtr->x, val);                    
     }
 }

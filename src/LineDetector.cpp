@@ -81,11 +81,11 @@ bool LineDetector::colorMatch(unsigned int failCount)
     Polygon<int>* l2 = m_bestLine->getAt(1);
     
     unsigned int count = 0;
-    unsigned int len = l1->points.size() < l2->points.size() ? l1->points.size() : l2->points.size();
+    unsigned int len = l1->getSize() < l2->getSize() ? l1->getSize() : l2->getSize();
 
     for (unsigned int i = 0; i < len; i += DetectionParams::minLineLengthTreshold / 10)
     {
-        ret = Vector2<int>::getPointBetween(l1->points[i], l2->points[i]);
+        ret = Vector2<int>::getPointBetween(l1->getPoint(i), l2->getPoint(i));
 
         pixel = m_colorImage->getPixel(ret->y, ret->x);
 

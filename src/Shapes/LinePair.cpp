@@ -13,9 +13,9 @@ LinePair::~LinePair()
 
 void LinePair::setLocked()
 {
-     for (unsigned int i = 0; i < m_lineCount; i++)
+    for (unsigned int i = 0; i < m_lineCount; i++)
     {
-        m_lines[i]->locked = true;
+        m_lines[i]->setLocked(true);
     }
 }
 
@@ -77,8 +77,8 @@ bool LinePair::hasLengthInInterval(float divider)
 {
     for (unsigned int i = 0; i < m_lineCount; i++)
     {
-        if (m_lines[i]->length + DetectionParams::minLineLengthTreshold / divider < m_lines[i]->length
-                || m_lines[i]->length - DetectionParams::minLineLengthTreshold / divider > m_lines[i]->length)
+        if (m_lines[i]->getLength() + DetectionParams::minLineLengthTreshold / divider < m_lines[i]->getLength()
+                || m_lines[i]->getLength() - DetectionParams::minLineLengthTreshold / divider > m_lines[i]->getLength())
         {
             return false;
         }
@@ -93,25 +93,24 @@ Vector2<int>* LinePair::getObjectPoint()
     Polygon<int>* l2 = getAt(1);
     unsigned int halfLength;
 
-    if (l1->points.size() < l2->points.size())
+    if (l1->getSize() < l2->getSize())
     {
-        halfLength = l1->points.size() / 2;
+        halfLength = l1->getSize() >> 1;
     }
     else
     {
-        halfLength = l2->points.size() / 2;
+        halfLength = l2->getSize() >> 1;
     }
 
-    return Vector2<int>::getPointBetween(l1->points[halfLength], l2->points[halfLength]);
+    return Vector2<int>::getPointBetween(l1->getPoint(halfLength), l2->getPoint(halfLength));
 }
-
 
 std::ostream& operator<<(std::ostream& out, LinePair& linePair)
 {
     Polygon<int>** lines = linePair.getPolygons();
     out << "<-- LinePair -->" << std::endl;
-    
-    for(unsigned int i = 0; i < linePair.getCountOfPolygons(); i++)
+
+    for (unsigned int i = 0; i < linePair.getCountOfPolygons(); i++)
     {
         out << *lines[i] << std::endl;
     }

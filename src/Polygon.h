@@ -21,7 +21,7 @@ template <class T> std::ostream& operator<< (std::ostream& out, const Polygon<T>
 template <class T>
 class Polygon
 {
-public:
+private:
     std::vector<Vector2<T> > points;    
     
     bool locked;
@@ -87,11 +87,62 @@ public: //should be private
     
     double computeLength();        
     
+public:    
     unsigned int getCountOfPoints() const;
     
     Vector2<T> getBegin();
     
     Vector2<T> getEnd();
+    
+    double getDirection() const
+    {
+        return direction;
+    }
+
+    void setDirection(double direction)
+    {
+        this->direction = direction;
+    }
+
+    double getDirectionDegrees() const
+    {
+        return directionDegrees;
+    }
+
+    void setDirectionDegrees(double directionDegrees)
+    {
+        this->directionDegrees = directionDegrees;
+    }
+
+    double getLength() const
+    {
+        return length;
+    }
+
+    void setLength(double length)
+    {
+        this->length = length;
+    }
+
+    bool isLocked() const
+    {
+        return locked;
+    }
+
+    void setLocked(bool locked)
+    {
+        this->locked = locked;
+    }
+
+    double getStraightnessFactor() const
+    {
+        return straightnessFactor;
+    }
+
+    void setStraightnessFactor(double straightnessFactor)
+    {
+        this->straightnessFactor = straightnessFactor;
+    }
 };
 
 template <class T>
