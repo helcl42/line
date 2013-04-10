@@ -43,7 +43,7 @@ private:
         
     LineDetector* m_lineDetector;          
     
-    //SvgObjectDetector* m_objectDetector;
+    //ObjectDetector* m_objectDetector;
     
     ObjectDetectorParallel* m_objectDetector;
     

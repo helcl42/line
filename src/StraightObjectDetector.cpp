@@ -270,7 +270,7 @@ Polygon<int>* StraightObjectDetector::findLineWithDirection(Polygon<int>* input,
 {
     if (input == NULL || m_lines.size() == 0) return NULL;
 
-    double minDelta = 10000.0;
+    double minDelta = MAX_VALUE;
     double delta;
     double testedDirection;
     Polygon<int>* bestLine = NULL;
@@ -329,7 +329,7 @@ Polygon<int>* StraightObjectDetector::getLongestLine()
 Polygon<int>* StraightObjectDetector::getStraightestLine()
 {
     Polygon<int>* straightest = NULL;
-    float minStraightFactor = 100000;
+    float minStraightFactor = MAX_VALUE;
     float tempStraightnessFactor = 0;
 
     if (m_lines.size() > 0)

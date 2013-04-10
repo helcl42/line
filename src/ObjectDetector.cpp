@@ -84,7 +84,7 @@ bool ObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsigne
         if (m_workImage->getValueAt(point.y + y, point.x + x) < DetectionParams::selectionTreshold) failCount++;
     }
 
-    percentFail = (double) failCount / (double) lineSize / ratio;
+    percentFail = (double) failCount / ((double) lineSize / (double)ratio);
 
     if (percentFail < DetectionParams::maxPercentageError) return true;
     return false;
@@ -95,7 +95,7 @@ bool ObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, unsig
     Polygon<int>* shapeLine = shape->getPolygon();
     unsigned int lineSize = shapeLine->getSize();    
     Vector2<int>* point;    
-    unsigned int i = 16, j = 16, iteration = 0;
+    unsigned int i = 64, j = 64, iteration = 0;
 
     while (rawShapeFind(shape, y, x, i, j))
     {
@@ -182,6 +182,6 @@ void ObjectDetector::initDetectionParams(unsigned int shrink)
 {
     DetectionParams::selectionTreshold = 10;
 
-    DetectionParams::maxPercentageError = 0.01;
+    DetectionParams::maxPercentageError = 0.1;
 }
 

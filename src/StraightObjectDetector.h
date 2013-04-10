@@ -12,6 +12,8 @@
 #include "AbstractDetector.h"
 #include "Shapes/LinePair.h"
 
+const int MAX_VALUE = 1000;
+
 class StraightObjectDetector : public AbstractDetector
 {
 protected:    

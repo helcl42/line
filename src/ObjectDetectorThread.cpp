@@ -37,7 +37,7 @@ inline bool ObjectDetectorThread::rawShapeFind(DetectedObject* shape, unsigned i
         if (m_workImage->getValueAt(point.y + y, point.x + x) < DetectionParams::selectionTreshold) failCount++;
     }
 
-    percentFail = (double) failCount / (double) lineSize / (double)ratio;
+    percentFail = (double) failCount / ((double) lineSize / (double)ratio);
 
     if (percentFail < DetectionParams::maxPercentageError) return true;
     return false;
