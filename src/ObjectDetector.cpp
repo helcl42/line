@@ -103,7 +103,7 @@ bool ObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, unsig
         if (iteration != 0) i >>= 1;
         j = i >> 1;
 
-        if(i == 0) break;
+        if(i == 1) break;
         
         iteration++;
     }

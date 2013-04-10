@@ -56,7 +56,7 @@ bool ObjectDetectorThread::innerShapeFind(DetectedObject* shape, unsigned int y,
         if (iteration != 0) i >>= 1;
         j = i >> 1;
 
-        if(i == 0) break;
+        if(i == 1) break;
         
         iteration++;
     }
