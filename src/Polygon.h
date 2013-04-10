@@ -16,133 +16,108 @@
 #include "DetectionParams.h"
 
 template <class T> class Polygon;
-template <class T> std::ostream& operator<< (std::ostream& out, const Polygon<T>& line);
+template <class T> std::ostream& operator<<(std::ostream& out, const Polygon<T>& line);
 
 template <class T>
 class Polygon
 {
 private:
-    std::vector<Vector2<T> > points;    
-    
+    std::vector<Vector2<T> > points;
+
     bool locked;
-        
+
     double straightnessFactor;
-    
+
     double direction;
-    
+
     double directionDegrees;
-    
+
     double length;
-    
+
 public:
-    Polygon() 
-    : locked(false), straightnessFactor(0), direction(0), directionDegrees(0), length(0) {}
-    
-    Polygon(const Polygon<T>& input, unsigned int skip = 1);     
-    
+
+    Polygon()
+    : locked(false), straightnessFactor(0), direction(0), directionDegrees(0), length(0)
+    {
+    }
+
+    Polygon(const Polygon<T>& input, unsigned int skip = 1);
+
     Polygon(Polygon<T>* input, unsigned int skip = 1);
-    
-    virtual ~Polygon() {}    
-            
-    bool isClose(Polygon<T>* input, unsigned int crossCount = 0); 
-    
+
+    virtual ~Polygon()
+    {
+    }
+
+    bool isClose(Polygon<T>* input, unsigned int crossCount = 0);
+
     bool isInline(Polygon<T>* input);
-    
-    bool isTooNarrow();    
-    
+
+    bool isTooNarrow();
+
     void addPoint(Vector2<T> pt);
-    
+
     void addPoint(T x, T y);
-    
+
     double getDistanceTo(Vector2<T>& point);
-    
-    void computeProperties();                
-    
+
+    void computeProperties();
+
     void deletePoints();
-    
+
     Vector2<T>* getPointPtr(unsigned int index);
-    
+
     Vector2<T> getPoint(unsigned int index);
-    
+
     void setPoint(Vector2<T> point, unsigned int index);
-    
+
     void setPoint(T x, T y, unsigned int index);
-    
+
     unsigned int getSize() const;
-    
-    friend std::ostream& operator<<<T> (std::ostream& out, const Polygon<T>& line);     
-    
-public:    
-    static Polygon<T>* getMaxLengthLine(Polygon<T>** lines);    
-    
-    static Polygon<T>* getStraightesstLine(Polygon<T>** lines);   
-            
-    
+
+    friend std::ostream& operator<<<T> (std::ostream& out, const Polygon<T>& line);
+
+public:
+    static Polygon<T>* getMaxLengthLine(Polygon<T>** lines);
+
+    static Polygon<T>* getStraightesstLine(Polygon<T>** lines);
+
+
 public: //should be private
-    double computeStraightnessFactor();         
-    
+    double computeStraightnessFactor();
+
     double computeDirectionInDegrees();
-    
+
     double computeDirection();
-    
-    double computeLength();        
-    
-public:    
+
+    double computeLength();
+
+public:
     unsigned int getCountOfPoints() const;
-    
+
     Vector2<T> getBegin();
-    
+
     Vector2<T> getEnd();
-    
-    double getDirection() const
-    {
-        return direction;
-    }
 
-    void setDirection(double direction)
-    {
-        this->direction = direction;
-    }
+    double getDirection() const;
 
-    double getDirectionDegrees() const
-    {
-        return directionDegrees;
-    }
+    void setDirection(double direction);
 
-    void setDirectionDegrees(double directionDegrees)
-    {
-        this->directionDegrees = directionDegrees;
-    }
+    double getDirectionDegrees() const;
 
-    double getLength() const
-    {
-        return length;
-    }
+    void setDirectionDegrees(double directionDegrees);
 
-    void setLength(double length)
-    {
-        this->length = length;
-    }
+    double getLength() const;
 
-    bool isLocked() const
-    {
-        return locked;
-    }
+    void setLength(double length);
 
-    void setLocked(bool locked)
-    {
-        this->locked = locked;
-    }
+    bool isLocked() const;
 
-    double getStraightnessFactor() const
-    {
-        return straightnessFactor;
-    }
+    void setLocked(bool locked);
 
-    void setStraightnessFactor(double straightnessFactor)
-    {
-        this->straightnessFactor = straightnessFactor;
-    }
+    double getStraightnessFactor() const;
+
+    void setStraightnessFactor(double straightnessFactor);
 };
 
 template <class T>
@@ -158,9 +133,9 @@ Polygon<T>::Polygon(const Polygon<T>& input, unsigned int skip)
 
 template <class T>
 Polygon<T>::Polygon(Polygon* input, unsigned int skip)
-{    
-    if(skip < 0) skip = 1;
-    
+{
+    if (skip < 0) skip = 1;
+
     for (unsigned int i = 0; i < input->getSize(); i += skip)
     {
         points.push_back(input->getPoint(i));
@@ -306,7 +281,7 @@ void Polygon<T>::addPoint(Vector2<T> point)
 template <class T>
 void Polygon<T>::addPoint(T x, T y)
 {
-    points.push_back(Vector2<T>(x, y));
+    points.push_back(Vector2<T > (x, y));
 }
 
 template <class T>
@@ -338,9 +313,9 @@ void Polygon<T>::setPoint(T x, T y, unsigned int index)
 template <class T>
 Vector2<T> Polygon<T>::getPoint(unsigned int index)
 {
-    if(index >= 0 && index < points.size())
+    if (index >= 0 && index < points.size())
     {
-      return points[index];
+        return points[index];
     }
     else
     {
@@ -351,9 +326,9 @@ Vector2<T> Polygon<T>::getPoint(unsigned int index)
 template <class T>
 Vector2<T>* Polygon<T>::getPointPtr(unsigned int index)
 {
-    if(index >= 0 && index < points.size())
+    if (index >= 0 && index < points.size())
     {
-      return &points[index];
+        return &points[index];
     }
     else
     {
@@ -406,7 +381,7 @@ bool Polygon<T>::isClose(Polygon<T>* input, unsigned int crossCount)
             if (distance < DetectionParams::minPointDistance || distance > DetectionParams::maxPointDistance)
             {
                 foundCrosses++;
-                if(foundCrosses >= crossCount)
+                if (foundCrosses >= crossCount)
                 {
                     return true;
                 }
@@ -426,7 +401,7 @@ template <class T>
 bool Polygon<T>::isTooNarrow()
 {
     float h = pow(2, 0.5) * length / 5.5;
-    if(straightnessFactor >= h)
+    if (straightnessFactor >= h)
     {
         return true;
     }
@@ -455,6 +430,66 @@ Vector2<T> Polygon<T>::getEnd()
 }
 
 template <class T>
+double Polygon<T>::getDirection() const
+{
+    return direction;
+}
+
+template <class T>
+void Polygon<T>::setDirection(double direction)
+{
+    this->direction = direction;
+}
+
+template <class T>
+double Polygon<T>::getDirectionDegrees() const
+{
+    return directionDegrees;
+}
+
+template <class T>
+void Polygon<T>::setDirectionDegrees(double directionDegrees)
+{
+    this->directionDegrees = directionDegrees;
+}
+
+template <class T>
+double Polygon<T>::getLength() const
+{
+    return length;
+}
+
+template <class T>
+void Polygon<T>::setLength(double length)
+{
+    this->length = length;
+}
+
+template <class T>
+bool Polygon<T>::isLocked() const
+{
+    return locked;
+}
+
+template <class T>
+void Polygon<T>::setLocked(bool locked)
+{
+    this->locked = locked;
+}
+
+template <class T>
+double Polygon<T>::getStraightnessFactor() const
+{
+    return straightnessFactor;
+}
+
+template <class T>
+void Polygon<T>::setStraightnessFactor(double straightnessFactor)
+{
+    this->straightnessFactor = straightnessFactor;
+}
+
+template <class T>
 std::ostream& operator<<(std::ostream& out, const Polygon<T>& line)
 {
     out << "Line len = " << line.length << " Straightness = " << line.straightnessFactor << std::endl;
@@ -466,7 +501,6 @@ std::ostream& operator<<(std::ostream& out, const Polygon<T>& line)
     }
     return out;
 }
-
 
 #endif	/* LINE_H */
 
