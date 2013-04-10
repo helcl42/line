@@ -85,10 +85,11 @@ public:
         return value;
     }
 
-    static double logBy(double n, unsigned int base)
+    template <class T>
+    static T logBy(double n, unsigned int base)
     {
         // log(n)/log(2) is log2.  
-        return std::log(n) / std::log(base);
+        return (T)(std::log(n) / std::log(base));
     }
 
     template <class T>

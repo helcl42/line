@@ -35,19 +35,14 @@ private:
     double length;
 
 public:
-
     Polygon()
-    : locked(false), straightnessFactor(0), direction(0), directionDegrees(0), length(0)
-    {
-    }
+    : locked(false), straightnessFactor(0), direction(0), directionDegrees(0), length(0) {}
 
     Polygon(const Polygon<T>& input, unsigned int skip = 1);
 
     Polygon(Polygon<T>* input, unsigned int skip = 1);
 
-    virtual ~Polygon()
-    {
-    }
+    virtual ~Polygon() {}
 
     bool isClose(Polygon<T>* input, unsigned int crossCount = 0);
 

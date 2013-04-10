@@ -90,7 +90,7 @@ template <class T>
 unsigned int FFTransformer<T>::computeImageSize(unsigned int imageWidth)
 {
     int multed = 0;
-    int res = (int) Utils::logBy(imageWidth, 2);
+    int res = Utils::logBy<int>(imageWidth, 2);
 
     multed = std::pow(2, res);
     if (multed < imageWidth) res++;
@@ -265,7 +265,7 @@ template <class T>
 void FFTransformer<T>::FFT2D(FFTDirection direction, Complex<T>** output)
 {
     int i, j;
-    int m = (int) Utils::logBy(m_width, 2);
+    int m = Utils::logBy<int>(m_width, 2);
 
     Complex<T>* data = new Complex<T>[m_width];
 
