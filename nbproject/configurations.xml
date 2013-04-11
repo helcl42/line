@@ -24,7 +24,6 @@
           </df>
           <df name="CompilerIdCXX">
             <in>CMakeCXXCompilerId.cpp</in>
-            <in>a.out</in>
           </df>
           <df name="line.dir">
             <df name="src">
@@ -144,9 +143,6 @@
             <in>progress.make</in>
           </df>
           <in>CMakeCCompiler.cmake</in>
-          <in>CMakeCXXCompiler.cmake</in>
-          <in>CMakeDetermineCompilerABI_C.bin</in>
-          <in>CMakeDetermineCompilerABI_CXX.bin</in>
           <in>CMakeOutput.log</in>
           <in>CMakeSystem.cmake</in>
         </df>
