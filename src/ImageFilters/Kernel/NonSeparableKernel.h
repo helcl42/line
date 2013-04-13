@@ -27,7 +27,7 @@ public:
     NonSeparableKernel(unsigned int width, unsigned int height)
     : Kernel<T>(width, height), m_sum(0)
     {
-        unsigned int size = this->m_height * this->m_width;
+        unsigned int size = width * height;
         m_values = new T[size];
         for (unsigned int i = 0; i < size; i++)
         {
@@ -38,8 +38,8 @@ public:
     NonSeparableKernel(unsigned int width, unsigned int height, T* values)
     : Kernel<T>(width, height), m_sum(0)
     {
-        float res = 0;
-        unsigned int size = this->m_height * this->m_width;
+        double res = 0;
+        unsigned int size = width * height;
         m_values = new T[size];
 
         for (unsigned int i = 0; i < size; i++)

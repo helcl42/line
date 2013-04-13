@@ -40,7 +40,7 @@ public:
     
     void addItem(unsigned int key, std::vector<DetectedObject*> objects)
     {
-        m_objectsMap.insert(std::make_pair<unsigned int, std::vector<DetectedObject*> >(key, objects));
+        m_objectsMap.insert(std::pair<unsigned int, std::vector<DetectedObject*> >(key, objects));
     }
     
     std::vector<DetectedObject*>& getItem(unsigned int key)

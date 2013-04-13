@@ -56,7 +56,7 @@ void DetectorTopic::depthImageCallback(const sensor_msgs::Image::ConstPtr& depth
         
         std::cout << "X = " << resultPoint.x << " Y = " << resultPoint.y << std::endl;
         
-        m_moveService.moveTo(&resultPoint);
+        //m_moveService.moveTo(&resultPoint);
         
         SAFE_DELETE(m_objectPoint);
     }

@@ -125,4 +125,3 @@ DetectedObject* ObjectDetectorThread::getFoundObject() const
 {
     return m_foundObject;
 }
-

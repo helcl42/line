@@ -4,7 +4,7 @@
 ImageService* ImageService::thiss = NULL;
 
 ImageService::ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings)
-: m_shrink(2), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
+: m_shrink(3), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
 {
     m_image = new ImageMap<float>();
     m_colorImage = new Image<float>();

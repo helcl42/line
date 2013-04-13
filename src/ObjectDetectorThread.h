@@ -47,7 +47,7 @@ protected:
 
     bool innerShapeFind(DetectedObject* object, unsigned int y, unsigned int x);
 
-    inline bool rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x, unsigned int ratio, unsigned int base);
+    inline bool rawShapeFind(DetectedObject* shape, unsigned int y, unsigned int x, unsigned int ratio, unsigned int base);    
 };
 
 #endif	/* OBJECTDETECTORTHREAD_H */

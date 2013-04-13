@@ -30,7 +30,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-set(ROS_COMPILE_FLAGS "-O3 -Wno-extra -Wno-unused-variable -Wno-sign-compare -Wno-unused-function")
+set(ROS_COMPILE_FLAGS "-O3 -std=c++0x -Wno-extra -Wno-unused-variable -Wno-sign-compare -Wno-unused-function")
 
 rosbuild_add_library(line src/Utils/Timer.cpp)
 

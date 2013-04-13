@@ -52,6 +52,8 @@ public:
     void resolveThreshold(float threshold = 50);
 
     Image<T>* getAsImage();
+    
+    void increasePower(float mult = 1, float power = 1);
 
     friend std::ostream& operator<<<T>(std::ostream& out, const ImageMap<T>& imageMap);
 
@@ -119,6 +121,18 @@ ImageMap<T>::ImageMap(Image<T>* image)
         m_map[i] = new T[m_width];
     }
     initImageMap(image, 1);
+}
+
+template <class T>
+void ImageMap<T>::increasePower(float mult, float power)
+{
+    for (unsigned int i = 0; i < m_height; i++)
+    {
+        for(unsigned int j = 0; j < m_width; j++)
+        {
+            m_map[i][j] = Utils::normalize<float>(mult * std::pow(m_map[i][j], power));
+        }        
+    }
 }
 
 template <class T>

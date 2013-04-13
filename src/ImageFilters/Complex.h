@@ -92,6 +92,17 @@ struct Complex
         return (float) std::sqrt(real * real + imag * imag);
     }
 
+    
+    float magnitudeSquared()
+    {
+        return (float) std::abs(real * real + imag * imag);
+    }
+    
+    float magnitudeX(float m = 0.2)
+    {
+        return (float) std::abs(real * real + imag * imag) * m;
+    }
+    
     float phase()
     {
         return (float) std::atan2(imag, real);

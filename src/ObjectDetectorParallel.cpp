@@ -54,7 +54,7 @@ void ObjectDetectorParallel::generateShapes(DetectedObject* shape, unsigned int 
 {
     DetectedObject* tempShapePtr;
 
-    for (int rotateAngle = -90; rotateAngle < 90; rotateAngle += 4)
+    for (int rotateAngle = -90; rotateAngle <= 90; rotateAngle += 10)
     {
         for (unsigned int viewAngle = 0; viewAngle < m_angles.size(); viewAngle++)
         {
@@ -74,7 +74,7 @@ void ObjectDetectorParallel::generateShapes(DetectedObject* shape, unsigned int 
 
             m_detectedShapes.push_back(tempShapePtr);
         }
-    }
+    }        
 }
 
 void ObjectDetectorParallel::generate(unsigned int shapeIndex)
@@ -82,14 +82,24 @@ void ObjectDetectorParallel::generate(unsigned int shapeIndex)
     DetectedObject* shape = m_shapes[shapeIndex];
     unsigned int shapeSize = m_workImage->getHeight() / 2 - 1;
 
-    while (shapeSize > m_workImage->getHeight() / 6)
+    while (shapeSize > m_workImage->getHeight() / 4)
     {
-        cleanUp();
-
         generateShapes(shape, shapeSize);
 
         shapeSize -= 4;
     }
+            
+    shape->rotateByAngle(90, true, false);
+    shape->rotateByAngle(90, true, false);
+    
+    shapeSize = m_workImage->getHeight() / 2 - 1;
+    
+    while (shapeSize > m_workImage->getHeight() / 4)
+    {
+        generateShapes(shape, shapeSize);
+
+        shapeSize -= 4;
+    }    
 }
 
 DetectedObject* ObjectDetectorParallel::findObject()
@@ -99,8 +109,7 @@ DetectedObject* ObjectDetectorParallel::findObject()
     int tempCount = m_detectedShapes.size();
 
     m_imageFilterBatch->setInstance(m_workImage);
-    m_imageFilterBatch->applyFilter();
-    //m_workImage->resolveThreshold(20);
+    m_imageFilterBatch->applyFilter();    
 
     cleanUp();
     
@@ -188,7 +197,11 @@ void ObjectDetectorParallel::initDetectionParams(unsigned int shrink)
 //    DetectionParams::maxPercentageError = 0.1;        
     
     //big sobel
-    DetectionParams::selectionTreshold = 10;
+//    DetectionParams::selectionTreshold = 10;
+//
+//    DetectionParams::maxPercentageError = 0.1;
+    
+    DetectionParams::selectionTreshold = 12;
 
-    DetectionParams::maxPercentageError = 0.1;
+    DetectionParams::maxPercentageError = 0.10;
 }

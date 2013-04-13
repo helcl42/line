@@ -71,7 +71,7 @@ public:
 
     inline void setPixelValue(unsigned int y, unsigned int x, Pixel<T>* pixel);
 
-    inline void setPixelValue(unsigned int y, unsigned int x, T r, T g, T b);
+    inline void setPixelValue(unsigned int y, unsigned int x, T r, T g, T b);     
 
     friend std::ostream& operator<<<T>(std::ostream& out, const Image<T>& img);
 };

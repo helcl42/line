@@ -24,9 +24,10 @@ LineDetector::~LineDetector()
 
 LinePair* LineDetector::findObject()
 {
-    //repaintSimilarColorPlaces();
+    //repaintSimilarColorPlaces();    
     m_imageFilterBatch->setInstance(m_workImage);
-    m_imageFilterBatch->applyFilter();        
+    m_imageFilterBatch->applyFilter();            
+    
     traverseImage();        
     return findBestLine();
 }
@@ -109,7 +110,9 @@ void LineDetector::initDetectionParams(unsigned int shrink)
 {
     unsigned int settingsParam = 480;         
     
-    DetectionParams::selectionTreshold = 8;
+    //DetectionParams::selectionTreshold = 8;
+    
+    DetectionParams::selectionTreshold = 25;
     
     DetectionParams::directionDeltaDegrees = 4;
     
