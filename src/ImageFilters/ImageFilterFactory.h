@@ -143,11 +143,64 @@ public:
             6, 4, 1, 2, 0
         };
 
+        float sobel5x5X2[25] = {
+            1, 2, 0, -2, -1,
+
+            4, 8, 0, -8, -4,
+
+            6, 12, 0, -12, -6,
+
+            4, 8, 0, -8, -4,
+
+            1, 2, 0, -2, -1
+        };
+
+        float sobel5x5Y2[25] = {
+            6, 4, 1, 2, 0,
+
+            4, 12, 8, 0, -2,
+
+            1, 8, 0, -8, -1,
+
+            2, 0, -8, -12, -4,
+
+            0, -2, -1, -4, -6
+        };
+
+        float sobel5x5XY2[25] = {
+            1, 4, 6, 4, 1,
+
+            2, 8, 12, 8, 2,
+
+            0, 0, 0, 0, 0,
+
+            -2, -8, -12, -8, -2,
+
+            -1, -4, -6, -4, -1
+        };
+
+        float sobel5x5YX2[25] = {
+            0, 2, 1, 4, 6,
+
+            -2, 0, 8, 12, 4,
+
+            -1, -8, 0, 8, 1,
+
+            -4, -12, -8, 0, 2,
+
+            -6, -4, -1, -2, 0
+        };
+        
         std::vector<Kernel<T>*> kernels2;
         kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5X));
         kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5Y));
         kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5XY));
         kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5YX));
+        
+        //kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5X2));
+        //kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5Y2));
+        kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5XY2));
+        kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5YX2));
 
         FFTImageFilterBatchItem<T>* edgeFilter = new FFTImageFilterBatchItem<T > (kernels2);
 

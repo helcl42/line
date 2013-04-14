@@ -149,6 +149,7 @@ bool StraightObjectDetector::storeBestLine(Polygon<int>** lines)
         if (best->getStraightnessFactor() <= DetectionParams::maxStraightnessTreshold
                 && best->getStraightnessFactor() >= DetectionParams::minStraightnessTreshold)
         {            
+            writeLineInImageMap(best, 255);
             m_lines.push_back(best);
             return true;
         }

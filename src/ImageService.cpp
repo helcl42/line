@@ -49,6 +49,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
+//    m_shrink = 2;
 //    m_lineDetector->invalidate();
 //    m_lineDetector->initDetectionParams(m_shrink);
 //    m_lineDetector->setInstance(m_image, m_colorImage);
@@ -97,8 +98,8 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
 //    {
 //        if (m_shrink > 2) m_shrink--;
 //    }
-
-    std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
+//
+//    std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
 
     return objectPoint;
 }

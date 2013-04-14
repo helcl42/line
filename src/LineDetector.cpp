@@ -112,9 +112,9 @@ void LineDetector::initDetectionParams(unsigned int shrink)
     
     //DetectionParams::selectionTreshold = 8;
     
-    DetectionParams::selectionTreshold = 25;
+    DetectionParams::selectionTreshold = 8;
     
-    DetectionParams::directionDeltaDegrees = 4;
+    DetectionParams::directionDeltaDegrees = 2;
     
     DetectionParams::minLineLengthTreshold = settingsParam / (shrink * 2);
     
