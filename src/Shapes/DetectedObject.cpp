@@ -101,28 +101,53 @@ void DetectedObject::translateToOrigin()
 void DetectedObject::rotateByAngle(float angle, bool shift)
 {
     Vector2<int>* tempVec;
-    double sinAngle, cosAngle;   
-    
-    while (angle > 0)
+    double sinAngle, cosAngle;
+
+    if (angle > 0)
     {
-        if(angle > 90)
+        while (angle > 0)
         {
-            sinAngle = 1;
-            cosAngle = 0;
+            if (angle >= 90)
+            {
+                sinAngle = 1;
+                cosAngle = 0;
+            }
+            else
+            {
+                sinAngle = sin(angle * M_PI / 180);
+                cosAngle = cos(angle * M_PI / 180);
+            }
+
+            for (unsigned int i = 0; i < m_polygon->getSize(); i++)
+            {
+                tempVec = m_polygon->getPointPtr(i);
+                m_polygon->setPoint(tempVec->x * cosAngle - tempVec->y * sinAngle, tempVec->x * sinAngle + tempVec->y * cosAngle, i);
+            }
+            angle -= 90;
         }
-        else
+    }
+    else
+    {
+        while (angle < 0)
         {
-            sinAngle = sin(angle * M_PI / 180);
-            cosAngle = cos(angle * M_PI / 180);
+            if (angle <= -90)
+            {
+                sinAngle = -1;
+                cosAngle = 0;
+            }
+            else
+            {
+                sinAngle = sin(angle * M_PI / 180);
+                cosAngle = cos(angle * M_PI / 180);
+            }
+
+            for (unsigned int i = 0; i < m_polygon->getSize(); i++)
+            {
+                tempVec = m_polygon->getPointPtr(i);
+                m_polygon->setPoint(tempVec->x * cosAngle - tempVec->y * sinAngle, tempVec->x * sinAngle + tempVec->y * cosAngle, i);
+            }
+            angle += 90;
         }
-            
-        std::cout << "AnGLE = " << angle << std::endl;
-        for (int i = 0; i < m_polygon->getSize(); i++)
-        {
-            tempVec = m_polygon->getPointPtr(i);
-            m_polygon->setPoint(tempVec->x * cosAngle - tempVec->y * sinAngle, tempVec->x * sinAngle + tempVec->y * cosAngle, i);
-        }
-        angle -= 90;
     }
 
     if (shift)
