@@ -44,11 +44,11 @@ public:
     
     void rescaleToSize(float height, bool shift = true);
     
-    void createBatch(float size, float angle, bool direction);
+    void createBatch(float size, float angle);
 
     void translateToOrigin();
 
-    void rotateByAngle(float angle, bool direction, bool shift = true);
+    void rotateByAngle(float angle, bool shift = true);
 
     void viewByAngle(float angle, bool shift = true);
 

@@ -54,20 +54,13 @@ void ObjectDetectorParallel::generateShapes(DetectedObject* shape, unsigned int 
 {
     DetectedObject* tempShapePtr;
 
-    for (int rotateAngle = -90; rotateAngle <= 90; rotateAngle += 10)
+    for (int rotateAngle = 0; rotateAngle < 360; rotateAngle += 10)
     {
         for (unsigned int viewAngle = 0; viewAngle < m_angles.size(); viewAngle++)
         {
             tempShapePtr = new GeneralObject(new Polygon<int>(shape->getPolygon()));
 
-            if (rotateAngle > 0)
-            {
-                tempShapePtr->createBatch(size, rotateAngle, true);
-            }
-            else
-            {
-                tempShapePtr->createBatch(size, rotateAngle, false);
-            }
+            tempShapePtr->createBatch(size, rotateAngle);
 
             //optimize !!! shifting
             tempShapePtr->viewByAngle(m_angles[viewAngle], true);
@@ -87,19 +80,7 @@ void ObjectDetectorParallel::generate(unsigned int shapeIndex)
         generateShapes(shape, shapeSize);
 
         shapeSize -= 4;
-    }
-            
-    shape->rotateByAngle(90, true, false);
-    shape->rotateByAngle(90, true, false);
-    
-    shapeSize = m_workImage->getHeight() / 2 - 1;
-    
-    while (shapeSize > m_workImage->getHeight() / 4)
-    {
-        generateShapes(shape, shapeSize);
-
-        shapeSize -= 4;
-    }    
+    } 
 }
 
 DetectedObject* ObjectDetectorParallel::findObject()

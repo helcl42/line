@@ -37,10 +37,10 @@ Vector2<int>* DetectedObject::getHigherBoundingPoint()
     return &m_boundingPointHigher;
 }
 
-void DetectedObject::createBatch(float size, float angle, bool direction)
+void DetectedObject::createBatch(float size, float angle)
 {
     rescaleToSize(size, false);
-    rotateByAngle(angle, direction, true);
+    rotateByAngle(angle, true);
 }
 
 void DetectedObject::rescale(float ratio, bool shift)
@@ -98,24 +98,31 @@ void DetectedObject::translateToOrigin()
     computeBounds();
 }
 
-void DetectedObject::rotateByAngle(float angle, bool direction, bool shift)
+void DetectedObject::rotateByAngle(float angle, bool shift)
 {
-    double sinAngle = sin(angle * M_PI / 180);
-    double cosAngle = cos(angle * M_PI / 180);
-
     Vector2<int>* tempVec;
-
-    for (int i = 0; i < m_polygon->getSize(); i++)
+    double sinAngle, cosAngle;   
+    
+    while (angle > 0)
     {
-        tempVec = m_polygon->getPointPtr(i);
-        if (direction)
+        if(angle > 90)
         {
-            m_polygon->setPoint(tempVec->x * cosAngle - tempVec->y * sinAngle, tempVec->x * sinAngle + tempVec->y * cosAngle, i);
+            sinAngle = 1;
+            cosAngle = 0;
         }
         else
         {
-            m_polygon->setPoint(tempVec->x * sinAngle - tempVec->y * cosAngle, tempVec->x * cosAngle + tempVec->y * sinAngle, i);
+            sinAngle = sin(angle * M_PI / 180);
+            cosAngle = cos(angle * M_PI / 180);
         }
+            
+        std::cout << "AnGLE = " << angle << std::endl;
+        for (int i = 0; i < m_polygon->getSize(); i++)
+        {
+            tempVec = m_polygon->getPointPtr(i);
+            m_polygon->setPoint(tempVec->x * cosAngle - tempVec->y * sinAngle, tempVec->x * sinAngle + tempVec->y * cosAngle, i);
+        }
+        angle -= 90;
     }
 
     if (shift)

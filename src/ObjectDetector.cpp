@@ -41,23 +41,21 @@ void ObjectDetector::cleanUp()
 
 void ObjectDetector::generateShapes(DetectedObject* shape, unsigned int size)
 {
-    DetectedObject* tempShapePtr;    
+    DetectedObject* tempShapePtr;
 
-    for (int rotateAngle = -90; rotateAngle < 90; rotateAngle += 4)
+    for (int rotateAngle = 0; rotateAngle < 360; rotateAngle += 10)
     {
-        tempShapePtr = new GeneralObject(new Polygon<int>(shape->getPolygon()));
-
-        if (rotateAngle > 0)
+        for (unsigned int viewAngle = 0; viewAngle < m_angles.size(); viewAngle++)
         {
-            tempShapePtr->createBatch(size, rotateAngle, true);
-        }
-        else
-        {
-            tempShapePtr->createBatch(size, rotateAngle, false);
-        }
+            tempShapePtr = new GeneralObject(new Polygon<int>(shape->getPolygon()));
 
-        m_detectedShapes.push_back(tempShapePtr);
-    }
+            tempShapePtr->createBatch(size, rotateAngle);
+            
+            tempShapePtr->viewByAngle(m_angles[viewAngle], true);
+
+            m_detectedShapes.push_back(tempShapePtr);
+        }
+    }        
 }
 
 DetectedObject* ObjectDetector::findObject()
