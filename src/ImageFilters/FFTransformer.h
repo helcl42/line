@@ -296,17 +296,7 @@ void FFTransformer<T>::FFT2D(FFTDirection direction, Complex<T>** output)
 
     for (i = 0; i < m_width; i++)
     {
-        for (j = 0; j < m_height; j++)
-        {
-            data[j] = output[i][j];
-        }
-
-        FFT1D(direction, data, m, m_width);
-
-        for (j = 0; j < m_height; j++)
-        {
-            output[i][j] = data[j];
-        }
+        FFT1D(direction, output[i], m, m_width);
     }
 
     SAFE_DELETE_ARRAY(data);
