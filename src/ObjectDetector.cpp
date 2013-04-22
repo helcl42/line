@@ -148,7 +148,7 @@ DetectedObject* ObjectDetector::findBestShape()
     unsigned int shapeIndex = 0;
     unsigned int shapeSize = m_workImage->getHeight() / 2 - 1;
 
-    unsigned int step = m_workImage->getHeight() / 16;//32;
+    unsigned int step = m_workImage->getHeight() / 16; //32;
     if(step == 0) step = 1;    
     
     while (shapeSize > m_workImage->getHeight() / 4)
