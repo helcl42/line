@@ -1,20 +1,17 @@
 #include "ImageService.h"
 #include "ObjectDetectorParallel.h"
 
-ImageService* ImageService::thiss = NULL;
-
 ImageService::ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings)
-: m_shrink(3), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
+: m_shrink(3), m_settings(settings), m_settingsIndex(0), m_lookUpLines(false)
 {
     m_image = new ImageMap<float>();
     m_colorImage = new Image<float>();
-    m_lineDetector = new LineDetector(settings->getItem(0));      
-    //m_objectDetector = new ObjectDetector(shapes, settings->getItem(0));
+    m_lineDetector = new LineDetector(settings->getItem(0));    
     m_objectDetector = new ObjectDetectorParallel(NUMBER_OF_INSTANCES, shapes, settings->getItem(0));
 }
 
 ImageService::~ImageService()
-{    
+{
     SAFE_DELETE(m_objectDetector);
     SAFE_DELETE(m_lineDetector);
     SAFE_DELETE(m_colorImage);
@@ -26,15 +23,12 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     std::cout << "-----------------------------------" << std::endl;
     unsigned long timeElapsed;
     Vector2<int>* objectPoint = NULL;
-    IDetectedObject* object = NULL;
-
-    m_shrinkTimer.start();
+    IDetectedObject* object = NULL;;    
     
-    imgPtr = img;  
-    ImageService::thiss = this;
-        
+    m_shrinkTimer.start();       
+
     cameraGroundAngles.clear();
-    cameraGroundAngles.push_back(90);    
+    cameraGroundAngles.push_back(90);
     cameraGroundAngles.push_back(85);
     cameraGroundAngles.push_back(-85);
     cameraGroundAngles.push_back(80);
@@ -44,26 +38,31 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     cameraGroundAngles.push_back(60);
     cameraGroundAngles.push_back(-60);
     cameraGroundAngles.push_back(50);
-    cameraGroundAngles.push_back(-50);    
+    cameraGroundAngles.push_back(-50);
 
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-//    m_shrink = 2;
-//    m_lineDetector->invalidate();
-//    m_lineDetector->initDetectionParams(m_shrink);
-//    m_lineDetector->setInstance(m_image, m_colorImage);
-//    object = m_lineDetector->findObject();    
-
-    m_objectDetector->invalidate();
-    m_objectDetector->initDetectionParams(m_shrink);
-    m_objectDetector->setShrink(m_shrink);
-    m_objectDetector->setInstance(m_image, m_colorImage);
-    m_objectDetector->setAngles(cameraGroundAngles);
-    object = m_objectDetector->findObject();   
+//    if (m_lookUpLines)
+//    {
+//        m_shrink = 2;
+//        m_lineDetector->invalidate();
+//        m_lineDetector->initDetectionParams(m_shrink);
+//        m_lineDetector->setInstance(m_image, m_colorImage);
+//        object = m_lineDetector->findObject();
+//    }
+//    else
+//    {
+        m_objectDetector->invalidate();
+        m_objectDetector->initDetectionParams(m_shrink);
+        m_objectDetector->setShrink(m_shrink);
+        m_objectDetector->setInstance(m_image, m_colorImage);
+        m_objectDetector->setAngles(cameraGroundAngles);
+        object = m_objectDetector->findObject();
+//    }
 
     if (object->isValid())
-    {        
+    {
         m_changeColorTimer.stop();
 
         writeLinesToMessage(img, object->getPolygons(), object->getCountOfPolygons());
@@ -71,15 +70,15 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
         SAFE_DELETE(objectPoint);
 
         objectPoint = object->getObjectPoint();
-        
+
         if (objectPoint != NULL)
         {
             std::cout << "POINT: " << *objectPoint << std::endl;
-            writePointToMessage(img, objectPoint);            
+            writePointToMessage(img, objectPoint);
         }
     }
     else
-    {
+    {        
         tryChangeSettings();
     }
 
@@ -90,16 +89,16 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     timeElapsed = m_shrinkTimer.getElapsedTimeInMicroSec();
     std::cout << "Elapsed " << timeElapsed << "ms " << m_shrinkTimer.getFPS() << " FPS" << std::endl;
 
-//    if (timeElapsed > 350000)
-//    {
-//        if (m_shrink < 4) m_shrink++;
-//    }
-//    else if (timeElapsed < 70000)
-//    {
-//        if (m_shrink > 2) m_shrink--;
-//    }
-//
-//    std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
+    //    if (timeElapsed > 350000)
+    //    {
+    //        if (m_shrink < 4) m_shrink++;
+    //    }
+    //    else if (timeElapsed < 70000)
+    //    {
+    //        if (m_shrink > 2) m_shrink--;
+    //    }
+    //
+    //    std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
 
     return objectPoint;
 }
@@ -165,14 +164,14 @@ void ImageService::writePointToMessage(const sensor_msgs::Image::ConstPtr& img, 
 void ImageService::writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Polygon<int>** line, unsigned int count, unsigned int width)
 {
     Polygon<int>* oneLine = NULL;
-    
+
     if (img->width > 0 && img->height > 0)
     {
         for (unsigned int i = 0; i < count; i++)
         {
             oneLine = line[i];
             for (unsigned int j = 0; j < oneLine->getSize(); j++)
-            {                
+            {
                 writePointToMessage(img, oneLine->getPointPtr(j), width);
             }
         }
@@ -217,7 +216,7 @@ void ImageService::writeImageMapToMessage(const sensor_msgs::Image::ConstPtr& im
         {
             for (unsigned int j = 0; j < m_image->getWidth(); j++, index -= 3)
             {
-                value = (unsigned char)m_image->getValueAt(i, j);
+                value = (unsigned char) m_image->getValueAt(i, j);
                 temp = (unsigned char*) &img->data[index + 2];
                 *temp = (unsigned char) value;
                 temp = (unsigned char*) &img->data[index + 1];

@@ -49,7 +49,8 @@ bool ObjectDetectorThread::innerShapeFind(DetectedObject* shape, unsigned int y,
     Vector2<int>* point;
     Polygon<int>* shapeLine = shape->getPolygon();
     unsigned int lineSize = shapeLine->getSize();        
-    unsigned int i = 64, j = 64, iteration = 0;
+    unsigned int ratio = Utils::computePower2Of(shapeLine->getSize() / 5, false);    
+    unsigned int i = ratio, j = ratio, iteration = 0;
 
     while (rawShapeFind(shape, y, x, i, j))
     {       

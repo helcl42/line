@@ -37,10 +37,10 @@ private:
 public:
 
     FFTransformer()
-    : m_height(0), m_width(0) {}
+    : m_height(0), m_width(0), m_originalWidth(0), m_originalHeight(0) {}
 
     FFTransformer(unsigned int w, unsigned int h)
-    : m_height(h), m_width(w) {}
+    : m_height(h), m_width(w), m_originalWidth(0), m_originalHeight(0) {}
 
     ~FFTransformer() {}
 
@@ -49,7 +49,7 @@ public:
 
     Complex<T>** forwardFFT(ImageMap<T>* image);
 
-    Image<T>* getAsImage(Complex<T>** input);
+    Image<T>* getAsImage(Complex<T>** input, float mul = 240, bool amplitude = true);
 
     void convolve(Complex<T>** base, Complex<T>** res);
 
@@ -101,6 +101,9 @@ unsigned int FFTransformer<T>::computeImageSize(unsigned int imageWidth)
 template <class T>
 Complex<T>** FFTransformer<T>::forwardFFT(ImageMap<T>* image)
 {
+    m_originalHeight = image->getHeight();
+    m_originalWidth = image->getWidth();
+    
     unsigned int lowHeight = (m_height >> 1) - (m_originalHeight >> 1);
     unsigned int lowWidth = (m_width >> 1) - (m_originalWidth >> 1);
     unsigned int hiHeight = (m_height >> 1) + (m_originalHeight >> 1);
@@ -136,9 +139,9 @@ Complex<T>** FFTransformer<T>::forwardFFT(ImageMap<T>* image)
 }
 
 template <class T>
-Image<T>* FFTransformer<T>::getAsImage(Complex<T>** input)
+Image<T>* FFTransformer<T>::getAsImage(Complex<T>** input, float mul, bool amplitude)
 {
-    Complex<T>** shifted = shift(input);
+    shift(input);
 
     Image<T>* image = new Image<T > (m_width, m_height);
 
@@ -147,7 +150,14 @@ Image<T>* FFTransformer<T>::getAsImage(Complex<T>** input)
     {
         for (unsigned int j = 0; j < m_width; j++)
         {
-            value = shifted[i][j].magnitude() * 50;
+            if(amplitude)
+            {                
+                value = Utils::normalize<float>(input[i][j].magnitude() * mul);                
+            }
+            else
+            {
+                value = input[i][j].phase() * mul;
+            }
             image->setPixelValue(j, i, value, value, value);
         }
     }

@@ -91,6 +91,18 @@ public:
         // log(n)/log(2) is log2.  
         return (T)(std::log(n) / std::log(base));
     }
+    
+    static unsigned int computePower2Of(unsigned int value, bool higher = true)
+    {
+        int multed = 0;
+        int res = Utils::logBy<int>(value, 2);
+
+        multed = std::pow(2, res);
+                        
+        if(higher) res++;
+
+        return std::pow(2, res);
+    }
 
     template <class T>
     static T normalize(T val)

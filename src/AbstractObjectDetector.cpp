@@ -4,7 +4,7 @@ AbstractObjectDetector::AbstractObjectDetector(std::vector<DetectedObject*>& sha
 : AbstractDetector(settings), m_shapes(shapes), m_shrink(1)
 {
     m_bestMatch = new GeneralObject();
-    m_imageFilterBatch = ImageFilterFactory<float>::createShapeBatch();
+    m_imageFilterBatch = ImageFilterFactory<float>::createShapeBatch2();
 }
 
 AbstractObjectDetector::AbstractObjectDetector(std::vector<DetectedObject*>& shapes, ImageMap<float>* image, Image<float>* colorImage)

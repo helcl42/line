@@ -91,13 +91,11 @@ public:
             typename std::vector<Kernel<T> *>::iterator ii;
             for (ii = m_kernels.begin(); ii != m_kernels.end(); ++ii)
             {
-                imageMap = new ImageMap<T > (m_height, m_width, *ii);
-                m_fft->setOriginalHeight(m_height);
-                m_fft->setOriginalWidth(m_width);                               
+                imageMap = new ImageMap<T > (m_height, m_width, *ii);                                       
                 m_kernelStates.push_back(m_fft->forwardFFT(imageMap));
                 SAFE_DELETE(imageMap);
             }          
-
+            
             m_fft->setOriginalHeight(originalHeight);
             m_fft->setOriginalWidth(originalWidth);
         }

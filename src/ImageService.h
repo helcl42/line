@@ -44,13 +44,7 @@ private:
         
     LineDetector* m_lineDetector;          
     
-    //ObjectDetector* m_objectDetector;
-    
-    ObjectDetectorParallel* m_objectDetector;
-    
-    sensor_msgs::Image::ConstPtr imgPtr;
-    
-    static ImageService* thiss;
+    ObjectDetectorParallel* m_objectDetector;    
     
 public:
     ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings);    
@@ -67,15 +61,7 @@ public:
     
     void writeImageToMessage(const sensor_msgs::Image::ConstPtr& img);        
     
-    void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Polygon<int>** line, unsigned int count, unsigned int width = 1);        
-    
-    //temp
-    static ImageService* getInstance() { return thiss; }
-    
-    //temp
-    void writeLL(Polygon<int>* line) {
-        writeLinesToMessage(static_cast<const sensor_msgs::Image::ConstPtr&>(imgPtr), &line, 1, 1);
-    }
+    void writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, Polygon<int>** line, unsigned int count, unsigned int width = 1);                   
     
 private:        
     void tryChangeSettings();        

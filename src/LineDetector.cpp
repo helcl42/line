@@ -6,7 +6,7 @@ LineDetector::LineDetector(DetectionColorItem* settings)
 {    
     this->initDetectionParams();    
     m_bestLine = new LinePair();
-    this->m_imageFilterBatch = ImageFilterFactory<float>::createLineBatch();
+    this->m_imageFilterBatch = ImageFilterFactory<float>::createLineBatch2();
 }
 
 LineDetector::LineDetector(ImageMap<float>* image, Image<float>* colorImage)
@@ -14,7 +14,7 @@ LineDetector::LineDetector(ImageMap<float>* image, Image<float>* colorImage)
 {    
     this->initDetectionParams();
     m_bestLine = new LinePair();
-    this->m_imageFilterBatch = ImageFilterFactory<float>::createLineBatch();
+    this->m_imageFilterBatch = ImageFilterFactory<float>::createLineBatch2();
 }
 
 LineDetector::~LineDetector()
@@ -27,6 +27,8 @@ LinePair* LineDetector::findObject()
     //repaintSimilarColorPlaces();    
     m_imageFilterBatch->setInstance(m_workImage);
     m_imageFilterBatch->applyFilter();            
+    
+    m_workImage->increasePower(2, 1);
     
     traverseImage();        
     return findBestLine();
@@ -59,9 +61,7 @@ LinePair* LineDetector::findBestLine()
         {            
             if (colorMatch() && m_bestLine->hasLengthInInterval())
             {                
-                //std::cout << *m_bestLine << std::endl;                
-                //writeLineInImageMap(m_bestLine->getAt(0), 255);
-                //writeLineInImageMap(m_bestLine->getAt(1), 255); 
+                //std::cout << *m_bestLine << std::endl;                                
                 break;
             }      
             else 
@@ -109,8 +109,6 @@ bool LineDetector::colorMatch(unsigned int failCount)
 void LineDetector::initDetectionParams(unsigned int shrink)
 {
     unsigned int settingsParam = 480;         
-    
-    //DetectionParams::selectionTreshold = 8;
     
     DetectionParams::selectionTreshold = 8;
     

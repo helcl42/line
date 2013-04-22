@@ -19,7 +19,7 @@ class ImageFilterFactory
 public:
 
     static FFTImageFilterBatch<T>* createShapeBatch()
-    {        
+    {
         float sobel5x5X[25] = {
             -1, -2, 0, 2, 1,
 
@@ -76,18 +76,79 @@ public:
 
         FFTImageFilterBatchItem<T>* sobelEdgeFilter = new FFTImageFilterBatchItem<T > (kernels2);
 
-        float gaussKer[] = {
-            0.0927228945528099, 0.11905855331466475, 0.0927228945528099,
-            0.11905855331466475, 0.15287420853010147, 0.11905855331466475,
-            0.0927228945528099, 0.11905855331466475, 0.0927228945528099,
+        //        float gaussKer[] = {
+        //            0.0927228945528099, 0.11905855331466475, 0.0927228945528099,
+        //            0.11905855331466475, 0.15287420853010147, 0.11905855331466475,
+        //            0.0927228945528099, 0.11905855331466475, 0.0927228945528099
+        //        };
+        //
+        //        Kernel<T>* gaussianKernel = new NonSeparableKernel<T > (3, 3, gaussKer);
+        //
+        //        FFTImageFilterBatchItem<T>* gaussFilter = new FFTImageFilterBatchItem<T > (gaussianKernel);
+
+        float gaussKer[] ={
+            0.029637889913828982, 0.036720652003741625, 0.03943950161493383, 0.036720652003741625, 0.029637889913828982,
+            0.036720652003741625, 0.04549602847909662, 0.048864619519598224, 0.04549602847909662, 0.036720652003741625,
+            0.03943950161493383, 0.048864619519598224, 0.052482625860236644, 0.048864619519598224, 0.03943950161493383,
+            0.036720652003741625, 0.04549602847909662, 0.048864619519598224, 0.04549602847909662, 0.036720652003741625,
+            0.029637889913828982, 0.036720652003741625, 0.03943950161493383, 0.036720652003741625, 0.029637889913828982
+
         };
 
-        Kernel<T>* gaussianKernel = new NonSeparableKernel<T > (3, 3, gaussKer);
+        Kernel<T>* gaussianKernel = new NonSeparableKernel<T > (5, 5, gaussKer);
 
         FFTImageFilterBatchItem<T>* gaussFilter = new FFTImageFilterBatchItem<T > (gaussianKernel);
 
         FFTImageFilterBatch<T>* imageFilterBatch = new FFTImageFilterBatch<T > ();
         imageFilterBatch->addItem(sobelEdgeFilter);
+        imageFilterBatch->addItem(gaussFilter);
+
+        return imageFilterBatch;
+    }
+
+    static FFTImageFilterBatch<T>* createShapeBatch2()
+    {
+        float laplace7x7[49] = {
+            -1, -1, -1, -1, -1, -1, -1,
+
+            -1, -1, -1, -1, -1, -1, -1,
+
+            -1, -1, -1, -1, -1, -1, -1,
+
+            -1, -1, -1, 48, -1, -1, -1,
+
+            -1, -1, -1, -1, -1, -1, -1,
+
+            -1, -1, -1, -1, -1, -1, -1,
+
+            -1, -1, -1, -1, -1, -1, -1,
+        };
+
+        Kernel<T>* laplace = new NonSeparableKernel<T > (7, 7, laplace7x7);
+
+        FFTImageFilterBatchItem<T>* laplaceEdgeFilter = new FFTImageFilterBatchItem<T > (laplace);
+
+//        float gaussKer[] ={
+//            0.029637889913828982, 0.036720652003741625, 0.03943950161493383, 0.036720652003741625, 0.029637889913828982,
+//            0.036720652003741625, 0.04549602847909662, 0.048864619519598224, 0.04549602847909662, 0.036720652003741625,
+//            0.03943950161493383, 0.048864619519598224, 0.052482625860236644, 0.048864619519598224, 0.03943950161493383,
+//            0.036720652003741625, 0.04549602847909662, 0.048864619519598224, 0.04549602847909662, 0.036720652003741625,
+//            0.029637889913828982, 0.036720652003741625, 0.03943950161493383, 0.036720652003741625, 0.029637889913828982
+//
+//        };
+        
+        float gaussKer[] = {
+            0.0927228945528099, 0.11905855331466475, 0.0927228945528099,
+            0.11905855331466475, 0.15287420853010147, 0.11905855331466475,
+            0.0927228945528099, 0.11905855331466475, 0.0927228945528099
+        };
+
+        Kernel<T>* gaussianKernel = new NonSeparableKernel<T > (3, 3, gaussKer);       
+        
+        FFTImageFilterBatchItem<T>* gaussFilter = new FFTImageFilterBatchItem<T > (gaussianKernel);
+
+        FFTImageFilterBatch<T>* imageFilterBatch = new FFTImageFilterBatch<T > ();
+        imageFilterBatch->addItem(laplaceEdgeFilter);
         imageFilterBatch->addItem(gaussFilter);
 
         return imageFilterBatch;
@@ -190,19 +251,61 @@ public:
 
             -6, -4, -1, -2, 0
         };
-        
+
         std::vector<Kernel<T>*> kernels2;
         kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5X));
         kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5Y));
         kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5XY));
         kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5YX));
-        
+
         //kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5X2));
         //kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5Y2));
         kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5XY2));
         kernels2.push_back(new NonSeparableKernel<T > (5, 5, sobel5x5YX2));
 
         FFTImageFilterBatchItem<T>* edgeFilter = new FFTImageFilterBatchItem<T > (kernels2);
+
+        float gaussKer[] = {
+            0.029637889913828982, 0.036720652003741625, 0.03943950161493383, 0.036720652003741625, 0.029637889913828982,
+            0.036720652003741625, 0.04549602847909662, 0.048864619519598224, 0.04549602847909662, 0.036720652003741625,
+            0.03943950161493383, 0.048864619519598224, 0.052482625860236644, 0.048864619519598224, 0.03943950161493383,
+            0.036720652003741625, 0.04549602847909662, 0.048864619519598224, 0.04549602847909662, 0.036720652003741625,
+            0.029637889913828982, 0.036720652003741625, 0.03943950161493383, 0.036720652003741625, 0.029637889913828982
+
+        };
+
+        Kernel<T>* gaussianKernel = new NonSeparableKernel<T > (5, 5, gaussKer);
+
+        FFTImageFilterBatchItem<T>* gaussFIlter = new FFTImageFilterBatchItem<T > (gaussianKernel);
+
+        FFTImageFilterBatch<T>* imageFilterBatch = new FFTImageFilterBatch<T > ();
+        imageFilterBatch->addItem(edgeFilter);
+        imageFilterBatch->addItem(gaussFIlter);
+
+        return imageFilterBatch;
+    }
+
+    static FFTImageFilterBatch<T>* createLineBatch2()
+    {
+        float laplace7x7[49] = {
+            -1, -1, -1, -1, -1, -1, -1,
+
+            -1, -1, -1, -1, -1, -1, -1,
+
+            -1, -1, -1, -1, -1, -1, -1,
+
+            -1, -1, -1, 48, -1, -1, -1,
+
+            -1, -1, -1, -1, -1, -1, -1,
+
+            -1, -1, -1, -1, -1, -1, -1,
+
+            -1, -1, -1, -1, -1, -1, -1,
+        };
+
+        Kernel<T>* laplace = new NonSeparableKernel<T > (7, 7, laplace7x7);
+
+        FFTImageFilterBatchItem<T>* edgeFilter = new FFTImageFilterBatchItem<T > (laplace);
 
         float gaussKer[] = {
             0.029637889913828982, 0.036720652003741625, 0.03943950161493383, 0.036720652003741625, 0.029637889913828982,

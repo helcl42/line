@@ -183,6 +183,17 @@ Vector2<int> DetectedObject::getOrigin() const
     return Vector2<int>(originX, originY);
 }
 
+unsigned int DetectedObject::getMaxMeasure()
+{
+    computeBounds();
+    
+    unsigned int w = m_boundingPointHigher.x - m_boundingPointLower.x;
+    unsigned int h = m_boundingPointHigher.y - m_boundingPointLower.y;
+    
+    if(w > h) return w;
+    return h;
+}
+
 unsigned int DetectedObject::getWidth() const
 {
     return m_boundingPointHigher.x - m_boundingPointLower.x;
@@ -194,11 +205,11 @@ unsigned int DetectedObject::getHeight() const
 }
 
 bool DetectedObject::isValid()
-{
+{    
     if (m_polygon != NULL)
-    {
+    {        
         return true;
-    }
+    }    
     return false;
 }
 

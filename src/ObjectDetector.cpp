@@ -7,13 +7,13 @@
 ObjectDetector::ObjectDetector(std::vector<DetectedObject*>& shapes, DetectionColorItem* settings)
 : AbstractObjectDetector(shapes, settings)
 {
-    this->initDetectionParams();        
+    this->initDetectionParams();
 }
 
 ObjectDetector::ObjectDetector(std::vector<DetectedObject*>& shapes, ImageMap<float>* image, Image<float>* colorImage)
 : AbstractObjectDetector(shapes, image, colorImage)
 {
-    this->initDetectionParams();    
+    this->initDetectionParams();
 }
 
 ObjectDetector::~ObjectDetector()
@@ -50,12 +50,12 @@ void ObjectDetector::generateShapes(DetectedObject* shape, unsigned int size)
             tempShapePtr = new GeneralObject(new Polygon<int>(shape->getPolygon()));
 
             tempShapePtr->createBatch(size, rotateAngle);
-            
+
             tempShapePtr->viewByAngle(m_angles[viewAngle], true);
 
             m_detectedShapes.push_back(tempShapePtr);
         }
-    }        
+    }
 }
 
 DetectedObject* ObjectDetector::findObject()
@@ -64,7 +64,8 @@ DetectedObject* ObjectDetector::findObject()
     //repaintSimilarColorPlaces();        
     m_imageFilterBatch->setInstance(m_workImage);
     m_imageFilterBatch->applyFilter();
-    //m_workImage->resolveThreshold(150);
+
+    m_workImage->increasePower(4, 1);
 
     return findBestShape();
 }
@@ -75,7 +76,7 @@ bool ObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsigne
     Vector2<int>* point;
     Polygon<int>* squareLine = shape->getPolygon();
     unsigned int lineSize = squareLine->getSize();
-    unsigned int failCount = 0;    
+    unsigned int failCount = 0;
 
     for (unsigned int k = base; k < lineSize; k += ratio)
     {
@@ -83,7 +84,7 @@ bool ObjectDetector::rawShapeFind(DetectedObject* shape, unsigned int y, unsigne
         if (m_workImage->getValueAt(point->y + y, point->x + x) < DetectionParams::selectionTreshold) failCount++;
     }
 
-    percentFail = (double) failCount / ((double) lineSize / (double)ratio);
+    percentFail = (double) failCount / ((double) lineSize / (double) ratio);
 
     if (percentFail < DetectionParams::maxPercentageError) return true;
     return false;
@@ -93,27 +94,30 @@ bool ObjectDetector::innerShapeFind(DetectedObject* shape, unsigned int y, unsig
 {
     Vector2<int>* point;
     Polygon<int>* shapeLine = shape->getPolygon();
-    unsigned int lineSize = shapeLine->getSize();        
-    unsigned int i = 64, j = 64, iteration = 0;
+    unsigned int lineSize = shapeLine->getSize();
+//    unsigned int i = 64, j = 64, iteration = 0;
+    
+    unsigned int ratio = Utils::computePower2Of(shapeLine->getSize() / 5, false);    
+    unsigned int i = ratio, j = ratio, iteration = 0;
 
     while (rawShapeFind(shape, y, x, i, j))
     {
         if (iteration != 0) i >>= 1;
         j = i >> 1;
 
-        if(i == 1) break;
-        
+        if (i == 1) break;
+
         iteration++;
     }
 
     if (i <= 1)
-    {        
+    {
         m_bestMatch->cleanUp();
         for (unsigned int k = 0; k < lineSize; k++)
         {
             point = shapeLine->getPointPtr(k);
             m_bestMatch->addPoint(point->x + x, point->y + y);
-        }        
+        }
         return true;
     }
     return false;
@@ -124,21 +128,15 @@ bool ObjectDetector::findShapeInImage(DetectedObject* shape)
     unsigned int baseHeight = m_workImage->getHeight();
     unsigned int baseWidth = m_workImage->getWidth();
     unsigned int offsetX = shape->getWidth();
-    unsigned int offsetY = shape->getHeight();    
+    unsigned int offsetY = shape->getHeight();
 
-    std::vector<float>::reverse_iterator anglesIterator;
-    for (anglesIterator = m_angles.rbegin(); anglesIterator != m_angles.rend(); ++anglesIterator)
+    for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 4)
     {
-        shape->viewByAngle(*anglesIterator);
-
-        for (unsigned int i = 0; i < baseHeight - offsetY - 1; i += 3)
+        for (unsigned int j = 0; j < baseWidth - offsetX - 1; j += 4)
         {
-            for (unsigned int j = 0; j < baseWidth - offsetX - 1; j += 3)
+            if (innerShapeFind(shape, i, j))
             {
-                if (innerShapeFind(shape, i, j))
-                {
-                    return true;
-                }
+                return true;
             }
         }
     }
@@ -148,9 +146,12 @@ bool ObjectDetector::findShapeInImage(DetectedObject* shape)
 DetectedObject* ObjectDetector::findBestShape()
 {
     unsigned int shapeIndex = 0;
-    unsigned int shapeSize = m_workImage->getHeight() / 3 - 1;
+    unsigned int shapeSize = m_workImage->getHeight() / 2 - 1;
+
+    unsigned int step = m_workImage->getHeight() / 16;//32;
+    if(step == 0) step = 1;    
     
-    while (shapeSize > m_workImage->getHeight() / 5)
+    while (shapeSize > m_workImage->getHeight() / 4)
     {
         cleanUp();
 
@@ -160,18 +161,15 @@ DetectedObject* ObjectDetector::findBestShape()
         {
             if (findShapeInImage(m_detectedShapes[i]))
             {
-                //                if (colorMatch())
-                //                {
-                std::cout << "GOT IT!!!!" << std::endl;
-                //writeLineInImageMap(m_bestMatch->getPolygon(), 255);
-                ImageService::getInstance()->writeLL(m_bestMatch->getPolygon());
+                // if (colorMatch())
+                // {
+                std::cout << "GOT IT!!!!" << std::endl;                
                 return m_bestMatch;
-                //                }                
+                // }                
             }
         }
         invalidate();
-
-        shapeSize -= 5;
+        shapeSize -= step;
     }
     invalidate();
     return m_bestMatch;

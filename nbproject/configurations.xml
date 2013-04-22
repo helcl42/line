@@ -4,6 +4,72 @@
     <df name="line" root=".">
       <df name="bin">
       </df>
+      <df name="build">
+        <df name="CMakeFiles">
+          <df name="clean-test-results.dir">
+          </df>
+          <df name="CMakeTmp">
+            <df name="CMakeFiles">
+              <df name="cmTryCompileExec.dir">
+              </df>
+            </df>
+          </df>
+          <df name="CompilerIdC">
+            <in>CMakeCCompilerId.c</in>
+          </df>
+          <df name="CompilerIdCXX">
+            <in>CMakeCXXCompilerId.cpp</in>
+          </df>
+          <df name="line.dir">
+            <df name="src">
+              <df name="Shapes">
+              </df>
+              <df name="SvgExtractor">
+                <df name="SvgParser">
+                  <df name="AST">
+                    <df name="Arguments">
+                    </df>
+                    <df name="Commands">
+                    </df>
+                  </df>
+                </df>
+                <df name="XmlParser">
+                </df>
+              </df>
+              <df name="Utils">
+              </df>
+            </df>
+          </df>
+          <df name="ROSBUILD_genmsg_cpp.dir">
+          </df>
+          <df name="ROSBUILD_genmsg_lisp.dir">
+          </df>
+          <df name="ROSBUILD_gensrv_cpp.dir">
+          </df>
+          <df name="ROSBUILD_gensrv_lisp.dir">
+          </df>
+          <df name="rosbuild_precompile.dir">
+          </df>
+          <df name="rosbuild_premsgsrvgen.dir">
+          </df>
+          <df name="rospack_genmsg.dir">
+          </df>
+          <df name="rospack_genmsg_libexe.dir">
+          </df>
+          <df name="rospack_gensrv.dir">
+          </df>
+          <df name="test-future.dir">
+          </df>
+          <df name="test-results-run.dir">
+          </df>
+          <df name="test-results.dir">
+          </df>
+          <df name="test.dir">
+          </df>
+          <df name="tests.dir">
+          </df>
+        </df>
+      </df>
       <df name="include">
         <df name="line">
         </df>

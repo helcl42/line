@@ -282,8 +282,8 @@ Polygon<int>* StraightObjectDetector::findLineWithDirection(Polygon<int>* input,
         testedDirection = m_lines[i]->getDirectionDegrees();
 
         delta = input->getDirectionDegrees() - testedDirection + angle;
-
-        delta = delta < 0 ? -delta : delta;
+        
+        if(delta < 0.0) delta = -delta;
         
         //std::cout << "testDirection = " << testedDirection << " input = " << input->directionDegrees << std::endl;
 

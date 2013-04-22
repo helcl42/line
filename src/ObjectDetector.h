@@ -9,7 +9,6 @@
 #define	OBJECTDETECTOR_H
 
 #include "Shapes/DetectedObject.h"
-#include "ObjectDetectorThread.h"
 #include "AbstractObjectDetector.h"
 
 

@@ -75,23 +75,29 @@ void ObjectDetectorParallel::generate(unsigned int shapeIndex)
     DetectedObject* shape = m_shapes[shapeIndex];
     unsigned int shapeSize = m_workImage->getHeight() / 2 - 1;
 
+    unsigned int step = m_workImage->getHeight() / 16;//32;
+    if(step == 0) step = 1;    
+    
     while (shapeSize > m_workImage->getHeight() / 4)
     {
         generateShapes(shape, shapeSize);
 
-        shapeSize -= 4;
+        //shapeSize -= 4;
+        shapeSize -= step;
     } 
 }
 
 DetectedObject* ObjectDetectorParallel::findObject()
 {
-    unsigned int partSize;
-    unsigned int shapeIterator = 0;
-    int tempCount = m_detectedShapes.size();
+    unsigned int partSize;    
+    unsigned int shapeIterator = 0;    
+    int tempCount;
 
     m_imageFilterBatch->setInstance(m_workImage);
     m_imageFilterBatch->applyFilter();    
-
+    
+    m_workImage->increasePower(4, 1);
+    
     cleanUp();
     
     if (m_shapesCache->itemExists(m_shrink))
@@ -104,6 +110,8 @@ DetectedObject* ObjectDetectorParallel::findObject()
         m_shapesCache->addItem(m_shrink, m_detectedShapes);
     }
 
+    tempCount = m_detectedShapes.size();
+    
     partSize = tempCount / m_workers.size();
 
     std::vector<ObjectDetectorThread*>::iterator ii;
@@ -134,6 +142,9 @@ DetectedObject* ObjectDetectorParallel::findObject()
 
 DetectedObject* ObjectDetectorParallel::findBestShape()
 {
+    unsigned int maxSize = 0;    
+    DetectedObject* tempObject;
+    
     invalidate();
 
     for (unsigned int i = 0; i < m_workers.size(); i++)
@@ -142,8 +153,7 @@ DetectedObject* ObjectDetectorParallel::findBestShape()
     }
 
     for (unsigned int i = 0; i < m_workers.size(); i++)
-    {
-        //std::cout << "JOIN " << i << std::endl;
+    {        
         m_workers[i]->waitForThreadToExit();
     }
 
@@ -153,11 +163,14 @@ DetectedObject* ObjectDetectorParallel::findBestShape()
         {
             if (m_workers[i]->getFoundObject()->isValid())
             {
-                //color match            
-                //if(colorMatch()) {                    
-                ImageService::getInstance()->writeLL(m_workers[i]->getFoundObject()->getPolygon());
-                std::cout << "THREAD " << i << " FOUND IT !!!!!!!!!!!!!!" << std::endl;
-                //}
+                tempObject = m_workers[i]->getFoundObject();
+                
+                if(tempObject->getMaxMeasure() > maxSize)
+                {
+                    maxSize = tempObject->getMaxMeasure();
+                    m_bestMatch = tempObject;                    
+                }                
+                std::cout << "THREAD " << i << " FOUND IT !!!!!!!!!!!!!!" << std::endl;                
             }
         }
     }

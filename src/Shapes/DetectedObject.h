@@ -34,7 +34,7 @@ public:
     virtual ~DetectedObject();
 
 public:
-    void setPolygon(Polygon<int>* line);
+    void setPolygon(Polygon<int>* line);       
 
     Vector2<int>* getLowerBoundingPoint();
 
@@ -53,6 +53,8 @@ public:
     void viewByAngle(float angle, bool shift = true);
 
     Vector2<int> getOrigin() const;
+    
+    unsigned int getMaxMeasure();
 
     unsigned int getWidth() const;
 
