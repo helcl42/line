@@ -44,11 +44,7 @@ private:
     
     ros::Publisher m_resender;            
     
-    ImageService* m_imageService;                
-    
-    CameraService m_cameraService;
-    
-    MoveService m_moveService;
+    ImageService* m_imageService;                    
             
 public:
     DetectorTopic(std::vector<DetectedObject*>& shapes, DetectionSettings* settings);

@@ -13,17 +13,22 @@
 
 class CameraService
 {
-public:
-    CameraService() {}
+private:
+    static CameraService* m_instance;        
+    
+public:    
+    static CameraService* getInstance();
     
     ~CameraService() {}
     
-public:
+public:        
     double getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg);
     
     std::vector<float> getCameraAngles(const sensor_msgs::Image::ConstPtr& msg);
 
 private:    
+    CameraService() {}
+    
     double getCameraHeight(float distLow, float distHigh);
 };
 

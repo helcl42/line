@@ -22,58 +22,21 @@ private:
     Vector2<float> m_previousGoal;
 
     bool m_initialized;
-    
-public:
 
+    static MoveService* m_instance;
+    
+private:    
     MoveService()
     : m_initialized(false) {}
+    
+public:
+    static MoveService* getInstace();
 
     ~MoveService() {}
 
-    bool moveTo(Vector2<float>* nextGoal)
-    {
-        if(m_initialized)
-        {
-            if(!checkSteep(nextGoal)) 
-                return false;
-        }
-        else
-        {
-            m_previousGoal.x = nextGoal->x;
-            m_previousGoal.y = nextGoal->y;
-            m_initialized = true;
-        }
-                
-        MoveBaseClient ac("move_base", true);
-        
-//        while (!ac.waitForServer(ros::Duration(5.0)))
-//        {
-//            ROS_INFO("Waiting for the move_base action server to come up");
-//        }
-
-        move_base_msgs::MoveBaseGoal goal;
-
-        
-        goal.target_pose.header.frame_id = "base_link";
-        goal.target_pose.header.stamp = ros::Time::now();
-
-        goal.target_pose.pose.position.x = nextGoal->x;
-        goal.target_pose.pose.orientation.w = nextGoal->y;
-       
-        ac.sendGoal(goal);
-
-        ac.waitForResult();
-
-        if (ac.getState() != actionlib::SimpleClientGoalState::SUCCEEDED) 
-            return false;
-        return true;            
-    }
+    bool moveTo(Vector2<float>* nextGoal);
     
-    bool checkSteep(Vector2<float>* nextGoal)
-    {
-        //TODO        
-        return true;
-    }
+    bool checkSteep(Vector2<float>* nextGoal);
 };
 
 #endif	/* MOVESERVICE_H */

@@ -1,5 +1,16 @@
 #include "CameraService.h"
 
+CameraService* CameraService::m_instance = NULL;
+
+CameraService* CameraService::getInstance()
+{
+    if(m_instance == NULL)
+    {
+        m_instance = new CameraService();
+    }
+    return m_instance;
+}
+
 double CameraService::getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg)
 {
     float lowMidDistance;

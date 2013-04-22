@@ -22,12 +22,12 @@ void DetectorTopic::depthImageCallback(const sensor_msgs::Image::ConstPtr& depth
 {
     float distance, midDistance, ground;    
     Vector2<float> resultPoint;
-    double tempCamY = m_cameraService.getCameraYPosition(depth);      
+    double tempCamY = CameraService::getInstance()->getCameraYPosition(depth);      
     
     if (!isnan(tempCamY) && tempCamY > 0)
     {
         m_cameraY = tempCamY;
-        m_cameraGroundAngles = m_cameraService.getCameraAngles(depth);
+        m_cameraGroundAngles = CameraService::getInstance()->getCameraAngles(depth);
     }    
     
     std::cout << "Cam Height!!!!: " << m_cameraY << std::endl;
