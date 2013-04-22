@@ -58,6 +58,8 @@ public:
     double getElapsedTimeInMicroSec();
     
     void logTime();
+    
+    void logTimeUs();
 };
 #endif	/* TIMER_H */
 

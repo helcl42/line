@@ -105,4 +105,16 @@ void Timer::logTime()
     std::cout << ss.str() << std::endl;
 }
 
-
+void Timer::logTimeUs() 
+{
+    std::stringstream ss;
+    double res = getElapsedTimeInMicroSec();
+    int sec = res / 1000000;
+    res -= sec * 1000000;
+    if(sec > 0) ss << sec;    
+    sec = res / 1000;
+    res -= sec * 1000;
+    if(sec > 0) ss << sec;    
+    ss << res;      
+    std::cout << ss.str() << std::endl;
+}
