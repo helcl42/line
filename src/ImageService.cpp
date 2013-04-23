@@ -129,9 +129,7 @@ void ImageService::writePointToMessage(const sensor_msgs::Image::ConstPtr& img, 
 {
     unsigned char* temp;
     unsigned long imageSize = img->height * img->width * 3;
-    unsigned int index;
-    unsigned int min;
-    unsigned int max;
+    unsigned int index, min, max;    
 
     if (size <= 1)
     {
