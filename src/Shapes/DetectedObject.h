@@ -54,7 +54,7 @@ public:
 
     Vector2<int> getOrigin() const;
     
-    unsigned int getMaxMeasure();
+    unsigned int getMinMeasure();
 
     unsigned int getWidth() const;
 

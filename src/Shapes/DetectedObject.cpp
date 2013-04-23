@@ -183,14 +183,14 @@ Vector2<int> DetectedObject::getOrigin() const
     return Vector2<int>(originX, originY);
 }
 
-unsigned int DetectedObject::getMaxMeasure()
+unsigned int DetectedObject::getMinMeasure()
 {
     computeBounds();
     
     unsigned int w = m_boundingPointHigher.x - m_boundingPointLower.x;
     unsigned int h = m_boundingPointHigher.y - m_boundingPointLower.y;
     
-    if(w > h) return w;
+    if(w < h) return w;
     return h;
 }
 

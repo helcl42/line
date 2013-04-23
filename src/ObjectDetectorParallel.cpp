@@ -141,7 +141,7 @@ DetectedObject* ObjectDetectorParallel::findObject()
 
 DetectedObject* ObjectDetectorParallel::findBestShape()
 {
-    unsigned int minSize = 10000;    
+    unsigned int minSize = 10000;        
     DetectedObject* tempObject;
     
     invalidate();
@@ -162,11 +162,11 @@ DetectedObject* ObjectDetectorParallel::findBestShape()
         {
             if (m_workers[i]->getFoundObject()->isValid())
             {
-                tempObject = m_workers[i]->getFoundObject();
+                tempObject = m_workers[i]->getFoundObject();                
                 
-                if(tempObject->getMaxMeasure() < minSize)
+                if(tempObject->getMinMeasure() < minSize)
                 {
-                    minSize = tempObject->getMaxMeasure();
+                    minSize = tempObject->getMinMeasure();
                     m_bestMatch = tempObject;                    
                 }                
                 std::cout << "THREAD " << i << " FOUND IT !!!!!!!!!!!!!!" << std::endl;                
@@ -181,5 +181,5 @@ void ObjectDetectorParallel::initDetectionParams(unsigned int shrink)
 {        
     DetectionParams::selectionTreshold = 12;
 
-    DetectionParams::maxPercentageError = 0.10;
+    DetectionParams::maxPercentageError = 0.10;    
 }

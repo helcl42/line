@@ -1,5 +1,4 @@
 #include "ImageService.h"
-#include "ObjectDetectorParallel.h"
 
 ImageService::ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings)
 : m_shrink(3), m_settings(settings), m_settingsIndex(0), m_lookUpLines(false)
@@ -177,32 +176,6 @@ void ImageService::writeLinesToMessage(const sensor_msgs::Image::ConstPtr& img, 
         }
     }
 }
-
-//void ImageService::writeImageToMessage(const sensor_msgs::Image::ConstPtr& img)
-//{
-//    if (img->width > 0 && img->height > 0)
-//    {
-//        Pixel<float>* pixel = NULL;
-//        unsigned char* temp;
-//        unsigned long size = img->height * img->width * 3;
-//
-//        for (unsigned int i = 0, index = img->width * 3; i < m_image->getHeight(); i++)
-//        {
-//            for (unsigned int j = 0; j < m_image->getWidth(); j++, index -= 3)
-//            {
-//                pixel = m_image->getPixel(i, j);
-//                temp = (unsigned char*) &img->data[index + 2];
-//                *temp = (unsigned char) pixel->b;
-//                temp = (unsigned char*) &img->data[index + 1];
-//                *temp = (unsigned char) pixel->g;
-//                temp = (unsigned char*) &img->data[index];
-//                *temp = (unsigned char) pixel->r;
-//            }
-//
-//            index = size - (i + 1) * img->width * 3 + img->width * 3;
-//        }
-//    }
-//}
 
 void ImageService::writeImageMapToMessage(const sensor_msgs::Image::ConstPtr& img)
 {
