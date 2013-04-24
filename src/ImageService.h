@@ -21,7 +21,7 @@
 #include "ObjectDetectorParallel.h"
 #include "MoveService.h"
 
-const unsigned int NUMBER_OF_INSTANCES = 4;
+const unsigned int NUMBER_OF_INSTANCES = 6;
 
 class ImageService
 {

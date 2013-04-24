@@ -74,7 +74,7 @@ void ObjectDetectorParallel::generate(unsigned int shapeIndex)
     DetectedObject* shape = m_shapes[shapeIndex];
     unsigned int shapeSize = m_workImage->getHeight() / 2 - 1;
 
-    unsigned int step = m_workImage->getHeight() / 16; //32;
+    unsigned int step = m_workImage->getHeight() / 32;//16;
     if(step == 0) step = 1;    
     
     while (shapeSize > m_workImage->getHeight() / 4)
