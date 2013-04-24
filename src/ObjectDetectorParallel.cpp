@@ -2,7 +2,6 @@
 
 #include "Shapes/GeneralObject.h"
 #include "Utils/Timer.h"
-#include "ImageService.h"
 #include "ImageFilters/ImageFilterFactory.h"
 
 ObjectDetectorParallel::ObjectDetectorParallel(unsigned int numberOfInstances, std::vector<DetectedObject*>& shapes, DetectionColorItem* settings)
@@ -180,6 +179,6 @@ DetectedObject* ObjectDetectorParallel::findBestShape()
 void ObjectDetectorParallel::initDetectionParams(unsigned int shrink)
 {        
     DetectionParams::selectionTreshold = 12;
-
+    
     DetectionParams::maxPercentageError = 0.10;    
 }
