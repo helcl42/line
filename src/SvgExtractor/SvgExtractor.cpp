@@ -82,7 +82,6 @@ void SvgExtractor::extractCircle(XMLNode node)
     m_objectsToDetect.push_back(circ);
 }
 
-//<rect x="50" y="20" width="150" height="150">
 void SvgExtractor::extractRectangle(XMLNode node)
 {
     float width = std::atof(node.getAttribute("width"));

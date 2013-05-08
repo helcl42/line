@@ -1,11 +1,11 @@
 #include "ImageService.h"
 
 ImageService::ImageService(std::vector<DetectedObject*>& shapes, DetectionSettings* settings)
-: m_shrink(3), m_settings(settings), m_settingsIndex(0), m_lookUpLines(false)
+: m_shrink(3), m_settings(settings), m_settingsIndex(0), m_lookUpLines(true)
 {
     m_image = new ImageMap<float>();
     m_colorImage = new Image<float>();
-    m_lineDetector = new LineDetector(settings->getItem(0));    
+    m_lineDetector = new LineDetector(settings->getItem(0));
     m_objectDetector = new ObjectDetectorParallel(NUMBER_OF_INSTANCES, shapes, settings->getItem(0));
 }
 
@@ -22,9 +22,9 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     std::cout << "-----------------------------------" << std::endl;
     unsigned long timeElapsed;
     Vector2<int>* objectPoint = NULL;
-    IDetectedObject* object = NULL;;    
-    
-    m_shrinkTimer.start();       
+    IDetectedObject* object = NULL;
+
+    m_shrinkTimer.start();
 
     cameraGroundAngles.clear();
     cameraGroundAngles.push_back(90);
@@ -42,23 +42,24 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-//    if (m_lookUpLines)
-//    {
-//        m_shrink = 2;
-//        m_lineDetector->invalidate();
-//        m_lineDetector->initDetectionParams(m_shrink);
-//        m_lineDetector->setInstance(m_image, m_colorImage);
-//        object = m_lineDetector->findObject();
-//    }
-//    else
-//    {
+    if (m_lookUpLines)
+    {
+        m_shrink = 2;
+        m_lineDetector->invalidate();
+        m_lineDetector->initDetectionParams(m_shrink);
+        m_lineDetector->setInstance(m_image, m_colorImage);
+        object = m_lineDetector->findObject();
+    }
+    else
+    {
+        m_shrink = 3;
         m_objectDetector->invalidate();
         m_objectDetector->initDetectionParams(m_shrink);
         m_objectDetector->setShrink(m_shrink);
         m_objectDetector->setInstance(m_image, m_colorImage);
         m_objectDetector->setAngles(cameraGroundAngles);
         object = m_objectDetector->findObject();
-//    }
+    }
 
     if (object->isValid())
     {
@@ -77,7 +78,7 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
         }
     }
     else
-    {        
+    {
         tryChangeSettings();
     }
 
@@ -88,16 +89,14 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     timeElapsed = m_shrinkTimer.getElapsedTimeInMicroSec();
     std::cout << "Elapsed " << timeElapsed << "ms " << m_shrinkTimer.getFPS() << " FPS" << std::endl;
 
-    //    if (timeElapsed > 350000)
-    //    {
-    //        if (m_shrink < 4) m_shrink++;
-    //    }
-    //    else if (timeElapsed < 70000)
-    //    {
-    //        if (m_shrink > 2) m_shrink--;
-    //    }
-    //
-    //    std::cout << "Params: len = " << DetectionParams::minLineLengthTreshold << " Straight=  " << DetectionParams::maxStraightnessTreshold << std::endl;
+//    if (timeElapsed > 350000)
+//    {
+//        if (m_shrink < 4) m_shrink++;
+//    }
+//    else if (timeElapsed < 70000)
+//    {
+//        if (m_shrink > 2) m_shrink--;
+//    }   
 
     return objectPoint;
 }
@@ -108,20 +107,25 @@ void ImageService::tryChangeSettings()
     {
         m_changeColorTimer.start();
     }
-    else if (m_changeColorTimer.getElapsedTimeInMilliSec() > 5000) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
+    else if (m_changeColorTimer.getElapsedTimeInMilliSec() > CHANGE_TIMEOUT) //pokud po 5 vterinach neuvidi hledanou caru, hleda dalsi
     {
         m_changeColorTimer.stop();
-        std::cout << "Hledam dalsi !!" << std::endl;
+        std::cout << "Next Color" << std::endl;
 
-        m_settingsIndex++;
-
-        if (m_settingsIndex >= m_settings->getCountOfColors())
+        if (m_lookUpLines)
         {
-            m_lookUpLines = !m_lookUpLines;
-            m_settingsIndex = 0;
-        }
+            m_settingsIndex++;
 
-        m_lineDetector->setColorSettings(m_settings->getItem(m_settingsIndex));
+            if (m_settingsIndex >= m_settings->getCountOfColors())
+            {
+                m_lookUpLines = !m_lookUpLines;
+                m_settingsIndex = 0;
+                std::cout << "Shapes" << std::endl;        
+                return;
+            }
+
+            m_lineDetector->setColorSettings(m_settings->getItem(m_settingsIndex));
+        }       
     }
 }
 
@@ -129,7 +133,7 @@ void ImageService::writePointToMessage(const sensor_msgs::Image::ConstPtr& img, 
 {
     unsigned char* temp;
     unsigned long imageSize = img->height * img->width * 3;
-    unsigned int index, min, max;    
+    unsigned int index, min, max;
 
     if (size <= 1)
     {

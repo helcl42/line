@@ -30,7 +30,7 @@ void DetectorTopic::depthImageCallback(const sensor_msgs::Image::ConstPtr& depth
         m_cameraGroundAngles = CameraService::getInstance()->getCameraAngles(depth);
     }    
     
-    std::cout << "Cam Height!!!!: " << m_cameraY << std::endl;
+    std::cout << "Camera Height: " << m_cameraY << std::endl;
 
     if (m_objectPoint != NULL)
     {                

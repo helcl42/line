@@ -12,10 +12,6 @@
  * c7deb2 - white
  * 
  * rosrun line line c88553 6cabeb ceb66e
- * 
- * @param argc
- * @param argv
- * @return 
  */
 int main(int argc, char** argv)
 {

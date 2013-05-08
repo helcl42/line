@@ -175,7 +175,7 @@ Polygon<int>* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector
     
     line->addPoint(Vector2<int>(pos));
 
-    while (pos.y > 2 && pos.x > 2 && pos.y < (int) m_workImage->getHeight() - 2 && pos.x < (int) m_workImage->getWidth() - 2)
+    while (pos.y > 12 && pos.x > 12 && pos.y < (int) m_workImage->getHeight() - 12 && pos.x < (int) m_workImage->getWidth() - 12)
     {
         pos += vecs[countOfFails];        
 

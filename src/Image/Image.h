@@ -78,9 +78,7 @@ public:
 
 template <class T>
 Image<T>::Image()
-: m_imageMatrix(NULL), m_width(0), m_height(0), m_shrinkRatio(1)
-{
-}
+: m_imageMatrix(NULL), m_width(0), m_height(0), m_shrinkRatio(1) {}
 
 template <class T>
 Image<T>::Image(unsigned int w, unsigned int h, unsigned int shrink)

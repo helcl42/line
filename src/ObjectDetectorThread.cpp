@@ -111,7 +111,7 @@ void ObjectDetectorThread::threadProcedure()
     {
         if (findShapeInImage(m_objects[i]))
         {
-            std::cout << "GOT IT!!!!" << std::endl;
+            //std::cout << "GOT IT!!!!" << std::endl;
             break;
         }
     }

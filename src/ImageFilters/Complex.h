@@ -18,6 +18,7 @@ struct Complex
 
     T imag;
     
+    
     Complex() 
     :real(0), imag(0) {}
     

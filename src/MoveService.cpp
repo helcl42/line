@@ -52,6 +52,9 @@ bool MoveService::moveTo(Vector2<float>* nextGoal)
 
 bool MoveService::checkSteep(Vector2<float>* nextGoal)
 {
-    //TODO        
-    return true;
+    if(std::abs(m_previousGoal.y - nextGoal->y) < STEP_THRESHOLD)  
+    {
+       return true;
+    }
+    return false;
 }

@@ -16,6 +16,8 @@
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
+const unsigned int STEP_THRESHOLD = 30;
+
 class MoveService
 {
 private:

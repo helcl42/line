@@ -39,7 +39,7 @@ void ObjectDetectorParallel::invalidate()
 
 void ObjectDetectorParallel::cleanUp()
 {
-    std::vector<DetectedObject*>::iterator ii;
+//    std::vector<DetectedObject*>::iterator ii;
 //    for (ii = m_detectedShapes.begin(); ii != m_detectedShapes.end(); ++ii)
 //    {
 //        SAFE_DELETE(*ii);
@@ -168,7 +168,7 @@ DetectedObject* ObjectDetectorParallel::findBestShape()
                     minSize = tempObject->getMinMeasure();
                     m_bestMatch = tempObject;                    
                 }                
-                std::cout << "THREAD " << i << " FOUND IT !!!!!!!!!!!!!!" << std::endl;                
+                std::cout << "THREAD " << i << " FOUND IT !!" << std::endl;
             }
         }
     }

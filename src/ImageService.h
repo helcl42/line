@@ -23,6 +23,9 @@
 
 const unsigned int NUMBER_OF_INSTANCES = 6;
 
+const unsigned int CHANGE_TIMEOUT = 10000;
+
+
 class ImageService
 {
 private:                    

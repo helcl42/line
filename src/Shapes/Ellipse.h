@@ -20,23 +20,15 @@ private:
 public:
 
     Ellipse()
-    : m_width(0), m_height(0)
-    {
-    }
+    : m_width(0), m_height(0) {}
 
     Ellipse(Polygon<int>* polygon, float width, float height)
-    : DetectedObject(polygon), m_width(width), m_height(height)
-    {
-    }
+    : DetectedObject(polygon), m_width(width), m_height(height) {}
 
     Ellipse(float width, float height)
-    : m_width(width), m_height(height)
-    {
-    }
+    : m_width(width), m_height(height) {}
 
-    virtual ~Ellipse()
-    {
-    }
+    virtual ~Ellipse() {}
 
 public:
 

@@ -15,9 +15,7 @@ double CameraService::getCameraYPosition(const sensor_msgs::Image::ConstPtr& msg
 {
     float lowMidDistance;
     float lowMidDistancePlusHalf;
-    double height = 0;
-    double temp;
-
+    double temp, height = 0;    
     int countOfOks = 0;
     unsigned int size = (4 * msg->width * msg->height);
 
@@ -54,9 +52,7 @@ double CameraService::getCameraHeight(float distLow, float distHigh)
 
     angle = atan(x1 / x2) * 180 / M_PI;
 
-    return 1.182 * distHigh * sin(angle * M_PI / 180) + 0.01 * acos(cos(angle / 2 * M_PI / 180));
-    //angle = 90 - angle - alpha;    
-    //return 1.15 * distLow * cos(angle * M_PI / 180) + 0.009 / acos(cos(angle * M_PI / 180));            
+    return 1.182 * distHigh * sin(angle * M_PI / 180) + 0.01 * acos(cos(angle / 2 * M_PI / 180));   
 }
 
 std::vector<float> CameraService::getCameraAngles(const sensor_msgs::Image::ConstPtr& msg)
@@ -79,7 +75,7 @@ std::vector<float> CameraService::getCameraAngles(const sensor_msgs::Image::Cons
         y = atan(x1 / y1) * 180 / M_PI;
         if(!isnan(y))
         {            
-            std::cout << "ANGLE: " << y << std::endl;            
+            //std::cout << "ANGLE: " << y << std::endl;            
             if(y < 0) y = -y;
             if(y > 90) y = 90;            
             angles.push_back(y);
