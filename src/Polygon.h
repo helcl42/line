@@ -59,6 +59,8 @@ public:
     void computeProperties();
 
     void deletePoints();
+    
+    bool isBeginNearer(Polygon<T>* other);
 
     Vector2<T>* getPointPtr(unsigned int index);
 
@@ -82,6 +84,8 @@ public: //should be private
     double computeStraightnessFactor();
 
     double computeDirectionInDegrees();
+        
+    double computeDirectionDegreesTo(unsigned int indexTo, bool fromBegin = true) const;
 
     double computeDirection();
 
@@ -93,14 +97,18 @@ public:
     Vector2<T> getBegin();
 
     Vector2<T> getEnd();
+    
+    Vector2<T>* getBeginPtr();
+
+    Vector2<T>* getEndPtr();
 
     double getDirection() const;
 
     void setDirection(double direction);
 
-    double getDirectionDegrees() const;
+    double getDirectionDegrees() const;    
 
-    void setDirectionDegrees(double directionDegrees);
+    void setDirectionDegrees(double directionDegrees);        
 
     double getLength() const;
 
@@ -154,6 +162,26 @@ double Polygon<T>::computeDirection()
     Vector2<T> tempEndPoint = points.back();
 
     return (double) (tempEndPoint.y - tempBeginPoint.y) / (double) (tempEndPoint.x - tempBeginPoint.x);
+}
+
+template <class T>
+double Polygon<T>::computeDirectionDegreesTo(unsigned int indexTo, bool fromBegin) const
+{   
+    const Vector2<T>* tempBeginPoint = NULL;
+    const Vector2<T>* tempEndPoint = NULL;
+    
+    if(fromBegin) 
+    {
+        tempBeginPoint = &points.front();
+    }
+    else
+    {
+        tempBeginPoint = &points.back();
+    }
+    
+    tempEndPoint = &points[indexTo];
+
+    return atan2(tempEndPoint->y - tempBeginPoint->y, tempEndPoint->x - tempBeginPoint->x) * 180 / M_PI;
 }
 
 template <class T>
@@ -230,6 +258,18 @@ Polygon<T>* Polygon<T>::getStraightesstLine(Polygon<T>** lines)
         }
     }
     return straightest;
+}
+
+template <class T>
+bool Polygon<T>::isBeginNearer(Polygon<T>* other) 
+{
+    Vector2<T>* thisBegin = getBeginPtr();
+    
+    if(thisBegin->distance(other->getBeginPtr()) < thisBegin->distance(other->getEndPtr())) 
+    {
+        return true;
+    }
+    return false;
 }
 
 template <class T>
@@ -410,6 +450,18 @@ double Polygon<T>::getDistanceTo(Vector2<T>& point)
     int c = -(n.x * points.front().x) - (n.y * points.front().y);
 
     return (double) (n.x * point.x + n.y * point.y + c) / (double) sqrt(n.x * n.x + n.y * n.y);
+}
+
+template <class T>
+Vector2<T>* Polygon<T>::getBeginPtr()
+{
+    return &points.front();
+}
+
+template <class T>
+Vector2<T>* Polygon<T>::getEndPtr()
+{
+    return &points.back();
 }
 
 template <class T>

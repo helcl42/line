@@ -37,7 +37,7 @@ void StraightObjectDetector::lockSimilarLines(Polygon<int>* input, unsigned int 
 }
 
 void StraightObjectDetector::lockAllLines(bool val)
-{    
+{
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {
         m_lines[i]->setLocked(val);
@@ -148,7 +148,7 @@ bool StraightObjectDetector::storeBestLine(Polygon<int>** lines)
         best->computeProperties();
         if (best->getStraightnessFactor() <= DetectionParams::maxStraightnessTreshold
                 && best->getStraightnessFactor() >= DetectionParams::minStraightnessTreshold)
-        {            
+        {
             writeLineInImageMap(best, 255);
             m_lines.push_back(best);
             return true;
@@ -168,16 +168,16 @@ bool StraightObjectDetector::storeBestLine(Polygon<int>** lines)
 
 Polygon<int>* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector2<int> pos)
 {
-    unsigned int value;    
+    unsigned int value;
     unsigned int countOfFails = 0;
 
     Polygon<int>* line = new Polygon<int>();
-    
+
     line->addPoint(Vector2<int>(pos));
 
     while (pos.y > 12 && pos.x > 12 && pos.y < (int) m_workImage->getHeight() - 12 && pos.x < (int) m_workImage->getWidth() - 12)
     {
-        pos += vecs[countOfFails];        
+        pos += vecs[countOfFails];
 
         value = m_workImage->getValueAt(pos.y, pos.x);
 
@@ -185,7 +185,7 @@ Polygon<int>* StraightObjectDetector::findCorrectLine(Vector2<int>* vecs, Vector
         {
             countOfFails = 0;
 
-            line->addPoint(pos);                        
+            line->addPoint(pos);
         }
         else
         {
@@ -262,43 +262,102 @@ void StraightObjectDetector::sortLinesByStraightness(bool reverse)
     }
 }
 
-/** 
- * @param input
- * @return Line*
- */
 Polygon<int>* StraightObjectDetector::findLineWithDirection(Polygon<int>* input, float angle)
 {
     if (input == NULL || m_lines.size() == 0) return NULL;
-
-    double minDelta = MAX_VALUE;
-    double delta;
-    double testedDirection;
+    
+    double delta, testedDirection, inputDirection;
     Polygon<int>* bestLine = NULL;
+    Polygon<int>* tempLine = NULL;
+    unsigned int countOfFails, step, position, ratio = 8;
+    bool fromBegin = true;
 
     for (unsigned int i = 0; i < m_lines.size(); i++)
     {
-        if (m_lines[i]->isLocked()) continue;
+        tempLine = m_lines[i];
+        if (tempLine->isLocked()) continue;
 
-        testedDirection = m_lines[i]->getDirectionDegrees();
+        countOfFails = 0;
+        position = 0;
 
-        delta = input->getDirectionDegrees() - testedDirection + angle;
-        
-        if(delta < 0.0) delta = -delta;
-        
-        //std::cout << "testDirection = " << testedDirection << " input = " << input->directionDegrees << std::endl;
-
-        if (delta < minDelta)
+        if (input->getSize() > tempLine->getSize())
         {
-            if (delta < DetectionParams::directionDeltaDegrees)
+            step = tempLine->getSize() / ratio;
+        }
+        else
+        {
+            step = input->getSize() / ratio;
+        }
+
+        if (input->isBeginNearer(tempLine))
+        {
+            fromBegin = true;
+        }
+        else
+        {
+            fromBegin = false;
+        }
+
+        for (unsigned int j = 0; j < ratio; j++, position += step)
+        {                        
+            testedDirection = tempLine->computeDirectionDegreesTo(position, fromBegin);
+
+            inputDirection = input->computeDirectionDegreesTo(position);
+
+            delta = inputDirection - testedDirection + angle;
+
+            if (delta < 0.0) delta = -delta;
+
+            //std::cout << "testDirection = " << testedDirection << "    }input = " << input->directionDegrees << std::endl;           
+            
+            if(delta > DetectionParams::directionDeltaDegrees) 
             {
-                minDelta = delta;
-                bestLine = m_lines[i];
-            }
+                countOfFails++;              
+            }            
+        }
+
+        if (countOfFails == 0)
+        {            
+             bestLine = m_lines[i];         
         }
     }
 
     return bestLine;
 }
+
+//Polygon<int>* StraightObjectDetector::findLineWithDirection(Polygon<int>* input, float angle)
+//{
+//    if (input == NULL || m_lines.size() == 0) return NULL;
+//
+//    double minDelta = MAX_VALUE;
+//    double delta;
+//    double testedDirection;
+//    Polygon<int>* bestLine = NULL;
+//
+//    for (unsigned int i = 0; i < m_lines.size(); i++)
+//    {
+//        if (m_lines[i]->isLocked()) continue;
+//
+//        testedDirection = m_lines[i]->getDirectionDegrees();
+//
+//        delta = input->getDirectionDegrees() - testedDirection + angle;
+//        
+//        if(delta < 0.0) delta = -delta;
+//        
+//        //std::cout << "testDirection = " << testedDirection << " input = " << input->directionDegrees << std::endl;
+//
+//        if (delta < minDelta)
+//        {
+//            if (delta < DetectionParams::directionDeltaDegrees)
+//            {
+//                minDelta = delta;
+//                bestLine = m_lines[i];
+//            }
+//        }
+//    }
+//
+//    return bestLine;
+//}
 
 Polygon<int>* StraightObjectDetector::getLongestLine()
 {

@@ -42,24 +42,24 @@ Vector2<int>* ImageService::perform(const sensor_msgs::Image::ConstPtr& img, std
     m_image->setInstance(img, m_shrink);
     m_colorImage->setInstance(img, m_shrink);
 
-    if (m_lookUpLines)
-    {
+//    if (m_lookUpLines)
+//    {
         m_shrink = 2;
         m_lineDetector->invalidate();
         m_lineDetector->initDetectionParams(m_shrink);
         m_lineDetector->setInstance(m_image, m_colorImage);
         object = m_lineDetector->findObject();
-    }
-    else
-    {
-        m_shrink = 3;
-        m_objectDetector->invalidate();
-        m_objectDetector->initDetectionParams(m_shrink);
-        m_objectDetector->setShrink(m_shrink);
-        m_objectDetector->setInstance(m_image, m_colorImage);
-        m_objectDetector->setAngles(cameraGroundAngles);
-        object = m_objectDetector->findObject();
-    }
+//    }
+//    else
+//    {
+//        m_shrink = 3;
+//        m_objectDetector->invalidate();
+//        m_objectDetector->initDetectionParams(m_shrink);
+//        m_objectDetector->setShrink(m_shrink);
+//        m_objectDetector->setInstance(m_image, m_colorImage);
+//        m_objectDetector->setAngles(cameraGroundAngles);
+//        object = m_objectDetector->findObject();
+//    }
 
     if (object->isValid())
     {

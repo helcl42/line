@@ -55,6 +55,9 @@
             <in>link.txt</in>
             <in>progress.make</in>
           </df>
+          <df name="Progress">
+            <in>count.txt</in>
+          </df>
           <df name="ROSBUILD_genmsg_cpp.dir">
             <in>DependInfo.cmake</in>
             <in>build.make</in>
@@ -146,7 +149,6 @@
           <in>CMakeCCompiler.cmake</in>
           <in>CMakeCXXCompiler.cmake</in>
           <in>CMakeDetermineCompilerABI_C.bin</in>
-          <in>CMakeDetermineCompilerABI_CXX.bin</in>
           <in>CMakeOutput.log</in>
           <in>CMakeSystem.cmake</in>
         </df>
